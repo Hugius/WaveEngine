@@ -106,13 +106,13 @@ const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared
 
 	for(const shared_ptr<Audio> & soundWave : soundWaves)
 	{
-		if(soundWave->getHeader()->dwBufferLength != soundWaves[0]->getHeader()->dwBufferLength)
+		if(soundWave->getHeader()->dwBufferLength != soundWaves.front()->getHeader()->dwBufferLength)
 		{
 			abort();
 		}
 	}
 
-	const int byteCount = soundWaves[0]->getHeader()->dwBufferLength;
+	const int byteCount = soundWaves.front()->getHeader()->dwBufferLength;
 	const int sampleCount = byteCount / BYTES_PER_BLOCK;
 	unsigned char * bytes = new unsigned char[byteCount];
 

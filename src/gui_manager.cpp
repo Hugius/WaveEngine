@@ -22,7 +22,7 @@ void GuiManager::initialize()
 	_createGuiElement("waveforms_close", fvec2(0.725f, 0.675f), fvec2(0.025f, 0.075f), fvec3(0.25f), fvec3(1.0f, 0.0f, 0.0f), "X", true, true, false, false);
 	_createGuiElement("waveforms_play", fvec2(-0.75f, 0.675f), fvec2(0.05f, 0.075f), fvec3(0.25f), fvec3(1.0f), "Play", true, true, false, false);
 
-	const vector<float> positions = Mathematics::calculateDistributedPositions(-0.75f, 1.5f, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
+	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75f, 1.5f, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
 
 	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 	{

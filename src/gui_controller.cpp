@@ -81,6 +81,11 @@ void GuiController::_updateWaveformMenu()
 			_guiManager->getGuiElement("waveforms_saw" + to_string(index))->setVisible(false);
 			_guiManager->getGuiElement("waveforms_note" + to_string(index))->setVisible(false);
 		}
+
+		if(_audioPlayer->isStarted())
+		{
+			_audioPlayer->stop();
+		}
 	}
 	else if(_guiManager->getGuiElement("waveforms_play")->isPressed())
 	{
@@ -90,19 +95,19 @@ void GuiController::_updateWaveformMenu()
 		{
 			if(_guiManager->getGuiElement("waveforms_sin" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateSineWave(10000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
+				soundWaves.push_back(_waveformGenerator->generateSineWave(1000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
 			}
 			if(_guiManager->getGuiElement("waveforms_sqr" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateSquareWave(10000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
+				soundWaves.push_back(_waveformGenerator->generateSquareWave(1000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
 			}
 			if(_guiManager->getGuiElement("waveforms_tri" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateTriangleWave(10000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
+				soundWaves.push_back(_waveformGenerator->generateTriangleWave(1000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
 			}
 			if(_guiManager->getGuiElement("waveforms_saw" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateSawtoothWave(10000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
+				soundWaves.push_back(_waveformGenerator->generateSawtoothWave(1000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
 			}
 		}
 
