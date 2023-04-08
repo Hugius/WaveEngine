@@ -58,25 +58,25 @@ const shared_ptr<Audio> WaveformGenerator::_generateSoundWave(const int duration
 		{
 			case WaveformType::SINE:
 			{
-				sample = static_cast<short>(amplitude * sinf(2.0 * pi * frequency * time));
+				sample = static_cast<short>(amplitude * sin(2.0 * pi * frequency * time));
 
 				break;
 			}
 			case WaveformType::SQUARE:
 			{
-				sample = static_cast<short>(amplitude * Mathematics::getSignum(sinf(2.0 * pi * frequency * time)));
+				sample = static_cast<short>(amplitude * Mathematics::getSignum(sin(2.0 * pi * frequency * time)));
 
 				break;
 			}
 			case WaveformType::TRIANGLE:
 			{
-				sample = static_cast<short>(amplitude * (1.0 - 4.0 * fabsf(roundf(frequency * time - 0.25) - (frequency * time - 0.25))));
+				sample = static_cast<short>(amplitude * (1.0 - 4.0 * abs(round(frequency * time - 0.25) - (frequency * time - 0.25))));
 
 				break;
 			}
 			case WaveformType::SAWTOOTH:
 			{
-				sample = static_cast<short>(amplitude * (2.0 * (frequency * time - floorf(frequency * time + 0.5))));
+				sample = static_cast<short>(amplitude * (2.0 * (frequency * time - floor(frequency * time + 0.5))));
 
 				break;
 			}
@@ -125,7 +125,7 @@ const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared
 		{
 			const unsigned char firstByte = soundWave->getHeader()->lpData[byteIndex + 0];
 			const unsigned char secondByte = soundWave->getHeader()->lpData[byteIndex + 1];
-			const short bytePair = static_cast<short>(firstByte) | static_cast<short>(secondByte) << 8;
+			const short bytePair = static_cast<short>(firstByte | secondByte << 8);
 
 			newBytePair += bytePair;
 		}
