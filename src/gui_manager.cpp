@@ -39,19 +39,6 @@ void GuiManager::initialize()
 		_createGuiElement(sawtoothId, dvec2(positions[index], -0.7), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SAW", true, true, true, false);
 		_createGuiElement(noteId, dvec2(positions[index], -0.75), dvec2(0.0125 * static_cast<double>(noteName.size()), 0.05), dvec3(0.25), dvec3(1.0), noteName, false, false, false, false);
 	}
-
-	//_createGuiElement("waveforms_sin", dvec2(-0.75, -0.75), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SIN", false, false, false, false);
-	//_createGuiElement("waveforms_sin_decr", dvec2(-0.75, -0.7), dvec2(0.0125, 0.05), dvec3(0.25), dvec3(1.0), "<", true, true, false, false);
-	//_createGuiElement("waveforms_sin_incr", dvec2(-0.725, -0.7), dvec2(0.0125, 0.05), dvec3(0.25), dvec3(1.0), ">", true, true, false, false);
-	//_createGuiElement("waveforms_sqr", dvec2(-0.7, -0.75), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SQR", false, false, false, false);
-	//_createGuiElement("waveforms_sqr_decr", dvec2(-0.7, -0.7), dvec2(0.0125, 0.05), dvec3(0.25), dvec3(1.0), "<", true, true, false, false);
-	//_createGuiElement("waveforms_sqr_incr", dvec2(-0.675, -0.7), dvec2(0.0125, 0.05), dvec3(0.25), dvec3(1.0), ">", true, true, false, false);
-	//_createGuiElement("waveforms_tri", dvec2(-0.65, -0.75), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "TRI", false, false, false, false);
-	//_createGuiElement("waveforms_tri_decr", dvec2(-0.65, -0.7), dvec2(0.0125, 0.05), dvec3(0.25), dvec3(1.0), "<", true, true, false, false);
-	//_createGuiElement("waveforms_tri_incr", dvec2(-0.625, -0.7), dvec2(0.0125, 0.05), dvec3(0.25), dvec3(1.0), ">", true, true, false, false);
-	//_createGuiElement("waveforms_saw", dvec2(-0.6, -0.75), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SAW", false, false, false, false);
-	//_createGuiElement("waveforms_saw_decr", dvec2(-0.6, -0.7), dvec2(0.0125, 0.05), dvec3(0.25), dvec3(1.0), "<", true, true, false, false);
-	//_createGuiElement("waveforms_saw_incr", dvec2(-0.575, -0.7), dvec2(0.0125, 0.05), dvec3(0.25), dvec3(1.0), ">", true, true, false, false);
 }
 
 void GuiManager::update(const dvec2 & cursorPosition, const bool isLmbPressed)
