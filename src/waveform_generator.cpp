@@ -3,52 +3,53 @@
 
 #include "waveform_generator.hpp"
 #include "mathematics.hpp"
+#include "audio_constants.hpp"
 
 using std::make_shared;
 
-const shared_ptr<Audio> WaveformGenerator::generateSineWave(const int duration, const int amplitude, const int frequency) const
+const shared_ptr<Audio> WaveformGenerator::generateSineWave(const int duration, const double amplitude, const double frequency) const
 {
 	return _generateSoundWave(duration, amplitude, frequency, WaveformType::SINE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::generateSquareWave(const int duration, const int amplitude, const int frequency) const
+const shared_ptr<Audio> WaveformGenerator::generateSquareWave(const int duration, const double amplitude, const double frequency) const
 {
 	return _generateSoundWave(duration, amplitude, frequency, WaveformType::SQUARE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::generateTriangleWave(const int duration, const int amplitude, const int frequency) const
+const shared_ptr<Audio> WaveformGenerator::generateTriangleWave(const int duration, const double amplitude, const double frequency) const
 {
 	return _generateSoundWave(duration, amplitude, frequency, WaveformType::TRIANGLE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::generateSawtoothWave(const int duration, const int amplitude, const int frequency) const
+const shared_ptr<Audio> WaveformGenerator::generateSawtoothWave(const int duration, const double amplitude, const double frequency) const
 {
 	return _generateSoundWave(duration, amplitude, frequency, WaveformType::SAWTOOTH);
 }
 
-const shared_ptr<Audio> WaveformGenerator::_generateSoundWave(const int duration, const int amplitude, const int frequency, const WaveformType type) const
+const shared_ptr<Audio> WaveformGenerator::_generateSoundWave(const int duration, const double amplitude, const double frequency, const WaveformType type) const
 {
-	if(duration < MIN_DURATION || duration > MAX_DURATION)
+	if(duration < AudioConstants::MIN_DURATION || duration > AudioConstants::MAX_DURATION)
 	{
 		abort();
 	}
 
-	if(amplitude < MIN_AMPLITUDE || amplitude > MAX_AMPLITUDE)
+	if(amplitude < AudioConstants::MIN_AMPLITUDE || amplitude > AudioConstants::MAX_AMPLITUDE)
 	{
 		abort();
 	}
 
-	if(frequency < MIN_FREQUENCY || frequency > MAX_FREQUENCY)
+	if(frequency < AudioConstants::MIN_FREQUENCY || frequency > AudioConstants::MAX_FREQUENCY)
 	{
 		abort();
 	}
 
-	const float pi = Mathematics::getPi();
-	const float delta = 1.0f / static_cast<float>(SAMPLES_PER_SECOND);
+	const double pi = Mathematics::getPi();
+	const double delta = 1.0 / static_cast<double>(SAMPLES_PER_SECOND);
 	const int sampleCount = duration * SAMPLES_PER_SECOND / 100;
 	const int byteCount = duration * BYTES_PER_SECOND / 100;
 	unsigned char * bytes = new unsigned char[byteCount];
-	float time = 0.0f;
+	double time = 0.0;
 
 	for(int index = 0; index < sampleCount; index++)
 	{
@@ -57,25 +58,25 @@ const shared_ptr<Audio> WaveformGenerator::_generateSoundWave(const int duration
 		{
 			case WaveformType::SINE:
 			{
-				sample = static_cast<short>(static_cast<float>(amplitude) * sinf(2.0f * pi * static_cast<float>(frequency) * time));
+				sample = static_cast<short>(amplitude * sinf(2.0 * pi * frequency * time));
 
 				break;
 			}
 			case WaveformType::SQUARE:
 			{
-				sample = static_cast<short>(static_cast<float>(amplitude) * Mathematics::getSignum(sinf(2.0f * pi * static_cast<float>(frequency) * time)));
+				sample = static_cast<short>(amplitude * Mathematics::getSignum(sinf(2.0 * pi * frequency * time)));
 
 				break;
 			}
 			case WaveformType::TRIANGLE:
 			{
-				sample = static_cast<short>(static_cast<float>(amplitude) * (1.0f - 4.0f * fabsf(roundf(static_cast<float>(frequency) * time - 0.25f) - (static_cast<float>(frequency) * time - 0.25f))));
+				sample = static_cast<short>(amplitude * (1.0 - 4.0 * fabsf(roundf(frequency * time - 0.25) - (frequency * time - 0.25))));
 
 				break;
 			}
 			case WaveformType::SAWTOOTH:
 			{
-				sample = static_cast<short>(static_cast<float>(amplitude) * (2.0f * (static_cast<float>(frequency) * time - floorf(static_cast<float>(frequency) * time + 0.5f))));
+				sample = static_cast<short>(amplitude * (2.0 * (frequency * time - floorf(frequency * time + 0.5))));
 
 				break;
 			}
@@ -124,7 +125,7 @@ const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared
 		{
 			const unsigned char firstByte = soundWave->getHeader()->lpData[byteIndex + 0];
 			const unsigned char secondByte = soundWave->getHeader()->lpData[byteIndex + 1];
-			const short bytePair = static_cast<short>(firstByte | secondByte << 8);
+			const short bytePair = static_cast<short>(firstByte) | static_cast<short>(secondByte) << 8;
 
 			newBytePair += bytePair;
 		}
@@ -139,9 +140,4 @@ const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared
 	}
 
 	return make_shared<Audio>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
-}
-
-const int WaveformGenerator::getMaxAmplitude() const
-{
-	return MAX_AMPLITUDE;
 }

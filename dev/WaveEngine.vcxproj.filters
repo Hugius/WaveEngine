@@ -215,6 +215,9 @@
     <ClInclude Include="..\src\audio_manager.hpp">
       <Filter>Audio Managment</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\audio_constants.hpp">
+      <Filter>Audio Managment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ico\WaveEngine.rc">

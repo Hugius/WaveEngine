@@ -21,8 +21,6 @@ void AudioPlayer::start(shared_ptr<Audio> audio)
 	_header = new WAVEHDR();
 	_header->lpData = new char[bufferLength];
 	_header->dwBufferLength = bufferLength;
-	_header->dwFlags = WHDR_BEGINLOOP | WHDR_ENDLOOP;
-	_header->dwLoops = -1;
 
 	for(int index = 0; index < bufferLength; index++)
 	{

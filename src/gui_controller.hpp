@@ -23,9 +23,4 @@ private:
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
 	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
 	shared_ptr<AudioManager> _audioManager = nullptr;
-
-	int _sineAmplitude = 0;
-	int _squareAmplitude = 0;
-	int _triangleAmplitude = 0;
-	int _sawtoothAmplitude = 0;
 };

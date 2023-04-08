@@ -39,6 +39,7 @@
     <ClCompile Include="..\src\audio.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\audio_constants.hpp" />
     <ClInclude Include="..\src\audio_manager.hpp" />
     <ClInclude Include="..\src\clock.hpp" />
     <ClInclude Include="..\src\cursor_type.hpp" />

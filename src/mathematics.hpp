@@ -17,12 +17,12 @@ public:
 	static const fmat33 createRotationMatrix(const float angle);
 	static const fmat33 createScalingMatrix(const float x, const float y);
 
-	static const float convertToRadians(const float degrees);
-	static const float limitAngle(const float angle);
-	static const float getSignum(float value);
-	static const float getPi();
+	static const double convertToRadians(const double degrees);
+	static const double limitAngle(const double angle);
+	static const double getSignum(double value);
+	static const double getPi();
 
 private:
-	static inline const float DEG2RAD = 0.017453292f;
-	static inline const float PI = 3.141592653f;
+	static inline const double DEG2RAD = 0.01745329251994329576;
+	static inline const double PI = 3.14159265358979323846;
 };

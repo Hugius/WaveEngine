@@ -48,12 +48,12 @@ const fmat33 Mathematics::createScalingMatrix(const float x, const float y)
 	return result;
 }
 
-const float Mathematics::convertToRadians(const float angle)
+const double Mathematics::convertToRadians(const double angle)
 {
 	return (angle * DEG2RAD);
 }
 
-const float Mathematics::limitAngle(const float angle)
+const double Mathematics::limitAngle(const double angle)
 {
 	if(angle < 0.0f)
 	{
@@ -65,7 +65,7 @@ const float Mathematics::limitAngle(const float angle)
 	}
 }
 
-const float Mathematics::getSignum(float value)
+const double Mathematics::getSignum(double value)
 {
 	if(value < 0.0f)
 	{
@@ -80,7 +80,7 @@ const float Mathematics::getSignum(float value)
 	return 0.0f;
 }
 
-const float Mathematics::getPi()
+const double Mathematics::getPi()
 {
 	return PI;
 }

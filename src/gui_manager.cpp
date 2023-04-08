@@ -1,6 +1,7 @@
 #include "gui_manager.hpp"
 #include "tools.hpp"
 #include "mathematics.hpp"
+#include "audio_constants.hpp"
 
 using std::make_shared;
 using std::to_string;
@@ -19,29 +20,24 @@ void GuiManager::initialize()
 
 	_createGuiElement("waveforms_menu", fvec2(-0.75f), fvec2(1.5f), fvec3(0.25f), fvec3(0.0f), "", false, false, false, false);
 	_createGuiElement("waveforms_close", fvec2(0.725f, 0.675f), fvec2(0.025f, 0.075f), fvec3(0.25f), fvec3(1.0f, 0.0f, 0.0f), "X", true, true, false, false);
+	_createGuiElement("waveforms_play", fvec2(-0.75f, 0.675f), fvec2(0.05f, 0.075f), fvec3(0.25f), fvec3(1.0f), "Play", true, true, false, false);
 
-	const vector<string> notes = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
-	const vector<float> positions = Mathematics::calculateDistributedPositions(-0.75f, 1.5f, 12);
+	const vector<float> positions = Mathematics::calculateDistributedPositions(-0.75f, 1.5f, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
 
-	for(int index = 0; index < 12; index++)
+	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 	{
 		const string sineId = "waveforms_sin" + to_string(index);
 		const string squareId = "waveforms_sqr" + to_string(index);
 		const string triangleId = "waveforms_tri" + to_string(index);
 		const string sawtoothId = "waveforms_saw" + to_string(index);
+		const string noteId = "waveforms_note" + to_string(index);
+		const string noteName = AudioConstants::NOTE_NAMES[index];
 
-		_createGuiElement(sineId, fvec2(positions[index], -0.55f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SIN", false, false, false, false);
-		_createGuiElement(squareId, fvec2(positions[index], -0.6f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SIN", false, false, false, false);
-		_createGuiElement(triangleId, fvec2(positions[index], -0.65f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SIN", false, false, false, false);
-		_createGuiElement(sawtoothId, fvec2(positions[index], -0.7f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SIN", false, false, false, false);
-	}
-
-	for(int index = 0; index < 12; index++)
-	{
-		const string id = "waveforms_note" + to_string(index);
-		const float width = 0.0125f * static_cast<float>(notes[index].size());
-
-		_createGuiElement(id, fvec2(positions[index], -0.75f), fvec2(width, 0.05f), fvec3(0.25f), fvec3(1.0f), notes[index], false, false, false, false);
+		_createGuiElement(sineId, fvec2(positions[index], -0.55f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SIN", true, true, true, false);
+		_createGuiElement(squareId, fvec2(positions[index], -0.6f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SQR", true, true, true, false);
+		_createGuiElement(triangleId, fvec2(positions[index], -0.65f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "TRI", true, true, true, false);
+		_createGuiElement(sawtoothId, fvec2(positions[index], -0.7f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SAW", true, true, true, false);
+		_createGuiElement(noteId, fvec2(positions[index], -0.75f), fvec2(0.0125f * static_cast<float>(noteName.size()), 0.05f), fvec3(0.25f), fvec3(1.0f), noteName, false, false, false, false);
 	}
 
 	//_createGuiElement("waveforms_sin", fvec2(-0.75f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SIN", false, false, false, false);
