@@ -15,8 +15,8 @@ fvec2::fvec2(const float x, const float y)
 
 fvec2::fvec2(const ivec2 & other)
 {
-	this->x = static_cast<float>(other.x);
-	this->y = static_cast<float>(other.y);
+	this->x = static_cast<double>(other.x);
+	this->y = static_cast<double>(other.y);
 }
 
 void fvec2::operator+=(const fvec2 & other)

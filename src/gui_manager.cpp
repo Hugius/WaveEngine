@@ -37,7 +37,7 @@ void GuiManager::initialize()
 		_createGuiElement(squareId, fvec2(positions[index], -0.6), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "SQR", true, true, true, false);
 		_createGuiElement(triangleId, fvec2(positions[index], -0.65), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "TRI", true, true, true, false);
 		_createGuiElement(sawtoothId, fvec2(positions[index], -0.7), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "SAW", true, true, true, false);
-		_createGuiElement(noteId, fvec2(positions[index], -0.75), fvec2(0.0125 * static_cast<float>(noteName.size()), 0.05), fvec3(0.25), fvec3(1.0), noteName, false, false, false, false);
+		_createGuiElement(noteId, fvec2(positions[index], -0.75), fvec2(0.0125 * static_cast<double>(noteName.size()), 0.05), fvec3(0.25), fvec3(1.0), noteName, false, false, false, false);
 	}
 
 	//_createGuiElement("waveforms_sin", fvec2(-0.75, -0.75), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "SIN", false, false, false, false);

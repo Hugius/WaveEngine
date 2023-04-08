@@ -39,13 +39,13 @@ Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<Textu
 void Text::update()
 {
 	const fmat33 rotationMatrix = Mathematics::createRotationMatrix(Mathematics::convertToRadians(_rotation));
-	const fvec2 quadSize = fvec2((this->getSize().x / static_cast<float>(this->_content.size())), this->getSize().y);
+	const fvec2 quadSize = fvec2((this->getSize().x / static_cast<double>(this->_content.size())), this->getSize().y);
 
 	int index = 0;
 
 	for(const shared_ptr<Quad> & quad : _quads)
 	{
-		fvec2 offset = fvec2((static_cast<float>(index) * quadSize.x), 0.0);
+		fvec2 offset = fvec2((static_cast<double>(index) * quadSize.x), 0.0);
 
 		quad->setPosition(_position + (rotationMatrix * offset));
 		quad->setRotation(_rotation);
@@ -81,8 +81,8 @@ void Text::setContent(const string & value)
 
 		const int xIndex = _fontMapIndices.at(character).x;
 		const int yIndex = _fontMapIndices.at(character).y;
-		const fvec2 uvMultiplier = fvec2((1.0 / static_cast<float>(FONT_MAP_COLUMN_COUNT)), (1.0 / static_cast<float>(FONT_MAP_ROW_COUNT)));
-		const fvec2 uvOffset = fvec2((static_cast<float>(xIndex) * uvMultiplier.x), (static_cast<float>(yIndex) * uvMultiplier.y));
+		const fvec2 uvMultiplier = fvec2((1.0 / static_cast<double>(FONT_MAP_COLUMN_COUNT)), (1.0 / static_cast<double>(FONT_MAP_ROW_COUNT)));
+		const fvec2 uvOffset = fvec2((static_cast<double>(xIndex) * uvMultiplier.x), (static_cast<double>(yIndex) * uvMultiplier.y));
 		const shared_ptr<Quad> quad = make_shared<Quad>(_vertexBuffer, _textureBuffer, _depth);
 
 		quad->setOpacity(_opacity);

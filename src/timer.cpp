@@ -42,7 +42,7 @@ const float Timer::getDeltaTime() const
 	}
 
 	const long long difference = (_clock->stopEpoch - _clock->startEpoch);
-	const float deltaTime = static_cast<float>(difference) / 1000000.0;
+	const float deltaTime = static_cast<double>(difference) / 1000000.0;
 
 	return deltaTime;
 }
