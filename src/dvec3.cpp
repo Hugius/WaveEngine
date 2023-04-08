@@ -1,6 +1,6 @@
 #pragma warning(disable:26495)
 
-#include "fvec3.hpp"
+#include "dvec3.hpp"
 
 fvec3::fvec3(const double value)
 {

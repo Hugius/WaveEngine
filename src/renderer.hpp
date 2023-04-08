@@ -18,7 +18,6 @@ private:
 
 	static inline const string VERTEX_SHADER_PATH = "shaders\\vertex.glsl";
 	static inline const string FRAGMENT_SHADER_PATH = "shaders\\fragment.glsl";
-	static inline const fvec3 BACKGROUND_COLOR = fvec3(0.25, 0.25, 0.5);
 
 	unique_ptr<ShaderBuffer> _shaderBuffer = nullptr;
 };

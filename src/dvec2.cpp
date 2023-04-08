@@ -1,4 +1,4 @@
-#include "fvec2.hpp"
+#include "dvec2.hpp"
 #include "ivec2.hpp"
 
 fvec2::fvec2(const double value)

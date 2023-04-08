@@ -1,6 +1,6 @@
 #pragma once
 
-#include "fvec2.hpp"
+#include "dvec2.hpp"
 
 struct fmat33 final
 {

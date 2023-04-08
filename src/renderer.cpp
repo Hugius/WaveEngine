@@ -12,7 +12,6 @@ void Renderer::initialize()
 {
 	_shaderBuffer = make_unique<ShaderBuffer>(Tools::getRootDirectoryPath() + VERTEX_SHADER_PATH, Tools::getRootDirectoryPath() + FRAGMENT_SHADER_PATH);
 
-	glClearColor(BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 1.0);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 

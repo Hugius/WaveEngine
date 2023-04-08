@@ -57,11 +57,11 @@ const double Mathematics::limitAngle(const double angle)
 {
 	if(angle < 0.0)
 	{
-		return (360.0 - fabsf(fmodf(angle, 360.0)));
+		return (360.0 - abs(fmod(angle, 360.0)));
 	}
 	else
 	{
-		return fmodf(angle, 360.0);
+		return fmod(angle, 360.0);
 	}
 }
 

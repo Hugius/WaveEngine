@@ -162,5 +162,5 @@ void ShaderBuffer::_uploadUniform(const int uniformId, const fvec3 & data)
 
 void ShaderBuffer::_uploadUniform(const int uniformId, const fmat33 & data)
 {
-	glUniformMatrix3dv(uniformId, 1, false, data.f);
+	glUniformMatrix3dv(uniformId, 1, 0, data.f);
 }

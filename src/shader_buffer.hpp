@@ -2,9 +2,9 @@
 
 #define GLEW_STATIC
 
-#include "fmat33.hpp"
-#include "fvec3.hpp"
-#include "fvec2.hpp"
+#include "dmat33.hpp"
+#include "dvec3.hpp"
+#include "dvec2.hpp"
 
 #include <unordered_map>
 #include <glew.h>

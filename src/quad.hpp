@@ -2,8 +2,8 @@
 
 #include "vertex_buffer.hpp"
 #include "texture_buffer.hpp"
-#include "fvec3.hpp"
-#include "fmat33.hpp"
+#include "dvec3.hpp"
+#include "dmat33.hpp"
 
 #include <string>
 

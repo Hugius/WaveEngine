@@ -1,5 +1,5 @@
 #include "ivec2.hpp"
-#include "fvec2.hpp"
+#include "dvec2.hpp"
 
 ivec2::ivec2(const fvec2 & other)
 {

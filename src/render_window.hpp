@@ -1,9 +1,9 @@
 #pragma once
 
 #include "ivec2.hpp"
-#include "fvec2.hpp"
+#include "dvec2.hpp"
 #include "input_handler.hpp"
-#include "fvec3.hpp"
+#include "dvec3.hpp"
 
 #include <string>
 #include <windows.h>

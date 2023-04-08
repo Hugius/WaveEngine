@@ -36,8 +36,8 @@ VertexBuffer::VertexBuffer()
 	glBufferData(GL_ARRAY_BUFFER, (24 * sizeof(double)), &vertices[0], GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(0, 3, GL_double, GL_FALSE, (4 * sizeof(double)), (GLvoid *)(0 * sizeof(double)));
-	glVertexAttribPointer(1, 2, GL_double, GL_FALSE, (4 * sizeof(double)), (GLvoid *)(2 * sizeof(double)));
+	glVertexAttribPointer(0, 3, GL_DOUBLE, 0, (4 * sizeof(double)), (void *)(0 * sizeof(double)));
+	glVertexAttribPointer(1, 2, GL_DOUBLE, 0, (4 * sizeof(double)), (void *)(2 * sizeof(double)));
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
