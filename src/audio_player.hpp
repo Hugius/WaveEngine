@@ -11,7 +11,6 @@ class AudioPlayer final
 public:
 	void start(shared_ptr<Audio> audio);
 	void stop();
-	void update();
 
 	const bool isStarted() const;
 

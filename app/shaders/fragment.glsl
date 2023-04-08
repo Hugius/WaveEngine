@@ -4,10 +4,10 @@ in vec2 f_uv;
 
 uniform sampler2D u_texture;
 
-uniform vec3 u_color;
+uniform dvec3 u_color;
 
-uniform float u_opacity;
-uniform float u_lightness;
+uniform double u_opacity;
+uniform double u_lightness;
 
 uniform bool u_hasTexture;
 
@@ -33,11 +33,11 @@ void main()
 	vec4 finalColor = vec4(0.0f);
 
 	finalColor.rgb += textureColor.rgb;
-	finalColor.rgb *= u_color;
-	finalColor.rgb *= u_lightness;
+	finalColor.rgb *= vec3(u_color);
+	finalColor.rgb *= float(u_lightness);
 	finalColor.rgb = clamp(finalColor.rgb, vec3(0.0f), vec3(1.0f));
 	finalColor.a += textureColor.a;
-	finalColor.a *= u_opacity;
+	finalColor.a *= float(u_opacity);
 
 	o_finalColor = finalColor;
 }

@@ -57,21 +57,6 @@ void AudioPlayer::stop()
 	_header = nullptr;
 }
 
-void AudioPlayer::update()
-{
-	//if(isStarted() && _header->dwFlags == (WHDR_PREPARED | WHDR_DONE))
-	//{
-	//	_header->dwFlags = WHDR_PREPARED;
-
-	//	const auto writeResult = waveOutWrite(_handle, _header, sizeof(WAVEHDR));
-
-	//	if(writeResult != MMSYSERR_NOERROR)
-	//	{
-	//		abort();
-	//	}
-	//}
-}
-
 const bool AudioPlayer::isStarted() const
 {
 	return _handle != nullptr;

@@ -48,9 +48,11 @@ ShaderBuffer::ShaderBuffer(const string & vertexFilePath, const string & fragmen
 
 	if(!vertexStatus)
 	{
-		char log[512];
+		const int logSize = 512;
 
-		glGetShaderInfoLog(vertexId, 512, nullptr, log);
+		char log[logSize];
+
+		glGetShaderInfoLog(vertexId, logSize, nullptr, log);
 
 		abort();
 	}
@@ -64,9 +66,11 @@ ShaderBuffer::ShaderBuffer(const string & vertexFilePath, const string & fragmen
 
 	if(!fragmentStatus)
 	{
-		char log[512];
+		const int logSize = 512;
 
-		glGetShaderInfoLog(fragmentId, 512, nullptr, log);
+		char log[logSize];
+
+		glGetShaderInfoLog(fragmentId, logSize, nullptr, log);
 
 		abort();
 	}
@@ -83,9 +87,11 @@ ShaderBuffer::ShaderBuffer(const string & vertexFilePath, const string & fragmen
 
 	if(!programStatus)
 	{
-		char log[512];
+		const int logSize = 512;
 
-		glGetProgramInfoLog(_programId, 512, nullptr, log);
+		char log[logSize];
+
+		glGetProgramInfoLog(_programId, logSize, nullptr, log);
 
 		abort();
 	}
