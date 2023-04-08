@@ -10,28 +10,28 @@ public:
 	void initialize();
 	void update(const fvec2 & cursorPosition, const bool isLmbPressed);
 
-	const vector<shared_ptr<Quad>> getQuads() const;
-	const vector<shared_ptr<Text>> getTexts() const;
+	const vector<shared_ptr<Quad>> & getQuads() const;
+	const vector<shared_ptr<Text>> & getTexts() const;
 
-	const shared_ptr<GuiElement> getElement(const string & id) const;
+	const shared_ptr<GuiElement> getGuiElement(const string & id) const;
 
 private:
-	void _createElement(const string & id,
-						const fvec2 & position,
-						const fvec2 & size,
-						const fvec3 & quadColor,
-						const fvec3 & textColor,
-						const string & content,
-						const bool isHoverable,
-						const bool isPressable,
-						const bool isTogglable,
-						const bool isVisible);
+	void _createGuiElement(const string & id,
+						   const fvec2 & position,
+						   const fvec2 & size,
+						   const fvec3 & quadColor,
+						   const fvec3 & textColor,
+						   const string & content,
+						   const bool isHoverable,
+						   const bool isPressable,
+						   const bool isTogglable,
+						   const bool isVisible);
 
-	const bool _isElementExisting(const string & id) const;
+	const bool _isGuiElementExisting(const string & id) const;
 
 	static inline const string FONT_PATH = "images\\font.tga";
 
-	unordered_map<string, shared_ptr<GuiElement>> _elements = {};
+	unordered_map<string, shared_ptr<GuiElement>> _guiElements = {};
 	vector<shared_ptr<Quad>> _quads = {};
 	vector<shared_ptr<Text>> _texts = {};
 

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\audio_manager.cpp" />
     <ClCompile Include="..\src\engine_orchestrator.cpp" />
     <ClCompile Include="..\src\fmat33.cpp" />
     <ClCompile Include="..\src\fvec2.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="..\src\audio.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\audio_manager.hpp" />
     <ClInclude Include="..\src\clock.hpp" />
     <ClInclude Include="..\src\cursor_type.hpp" />
     <ClInclude Include="..\src\engine_orchestrator.hpp" />

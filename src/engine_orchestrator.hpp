@@ -31,6 +31,7 @@ private:
 	shared_ptr<GuiController> _guiController = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
 	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
+	shared_ptr<AudioManager> _audioManager = nullptr;
 
 	float _totalDeltaTime = 0.0f;
 

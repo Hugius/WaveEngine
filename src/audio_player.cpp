@@ -92,3 +92,8 @@ void AudioPlayer::start(shared_ptr<Audio> audio)
 		}
 	}
 }
+
+void AudioPlayer::stop(shared_ptr<Audio> audio)
+{
+	waveOutReset(audio->getHandle());
+}

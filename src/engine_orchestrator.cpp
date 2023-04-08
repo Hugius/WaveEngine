@@ -14,12 +14,14 @@ void EngineOrchestrator::initialize()
 	_guiController = make_shared<GuiController>();
 	_waveformGenerator = make_shared<WaveformGenerator>();
 	_audioPlayer = make_shared<AudioPlayer>();
+	_audioManager = make_shared<AudioManager>();
 
 	_renderWindow->inject(_inputHandler);
 	_guiManager->inject(_imageLoader);
 	_guiController->inject(_guiManager);
 	_guiController->inject(_waveformGenerator);
 	_guiController->inject(_audioPlayer);
+	_guiController->inject(_audioManager);
 
 	_renderWindow->initialize();
 	_timer->initialize();
