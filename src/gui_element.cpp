@@ -41,8 +41,15 @@ void GuiElement::update(const fvec2 & cursorPosition, const bool isLmbPressed)
 
 		if(isLmbPressed)
 		{
-			_isPressed = true;
-			_isToggled = !_isToggled;
+			if(_isPressable)
+			{
+				_isPressed = true;
+			}
+
+			if(_isTogglable)
+			{
+				_isToggled = !_isToggled;
+			}
 		}
 	}
 	else
@@ -74,10 +81,15 @@ void GuiElement::setVisible(const bool value)
 
 void GuiElement::_updateHovering(const fvec2 & cursorPosition)
 {
+	_isHovered = false;
+
+	if(!_isHoverable)
+	{
+		return;
+	}
+
 	const fvec2 position = _quad->getPosition();
 	const fvec2 size = _quad->getSize();
-
-	_isHovered = false;
 
 	if(cursorPosition.x >= position.x && cursorPosition.x <= position.x + size.x)
 	{

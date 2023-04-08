@@ -34,7 +34,7 @@
     <Filter Include="Icon">
       <UniqueIdentifier>{c267fea5-b2a7-4d34-8e10-1b9572c05552}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Audio Generation">
+    <Filter Include="Audio">
       <UniqueIdentifier>{b222a278-75c3-45fb-a266-b1c3efce3a00}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -106,13 +106,13 @@
       <Filter>GUI Management</Filter>
     </ClCompile>
     <ClCompile Include="..\src\audio_player.cpp">
-      <Filter>Audio Generation</Filter>
+      <Filter>Audio</Filter>
     </ClCompile>
     <ClCompile Include="..\src\audio.cpp">
-      <Filter>Audio Generation</Filter>
+      <Filter>Audio</Filter>
     </ClCompile>
     <ClCompile Include="..\src\waveform_generator.cpp">
-      <Filter>Audio Generation</Filter>
+      <Filter>Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -195,16 +195,16 @@
       <Filter>GUI Management</Filter>
     </ClInclude>
     <ClInclude Include="..\src\audio_player.hpp">
-      <Filter>Audio Generation</Filter>
+      <Filter>Audio</Filter>
     </ClInclude>
     <ClInclude Include="..\src\audio.hpp">
-      <Filter>Audio Generation</Filter>
+      <Filter>Audio</Filter>
     </ClInclude>
     <ClInclude Include="..\src\waveform_generator.hpp">
-      <Filter>Audio Generation</Filter>
+      <Filter>Audio</Filter>
     </ClInclude>
     <ClInclude Include="..\src\waveform_type.hpp">
-      <Filter>Audio Generation</Filter>
+      <Filter>Audio</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
