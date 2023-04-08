@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Mathematics">
+      <UniqueIdentifier>{923f18f7-829d-41db-b936-4976ea09e806}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Miscellaneous">
+      <UniqueIdentifier>{143abdfa-a6bc-4463-b380-e893eee50c80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{462a8dfe-c45a-4c37-8947-0b0054dbe95b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{4ac54554-392b-4cd2-b513-1616b7bda3b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Buffers">
+      <UniqueIdentifier>{3fd1619d-263d-444b-b41a-dba53a1f0ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Miscellaneous">
+      <UniqueIdentifier>{69d889b6-fc9b-4338-be6b-3455a00fa1e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Drawables">
+      <UniqueIdentifier>{9deda8ac-8900-4e40-a01a-dc8fd6f195fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input Handling">
+      <UniqueIdentifier>{c5890f2d-1d8e-4bc7-8ac3-06aeac7aa5d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI Management">
+      <UniqueIdentifier>{57b1f732-334c-45ad-ae40-202d814f1dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Image Loading">
+      <UniqueIdentifier>{d8a8b087-92a6-447b-90c4-b533881ae17b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Icon">
+      <UniqueIdentifier>{c267fea5-b2a7-4d34-8e10-1b9572c05552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio Generation">
+      <UniqueIdentifier>{b222a278-75c3-45fb-a266-b1c3efce3a00}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\engine_orchestrator.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\timer.cpp">
+      <Filter>Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tools.cpp">
+      <Filter>Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render_window.cpp">
+      <Filter>Rendering\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shader_buffer.cpp">
+      <Filter>Rendering\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vertex_buffer.cpp">
+      <Filter>Rendering\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\input_handler.cpp">
+      <Filter>Input Handling</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\text.cpp">
+      <Filter>Rendering\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\quad.cpp">
+      <Filter>Rendering\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\texture_buffer.cpp">
+      <Filter>Rendering\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\renderer.cpp">
+      <Filter>Rendering\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\fvec2.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\fvec3.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ivec2.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\fmat33.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mathematics.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_manager.cpp">
+      <Filter>GUI Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\image.cpp">
+      <Filter>Image Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\image_loader.cpp">
+      <Filter>Image Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_element.cpp">
+      <Filter>GUI Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_controller.cpp">
+      <Filter>GUI Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\audio_player.cpp">
+      <Filter>Audio Generation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\audio.cpp">
+      <Filter>Audio Generation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\waveform_generator.cpp">
+      <Filter>Audio Generation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\engine_orchestrator.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\clock.hpp">
+      <Filter>Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\timer.hpp">
+      <Filter>Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tools.hpp">
+      <Filter>Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\cursor_type.hpp">
+      <Filter>Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render_window.hpp">
+      <Filter>Rendering\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\shader_buffer.hpp">
+      <Filter>Rendering\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vertex_buffer.hpp">
+      <Filter>Rendering\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mouse_wheel_type.hpp">
+      <Filter>Input Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\keyboard_key_type.hpp">
+      <Filter>Input Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mouse_button_type.hpp">
+      <Filter>Input Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\input_handler.hpp">
+      <Filter>Input Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\text.hpp">
+      <Filter>Rendering\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\quad.hpp">
+      <Filter>Rendering\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\texture_buffer.hpp">
+      <Filter>Rendering\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\renderer.hpp">
+      <Filter>Rendering\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\fvec2.hpp">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\fvec3.hpp">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ivec2.hpp">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\fmat33.hpp">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mathematics.hpp">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_manager.hpp">
+      <Filter>GUI Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\image.hpp">
+      <Filter>Image Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\image_loader.hpp">
+      <Filter>Image Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_element.hpp">
+      <Filter>GUI Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_controller.hpp">
+      <Filter>GUI Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\audio_player.hpp">
+      <Filter>Audio Generation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\audio.hpp">
+      <Filter>Audio Generation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_generator.hpp">
+      <Filter>Audio Generation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_type.hpp">
+      <Filter>Audio Generation</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ico\WaveEngine.rc">
+      <Filter>Icon</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ico\logo.ico">
+      <Filter>Icon</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
