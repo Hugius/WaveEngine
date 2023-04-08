@@ -7,7 +7,7 @@ class GuiElement final
 public:
 	GuiElement(const string & id, const shared_ptr<Quad> & quad, const shared_ptr<Text> & text, const bool isHoverable, const bool isPressable, const bool isTogglable);
 
-	void update(const fvec2 & cursorPosition, const bool isLmbPressed);
+	void update(const dvec2 & cursorPosition, const bool isLmbPressed);
 	void setVisible(const bool value);
 
 	const bool isVisible() const;
@@ -16,7 +16,7 @@ public:
 	const bool isToggled() const;
 
 private:
-	void _updateHovering(const fvec2 & cursorPosition);
+	void _updateHovering(const dvec2 & cursorPosition);
 
 	const shared_ptr<Quad> _quad;
 	const shared_ptr<Text> _text;

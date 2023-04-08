@@ -2,14 +2,14 @@
 
 #include "dvec3.hpp"
 
-fvec3::fvec3(const double value)
+dvec3::dvec3(const double value)
 {
 	this->x = value;
 	this->y = value;
 	this->z = value;
 }
 
-fvec3::fvec3(const double x, const double y, const double z)
+dvec3::dvec3(const double x, const double y, const double z)
 {
 	this->x = x;
 	this->y = y;

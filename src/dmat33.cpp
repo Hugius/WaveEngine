@@ -1,6 +1,6 @@
 #include "dmat33.hpp"
 
-fmat33::fmat33(const double value)
+dmat33::dmat33(const double value)
 {
 	for(int index = 0; index < 9; index++)
 	{
@@ -12,9 +12,9 @@ fmat33::fmat33(const double value)
 	this->m[2][2] = value;
 }
 
-const fmat33 fmat33::operator*(const fmat33 & other) const
+const dmat33 dmat33::operator*(const dmat33 & other) const
 {
-	fmat33 result = fmat33(1.0);
+	dmat33 result = dmat33(1.0);
 
 	for(int column = 0; column < 3; column++)
 	{
@@ -32,9 +32,9 @@ const fmat33 fmat33::operator*(const fmat33 & other) const
 	return result;
 }
 
-const fvec2 fmat33::operator*(const fvec2 & other) const
+const dvec2 dmat33::operator*(const dvec2 & other) const
 {
-	fvec2 result = fvec2(0.0);
+	dvec2 result = dvec2(0.0);
 
 	result.x = (this->m[0][0] * other.x) + (this->m[1][0] * other.y);
 	result.y = (this->m[0][1] * other.x) + (this->m[1][1] * other.y);

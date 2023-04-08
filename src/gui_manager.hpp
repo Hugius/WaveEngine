@@ -8,7 +8,7 @@ class GuiManager final
 public:
 	void inject(const shared_ptr<ImageLoader> imageLoader);
 	void initialize();
-	void update(const fvec2 & cursorPosition, const bool isLmbPressed);
+	void update(const dvec2 & cursorPosition, const bool isLmbPressed);
 
 	const vector<shared_ptr<Quad>> & getQuads() const;
 	const vector<shared_ptr<Text>> & getTexts() const;
@@ -17,10 +17,10 @@ public:
 
 private:
 	void _createGuiElement(const string & id,
-						   const fvec2 & position,
-						   const fvec2 & size,
-						   const fvec3 & quadColor,
-						   const fvec3 & textColor,
+						   const dvec2 & position,
+						   const dvec2 & size,
+						   const dvec3 & quadColor,
+						   const dvec3 & textColor,
 						   const string & content,
 						   const bool isHoverable,
 						   const bool isPressable,

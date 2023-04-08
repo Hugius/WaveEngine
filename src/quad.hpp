@@ -17,26 +17,26 @@ public:
 
 	void update();
 	void setOpacity(const double value);
-	void setColor(const fvec3 & value);
-	void setPosition(const fvec2 & value);
+	void setColor(const dvec3 & value);
+	void setPosition(const dvec2 & value);
 	void setRotation(const double value);
-	void setSize(const fvec2 & value);
+	void setSize(const dvec2 & value);
 	void setVisible(const bool value);
 	void setLightness(const double value);
-	void setUvMultiplier(const fvec2 & value);
-	void setUvOffset(const fvec2 & value);
+	void setUvMultiplier(const dvec2 & value);
+	void setUvOffset(const dvec2 & value);
 
 	const shared_ptr<VertexBuffer> getVertexBuffer() const;
 	const shared_ptr<TextureBuffer> getTexture() const;
 
-	const fmat33 & getTransformation() const;
+	const dmat33 & getTransformation() const;
 
-	const fvec3 & getColor() const;
+	const dvec3 & getColor() const;
 
-	const fvec2 & getPosition() const;
-	const fvec2 & getSize() const;
-	const fvec2 & getUvMultiplier() const;
-	const fvec2 & getUvOffset() const;
+	const dvec2 & getPosition() const;
+	const dvec2 & getSize() const;
+	const dvec2 & getUvMultiplier() const;
+	const dvec2 & getUvOffset() const;
 
 	const double getOpacity() const;
 	const double getRotation() const;
@@ -52,14 +52,14 @@ private:
 
 	const int _depth;
 
-	fmat33 _transformation = fmat33(1.0);
+	dmat33 _transformation = dmat33(1.0);
 
-	fvec3 _color = fvec3(1.0);
+	dvec3 _color = dvec3(1.0);
 
-	fvec2 _position = fvec2(0.0);
-	fvec2 _size = fvec2(1.0);
-	fvec2 _uvMultiplier = fvec2(1.0);
-	fvec2 _uvOffset = fvec2(0.0);
+	dvec2 _position = dvec2(0.0);
+	dvec2 _size = dvec2(1.0);
+	dvec2 _uvMultiplier = dvec2(1.0);
+	dvec2 _uvOffset = dvec2(0.0);
 
 	double _rotation = 0.0;
 	double _opacity = 1.0;

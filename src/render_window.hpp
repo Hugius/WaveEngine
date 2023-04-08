@@ -20,7 +20,7 @@ public:
 	void update();
 	void swapBuffers();
 
-	const fvec2 getCursorPosition();
+	const dvec2 getCursorPosition();
 
 	const bool isClosed() const;
 
@@ -33,7 +33,7 @@ private:
 	static inline const string ICON_PATH = "icons\\logo.ico";
 	static inline const string TITLE = "WaveEngine";
 
-	const fvec2 _convertToNdc(const ivec2 & position);
+	const dvec2 _convertToNdc(const ivec2 & position);
 
 	const ivec2 _getMonitorResolution();
 
@@ -41,6 +41,6 @@ private:
 
 	HWND _handle = nullptr;
 
-	fvec2 _cursorPosition = fvec2(0.0);
+	dvec2 _cursorPosition = dvec2(0.0);
 	ivec2 _renderingResolution = ivec2(0);
 };

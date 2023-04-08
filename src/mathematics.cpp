@@ -16,9 +16,9 @@ const vector<double> Mathematics::calculateDistributedPositions(const double sta
 	return positions;
 }
 
-const fmat33 Mathematics::createTranslationMatrix(const double x, const double y)
+const dmat33 Mathematics::createTranslationMatrix(const double x, const double y)
 {
-	fmat33 result = fmat33(1.0);
+	dmat33 result = dmat33(1.0);
 
 	result.m[2][0] = x;
 	result.m[2][1] = y;
@@ -26,9 +26,9 @@ const fmat33 Mathematics::createTranslationMatrix(const double x, const double y
 	return result;
 }
 
-const fmat33 Mathematics::createRotationMatrix(const double angle)
+const dmat33 Mathematics::createRotationMatrix(const double angle)
 {
-	fmat33 result = fmat33(1.0);
+	dmat33 result = dmat33(1.0);
 
 	result.m[0][0] = cos(angle);
 	result.m[1][0] = -sin(angle);
@@ -38,9 +38,9 @@ const fmat33 Mathematics::createRotationMatrix(const double angle)
 	return result;
 }
 
-const fmat33 Mathematics::createScalingMatrix(const double x, const double y)
+const dmat33 Mathematics::createScalingMatrix(const double x, const double y)
 {
-	fmat33 result = fmat33(1.0);
+	dmat33 result = dmat33(1.0);
 
 	result.m[0][0] = x;
 	result.m[1][1] = y;

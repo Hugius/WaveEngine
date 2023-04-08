@@ -1,9 +1,9 @@
 #pragma once
 
-struct fvec3 final
+struct dvec3 final
 {
-	fvec3(const double value);
-	fvec3(const double x, const double y, const double z);
+	dvec3(const double value);
+	dvec3(const double x, const double y, const double z);
 
 	union
 	{

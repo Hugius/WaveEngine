@@ -16,10 +16,10 @@ public:
 	void update();
 	void setContent(const string & value);
 	void setOpacity(const double value);
-	void setColor(const fvec3 & value);
-	void setPosition(const fvec2 & value);
+	void setColor(const dvec3 & value);
+	void setPosition(const dvec2 & value);
 	void setRotation(const double value);
-	void setSize(const fvec2 & value);
+	void setSize(const dvec2 & value);
 	void setVisible(const bool value);
 	void setLightness(const double value);
 
@@ -27,10 +27,10 @@ public:
 
 	const string & getContent() const;
 
-	const fvec3 & getColor() const;
+	const dvec3 & getColor() const;
 
-	const fvec2 & getPosition() const;
-	const fvec2 & getSize() const;
+	const dvec2 & getPosition() const;
+	const dvec2 & getSize() const;
 
 	const double getOpacity() const;
 	const double getRotation() const;
@@ -152,10 +152,10 @@ private:
 
 	string _content = "";
 
-	fvec3 _color = fvec3(1.0);
+	dvec3 _color = dvec3(1.0);
 
-	fvec2 _position = fvec2(0.0);
-	fvec2 _size = fvec2(1.0);
+	dvec2 _position = dvec2(0.0);
+	dvec2 _size = dvec2(1.0);
 
 	double _rotation = 0.0;
 	double _opacity = 1.0;

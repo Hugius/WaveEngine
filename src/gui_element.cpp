@@ -21,7 +21,7 @@ GuiElement::GuiElement(const string & id, const shared_ptr<Quad> & quad, const s
 	}
 }
 
-void GuiElement::update(const fvec2 & cursorPosition, const bool isLmbPressed)
+void GuiElement::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 {
 	_quad->update();
 
@@ -76,7 +76,7 @@ void GuiElement::setVisible(const bool value)
 	_isVisible = value;
 }
 
-void GuiElement::_updateHovering(const fvec2 & cursorPosition)
+void GuiElement::_updateHovering(const dvec2 & cursorPosition)
 {
 	_isHovered = false;
 
@@ -85,8 +85,8 @@ void GuiElement::_updateHovering(const fvec2 & cursorPosition)
 		return;
 	}
 
-	const fvec2 position = _quad->getPosition();
-	const fvec2 size = _quad->getSize();
+	const dvec2 position = _quad->getPosition();
+	const dvec2 size = _quad->getSize();
 
 	if(cursorPosition.x >= position.x && cursorPosition.x <= position.x + size.x)
 	{

@@ -2,16 +2,16 @@
 
 struct ivec2;
 
-struct fvec2 final
+struct dvec2 final
 {
-	fvec2(const double value);
-	fvec2(const double x, const double y);
-	fvec2(const ivec2 & other);
+	dvec2(const double value);
+	dvec2(const double x, const double y);
+	dvec2(const ivec2 & other);
 
-	void operator+=(const fvec2 & other);
+	void operator+=(const dvec2 & other);
 
-	const fvec2 operator+(const fvec2 & other) const;
-	const fvec2 operator*(const fvec2 & other) const;
+	const dvec2 operator+(const dvec2 & other) const;
+	const dvec2 operator*(const dvec2 & other) const;
 
 	double x;
 	double y;

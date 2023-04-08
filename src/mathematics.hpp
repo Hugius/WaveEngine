@@ -13,9 +13,9 @@ public:
 
 	static const vector<double> calculateDistributedPositions(const double start, const double range, const int count);
 
-	static const fmat33 createTranslationMatrix(const double x, const double y);
-	static const fmat33 createRotationMatrix(const double angle);
-	static const fmat33 createScalingMatrix(const double x, const double y);
+	static const dmat33 createTranslationMatrix(const double x, const double y);
+	static const dmat33 createRotationMatrix(const double angle);
+	static const dmat33 createScalingMatrix(const double x, const double y);
 
 	static const double convertToRadians(const double degrees);
 	static const double limitAngle(const double angle);

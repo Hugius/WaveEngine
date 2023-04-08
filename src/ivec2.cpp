@@ -1,7 +1,7 @@
 #include "ivec2.hpp"
 #include "dvec2.hpp"
 
-ivec2::ivec2(const fvec2 & other)
+ivec2::ivec2(const dvec2 & other)
 {
 	this->x = static_cast<int>(other.x);
 	this->y = static_cast<int>(other.y);

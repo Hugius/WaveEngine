@@ -34,9 +34,9 @@ private:
 	void _uploadUniform(const int uniformId, const bool data);
 	void _uploadUniform(const int uniformId, const int data);
 	void _uploadUniform(const int uniformId, const double data);
-	void _uploadUniform(const int uniformId, const fvec2 & data);
-	void _uploadUniform(const int uniformId, const fvec3 & data);
-	void _uploadUniform(const int uniformId, const fmat33 & data);
+	void _uploadUniform(const int uniformId, const dvec2 & data);
+	void _uploadUniform(const int uniformId, const dvec3 & data);
+	void _uploadUniform(const int uniformId, const dmat33 & data);
 
 	unordered_map<string, unsigned int> _uniformCache = {};
 

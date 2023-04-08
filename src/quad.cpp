@@ -26,34 +26,34 @@ Quad::Quad(const shared_ptr<VertexBuffer> vertexBuffer, const shared_ptr<Texture
 
 void Quad::update()
 {
-	const fmat33 translationMatrix = Mathematics::createTranslationMatrix(_position.x, _position.y);
-	const fmat33 rotationMatrix = Mathematics::createRotationMatrix(Mathematics::convertToRadians(_rotation));
-	const fmat33 scalingMatrix = Mathematics::createScalingMatrix(_size.x, _size.y);
+	const dmat33 translationMatrix = Mathematics::createTranslationMatrix(_position.x, _position.y);
+	const dmat33 rotationMatrix = Mathematics::createRotationMatrix(Mathematics::convertToRadians(_rotation));
+	const dmat33 scalingMatrix = Mathematics::createScalingMatrix(_size.x, _size.y);
 
 	_transformation = (translationMatrix * rotationMatrix * scalingMatrix);
 }
 
-void Quad::setColor(const fvec3 & value)
+void Quad::setColor(const dvec3 & value)
 {
-	_color = fvec3(clamp(value.r, 0.0, 1.0), clamp(value.g, 0.0, 1.0), clamp(value.b, 0.0, 1.0));
+	_color = dvec3(clamp(value.r, 0.0, 1.0), clamp(value.g, 0.0, 1.0), clamp(value.b, 0.0, 1.0));
 }
 
-void Quad::setUvMultiplier(const fvec2 & value)
+void Quad::setUvMultiplier(const dvec2 & value)
 {
-	_uvMultiplier = fvec2(clamp(value.x, 0.0, 1.0), clamp(value.y, 0.0, 1.0));
+	_uvMultiplier = dvec2(clamp(value.x, 0.0, 1.0), clamp(value.y, 0.0, 1.0));
 }
 
-void Quad::setUvOffset(const fvec2 & value)
+void Quad::setUvOffset(const dvec2 & value)
 {
-	_uvOffset = fvec2(clamp(value.x, 0.0, 1.0), clamp(value.y, 0.0, 1.0));
+	_uvOffset = dvec2(clamp(value.x, 0.0, 1.0), clamp(value.y, 0.0, 1.0));
 }
 
-const fvec2 & Quad::getUvMultiplier() const
+const dvec2 & Quad::getUvMultiplier() const
 {
 	return _uvMultiplier;
 }
 
-const fvec2 & Quad::getUvOffset() const
+const dvec2 & Quad::getUvOffset() const
 {
 	return _uvOffset;
 }
@@ -63,7 +63,7 @@ void Quad::setOpacity(const double value)
 	_opacity = clamp(value, 0.0, 1.0);
 }
 
-void Quad::setPosition(const fvec2 & value)
+void Quad::setPosition(const dvec2 & value)
 {
 	_position = value;
 }
@@ -73,9 +73,9 @@ void Quad::setRotation(const double value)
 	_rotation = Mathematics::limitAngle(value);
 }
 
-void Quad::setSize(const fvec2 & value)
+void Quad::setSize(const dvec2 & value)
 {
-	_size = fvec2(max(0.0, value.x), max(0.0, value.y));
+	_size = dvec2(max(0.0, value.x), max(0.0, value.y));
 }
 
 const shared_ptr<VertexBuffer> Quad::getVertexBuffer() const
@@ -88,7 +88,7 @@ const shared_ptr<TextureBuffer> Quad::getTexture() const
 	return _textureBuffer;
 }
 
-const fvec3 & Quad::getColor() const
+const dvec3 & Quad::getColor() const
 {
 	return _color;
 }
@@ -103,12 +103,12 @@ const bool Quad::isVisible() const
 	return _isVisible;
 }
 
-const fmat33 & Quad::getTransformation() const
+const dmat33 & Quad::getTransformation() const
 {
 	return _transformation;
 }
 
-const fvec2 & Quad::getPosition() const
+const dvec2 & Quad::getPosition() const
 {
 	return _position;
 }
@@ -123,7 +123,7 @@ const double Quad::getLightness() const
 	return _lightness;
 }
 
-const fvec2 & Quad::getSize() const
+const dvec2 & Quad::getSize() const
 {
 	return _size;
 }
