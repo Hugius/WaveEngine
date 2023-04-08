@@ -2,7 +2,7 @@
 
 VertexBuffer::VertexBuffer()
 {
-	float * vertices = new float[24];
+	double * vertices = new double[24];
 
 	vertices[0] = 0.0;
 	vertices[1] = 0.0;
@@ -33,11 +33,11 @@ VertexBuffer::VertexBuffer()
 	glGenBuffers(1, &_vboId);
 	glBindVertexArray(_vaoId);
 	glBindBuffer(GL_ARRAY_BUFFER, _vboId);
-	glBufferData(GL_ARRAY_BUFFER, (24 * sizeof(float)), &vertices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, (24 * sizeof(double)), &vertices[0], GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (4 * sizeof(float)), (GLvoid *)(0 * sizeof(float)));
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, (4 * sizeof(float)), (GLvoid *)(2 * sizeof(float)));
+	glVertexAttribPointer(0, 3, GL_double, GL_FALSE, (4 * sizeof(double)), (GLvoid *)(0 * sizeof(double)));
+	glVertexAttribPointer(1, 2, GL_double, GL_FALSE, (4 * sizeof(double)), (GLvoid *)(2 * sizeof(double)));
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 

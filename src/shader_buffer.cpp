@@ -137,7 +137,7 @@ const unsigned int ShaderBuffer::getProgramId() const
 
 void ShaderBuffer::_uploadUniform(const int uniformId, const bool data)
 {
-	glUniform1i(uniformId, data);
+	glUniform1i(uniformId, static_cast<int>(data));
 }
 
 void ShaderBuffer::_uploadUniform(const int uniformId, const int data)
@@ -145,22 +145,22 @@ void ShaderBuffer::_uploadUniform(const int uniformId, const int data)
 	glUniform1i(uniformId, data);
 }
 
-void ShaderBuffer::_uploadUniform(const int uniformId, const float data)
+void ShaderBuffer::_uploadUniform(const int uniformId, const double data)
 {
-	glUniform1f(uniformId, data);
+	glUniform1d(uniformId, data);
 }
 
 void ShaderBuffer::_uploadUniform(const int uniformId, const fvec2 & data)
 {
-	glUniform2f(uniformId, data.x, data.y);
+	glUniform2d(uniformId, data.x, data.y);
 }
 
 void ShaderBuffer::_uploadUniform(const int uniformId, const fvec3 & data)
 {
-	glUniform3f(uniformId, data.x, data.y, data.z);
+	glUniform3d(uniformId, data.x, data.y, data.z);
 }
 
 void ShaderBuffer::_uploadUniform(const int uniformId, const fmat33 & data)
 {
-	glUniformMatrix3fv(uniformId, 1, GL_FALSE, data.f);
+	glUniformMatrix3dv(uniformId, 1, false, data.f);
 }

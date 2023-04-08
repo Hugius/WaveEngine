@@ -304,8 +304,8 @@ const fvec2 RenderWindow::getCursorPosition()
 
 const fvec2 RenderWindow::_convertToNdc(const ivec2 & position)
 {
-	const float x = static_cast<double>(position.x) / static_cast<double>(_renderingResolution.x);
-	const float y = static_cast<double>(position.y) / static_cast<double>(_renderingResolution.y);
+	const double x = static_cast<double>(position.x) / static_cast<double>(_renderingResolution.x);
+	const double y = static_cast<double>(position.y) / static_cast<double>(_renderingResolution.y);
 
 	fvec2 ndc = fvec2(x, y);
 

@@ -58,7 +58,7 @@ const fvec2 & Quad::getUvOffset() const
 	return _uvOffset;
 }
 
-void Quad::setOpacity(const float value)
+void Quad::setOpacity(const double value)
 {
 	_opacity = clamp(value, 0.0, 1.0);
 }
@@ -68,7 +68,7 @@ void Quad::setPosition(const fvec2 & value)
 	_position = value;
 }
 
-void Quad::setRotation(const float value)
+void Quad::setRotation(const double value)
 {
 	_rotation = Mathematics::limitAngle(value);
 }
@@ -93,7 +93,7 @@ const fvec3 & Quad::getColor() const
 	return _color;
 }
 
-const float Quad::getOpacity() const
+const double Quad::getOpacity() const
 {
 	return _opacity;
 }
@@ -113,12 +113,12 @@ const fvec2 & Quad::getPosition() const
 	return _position;
 }
 
-const float Quad::getRotation() const
+const double Quad::getRotation() const
 {
 	return _rotation;
 }
 
-const float Quad::getLightness() const
+const double Quad::getLightness() const
 {
 	return _lightness;
 }
@@ -138,7 +138,7 @@ void Quad::setVisible(const bool value)
 	_isVisible = value;
 }
 
-void Quad::setLightness(const float value)
+void Quad::setLightness(const double value)
 {
 	_lightness = max(0.0, value);
 }

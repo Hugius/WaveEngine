@@ -4,8 +4,8 @@ struct ivec2;
 
 struct fvec2 final
 {
-	fvec2(const float value);
-	fvec2(const float x, const float y);
+	fvec2(const double value);
+	fvec2(const double x, const double y);
 	fvec2(const ivec2 & other);
 
 	void operator+=(const fvec2 & other);
@@ -13,6 +13,6 @@ struct fvec2 final
 	const fvec2 operator+(const fvec2 & other) const;
 	const fvec2 operator*(const fvec2 & other) const;
 
-	float x;
-	float y;
+	double x;
+	double y;
 };

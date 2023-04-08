@@ -2,23 +2,23 @@
 
 struct fvec3 final
 {
-	fvec3(const float value);
-	fvec3(const float x, const float y, const float z);
+	fvec3(const double value);
+	fvec3(const double x, const double y, const double z);
 
 	union
 	{
 		struct
 		{
-			float x;
-			float y;
-			float z;
+			double x;
+			double y;
+			double z;
 		};
 
 		struct
 		{
-			float r;
-			float g;
-			float b;
+			double r;
+			double g;
+			double b;
 		};
 	};
 };

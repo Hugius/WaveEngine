@@ -106,7 +106,7 @@ void Text::setVisible(const bool value)
 	}
 }
 
-void Text::setLightness(const float value)
+void Text::setLightness(const double value)
 {
 	_lightness = max(0.0, value);
 
@@ -126,7 +126,7 @@ void Text::setColor(const fvec3 & value)
 	}
 }
 
-void Text::setOpacity(const float value)
+void Text::setOpacity(const double value)
 {
 	_opacity = clamp(value, 0.0, 1.0);
 
@@ -141,7 +141,7 @@ void Text::setPosition(const fvec2 & value)
 	_position = value;
 }
 
-void Text::setRotation(const float value)
+void Text::setRotation(const double value)
 {
 	_rotation = Mathematics::limitAngle(value);
 }
@@ -166,7 +166,7 @@ const fvec3 & Text::getColor() const
 	return _color;
 }
 
-const float Text::getOpacity() const
+const double Text::getOpacity() const
 {
 	return _opacity;
 }
@@ -181,12 +181,12 @@ const fvec2 & Text::getPosition() const
 	return _position;
 }
 
-const float Text::getRotation() const
+const double Text::getRotation() const
 {
 	return _rotation;
 }
 
-const float Text::getLightness() const
+const double Text::getLightness() const
 {
 	return _lightness;
 }

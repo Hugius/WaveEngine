@@ -13,7 +13,7 @@ public:
 	void start();
 	void stop();
 
-	const float getDeltaTime() const;
+	const double getDeltaTime() const;
 
 	const int getUpdateCountPerSecond() const;
 

@@ -1,6 +1,6 @@
 #include "fmat33.hpp"
 
-fmat33::fmat33(const float value)
+fmat33::fmat33(const double value)
 {
 	for(int index = 0; index < 9; index++)
 	{

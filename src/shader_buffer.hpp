@@ -33,7 +33,7 @@ public:
 private:
 	void _uploadUniform(const int uniformId, const bool data);
 	void _uploadUniform(const int uniformId, const int data);
-	void _uploadUniform(const int uniformId, const float data);
+	void _uploadUniform(const int uniformId, const double data);
 	void _uploadUniform(const int uniformId, const fvec2 & data);
 	void _uploadUniform(const int uniformId, const fvec3 & data);
 	void _uploadUniform(const int uniformId, const fmat33 & data);

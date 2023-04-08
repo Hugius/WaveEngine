@@ -1,13 +1,13 @@
 #include "fvec2.hpp"
 #include "ivec2.hpp"
 
-fvec2::fvec2(const float value)
+fvec2::fvec2(const double value)
 {
 	this->x = value;
 	this->y = value;
 }
 
-fvec2::fvec2(const float x, const float y)
+fvec2::fvec2(const double x, const double y)
 {
 	this->x = x;
 	this->y = y;
