@@ -30,8 +30,9 @@ void GuiElement::update(const fvec2 & cursorPosition, const bool isLmbPressed)
 		_text->update();
 	}
 
+	_isPressed = false;
+
 	const bool wasHovered = _isHovered;
-	const bool wasToggled = _isToggled;
 
 	_updateHovering(cursorPosition);
 
@@ -51,10 +52,6 @@ void GuiElement::update(const fvec2 & cursorPosition, const bool isLmbPressed)
 				_isToggled = !_isToggled;
 			}
 		}
-	}
-	else
-	{
-		_isPressed = false;
 	}
 
 	if(!_isToggled && !wasHovered && _isHovered)

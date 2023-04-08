@@ -14,7 +14,15 @@ public:
 	void update();
 
 private:
+	void _updateMainMenu();
+	void _updateWaveformMenu();
+
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
 	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
+
+	float _sineAmplitude = 0.0f;
+	float _squareAmplitude = 0.0f;
+	float _triangleAmplitude = 0.0f;
+	float _sawtoothAmplitude = 0.0f;
 };

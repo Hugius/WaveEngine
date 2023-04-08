@@ -2,6 +2,7 @@
 #include "tools.hpp"
 
 using std::make_shared;
+using std::to_string;
 
 void GuiManager::initialize()
 {
@@ -17,15 +18,18 @@ void GuiManager::initialize()
 
 	_createElement("waveforms_menu", fvec2(-0.75f), fvec2(1.5f), fvec3(0.25f), fvec3(0.0f), "", false, false, false, false);
 	_createElement("waveforms_close", fvec2(0.725f, 0.675f), fvec2(0.025f, 0.075f), fvec3(0.25f), fvec3(1.0f, 0.0f, 0.0f), "X", true, true, false, false);
-	_createElement("waveforms_100", fvec2(-0.75f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "100", true, true, true, false);
-	_createElement("waveforms_200", fvec2(-0.71f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "200", true, true, true, false);
-	_createElement("waveforms_300", fvec2(-0.67f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "300", true, true, true, false);
-	_createElement("waveforms_400", fvec2(-0.63f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "400", true, true, true, false);
-	_createElement("waveforms_500", fvec2(-0.59f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "500", true, true, true, false);
-	_createElement("waveforms_600", fvec2(-0.55f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "600", true, true, true, false);
-	_createElement("waveforms_700", fvec2(-0.51f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "700", true, true, true, false);
-	_createElement("waveforms_800", fvec2(-0.47f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "800", true, true, true, false);
-	_createElement("waveforms_900", fvec2(-0.43f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "900", true, true, true, false);
+	_createElement("waveforms_sin", fvec2(-0.75f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SIN", false, false, false, false);
+	_createElement("waveforms_sin_decr", fvec2(-0.75f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), "<", true, true, false, false);
+	_createElement("waveforms_sin_incr", fvec2(-0.725f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), ">", true, true, false, false);
+	_createElement("waveforms_sqr", fvec2(-0.7f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SQR", false, false, false, false);
+	_createElement("waveforms_sqr_decr", fvec2(-0.7f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), "<", true, true, false, false);
+	_createElement("waveforms_sqr_incr", fvec2(-0.675f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), ">", true, true, false, false);
+	_createElement("waveforms_tri", fvec2(-0.65f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "TRI", false, false, false, false);
+	_createElement("waveforms_tri_decr", fvec2(-0.65f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), "<", true, true, false, false);
+	_createElement("waveforms_tri_incr", fvec2(-0.625f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), ">", true, true, false, false);
+	_createElement("waveforms_saw", fvec2(-0.6f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SAW", false, false, false, false);
+	_createElement("waveforms_saw_decr", fvec2(-0.6f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), "<", true, true, false, false);
+	_createElement("waveforms_saw_incr", fvec2(-0.575f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), ">", true, true, false, false);
 }
 
 void GuiManager::update(const fvec2 & cursorPosition, const bool isLmbPressed)

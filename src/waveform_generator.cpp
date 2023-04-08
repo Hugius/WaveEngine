@@ -98,7 +98,7 @@ const shared_ptr<Audio> WaveformGenerator::_generateSoundWave(const int duration
 
 const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared_ptr<Audio>> & soundWaves) const
 {
-	if(soundWaves.size() < 2)
+	if(soundWaves.empty())
 	{
 		abort();
 	}
@@ -139,4 +139,9 @@ const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared
 	}
 
 	return make_shared<Audio>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
+}
+
+const float WaveformGenerator::getMaxAmplitude() const
+{
+	return MAX_AMPLITUDE;
 }

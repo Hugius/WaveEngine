@@ -18,6 +18,8 @@ public:
 	const shared_ptr<Audio> generateSawtoothWave(const int duration, const int amplitude, const int frequency) const;
 	const shared_ptr<Audio> combineSoundWaves(const vector<shared_ptr<Audio>> & soundWaves) const;
 
+	const float getMaxAmplitude() const;
+
 private:
 	const shared_ptr<Audio> _generateSoundWave(const int duration, const int amplitude, const int frequency, const WaveformType type) const;
 
