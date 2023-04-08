@@ -24,8 +24,8 @@ private:
 	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
 	shared_ptr<AudioManager> _audioManager = nullptr;
 
-	float _sineAmplitude = 0.0f;
-	float _squareAmplitude = 0.0f;
-	float _triangleAmplitude = 0.0f;
-	float _sawtoothAmplitude = 0.0f;
+	int _sineAmplitude = 0;
+	int _squareAmplitude = 0;
+	int _triangleAmplitude = 0;
+	int _sawtoothAmplitude = 0;
 };

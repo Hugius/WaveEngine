@@ -26,60 +26,7 @@ void GuiController::inject(const shared_ptr<AudioManager> audioManager)
 void GuiController::update()
 {
 	_updateMainMenu();
-	_updateWaveformMenu();
-
-
-	/*else if(_guiManager->getElement("waveforms_100")->isPressed() ||
-			_guiManager->getElement("waveforms_200")->isPressed() ||
-			_guiManager->getElement("waveforms_300")->isPressed() ||
-			_guiManager->getElement("waveforms_400")->isPressed() ||
-			_guiManager->getElement("waveforms_500")->isPressed() ||
-			_guiManager->getElement("waveforms_600")->isPressed() ||
-			_guiManager->getElement("waveforms_700")->isPressed() ||
-			_guiManager->getElement("waveforms_800")->isPressed() ||
-			_guiManager->getElement("waveforms_900")->isPressed())
-	{
-		vector<shared_ptr<Audio>> soundWaves = {};
-
-		if(_guiManager->getElement("waveforms_100")->isToggled())
-		{
-			soundWaves.push_back(_waveformGenerator->generateSineWave(100, 30000, 100));
-		}
-		if(_guiManager->getElement("waveforms_200")->isToggled())
-		{
-			soundWaves.push_back(_waveformGenerator->generateSineWave(100, 30000, 200));
-		}
-		if(_guiManager->getElement("waveforms_300")->isToggled())
-		{
-			soundWaves.push_back(_waveformGenerator->generateSineWave(100, 30000, 300));
-		}
-		if(_guiManager->getElement("waveforms_400")->isToggled())
-		{
-			soundWaves.push_back(_waveformGenerator->generateSineWave(100, 30000, 400));
-		}
-		if(_guiManager->getElement("waveforms_500")->isToggled())
-		{
-			soundWaves.push_back(_waveformGenerator->generateSineWave(100, 30000, 500));
-		}
-		if(_guiManager->getElement("waveforms_600")->isToggled())
-		{
-			soundWaves.push_back(_waveformGenerator->generateSineWave(100, 30000, 600));
-		}
-		if(_guiManager->getElement("waveforms_700")->isToggled())
-		{
-			soundWaves.push_back(_waveformGenerator->generateSineWave(100, 30000, 700));
-		}
-		if(_guiManager->getElement("waveforms_800")->isToggled())
-		{
-			soundWaves.push_back(_waveformGenerator->generateSineWave(100, 30000, 800));
-		}
-		if(_guiManager->getElement("waveforms_900")->isToggled())
-		{
-			soundWaves.push_back(_waveformGenerator->generateSineWave(100, 30000, 900));
-		}
-
-		_audioPlayer->start(_waveformGenerator->combineSoundWaves(soundWaves));
-	}*/
+	//_updateWaveformMenu();
 }
 
 void GuiController::_updateMainMenu()
@@ -100,18 +47,27 @@ void GuiController::_updateMainMenu()
 	{
 		_guiManager->getGuiElement("waveforms_menu")->setVisible(true);
 		_guiManager->getGuiElement("waveforms_close")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_sin")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_sin_decr")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_sin_incr")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_sqr")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_sqr_decr")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_sqr_incr")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_tri")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_tri_decr")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_tri_incr")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_saw")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_saw_decr")->setVisible(true);
-		_guiManager->getGuiElement("waveforms_saw_incr")->setVisible(true);
+
+		for(int index = 0; index < 12; index++)
+		{
+			_guiManager->getGuiElement("waveforms_sin" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_sqr" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_tri" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_saw" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_note" + to_string(index))->setVisible(true);
+		}
+		//_guiManager->getGuiElement("waveforms_sin")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_sin_decr")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_sin_incr")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_sqr")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_sqr_decr")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_sqr_incr")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_tri")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_tri_decr")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_tri_incr")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_saw")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_saw_decr")->setVisible(true);
+		//_guiManager->getGuiElement("waveforms_saw_incr")->setVisible(true);
 	}
 	else if(_guiManager->getGuiElement("exit")->isPressed())
 	{
@@ -121,38 +77,96 @@ void GuiController::_updateMainMenu()
 	{
 		_guiManager->getGuiElement("waveforms_menu")->setVisible(false);
 		_guiManager->getGuiElement("waveforms_close")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_sin")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_sin_decr")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_sin_incr")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_sqr")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_sqr_decr")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_sqr_incr")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_tri")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_tri_decr")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_tri_incr")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_saw")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_saw_decr")->setVisible(false);
-		_guiManager->getGuiElement("waveforms_saw_incr")->setVisible(false);
+
+		for(int index = 0; index < 12; index++)
+		{
+			_guiManager->getGuiElement("waveforms_sin" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_sqr" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_tri" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_saw" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_note" + to_string(index))->setVisible(false);
+		}
+		//_guiManager->getGuiElement("waveforms_sin")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_sin_decr")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_sin_incr")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_sqr")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_sqr_decr")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_sqr_incr")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_tri")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_tri_decr")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_tri_incr")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_saw")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_saw_decr")->setVisible(false);
+		//_guiManager->getGuiElement("waveforms_saw_incr")->setVisible(false);
 	}
 }
 
 void GuiController::_updateWaveformMenu()
 {
-	const float maxAmplitude = _waveformGenerator->getMaxAmplitude();
-	const float amplitudeStep = maxAmplitude / 10.0f;
+	const int maxAmplitude = _waveformGenerator->getMaxAmplitude();
+	const int amplitudeStep = maxAmplitude / 10;
+
+	bool isPressed = true;
 
 	if(_guiManager->getGuiElement("waveforms_sin_decr")->isPressed())
 	{
 		_sineAmplitude -= amplitudeStep;
-		_sineAmplitude = max(0.0f, _sineAmplitude);
-
-		_audioPlayer->start(_waveformGenerator->generateSineWave(100, _sineAmplitude, 440));
+		_sineAmplitude = max(0, _sineAmplitude);
 	}
 	else if(_guiManager->getGuiElement("waveforms_sin_incr")->isPressed())
 	{
 		_sineAmplitude += amplitudeStep;
 		_sineAmplitude = min(maxAmplitude, _sineAmplitude);
+	}
+	else if(_guiManager->getGuiElement("waveforms_sqr_decr")->isPressed())
+	{
+		_squareAmplitude -= amplitudeStep;
+		_squareAmplitude = max(0, _squareAmplitude);
+	}
+	else if(_guiManager->getGuiElement("waveforms_sqr_incr")->isPressed())
+	{
+		_squareAmplitude += amplitudeStep;
+		_squareAmplitude = min(maxAmplitude, _squareAmplitude);
+	}
+	else if(_guiManager->getGuiElement("waveforms_tri_decr")->isPressed())
+	{
+		_triangleAmplitude -= amplitudeStep;
+		_triangleAmplitude = max(0, _triangleAmplitude);
+	}
+	else if(_guiManager->getGuiElement("waveforms_tri_incr")->isPressed())
+	{
+		_triangleAmplitude += amplitudeStep;
+		_triangleAmplitude = min(maxAmplitude, _triangleAmplitude);
+	}
+	else if(_guiManager->getGuiElement("waveforms_saw_decr")->isPressed())
+	{
+		_sawtoothAmplitude -= amplitudeStep;
+		_sawtoothAmplitude = max(0, _sawtoothAmplitude);
+	}
+	else if(_guiManager->getGuiElement("waveforms_saw_incr")->isPressed())
+	{
+		_sawtoothAmplitude += amplitudeStep;
+		_sawtoothAmplitude = min(maxAmplitude, _sawtoothAmplitude);
+	}
+	else
+	{
+		isPressed = false;
+	}
 
-		_audioPlayer->start(_waveformGenerator->generateSineWave(100, _sineAmplitude, 440));
+	if(isPressed)
+	{
+		if(_audioPlayer->isStarted())
+		{
+			_audioPlayer->stop();
+		}
+
+		vector<shared_ptr<Audio>> soundWaves = {};
+
+		soundWaves.push_back(_waveformGenerator->generateSineWave(1000, _sineAmplitude, 440));
+		soundWaves.push_back(_waveformGenerator->generateSquareWave(1000, _squareAmplitude, 440));
+		soundWaves.push_back(_waveformGenerator->generateTriangleWave(1000, _triangleAmplitude, 440));
+		soundWaves.push_back(_waveformGenerator->generateSawtoothWave(1000, _sawtoothAmplitude, 440));
+
+		_audioPlayer->start(_waveformGenerator->combineSoundWaves(soundWaves));
 	}
 }

@@ -2,10 +2,16 @@
 
 #include "fmat33.hpp"
 
+#include <vector>
+
+using std::vector;
+
 class Mathematics final
 {
 public:
 	Mathematics() = delete;
+
+	static const vector<float> calculateDistributedPositions(const float start, const float range, const int count);
 
 	static const fmat33 createTranslationMatrix(const float x, const float y);
 	static const fmat33 createRotationMatrix(const float angle);

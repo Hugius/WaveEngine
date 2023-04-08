@@ -16,7 +16,7 @@ void Renderer::initialize()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void Renderer::render(const ivec2 windowSize, const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts)
+void Renderer::render(const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 

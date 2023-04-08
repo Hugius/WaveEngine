@@ -10,5 +10,12 @@ class AudioPlayer final
 {
 public:
 	void start(shared_ptr<Audio> audio);
-	void stop(shared_ptr<Audio> audio);
+	void stop();
+	void update();
+
+	const bool isStarted() const;
+
+private:
+	HWAVEOUT _handle = nullptr;
+	LPWAVEHDR _header = nullptr;
 };

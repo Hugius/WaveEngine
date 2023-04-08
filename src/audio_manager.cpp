@@ -1,6 +1,6 @@
 #include "audio_manager.hpp"
 
-void AudioManager::createAudio(const string & id, shared_ptr<Audio> audio)
+void AudioManager::createAudio(const string & id, const shared_ptr<Audio> & audio)
 {
 	if(_isAudioExisting(id))
 	{

@@ -9,7 +9,7 @@ class Renderer final
 {
 public:
 	void initialize();
-	void render(const ivec2 windowSize, const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts);
+	void render(const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts);
 
 private:
 	void _bindShader();

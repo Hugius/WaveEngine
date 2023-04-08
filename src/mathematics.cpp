@@ -2,6 +2,20 @@
 
 #include <cmath>
 
+const vector<float> Mathematics::calculateDistributedPositions(const float start, const float range, const int count)
+{
+	const float step = range / static_cast<float>(count + 1);
+
+	vector<float> positions = {};
+
+	for(int index = 0; index < count; index++)
+	{
+		positions.push_back(start + step * static_cast<float>(index + 1));
+	}
+
+	return positions;
+}
+
 const fmat33 Mathematics::createTranslationMatrix(const float x, const float y)
 {
 	fmat33 result = fmat33(1.0f);

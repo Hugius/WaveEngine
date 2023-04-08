@@ -18,7 +18,7 @@ public:
 	const shared_ptr<Audio> generateSawtoothWave(const int duration, const int amplitude, const int frequency) const;
 	const shared_ptr<Audio> combineSoundWaves(const vector<shared_ptr<Audio>> & soundWaves) const;
 
-	const float getMaxAmplitude() const;
+	const int getMaxAmplitude() const;
 
 private:
 	const shared_ptr<Audio> _generateSoundWave(const int duration, const int amplitude, const int frequency, const WaveformType type) const;
@@ -29,7 +29,7 @@ private:
 	static inline const int BYTES_PER_BLOCK = 4;
 	static inline const int BITS_PER_SAMPLE = 16;
 	static inline const int MIN_DURATION = 0;
-	static inline const int MAX_DURATION = 30000;
+	static inline const int MAX_DURATION = 360000;
 	static inline const int MIN_AMPLITUDE = 0;
 	static inline const int MAX_AMPLITUDE = 30000;
 	static inline const int MIN_FREQUENCY = 20;

@@ -141,7 +141,7 @@ const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared
 	return make_shared<Audio>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
 }
 
-const float WaveformGenerator::getMaxAmplitude() const
+const int WaveformGenerator::getMaxAmplitude() const
 {
 	return MAX_AMPLITUDE;
 }

@@ -19,18 +19,18 @@ fvec2::fvec2(const ivec2 & other)
 	this->y = static_cast<float>(other.y);
 }
 
-void fvec2::operator+=(const fvec2 & v)
+void fvec2::operator+=(const fvec2 & other)
 {
-	this->x += v.x;
-	this->y += v.y;
+	this->x += other.x;
+	this->y += other.y;
 }
 
-const fvec2 fvec2::operator+(const fvec2 & v)const
+const fvec2 fvec2::operator+(const fvec2 & other)const
 {
-	return fvec2((this->x + v.x), (this->y + v.y));
+	return fvec2((this->x + other.x), (this->y + other.y));
 }
 
-const fvec2 fvec2::operator*(const fvec2 & v)const
+const fvec2 fvec2::operator*(const fvec2 & other)const
 {
-	return fvec2((this->x * v.x), (this->y * v.y));
+	return fvec2((this->x * other.x), (this->y * other.y));
 }

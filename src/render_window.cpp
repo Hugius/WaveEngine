@@ -112,28 +112,30 @@ void RenderWindow::_initializeHandle()
 		abort();
 	}
 
-	const ivec2 monitorSize = _getMonitorSize();
-	const ivec2 windowOffset = static_cast<ivec2>(static_cast<fvec2>(monitorSize) * 0.05f);
-	const DWORD style = WS_VISIBLE | WS_BORDER | WS_CAPTION | WS_SYSMENU;
+	const ivec2 monitorResolution = _getMonitorResolution();
+	const DWORD windowStyle = WS_VISIBLE | WS_BORDER | WS_CAPTION | WS_SYSMENU;
 
-	_size = static_cast<ivec2>(static_cast<fvec2>(monitorSize) * 0.9f);
+	_renderingResolution = static_cast<ivec2>(static_cast<fvec2>(monitorResolution) * 0.9f);
 
 	RECT rect = {};
 	rect.left = 0;
 	rect.top = 0;
-	rect.right = _size.x;
-	rect.bottom = _size.y;
+	rect.right = _renderingResolution.x;
+	rect.bottom = _renderingResolution.y;
 
-	AdjustWindowRectEx(&rect, style, false, 0);
+	AdjustWindowRectEx(&rect, windowStyle, false, 0);
+
+	const ivec2 windowResolution = ivec2(static_cast<int>(rect.right - rect.left), static_cast<int>(rect.bottom - rect.top));
+	const ivec2 windowPosition = (monitorResolution - windowResolution) / 2;
 
 	_handle = CreateWindow(
 		windowClass.lpszClassName,
 		TITLE.c_str(),
-		style,
-		windowOffset.x,
-		windowOffset.y,
-		rect.right - rect.left,
-		rect.bottom - rect.top,
+		windowStyle,
+		windowPosition.x,
+		windowPosition.y,
+		windowResolution.x,
+		windowResolution.y,
 		GetDesktopWindow(),
 		nullptr,
 		windowClass.hInstance,
@@ -278,17 +280,12 @@ void RenderWindow::swapBuffers()
 	}
 }
 
-const ivec2 RenderWindow::getSize() const
-{
-	return _size;
-}
-
 const bool RenderWindow::isClosed() const
 {
 	return !IsWindow(_handle);
 }
 
-const ivec2 RenderWindow::_getMonitorSize()
+const ivec2 RenderWindow::_getMonitorResolution()
 {
 	RECT rectangle = {};
 
@@ -307,8 +304,8 @@ const fvec2 RenderWindow::getCursorPosition()
 
 const fvec2 RenderWindow::_convertToNdc(const ivec2 & position)
 {
-	const float x = static_cast<float>(position.x) / static_cast<float>(_size.x);
-	const float y = static_cast<float>(position.y) / static_cast<float>(_size.y);
+	const float x = static_cast<float>(position.x) / static_cast<float>(_renderingResolution.x);
+	const float y = static_cast<float>(position.y) / static_cast<float>(_renderingResolution.y);
 
 	fvec2 ndc = fvec2(x, y);
 

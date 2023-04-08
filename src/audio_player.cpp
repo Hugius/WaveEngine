@@ -4,96 +4,77 @@ using std::make_shared;
 
 void AudioPlayer::start(shared_ptr<Audio> audio)
 {
-	HWAVEOUT handle = nullptr;
+	if(isStarted())
+	{
+		abort();
+	}
 
-	const MMRESULT openResult = waveOutOpen(&handle, WAVE_MAPPER, audio->getFormat(), 0, 0, CALLBACK_NULL);
+	const MMRESULT openResult = waveOutOpen(&_handle, WAVE_MAPPER, audio->getFormat(), 0, 0, CALLBACK_NULL);
 
 	if(openResult != MMSYSERR_NOERROR)
 	{
-		if(openResult == MMSYSERR_BADDEVICEID)
-		{
-			return;
-		}
-		else
-		{
-			abort();
-		}
+		abort();
 	}
 
-	const LPWAVEHDR header = new WAVEHDR();
+	const int bufferLength = static_cast<int>(audio->getHeader()->dwBufferLength);
 
-	header->dwBufferLength = audio->getHeader()->dwBufferLength;
-	header->lpData = new char[header->dwBufferLength];
-	header->dwFlags = 0;
+	_header = new WAVEHDR();
+	_header->lpData = new char[bufferLength];
+	_header->dwBufferLength = bufferLength;
+	_header->dwFlags = WHDR_BEGINLOOP | WHDR_ENDLOOP;
+	_header->dwLoops = -1;
 
-	for(int index = 0; index < static_cast<int>(header->dwBufferLength); index++)
+	for(int index = 0; index < bufferLength; index++)
 	{
-		header->lpData[index] = audio->getHeader()->lpData[index];
+		_header->lpData[index] = audio->getHeader()->lpData[index];
 	}
 
-	const MMRESULT prepareResult = waveOutPrepareHeader(handle, header, sizeof(WAVEHDR));
+	const MMRESULT prepareResult = waveOutPrepareHeader(_handle, _header, sizeof(WAVEHDR));
 
 	if(prepareResult != MMSYSERR_NOERROR)
 	{
-		if(prepareResult == MMSYSERR_NODRIVER)
-		{
-			return;
-		}
-		else
-		{
-			abort();
-		}
+		abort();
 	}
 
-	const MMRESULT writeResult = waveOutWrite(handle, header, sizeof(WAVEHDR));
+	const MMRESULT writeResult = waveOutWrite(_handle, _header, sizeof(WAVEHDR));
 
 	if(writeResult != MMSYSERR_NOERROR)
 	{
-		if(writeResult == MMSYSERR_NODRIVER)
-		{
-			return;
-		}
-		else if(writeResult == MMSYSERR_NOMEM)
-		{
-			const MMRESULT unprepareResult = waveOutUnprepareHeader(handle, header, sizeof(WAVEHDR));
-
-			if(unprepareResult != MMSYSERR_NOERROR)
-			{
-				if(unprepareResult == MMSYSERR_NODRIVER)
-				{
-					return;
-				}
-				else
-				{
-
-					abort();
-				}
-			}
-
-			const MMRESULT closeResult = waveOutClose(handle);
-
-			if(closeResult != MMSYSERR_NOERROR)
-			{
-				if(closeResult == MMSYSERR_NODRIVER)
-				{
-					return;
-				}
-				else
-				{
-					abort();
-				}
-			}
-
-			return;
-		}
-		else
-		{
-			abort();
-		}
+		abort();
 	}
 }
 
-void AudioPlayer::stop(shared_ptr<Audio> audio)
+void AudioPlayer::stop()
 {
-	waveOutReset(audio->getHandle());
+	if(!isStarted())
+	{
+		abort();
+	}
+
+	waveOutReset(_handle);
+	waveOutUnprepareHeader(_handle, _header, sizeof(WAVEHDR));
+	waveOutClose(_handle);
+
+	_handle = nullptr;
+	_header = nullptr;
+}
+
+void AudioPlayer::update()
+{
+	//if(isStarted() && _header->dwFlags == (WHDR_PREPARED | WHDR_DONE))
+	//{
+	//	_header->dwFlags = WHDR_PREPARED;
+
+	//	const auto writeResult = waveOutWrite(_handle, _header, sizeof(WAVEHDR));
+
+	//	if(writeResult != MMSYSERR_NOERROR)
+	//	{
+	//		abort();
+	//	}
+	//}
+}
+
+const bool AudioPlayer::isStarted() const
+{
+	return _handle != nullptr;
 }

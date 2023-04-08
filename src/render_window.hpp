@@ -22,8 +22,6 @@ public:
 
 	const fvec2 getCursorPosition();
 
-	const ivec2 getSize() const;
-
 	const bool isClosed() const;
 
 private:
@@ -37,12 +35,12 @@ private:
 
 	const fvec2 _convertToNdc(const ivec2 & position);
 
-	const ivec2 _getMonitorSize();
+	const ivec2 _getMonitorResolution();
 
 	shared_ptr<InputHandler> _inputHandler = nullptr;
 
 	HWND _handle = nullptr;
 
 	fvec2 _cursorPosition = fvec2(0.0f);
-	ivec2 _size = ivec2(0);
+	ivec2 _renderingResolution = ivec2(0);
 };
