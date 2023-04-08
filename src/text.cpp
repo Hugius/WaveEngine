@@ -45,7 +45,7 @@ void Text::update()
 
 	for(const shared_ptr<Quad> & quad : _quads)
 	{
-		fvec2 offset = fvec2((static_cast<float>(index) * quadSize.x), 0.0f);
+		fvec2 offset = fvec2((static_cast<float>(index) * quadSize.x), 0.0);
 
 		quad->setPosition(_position + (rotationMatrix * offset));
 		quad->setRotation(_rotation);
@@ -81,7 +81,7 @@ void Text::setContent(const string & value)
 
 		const int xIndex = _fontMapIndices.at(character).x;
 		const int yIndex = _fontMapIndices.at(character).y;
-		const fvec2 uvMultiplier = fvec2((1.0f / static_cast<float>(FONT_MAP_COLUMN_COUNT)), (1.0f / static_cast<float>(FONT_MAP_ROW_COUNT)));
+		const fvec2 uvMultiplier = fvec2((1.0 / static_cast<float>(FONT_MAP_COLUMN_COUNT)), (1.0 / static_cast<float>(FONT_MAP_ROW_COUNT)));
 		const fvec2 uvOffset = fvec2((static_cast<float>(xIndex) * uvMultiplier.x), (static_cast<float>(yIndex) * uvMultiplier.y));
 		const shared_ptr<Quad> quad = make_shared<Quad>(_vertexBuffer, _textureBuffer, _depth);
 
@@ -108,7 +108,7 @@ void Text::setVisible(const bool value)
 
 void Text::setLightness(const float value)
 {
-	_lightness = max(0.0f, value);
+	_lightness = max(0.0, value);
 
 	for(const shared_ptr<Quad> & quad : _quads)
 	{
@@ -118,7 +118,7 @@ void Text::setLightness(const float value)
 
 void Text::setColor(const fvec3 & value)
 {
-	_color = fvec3(clamp(value.r, 0.0f, 1.0f), clamp(value.g, 0.0f, 1.0f), clamp(value.b, 0.0f, 1.0f));
+	_color = fvec3(clamp(value.r, 0.0, 1.0), clamp(value.g, 0.0, 1.0), clamp(value.b, 0.0, 1.0));
 
 	for(const shared_ptr<Quad> & quad : _quads)
 	{
@@ -128,7 +128,7 @@ void Text::setColor(const fvec3 & value)
 
 void Text::setOpacity(const float value)
 {
-	_opacity = clamp(value, 0.0f, 1.0f);
+	_opacity = clamp(value, 0.0, 1.0);
 
 	for(const shared_ptr<Quad> & quad : _quads)
 	{
@@ -148,7 +148,7 @@ void Text::setRotation(const float value)
 
 void Text::setSize(const fvec2 & value)
 {
-	_size = fvec2(max(0.0f, value.x), max(0.0f, value.y));
+	_size = fvec2(max(0.0, value.x), max(0.0, value.y));
 }
 
 const string & Text::getContent() const

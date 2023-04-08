@@ -41,6 +41,6 @@ private:
 
 	HWND _handle = nullptr;
 
-	fvec2 _cursorPosition = fvec2(0.0f);
+	fvec2 _cursorPosition = fvec2(0.0);
 	ivec2 _renderingResolution = ivec2(0);
 };

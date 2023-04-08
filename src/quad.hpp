@@ -52,18 +52,18 @@ private:
 
 	const int _depth;
 
-	fmat33 _transformation = fmat33(1.0f);
+	fmat33 _transformation = fmat33(1.0);
 
-	fvec3 _color = fvec3(1.0f);
+	fvec3 _color = fvec3(1.0);
 
-	fvec2 _position = fvec2(0.0f);
-	fvec2 _size = fvec2(1.0f);
-	fvec2 _uvMultiplier = fvec2(1.0f);
-	fvec2 _uvOffset = fvec2(0.0f);
+	fvec2 _position = fvec2(0.0);
+	fvec2 _size = fvec2(1.0);
+	fvec2 _uvMultiplier = fvec2(1.0);
+	fvec2 _uvOffset = fvec2(0.0);
 
-	float _rotation = 0.0f;
-	float _opacity = 1.0f;
-	float _lightness = 1.0f;
+	float _rotation = 0.0;
+	float _opacity = 1.0;
+	float _lightness = 1.0;
 
 	bool _isVisible = true;
 };

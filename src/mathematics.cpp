@@ -18,7 +18,7 @@ const vector<double> Mathematics::calculateDistributedPositions(const double sta
 
 const fmat33 Mathematics::createTranslationMatrix(const double x, const double y)
 {
-	fmat33 result = fmat33(1.0f);
+	fmat33 result = fmat33(1.0);
 
 	result.m[2][0] = x;
 	result.m[2][1] = y;
@@ -28,7 +28,7 @@ const fmat33 Mathematics::createTranslationMatrix(const double x, const double y
 
 const fmat33 Mathematics::createRotationMatrix(const double angle)
 {
-	fmat33 result = fmat33(1.0f);
+	fmat33 result = fmat33(1.0);
 
 	result.m[0][0] = cos(angle);
 	result.m[1][0] = -sin(angle);
@@ -40,7 +40,7 @@ const fmat33 Mathematics::createRotationMatrix(const double angle)
 
 const fmat33 Mathematics::createScalingMatrix(const double x, const double y)
 {
-	fmat33 result = fmat33(1.0f);
+	fmat33 result = fmat33(1.0);
 
 	result.m[0][0] = x;
 	result.m[1][1] = y;
@@ -55,29 +55,29 @@ const double Mathematics::convertToRadians(const double angle)
 
 const double Mathematics::limitAngle(const double angle)
 {
-	if(angle < 0.0f)
+	if(angle < 0.0)
 	{
-		return (360.0f - fabsf(fmodf(angle, 360.0f)));
+		return (360.0 - fabsf(fmodf(angle, 360.0)));
 	}
 	else
 	{
-		return fmodf(angle, 360.0f);
+		return fmodf(angle, 360.0);
 	}
 }
 
 const double Mathematics::getSignum(double value)
 {
-	if(value < 0.0f)
+	if(value < 0.0)
 	{
-		return -1.0f;
+		return -1.0;
 	}
 
-	if(value > 0.0f)
+	if(value > 0.0)
 	{
-		return 1.0f;
+		return 1.0;
 	}
 
-	return 0.0f;
+	return 0.0;
 }
 
 const double Mathematics::getPi()

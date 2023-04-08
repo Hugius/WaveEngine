@@ -35,17 +35,17 @@ void Quad::update()
 
 void Quad::setColor(const fvec3 & value)
 {
-	_color = fvec3(clamp(value.r, 0.0f, 1.0f), clamp(value.g, 0.0f, 1.0f), clamp(value.b, 0.0f, 1.0f));
+	_color = fvec3(clamp(value.r, 0.0, 1.0), clamp(value.g, 0.0, 1.0), clamp(value.b, 0.0, 1.0));
 }
 
 void Quad::setUvMultiplier(const fvec2 & value)
 {
-	_uvMultiplier = fvec2(clamp(value.x, 0.0f, 1.0f), clamp(value.y, 0.0f, 1.0f));
+	_uvMultiplier = fvec2(clamp(value.x, 0.0, 1.0), clamp(value.y, 0.0, 1.0));
 }
 
 void Quad::setUvOffset(const fvec2 & value)
 {
-	_uvOffset = fvec2(clamp(value.x, 0.0f, 1.0f), clamp(value.y, 0.0f, 1.0f));
+	_uvOffset = fvec2(clamp(value.x, 0.0, 1.0), clamp(value.y, 0.0, 1.0));
 }
 
 const fvec2 & Quad::getUvMultiplier() const
@@ -60,7 +60,7 @@ const fvec2 & Quad::getUvOffset() const
 
 void Quad::setOpacity(const float value)
 {
-	_opacity = clamp(value, 0.0f, 1.0f);
+	_opacity = clamp(value, 0.0, 1.0);
 }
 
 void Quad::setPosition(const fvec2 & value)
@@ -75,7 +75,7 @@ void Quad::setRotation(const float value)
 
 void Quad::setSize(const fvec2 & value)
 {
-	_size = fvec2(max(0.0f, value.x), max(0.0f, value.y));
+	_size = fvec2(max(0.0, value.x), max(0.0, value.y));
 }
 
 const shared_ptr<VertexBuffer> Quad::getVertexBuffer() const
@@ -140,5 +140,5 @@ void Quad::setVisible(const bool value)
 
 void Quad::setLightness(const float value)
 {
-	_lightness = max(0.0f, value);
+	_lightness = max(0.0, value);
 }

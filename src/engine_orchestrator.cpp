@@ -40,13 +40,13 @@ void EngineOrchestrator::start()
 
 	_isRunning = true;
 
-	float runtimeLag = 0.0f;
+	float runtimeLag = 0.0;
 
 	while(true)
 	{
 		_timer->start();
 
-		const float millisecondsPerUpdate = 1000.0f / _timer->getUpdateCountPerSecond();
+		const float millisecondsPerUpdate = 1000.0 / _timer->getUpdateCountPerSecond();
 
 		runtimeLag += _totalDeltaTime;
 		runtimeLag = min(MAX_RUNTIME_LAG, runtimeLag);
@@ -55,7 +55,7 @@ void EngineOrchestrator::start()
 		{
 			_update();
 
-			runtimeLag = max(0.0f, runtimeLag - millisecondsPerUpdate);
+			runtimeLag = max(0.0, runtimeLag - millisecondsPerUpdate);
 
 			if(!_isRunning)
 			{

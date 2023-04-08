@@ -20,7 +20,7 @@ private:
 	void _update();
 	void _render();
 
-	static inline const float MAX_RUNTIME_LAG = 100.0f;
+	static inline const float MAX_RUNTIME_LAG = 100.0;
 
 	shared_ptr<RenderWindow> _renderWindow = nullptr;
 	shared_ptr<InputHandler> _inputHandler = nullptr;
@@ -33,7 +33,7 @@ private:
 	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
 	shared_ptr<AudioManager> _audioManager = nullptr;
 
-	float _totalDeltaTime = 0.0f;
+	float _totalDeltaTime = 0.0;
 
 	bool _isRunning = false;
 };

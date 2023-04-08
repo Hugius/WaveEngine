@@ -115,7 +115,7 @@ void RenderWindow::_initializeHandle()
 	const ivec2 monitorResolution = _getMonitorResolution();
 	const DWORD windowStyle = WS_VISIBLE | WS_BORDER | WS_CAPTION | WS_SYSMENU;
 
-	_renderingResolution = static_cast<ivec2>(static_cast<fvec2>(monitorResolution) * 0.9f);
+	_renderingResolution = static_cast<ivec2>(static_cast<fvec2>(monitorResolution) * 0.9);
 
 	RECT rect = {};
 	rect.left = 0;
@@ -309,11 +309,11 @@ const fvec2 RenderWindow::_convertToNdc(const ivec2 & position)
 
 	fvec2 ndc = fvec2(x, y);
 
-	ndc.x *= 2.0f;
-	ndc.y *= 2.0f;
-	ndc.x -= 1.0f;
-	ndc.y -= 1.0f;
-	ndc.y *= -1.0f;
+	ndc.x *= 2.0;
+	ndc.y *= 2.0;
+	ndc.x -= 1.0;
+	ndc.y -= 1.0;
+	ndc.y *= -1.0;
 
 	return ndc;
 }

@@ -4,7 +4,7 @@ fmat33::fmat33(const float value)
 {
 	for(int index = 0; index < 9; index++)
 	{
-		f[index] = 0.0f;
+		f[index] = 0.0;
 	}
 
 	this->m[0][0] = value;
@@ -14,13 +14,13 @@ fmat33::fmat33(const float value)
 
 const fmat33 fmat33::operator*(const fmat33 & other) const
 {
-	fmat33 result = fmat33(1.0f);
+	fmat33 result = fmat33(1.0);
 
 	for(int column = 0; column < 3; column++)
 	{
 		for(int row = 0; row < 3; row++)
 		{
-			result.m[row][column] = 0.0f;
+			result.m[row][column] = 0.0;
 
 			for(int inner = 0; inner < 3; inner++)
 			{
@@ -34,7 +34,7 @@ const fmat33 fmat33::operator*(const fmat33 & other) const
 
 const fvec2 fmat33::operator*(const fvec2 & other) const
 {
-	fvec2 result = fvec2(0.0f);
+	fvec2 result = fvec2(0.0);
 
 	result.x = (this->m[0][0] * other.x) + (this->m[1][0] * other.y);
 	result.y = (this->m[0][1] * other.x) + (this->m[1][1] * other.y);

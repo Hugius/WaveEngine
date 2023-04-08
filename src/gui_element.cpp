@@ -56,11 +56,11 @@ void GuiElement::update(const fvec2 & cursorPosition, const bool isLmbPressed)
 
 	if(!_isToggled && !wasHovered && _isHovered)
 	{
-		_quad->setLightness(_quad->getLightness() * 1.5f);
+		_quad->setLightness(_quad->getLightness() * 1.5);
 	}
 	else if(!_isToggled && wasHovered && !_isHovered)
 	{
-		_quad->setLightness(_quad->getLightness() / 1.5f);
+		_quad->setLightness(_quad->getLightness() / 1.5);
 	}
 }
 

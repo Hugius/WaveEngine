@@ -11,18 +11,18 @@ void GuiManager::initialize()
 	_vertexBuffer = make_shared<VertexBuffer>();
 	_fontTextureBuffer = make_shared<TextureBuffer>(_imageLoader->getImage(Tools::getRootDirectoryPath() + FONT_PATH));
 
-	_createGuiElement("top", fvec2(-1.0f, 0.95f), fvec2(2.0f, 0.05f), fvec3(0.25f), fvec3(0.0f), "", false, false, false, true);
-	_createGuiElement("new", fvec2(-1.0f, 0.95f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "New", true, true, false, true);
-	_createGuiElement("load", fvec2(-0.95f, 0.95f), fvec2(0.05f, 0.05f), fvec3(0.25f), fvec3(1.0f), "Load", true, true, false, true);
-	_createGuiElement("save", fvec2(-0.8875f, 0.95f), fvec2(0.05f, 0.05f), fvec3(0.25f), fvec3(1.0f), "Save", true, true, false, true);
-	_createGuiElement("waveforms", fvec2(-0.825f, 0.95f), fvec2(0.1125f, 0.05f), fvec3(0.25f), fvec3(1.0f), "Waveforms", true, true, false, true);
-	_createGuiElement("exit", fvec2(-0.7f, 0.95f), fvec2(0.05f, 0.05f), fvec3(0.25f), fvec3(1.0f), "Exit", true, true, false, true);
+	_createGuiElement("top", fvec2(-1.0, 0.95), fvec2(2.0, 0.05), fvec3(0.25), fvec3(0.0), "", false, false, false, true);
+	_createGuiElement("new", fvec2(-1.0, 0.95), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "New", true, true, false, true);
+	_createGuiElement("load", fvec2(-0.95, 0.95), fvec2(0.05, 0.05), fvec3(0.25), fvec3(1.0), "Load", true, true, false, true);
+	_createGuiElement("save", fvec2(-0.8875, 0.95), fvec2(0.05, 0.05), fvec3(0.25), fvec3(1.0), "Save", true, true, false, true);
+	_createGuiElement("waveforms", fvec2(-0.825, 0.95), fvec2(0.1125, 0.05), fvec3(0.25), fvec3(1.0), "Waveforms", true, true, false, true);
+	_createGuiElement("exit", fvec2(-0.7, 0.95), fvec2(0.05, 0.05), fvec3(0.25), fvec3(1.0), "Exit", true, true, false, true);
 
-	_createGuiElement("waveforms_menu", fvec2(-0.75f), fvec2(1.5f), fvec3(0.25f), fvec3(0.0f), "", false, false, false, false);
-	_createGuiElement("waveforms_close", fvec2(0.725f, 0.675f), fvec2(0.025f, 0.075f), fvec3(0.25f), fvec3(1.0f, 0.0f, 0.0f), "X", true, true, false, false);
-	_createGuiElement("waveforms_play", fvec2(-0.75f, 0.675f), fvec2(0.05f, 0.075f), fvec3(0.25f), fvec3(1.0f), "Play", true, true, false, false);
+	_createGuiElement("waveforms_menu", fvec2(-0.75), fvec2(1.5), fvec3(0.25), fvec3(0.0), "", false, false, false, false);
+	_createGuiElement("waveforms_close", fvec2(0.725, 0.675), fvec2(0.025, 0.075), fvec3(0.25), fvec3(1.0, 0.0, 0.0), "X", true, true, false, false);
+	_createGuiElement("waveforms_play", fvec2(-0.75, 0.675), fvec2(0.05, 0.075), fvec3(0.25), fvec3(1.0), "Play", true, true, false, false);
 
-	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75f, 1.5f, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
+	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
 
 	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 	{
@@ -33,25 +33,25 @@ void GuiManager::initialize()
 		const string noteId = "waveforms_note" + to_string(index);
 		const string noteName = AudioConstants::NOTE_NAMES[index];
 
-		_createGuiElement(sineId, fvec2(positions[index], -0.55f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SIN", true, true, true, false);
-		_createGuiElement(squareId, fvec2(positions[index], -0.6f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SQR", true, true, true, false);
-		_createGuiElement(triangleId, fvec2(positions[index], -0.65f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "TRI", true, true, true, false);
-		_createGuiElement(sawtoothId, fvec2(positions[index], -0.7f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SAW", true, true, true, false);
-		_createGuiElement(noteId, fvec2(positions[index], -0.75f), fvec2(0.0125f * static_cast<float>(noteName.size()), 0.05f), fvec3(0.25f), fvec3(1.0f), noteName, false, false, false, false);
+		_createGuiElement(sineId, fvec2(positions[index], -0.55), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "SIN", true, true, true, false);
+		_createGuiElement(squareId, fvec2(positions[index], -0.6), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "SQR", true, true, true, false);
+		_createGuiElement(triangleId, fvec2(positions[index], -0.65), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "TRI", true, true, true, false);
+		_createGuiElement(sawtoothId, fvec2(positions[index], -0.7), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "SAW", true, true, true, false);
+		_createGuiElement(noteId, fvec2(positions[index], -0.75), fvec2(0.0125 * static_cast<float>(noteName.size()), 0.05), fvec3(0.25), fvec3(1.0), noteName, false, false, false, false);
 	}
 
-	//_createGuiElement("waveforms_sin", fvec2(-0.75f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SIN", false, false, false, false);
-	//_createGuiElement("waveforms_sin_decr", fvec2(-0.75f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), "<", true, true, false, false);
-	//_createGuiElement("waveforms_sin_incr", fvec2(-0.725f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), ">", true, true, false, false);
-	//_createGuiElement("waveforms_sqr", fvec2(-0.7f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SQR", false, false, false, false);
-	//_createGuiElement("waveforms_sqr_decr", fvec2(-0.7f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), "<", true, true, false, false);
-	//_createGuiElement("waveforms_sqr_incr", fvec2(-0.675f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), ">", true, true, false, false);
-	//_createGuiElement("waveforms_tri", fvec2(-0.65f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "TRI", false, false, false, false);
-	//_createGuiElement("waveforms_tri_decr", fvec2(-0.65f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), "<", true, true, false, false);
-	//_createGuiElement("waveforms_tri_incr", fvec2(-0.625f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), ">", true, true, false, false);
-	//_createGuiElement("waveforms_saw", fvec2(-0.6f, -0.75f), fvec2(0.0375f, 0.05f), fvec3(0.25f), fvec3(1.0f), "SAW", false, false, false, false);
-	//_createGuiElement("waveforms_saw_decr", fvec2(-0.6f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), "<", true, true, false, false);
-	//_createGuiElement("waveforms_saw_incr", fvec2(-0.575f, -0.7f), fvec2(0.0125f, 0.05f), fvec3(0.25f), fvec3(1.0f), ">", true, true, false, false);
+	//_createGuiElement("waveforms_sin", fvec2(-0.75, -0.75), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "SIN", false, false, false, false);
+	//_createGuiElement("waveforms_sin_decr", fvec2(-0.75, -0.7), fvec2(0.0125, 0.05), fvec3(0.25), fvec3(1.0), "<", true, true, false, false);
+	//_createGuiElement("waveforms_sin_incr", fvec2(-0.725, -0.7), fvec2(0.0125, 0.05), fvec3(0.25), fvec3(1.0), ">", true, true, false, false);
+	//_createGuiElement("waveforms_sqr", fvec2(-0.7, -0.75), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "SQR", false, false, false, false);
+	//_createGuiElement("waveforms_sqr_decr", fvec2(-0.7, -0.7), fvec2(0.0125, 0.05), fvec3(0.25), fvec3(1.0), "<", true, true, false, false);
+	//_createGuiElement("waveforms_sqr_incr", fvec2(-0.675, -0.7), fvec2(0.0125, 0.05), fvec3(0.25), fvec3(1.0), ">", true, true, false, false);
+	//_createGuiElement("waveforms_tri", fvec2(-0.65, -0.75), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "TRI", false, false, false, false);
+	//_createGuiElement("waveforms_tri_decr", fvec2(-0.65, -0.7), fvec2(0.0125, 0.05), fvec3(0.25), fvec3(1.0), "<", true, true, false, false);
+	//_createGuiElement("waveforms_tri_incr", fvec2(-0.625, -0.7), fvec2(0.0125, 0.05), fvec3(0.25), fvec3(1.0), ">", true, true, false, false);
+	//_createGuiElement("waveforms_saw", fvec2(-0.6, -0.75), fvec2(0.0375, 0.05), fvec3(0.25), fvec3(1.0), "SAW", false, false, false, false);
+	//_createGuiElement("waveforms_saw_decr", fvec2(-0.6, -0.7), fvec2(0.0125, 0.05), fvec3(0.25), fvec3(1.0), "<", true, true, false, false);
+	//_createGuiElement("waveforms_saw_incr", fvec2(-0.575, -0.7), fvec2(0.0125, 0.05), fvec3(0.25), fvec3(1.0), ">", true, true, false, false);
 }
 
 void GuiManager::update(const fvec2 & cursorPosition, const bool isLmbPressed)
