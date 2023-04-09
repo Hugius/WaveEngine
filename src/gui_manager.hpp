@@ -22,6 +22,7 @@ private:
 						   const dvec3 & quadColor,
 						   const dvec3 & textColor,
 						   const string & content,
+						   const bool isCentered,
 						   const bool isHoverable,
 						   const bool isPressable,
 						   const bool isTogglable,
@@ -36,7 +37,8 @@ private:
 	vector<shared_ptr<Text>> _texts = {};
 
 	shared_ptr<ImageLoader> _imageLoader = nullptr;
-	shared_ptr<VertexBuffer> _vertexBuffer = nullptr;
+	shared_ptr<VertexBuffer> _corneredVertexBuffer = nullptr;
+	shared_ptr<VertexBuffer> _centeredVertexBuffer = nullptr;
 	shared_ptr<TextureBuffer> _fontTextureBuffer = nullptr;
 
 	int _renderDepth = 1;

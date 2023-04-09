@@ -1,33 +1,65 @@
 #include "vertex_buffer.hpp"
 
-VertexBuffer::VertexBuffer()
+VertexBuffer::VertexBuffer(const bool isCentered)
+	:
+	_isCentered(isCentered)
 {
 	double * vertices = new double[24];
 
-	vertices[0] = 0.0;
-	vertices[1] = 0.0;
-	vertices[2] = 0.0;
-	vertices[3] = 0.0;
-	vertices[4] = 1.0;
-	vertices[5] = 0.0;
-	vertices[6] = 1.0;
-	vertices[7] = 0.0;
-	vertices[8] = 1.0;
-	vertices[9] = 1.0;
-	vertices[10] = 1.0;
-	vertices[11] = 1.0;
-	vertices[12] = 1.0;
-	vertices[13] = 1.0;
-	vertices[14] = 1.0;
-	vertices[15] = 1.0;
-	vertices[16] = 0.0;
-	vertices[17] = 1.0;
-	vertices[18] = 0.0;
-	vertices[19] = 1.0;
-	vertices[20] = 0.0;
-	vertices[21] = 0.0;
-	vertices[22] = 0.0;
-	vertices[23] = 0.0;
+	if(isCentered)
+	{
+		vertices[0] = -0.5;
+		vertices[1] = -0.5;
+		vertices[2] = 0.0;
+		vertices[3] = 0.0;
+		vertices[4] = 0.5;
+		vertices[5] = -0.5;
+		vertices[6] = 1.0;
+		vertices[7] = 0.0;
+		vertices[8] = 0.5;
+		vertices[9] = 0.5;
+		vertices[10] = 1.0;
+		vertices[11] = 1.0;
+		vertices[12] = 0.5;
+		vertices[13] = 0.5;
+		vertices[14] = 1.0;
+		vertices[15] = 1.0;
+		vertices[16] = -0.5;
+		vertices[17] = 0.5;
+		vertices[18] = 0.0;
+		vertices[19] = 1.0;
+		vertices[20] = -0.5;
+		vertices[21] = -0.5;
+		vertices[22] = 0.0;
+		vertices[23] = 0.0;
+	}
+	else
+	{
+		vertices[0] = 0.0;
+		vertices[1] = 0.0;
+		vertices[2] = 0.0;
+		vertices[3] = 0.0;
+		vertices[4] = 1.0;
+		vertices[5] = 0.0;
+		vertices[6] = 1.0;
+		vertices[7] = 0.0;
+		vertices[8] = 1.0;
+		vertices[9] = 1.0;
+		vertices[10] = 1.0;
+		vertices[11] = 1.0;
+		vertices[12] = 1.0;
+		vertices[13] = 1.0;
+		vertices[14] = 1.0;
+		vertices[15] = 1.0;
+		vertices[16] = 0.0;
+		vertices[17] = 1.0;
+		vertices[18] = 0.0;
+		vertices[19] = 1.0;
+		vertices[20] = 0.0;
+		vertices[21] = 0.0;
+		vertices[22] = 0.0;
+		vertices[23] = 0.0;
+	}
 
 	glGenVertexArrays(1, &_vaoId);
 	glGenBuffers(1, &_vboId);
@@ -63,4 +95,9 @@ const unsigned int VertexBuffer::getVboId() const
 const int VertexBuffer::getVertexCount() const
 {
 	return _vertexCount;
+}
+
+const bool VertexBuffer::isCentered() const
+{
+	return _isCentered;
 }

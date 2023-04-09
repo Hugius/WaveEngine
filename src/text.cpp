@@ -47,6 +47,12 @@ void Text::update()
 	{
 		dvec2 offset = dvec2((static_cast<double>(index) * quadSize.x), 0.0);
 
+		if(_vertexBuffer->isCentered())
+		{
+			offset.x -= (this->getSize().x * 0.5);
+			offset.x += (quadSize.x * 0.5);
+		}
+
 		quad->setPosition(_position + (rotationMatrix * offset));
 		quad->setRotation(_rotation);
 		quad->setSize(quadSize);

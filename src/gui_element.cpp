@@ -87,12 +87,26 @@ void GuiElement::_updateHovering(const dvec2 & cursorPosition)
 
 	const dvec2 position = _quad->getPosition();
 	const dvec2 size = _quad->getSize();
+	const bool isCentered = _quad->getVertexBuffer()->isCentered();
 
-	if(cursorPosition.x >= position.x && cursorPosition.x <= position.x + size.x)
+	if(isCentered)
 	{
-		if(cursorPosition.y >= position.y && cursorPosition.y <= position.y + size.y)
+		if(cursorPosition.x >= position.x - size.x / 2.0 && cursorPosition.x <= position.x + size.x / 2.0)
 		{
-			_isHovered = true;
+			if(cursorPosition.y >= position.y - size.y / 2.0 && cursorPosition.y <= position.y + size.y / 2.0)
+			{
+				_isHovered = true;
+			}
+		}
+	}
+	else
+	{
+		if(cursorPosition.x >= position.x && cursorPosition.x <= position.x + size.x)
+		{
+			if(cursorPosition.y >= position.y && cursorPosition.y <= position.y + size.y)
+			{
+				_isHovered = true;
+			}
 		}
 	}
 }
