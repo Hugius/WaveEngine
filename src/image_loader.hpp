@@ -15,10 +15,10 @@ using std::shared_ptr;
 class ImageLoader final
 {
 public:
-	const shared_ptr<Image> getImage(const string & filePath);
+	const shared_ptr<Image> & getImage(const string & filePath);
 
 private:
-	shared_ptr<Image> _getImage(const string & filePath) const;
+	const shared_ptr<Image> _getImage(const string & filePath) const;
 
 	unordered_map<string, shared_ptr<Image>> _cache = {};
 };

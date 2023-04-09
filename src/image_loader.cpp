@@ -14,7 +14,7 @@ using std::launch;
 using std::future_status;
 using std::chrono::seconds;
 
-const shared_ptr<Image> ImageLoader::getImage(const string & filePath)
+const shared_ptr<Image> & ImageLoader::getImage(const string & filePath)
 {
 	const auto iterator = _cache.find(filePath);
 
@@ -23,25 +23,18 @@ const shared_ptr<Image> ImageLoader::getImage(const string & filePath)
 		return iterator->second;
 	}
 
-	shared_ptr<Image> loadedImage = _getImage(filePath);
+	_cache.insert({filePath, _getImage(filePath)});
 
-	if(loadedImage == nullptr)
-	{
-		return nullptr;
-	}
-
-	_cache.insert({filePath, loadedImage});
-
-	return loadedImage;
+	return getImage(filePath);
 }
 
-shared_ptr<Image> ImageLoader::_getImage(const string & filePath) const
+const shared_ptr<Image> ImageLoader::_getImage(const string & filePath) const
 {
 	FILE * file = nullptr;
 
 	if(fopen_s(&file, filePath.c_str(), "rb") != 0)
 	{
-		return nullptr;
+		abort();
 	}
 
 	unsigned char * header = new unsigned char[18];
@@ -51,43 +44,43 @@ shared_ptr<Image> ImageLoader::_getImage(const string & filePath) const
 		header[index] = getc(file);
 	}
 
-	unsigned char rawIdLength = (header[0]);
-	unsigned char rawColorMap = (header[1]);
-	unsigned char rawImageType = (header[2]);
-	unsigned short rawOriginX = ((header[9] << 8) | header[8]);
-	unsigned short rawOriginY = ((header[11] << 8) | header[10]);
-	unsigned short rawWidth = ((header[13] << 8) | header[12]);
-	unsigned short rawHeight = ((header[15] << 8) | header[14]);
-	unsigned char rawFormat = (header[16]);
+	const unsigned char rawIdLength = (header[0]);
+	const unsigned char rawColorMap = (header[1]);
+	const unsigned char rawImageType = (header[2]);
+	const unsigned short rawOriginX = ((header[9] << 8) | header[8]);
+	const unsigned short rawOriginY = ((header[11] << 8) | header[10]);
+	const unsigned short rawWidth = ((header[13] << 8) | header[12]);
+	const unsigned short rawHeight = ((header[15] << 8) | header[14]);
+	const unsigned char rawFormat = (header[16]);
 
 	if(rawIdLength != 0)
 	{
-		return nullptr;
+		abort();
 	}
 
 	if(rawColorMap != 0)
 	{
-		return nullptr;
+		abort();
 	}
 
 	if((rawImageType != 2) && (rawImageType != 3))
 	{
-		return nullptr;
+		abort();
 	}
 
 	if((rawOriginX != 0) || (rawOriginY != 0))
 	{
-		return nullptr;
+		abort();
 	}
 
 	if((rawWidth == 0) || (rawHeight == 0))
 	{
-		return nullptr;
+		abort();
 	}
 
 	if((rawFormat != 24) && (rawFormat != 32))
 	{
-		return nullptr;
+		abort();
 	}
 
 	const int width = static_cast<int>(rawWidth);

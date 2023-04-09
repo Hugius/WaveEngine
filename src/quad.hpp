@@ -13,7 +13,7 @@ using std::shared_ptr;
 class Quad final
 {
 public:
-	Quad(const shared_ptr<VertexBuffer> vertexBuffer, const shared_ptr<TextureBuffer> textureBuffer, int depth);
+	Quad(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, int depth);
 
 	void update();
 	void setOpacity(const double value);
@@ -26,8 +26,8 @@ public:
 	void setUvMultiplier(const dvec2 & value);
 	void setUvOffset(const dvec2 & value);
 
-	const shared_ptr<VertexBuffer> getVertexBuffer() const;
-	const shared_ptr<TextureBuffer> getTexture() const;
+	const shared_ptr<VertexBuffer> & getVertexBuffer() const;
+	const shared_ptr<TextureBuffer> & getTexture() const;
 
 	const dmat33 & getTransformation() const;
 

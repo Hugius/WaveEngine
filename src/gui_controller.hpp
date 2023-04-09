@@ -9,10 +9,10 @@
 class GuiController final
 {
 public:
-	void inject(const shared_ptr<GuiManager> guiManager);
-	void inject(const shared_ptr<WaveformGenerator> waveformGenerator);
-	void inject(const shared_ptr<AudioPlayer> audioPlayer);
-	void inject(const shared_ptr<AudioManager> audioManager);
+	void inject(const shared_ptr<GuiManager> & guiManager);
+	void inject(const shared_ptr<WaveformGenerator> & waveformGenerator);
+	void inject(const shared_ptr<AudioPlayer> & audioPlayer);
+	void inject(const shared_ptr<AudioManager> & audioManager);
 	void update();
 
 private:

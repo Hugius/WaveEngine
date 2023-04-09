@@ -63,7 +63,7 @@ void Renderer::_bindShader()
 	glEnable(GL_BLEND);
 }
 
-void Renderer::_renderQuad(const shared_ptr<Quad> quad)
+void Renderer::_renderQuad(const shared_ptr<Quad> & quad)
 {
 	_shaderBuffer->uploadUniform("u_transformation", quad->getTransformation());
 	_shaderBuffer->uploadUniform("u_color", quad->getColor());

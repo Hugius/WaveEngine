@@ -6,7 +6,7 @@
 class GuiManager final
 {
 public:
-	void inject(const shared_ptr<ImageLoader> imageLoader);
+	void inject(const shared_ptr<ImageLoader> & imageLoader);
 	void initialize();
 	void update(const dvec2 & cursorPosition, const bool isLmbPressed);
 

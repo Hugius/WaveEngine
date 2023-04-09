@@ -2,7 +2,7 @@
 
 using std::make_shared;
 
-void AudioPlayer::start(shared_ptr<Audio> audio)
+void AudioPlayer::start(const shared_ptr<Audio> & audio)
 {
 	if(isStarted())
 	{

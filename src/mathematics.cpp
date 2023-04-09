@@ -65,7 +65,7 @@ const double Mathematics::limitAngle(const double angle)
 	}
 }
 
-const double Mathematics::getSignum(double value)
+const double Mathematics::getSignum(const double value)
 {
 	if(value < 0.0)
 	{

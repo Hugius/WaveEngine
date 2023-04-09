@@ -13,7 +13,7 @@ public:
 
 private:
 	void _bindShader();
-	void _renderQuad(const shared_ptr<Quad> quad);
+	void _renderQuad(const shared_ptr<Quad> & quad);
 	void _unbindShader();
 
 	static inline const string VERTEX_SHADER_PATH = "shaders\\vertex.glsl";

@@ -141,7 +141,7 @@ const bool GuiManager::_isGuiElementExisting(const string & id) const
 	return _guiElements.find(id) != _guiElements.end();
 }
 
-void GuiManager::inject(const shared_ptr<ImageLoader> imageLoader)
+void GuiManager::inject(const shared_ptr<ImageLoader> & imageLoader)
 {
 	_imageLoader = imageLoader;
 }

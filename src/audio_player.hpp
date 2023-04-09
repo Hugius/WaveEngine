@@ -9,7 +9,7 @@ using std::shared_ptr;
 class AudioPlayer final
 {
 public:
-	void start(shared_ptr<Audio> audio);
+	void start(const shared_ptr<Audio> & audio);
 	void stop();
 
 	const bool isStarted() const;

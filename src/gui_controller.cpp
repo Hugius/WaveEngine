@@ -4,22 +4,22 @@
 
 using std::to_string;
 
-void GuiController::inject(const shared_ptr<GuiManager> guiManager)
+void GuiController::inject(const shared_ptr<GuiManager> & guiManager)
 {
 	_guiManager = guiManager;
 }
 
-void GuiController::inject(const shared_ptr<WaveformGenerator> waveformGenerator)
+void GuiController::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
 {
 	_waveformGenerator = waveformGenerator;
 }
 
-void GuiController::inject(const shared_ptr<AudioPlayer> audioPlayer)
+void GuiController::inject(const shared_ptr<AudioPlayer> & audioPlayer)
 {
 	_audioPlayer = audioPlayer;
 }
 
-void GuiController::inject(const shared_ptr<AudioManager> audioManager)
+void GuiController::inject(const shared_ptr<AudioManager> & audioManager)
 {
 	_audioManager = audioManager;
 }

@@ -12,7 +12,7 @@ using std::shared_ptr;
 class TextureBuffer final
 {
 public:
-	TextureBuffer(const shared_ptr<Image> image);
+	TextureBuffer(const shared_ptr<Image> & image);
 	~TextureBuffer();
 
 	const unsigned int getTboId() const;

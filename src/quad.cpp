@@ -7,7 +7,7 @@ using std::max;
 using std::clamp;
 using std::make_shared;
 
-Quad::Quad(const shared_ptr<VertexBuffer> vertexBuffer, const shared_ptr<TextureBuffer> textureBuffer, int depth)
+Quad::Quad(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, int depth)
 	:
 	_vertexBuffer(vertexBuffer),
 	_textureBuffer(textureBuffer),
@@ -78,12 +78,12 @@ void Quad::setSize(const dvec2 & value)
 	_size = dvec2(max(0.0, value.x), max(0.0, value.y));
 }
 
-const shared_ptr<VertexBuffer> Quad::getVertexBuffer() const
+const shared_ptr<VertexBuffer> & Quad::getVertexBuffer() const
 {
 	return _vertexBuffer;
 }
 
-const shared_ptr<TextureBuffer> Quad::getTexture() const
+const shared_ptr<TextureBuffer> & Quad::getTexture() const
 {
 	return _textureBuffer;
 }

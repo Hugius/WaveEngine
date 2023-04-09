@@ -19,7 +19,7 @@ public:
 
 	static const double convertToRadians(const double degrees);
 	static const double limitAngle(const double angle);
-	static const double getSignum(double value);
+	static const double getSignum(const double value);
 	static const double getPi();
 
 private:

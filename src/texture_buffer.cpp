@@ -1,6 +1,6 @@
 #include "texture_buffer.hpp"
 
-TextureBuffer::TextureBuffer(const shared_ptr<Image> image)
+TextureBuffer::TextureBuffer(const shared_ptr<Image> & image)
 {
 	glGenTextures(1, &_tboId);
 	glBindTexture(GL_TEXTURE_2D, _tboId);
