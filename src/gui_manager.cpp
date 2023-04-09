@@ -22,21 +22,63 @@ void GuiManager::initialize()
 	_createGuiElement("waveforms_close", dvec2(0.725, 0.675), dvec2(0.025, 0.075), dvec3(0.25), dvec3(1.0, 0.0, 0.0), "X", true, true, false, false);
 	_createGuiElement("waveforms_play", dvec2(-0.75, 0.675), dvec2(0.05, 0.075), dvec3(0.25), dvec3(1.0), "Play", true, true, false, false);
 
+	const string sinePhaseId = "waveforms_sin_phs";
+	const string sineAmplitudeId = "waveforms_sin_amp";
+	const string sineTypeId = "waveforms_sin_typ";
+	const string squarePhaseId = "waveforms_sqr_phs";
+	const string squareAmplitudeId = "waveforms_sqr_amp";
+	const string squareTypeId = "waveforms_sqr_typ";
+	const string trianglePhaseId = "waveforms_tri_phs";
+	const string triangleAmplitudeId = "waveforms_tri_amp";
+	const string triangleTypeId = "waveforms_tri_typ";
+	const string sawtoothPhaseId = "waveforms_saw_phs";
+	const string sawtoothAmplitudeId = "waveforms_saw_amp";
+	const string sawtoothTypeId = "waveforms_saw_typ";
+
+	_createGuiElement(sinePhaseId, dvec2(-0.75f, -0.15), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "PHS", false, false, false, false);
+	_createGuiElement(sineAmplitudeId, dvec2(-0.75f, -0.2), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "AMP", false, false, false, false);
+	_createGuiElement(sineTypeId, dvec2(-0.75f, -0.25), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "TYP", false, false, false, false);
+	_createGuiElement(squarePhaseId, dvec2(-0.75f, -0.3), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "PHS", false, false, false, false);
+	_createGuiElement(squareAmplitudeId, dvec2(-0.75f, -0.35), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "AMP", false, false, false, false);
+	_createGuiElement(squareTypeId, dvec2(-0.75f, -0.4), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "TYP", false, false, false, false);
+	_createGuiElement(trianglePhaseId, dvec2(-0.75f, -0.45), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "PHS", false, false, false, false);
+	_createGuiElement(triangleAmplitudeId, dvec2(-0.75f, -0.5), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "AMP", false, false, false, false);
+	_createGuiElement(triangleTypeId, dvec2(-0.75f, -0.55), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "TYP", false, false, false, false);
+	_createGuiElement(sawtoothPhaseId, dvec2(-0.75f, -0.6), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "PHS", false, false, false, false);
+	_createGuiElement(sawtoothAmplitudeId, dvec2(-0.75f, -0.65), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "AMP", false, false, false, false);
+	_createGuiElement(sawtoothTypeId, dvec2(-0.75f, -0.7), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "TYP", false, false, false, false);
+
 	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
 
 	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 	{
-		const string sineId = "waveforms_sin" + to_string(index);
-		const string squareId = "waveforms_sqr" + to_string(index);
-		const string triangleId = "waveforms_tri" + to_string(index);
-		const string sawtoothId = "waveforms_saw" + to_string(index);
+		const string sinePhaseId = "waveforms_sin_phs" + to_string(index);
+		const string sineAmplitudeId = "waveforms_sin_amp" + to_string(index);
+		const string sineToggleId = "waveforms_sin_tgl" + to_string(index);
+		const string squarePhaseId = "waveforms_sqr_phs" + to_string(index);
+		const string squareAmplitudeId = "waveforms_sqr_amp" + to_string(index);
+		const string squareToggleId = "waveforms_sqr_tgl" + to_string(index);
+		const string trianglePhaseId = "waveforms_tri_phs" + to_string(index);
+		const string triangleAmplitudeId = "waveforms_tri_amp" + to_string(index);
+		const string triangleToggleId = "waveforms_tri_tgl" + to_string(index);
+		const string sawtoothPhaseId = "waveforms_saw_phs" + to_string(index);
+		const string sawtoothAmplitudeId = "waveforms_saw_amp" + to_string(index);
+		const string sawtoothToggleId = "waveforms_saw_tgl" + to_string(index);
 		const string noteId = "waveforms_note" + to_string(index);
 		const string noteName = AudioConstants::NOTE_NAMES[index];
 
-		_createGuiElement(sineId, dvec2(positions[index], -0.55), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SIN", true, true, true, false);
-		_createGuiElement(squareId, dvec2(positions[index], -0.6), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SQR", true, true, true, false);
-		_createGuiElement(triangleId, dvec2(positions[index], -0.65), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "TRI", true, true, true, false);
-		_createGuiElement(sawtoothId, dvec2(positions[index], -0.7), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SAW", true, true, true, false);
+		_createGuiElement(sinePhaseId, dvec2(positions[index], -0.15), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "0", false, false, false, false);
+		_createGuiElement(sineAmplitudeId, dvec2(positions[index], -0.2), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "0", false, false, false, false);
+		_createGuiElement(sineToggleId, dvec2(positions[index], -0.25), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SIN", true, true, true, false);
+		_createGuiElement(squarePhaseId, dvec2(positions[index], -0.3), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "0", false, false, false, false);
+		_createGuiElement(squareAmplitudeId, dvec2(positions[index], -0.35), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "0", false, false, false, false);
+		_createGuiElement(squareToggleId, dvec2(positions[index], -0.4), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SQR", true, true, true, false);
+		_createGuiElement(trianglePhaseId, dvec2(positions[index], -0.45), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "0", false, false, false, false);
+		_createGuiElement(triangleAmplitudeId, dvec2(positions[index], -0.5), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "0", false, false, false, false);
+		_createGuiElement(triangleToggleId, dvec2(positions[index], -0.55), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "TRI", true, true, true, false);
+		_createGuiElement(sawtoothPhaseId, dvec2(positions[index], -0.6), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "0", false, false, false, false);
+		_createGuiElement(sawtoothAmplitudeId, dvec2(positions[index], -0.65), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "0", false, false, false, false);
+		_createGuiElement(sawtoothToggleId, dvec2(positions[index], -0.7), dvec2(0.0375, 0.05), dvec3(0.25), dvec3(1.0), "SAW", true, true, true, false);
 		_createGuiElement(noteId, dvec2(positions[index], -0.75), dvec2(0.0125 * static_cast<double>(noteName.size()), 0.05), dvec3(0.25), dvec3(1.0), noteName, false, false, false, false);
 	}
 }

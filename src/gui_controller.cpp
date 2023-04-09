@@ -49,13 +49,33 @@ void GuiController::_updateMainMenu()
 		_guiManager->getGuiElement("waveforms_menu")->setVisible(true);
 		_guiManager->getGuiElement("waveforms_close")->setVisible(true);
 		_guiManager->getGuiElement("waveforms_play")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_sin_phs")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_sin_amp")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_sin_typ")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_sqr_phs")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_sqr_amp")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_sqr_typ")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_tri_phs")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_tri_amp")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_tri_typ")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_saw_phs")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_saw_amp")->setVisible(true);
+		_guiManager->getGuiElement("waveforms_saw_typ")->setVisible(true);
 
 		for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 		{
-			_guiManager->getGuiElement("waveforms_sin" + to_string(index))->setVisible(true);
-			_guiManager->getGuiElement("waveforms_sqr" + to_string(index))->setVisible(true);
-			_guiManager->getGuiElement("waveforms_tri" + to_string(index))->setVisible(true);
-			_guiManager->getGuiElement("waveforms_saw" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_sin_phs" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_sin_amp" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_sin_tgl" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_sqr_phs" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_sqr_amp" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_sqr_tgl" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_tri_phs" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_tri_amp" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_tri_tgl" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_saw_phs" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_saw_amp" + to_string(index))->setVisible(true);
+			_guiManager->getGuiElement("waveforms_saw_tgl" + to_string(index))->setVisible(true);
 			_guiManager->getGuiElement("waveforms_note" + to_string(index))->setVisible(true);
 		}
 	}
@@ -72,13 +92,33 @@ void GuiController::_updateWaveformMenu()
 		_guiManager->getGuiElement("waveforms_menu")->setVisible(false);
 		_guiManager->getGuiElement("waveforms_close")->setVisible(false);
 		_guiManager->getGuiElement("waveforms_play")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_sin_phs")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_sin_amp")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_sin_typ")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_sqr_phs")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_sqr_amp")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_sqr_typ")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_tri_phs")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_tri_amp")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_tri_typ")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_saw_phs")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_saw_amp")->setVisible(false);
+		_guiManager->getGuiElement("waveforms_saw_typ")->setVisible(false);
 
 		for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 		{
-			_guiManager->getGuiElement("waveforms_sin" + to_string(index))->setVisible(false);
-			_guiManager->getGuiElement("waveforms_sqr" + to_string(index))->setVisible(false);
-			_guiManager->getGuiElement("waveforms_tri" + to_string(index))->setVisible(false);
-			_guiManager->getGuiElement("waveforms_saw" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_sin_phs" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_sin_amp" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_sin_tgl" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_sqr_phs" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_sqr_amp" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_sqr_tgl" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_tri_phs" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_tri_amp" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_tri_tgl" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_saw_phs" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_saw_amp" + to_string(index))->setVisible(false);
+			_guiManager->getGuiElement("waveforms_saw_tgl" + to_string(index))->setVisible(false);
 			_guiManager->getGuiElement("waveforms_note" + to_string(index))->setVisible(false);
 		}
 
