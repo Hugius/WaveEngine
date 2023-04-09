@@ -29,17 +29,17 @@ const shared_ptr<Audio> WaveformGenerator::generateSawtoothWave(const int durati
 
 const shared_ptr<Audio> WaveformGenerator::_generateSoundWave(const int duration, const double amplitude, const double frequency, const WaveformType type) const
 {
-	if(duration < AudioConstants::MIN_DURATION || duration > AudioConstants::MAX_DURATION)
+	if(duration < 0)
 	{
 		abort();
 	}
 
-	if(amplitude < AudioConstants::MIN_AMPLITUDE || amplitude > AudioConstants::MAX_AMPLITUDE)
+	if(amplitude < 0.0f)
 	{
 		abort();
 	}
 
-	if(frequency < AudioConstants::MIN_FREQUENCY || frequency > AudioConstants::MAX_FREQUENCY)
+	if(frequency < 0.0f)
 	{
 		abort();
 	}

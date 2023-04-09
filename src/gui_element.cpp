@@ -23,13 +23,6 @@ GuiElement::GuiElement(const string & id, const shared_ptr<Quad> & quad, const s
 
 void GuiElement::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 {
-	_quad->update();
-
-	if(_text != nullptr)
-	{
-		_text->update();
-	}
-
 	_isPressed = false;
 
 	const bool wasHovered = _isHovered;
@@ -56,11 +49,18 @@ void GuiElement::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 
 	if(!_isToggled && !wasHovered && _isHovered)
 	{
-		_quad->setLightness(_quad->getLightness() * 1.5);
+		_quad->setLightness(1.5);
 	}
 	else if(!_isToggled && wasHovered && !_isHovered)
 	{
-		_quad->setLightness(_quad->getLightness() / 1.5);
+		_quad->setLightness(1.0);
+	}
+
+	_quad->update();
+
+	if(_text != nullptr)
+	{
+		_text->update();
 	}
 }
 
