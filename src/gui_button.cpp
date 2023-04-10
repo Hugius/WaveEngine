@@ -1,27 +1,19 @@
-#include "gui_element.hpp"
+#include "gui_button.hpp"
 #include "tools.hpp"
 
-GuiElement::GuiElement(const string & id, const shared_ptr<Quad> & quad, const shared_ptr<Text> & text, const bool isHoverable, const bool isPressable, const bool isTogglable)
+GuiButton::GuiButton(const shared_ptr<Quad> & quad, const shared_ptr<Text> & text, const bool isTogglable)
 	:
-	_id(id),
 	_quad(quad),
 	_text(text),
-	_isHoverable(isHoverable),
-	_isPressable(isPressable),
 	_isTogglable(isTogglable)
 {
-	if(id.empty())
-	{
-		abort();
-	}
-
 	if(quad == nullptr)
 	{
 		abort();
 	}
 }
 
-void GuiElement::update(const dvec2 & cursorPosition, const bool isLmbPressed)
+void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 {
 	_isPressed = false;
 
@@ -64,7 +56,7 @@ void GuiElement::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 	}
 }
 
-void GuiElement::setVisible(const bool value)
+void GuiButton::setVisible(const bool value)
 {
 	_quad->setVisible(value);
 
@@ -76,7 +68,24 @@ void GuiElement::setVisible(const bool value)
 	_isVisible = value;
 }
 
-void GuiElement::_updateHovering(const dvec2 & cursorPosition)
+void GuiButton::setHoverable(const bool value)
+{
+	_isHoverable = value;
+}
+
+void GuiButton::setPressable(const bool value)
+{
+	_isPressable = value;
+
+	_quad->setOpacity(_isPressable ? 1.0f : 0.5f);
+
+	if(_text != nullptr)
+	{
+		_text->setOpacity(_isPressable ? 1.0f : 0.5f);
+	}
+}
+
+void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 {
 	_isHovered = false;
 
@@ -116,12 +125,12 @@ void GuiElement::_updateHovering(const dvec2 & cursorPosition)
 	}
 }
 
-const bool GuiElement::isPressed() const
+const bool GuiButton::isPressed() const
 {
 	return _isPressed;
 }
 
-const bool GuiElement::isToggled() const
+const bool GuiButton::isToggled() const
 {
 	return _isToggled;
 }

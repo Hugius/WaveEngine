@@ -102,7 +102,7 @@
     <ClCompile Include="..\src\image_loader.cpp">
       <Filter>Image Loading</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\gui_element.cpp">
+    <ClCompile Include="..\src\gui_button.cpp">
       <Filter>GUI Management</Filter>
     </ClCompile>
     <ClCompile Include="..\src\gui_controller.cpp">
@@ -119,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="..\src\audio_manager.cpp">
       <Filter>Audio Managment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_rectangle.cpp">
+      <Filter>GUI Management</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,7 +188,7 @@
     <ClInclude Include="..\src\image_loader.hpp">
       <Filter>Image Loading</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\gui_element.hpp">
+    <ClInclude Include="..\src\gui_button.hpp">
       <Filter>GUI Management</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_controller.hpp">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="..\src\audio_constants.hpp">
       <Filter>Audio Managment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_rectangle.hpp">
+      <Filter>GUI Management</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

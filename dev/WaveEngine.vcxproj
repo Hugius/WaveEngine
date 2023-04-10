@@ -16,9 +16,10 @@
     <ClCompile Include="..\src\dmat33.cpp" />
     <ClCompile Include="..\src\dvec2.cpp" />
     <ClCompile Include="..\src\dvec3.cpp" />
-    <ClCompile Include="..\src\gui_element.cpp" />
+    <ClCompile Include="..\src\gui_button.cpp" />
     <ClCompile Include="..\src\gui_controller.cpp" />
     <ClCompile Include="..\src\gui_manager.cpp" />
+    <ClCompile Include="..\src\gui_rectangle.cpp" />
     <ClCompile Include="..\src\image.cpp" />
     <ClCompile Include="..\src\image_loader.cpp" />
     <ClCompile Include="..\src\input_handler.cpp" />
@@ -47,9 +48,10 @@
     <ClInclude Include="..\src\dmat33.hpp" />
     <ClInclude Include="..\src\dvec2.hpp" />
     <ClInclude Include="..\src\dvec3.hpp" />
-    <ClInclude Include="..\src\gui_element.hpp" />
+    <ClInclude Include="..\src\gui_button.hpp" />
     <ClInclude Include="..\src\gui_controller.hpp" />
     <ClInclude Include="..\src\gui_manager.hpp" />
+    <ClInclude Include="..\src\gui_rectangle.hpp" />
     <ClInclude Include="..\src\image.hpp" />
     <ClInclude Include="..\src\image_loader.hpp" />
     <ClInclude Include="..\src\input_handler.hpp" />
