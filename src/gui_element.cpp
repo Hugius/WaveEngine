@@ -87,27 +87,32 @@ void GuiElement::_updateHovering(const dvec2 & cursorPosition)
 
 	const dvec2 position = _quad->getPosition();
 	const dvec2 size = _quad->getSize();
-	const bool isCentered = _quad->getVertexBuffer()->isCentered();
+	const bool isHorizontallyCentered = _quad->getVertexBuffer()->isHorizontallyCentered();
+	const bool isVerticallyCentered = _quad->getVertexBuffer()->isVerticallyCentered();
+	bool isHorizontallyHovered;
+	bool isVerticallyHovered;
 
-	if(isCentered)
+	if(isHorizontallyCentered)
 	{
-		if(cursorPosition.x >= position.x - size.x / 2.0 && cursorPosition.x <= position.x + size.x / 2.0)
-		{
-			if(cursorPosition.y >= position.y - size.y / 2.0 && cursorPosition.y <= position.y + size.y / 2.0)
-			{
-				_isHovered = true;
-			}
-		}
+		isHorizontallyHovered = cursorPosition.x >= position.x - size.x / 2.0 && cursorPosition.x <= position.x + size.x / 2.0;
 	}
 	else
 	{
-		if(cursorPosition.x >= position.x && cursorPosition.x <= position.x + size.x)
-		{
-			if(cursorPosition.y >= position.y && cursorPosition.y <= position.y + size.y)
-			{
-				_isHovered = true;
-			}
-		}
+		isHorizontallyHovered = cursorPosition.x >= position.x && cursorPosition.x <= position.x + size.x;
+	}
+
+	if(isVerticallyCentered)
+	{
+		isVerticallyHovered = cursorPosition.y >= position.y - size.y / 2.0 && cursorPosition.y <= position.y + size.y / 2.0;
+	}
+	else
+	{
+		isVerticallyHovered = cursorPosition.y >= position.y && cursorPosition.y <= position.y + size.y;
+	}
+
+	if(isHorizontallyHovered && isVerticallyHovered)
+	{
+		_isHovered = true;
 	}
 }
 

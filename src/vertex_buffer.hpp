@@ -7,7 +7,7 @@
 class VertexBuffer final
 {
 public:
-	VertexBuffer(const bool isCentered);
+	VertexBuffer(const bool isHorizontallyCentered, const bool isVerticallyCentered);
 	~VertexBuffer();
 
 	const unsigned int getVaoId() const;
@@ -15,12 +15,14 @@ public:
 
 	const int getVertexCount() const;
 
-	const bool isCentered() const;
+	const bool isHorizontallyCentered() const;
+	const bool isVerticallyCentered() const;
 
 private:
 	static inline const int _vertexCount = 6;
 
-	const bool _isCentered;
+	const bool _isHorizontallyCentered;
+	const bool _isVerticallyCentered;
 
 	unsigned int _vaoId = 0;
 	unsigned int _vboId = 0;

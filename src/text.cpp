@@ -47,7 +47,7 @@ void Text::update()
 	{
 		dvec2 offset = dvec2((static_cast<double>(index) * quadSize.x), 0.0);
 
-		if(_vertexBuffer->isCentered())
+		if(_vertexBuffer->isHorizontallyCentered())
 		{
 			offset.x -= (this->getSize().x * 0.5);
 			offset.x += (quadSize.x * 0.5);
