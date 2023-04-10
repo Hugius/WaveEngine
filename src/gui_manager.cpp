@@ -18,9 +18,11 @@ void GuiManager::initialize()
 	const dvec3 black = dvec3(0.0);
 	const dvec3 gray = dvec3(0.25);
 	const dvec3 red = dvec3(1.0, 0.0f, 0.0f);
+	const dvec3 blue = dvec3(0.25f, 0.25f, 0.5f);
 	const double charX = 0.0125;
 	const double charY = 0.05;
 
+	_createGuiRectangle("background", dvec2(0.0f), dvec2(2.0), blue, true, true, true);
 	_createGuiRectangle("top", dvec2(-1.0, 0.95), dvec2(2.0, charY), gray, false, false, true);
 	_createGuiButton("new", dvec2(-1.0, 0.95), dvec2(charX * 3.0, charY), gray, white, "New", false, false, true, true, false, true);
 	_createGuiButton("load", dvec2(-0.95, 0.95), dvec2(charX * 4.0, charY), gray, white, "Load", false, false, true, true, false, true);

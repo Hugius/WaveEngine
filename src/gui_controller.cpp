@@ -117,21 +117,21 @@ void GuiController::_updateWaveformMenu()
 
 		for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 		{
-			if(_guiManager->getGuiButton("waveforms_sin" + to_string(index))->isToggled())
+			if(_guiManager->getGuiButton("waveforms_sin_tgl" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateSineWave(1000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
+				soundWaves.push_back(_waveformGenerator->generateSineWave(100, _sineAmplitude, AudioConstants::NOTE_FREQUENCIES[index]));
 			}
-			if(_guiManager->getGuiButton("waveforms_sqr" + to_string(index))->isToggled())
+			if(_guiManager->getGuiButton("waveforms_sqr_tgl" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateSquareWave(1000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
+				soundWaves.push_back(_waveformGenerator->generateSquareWave(100, _squareAmplitude, AudioConstants::NOTE_FREQUENCIES[index]));
 			}
-			if(_guiManager->getGuiButton("waveforms_tri" + to_string(index))->isToggled())
+			if(_guiManager->getGuiButton("waveforms_tri_tgl" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateTriangleWave(1000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
+				soundWaves.push_back(_waveformGenerator->generateTriangleWave(100, _triangleAmplitude, AudioConstants::NOTE_FREQUENCIES[index]));
 			}
-			if(_guiManager->getGuiButton("waveforms_saw" + to_string(index))->isToggled())
+			if(_guiManager->getGuiButton("waveforms_saw_tgl" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateSawtoothWave(1000, 5000, AudioConstants::NOTE_FREQUENCIES[index]));
+				soundWaves.push_back(_waveformGenerator->generateSawtoothWave(100, _sawtoothAmplitude, AudioConstants::NOTE_FREQUENCIES[index]));
 			}
 		}
 

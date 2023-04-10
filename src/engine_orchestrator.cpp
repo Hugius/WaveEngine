@@ -93,6 +93,7 @@ void EngineOrchestrator::_update()
 		return stop();
 	}
 
+	_inputHandler->update();
 	_renderWindow->update();
 	_guiManager->update(_renderWindow->getCursorPosition(), _inputHandler->isMouseButtonPressed());
 	_guiController->update();

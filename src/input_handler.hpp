@@ -3,8 +3,8 @@
 class InputHandler final
 {
 public:
-	void sendMouseDownEvent();
-	void sendMouseUpEvent();
+	void sendMouseButtonDownEvent();
+	void update();
 
 	const bool isMouseButtonPressed() const;
 

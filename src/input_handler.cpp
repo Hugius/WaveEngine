@@ -1,11 +1,11 @@
 #include "input_handler.hpp"
 
-void InputHandler::sendMouseDownEvent()
+void InputHandler::sendMouseButtonDownEvent()
 {
 	_isMouseButtonPressed = true;
 }
 
-void InputHandler::sendMouseUpEvent()
+void InputHandler::update()
 {
 	_isMouseButtonPressed = false;
 }

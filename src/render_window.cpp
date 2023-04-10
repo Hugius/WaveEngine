@@ -174,13 +174,7 @@ void RenderWindow::_updateEvents()
 		{
 			case WM_LBUTTONDOWN:
 			{
-				_inputHandler->sendMouseDownEvent();
-
-				break;
-			}
-			case WM_LBUTTONUP:
-			{
-				_inputHandler->sendMouseUpEvent();
+				_inputHandler->sendMouseButtonDownEvent();
 
 				break;
 			}
