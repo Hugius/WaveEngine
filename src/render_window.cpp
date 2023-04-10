@@ -174,64 +174,13 @@ void RenderWindow::_updateEvents()
 		{
 			case WM_LBUTTONDOWN:
 			{
-				_inputHandler->sendMouseDownEvent(MouseButtonType::BUTTON_LEFT);
+				_inputHandler->sendMouseDownEvent();
 
 				break;
 			}
 			case WM_LBUTTONUP:
 			{
-				_inputHandler->sendMouseUpEvent(MouseButtonType::BUTTON_LEFT);
-
-				break;
-			}
-			case WM_MBUTTONDOWN:
-			{
-				_inputHandler->sendMouseDownEvent(MouseButtonType::BUTTON_MIDDLE);
-
-				break;
-			}
-			case WM_MBUTTONUP:
-			{
-				_inputHandler->sendMouseUpEvent(MouseButtonType::BUTTON_MIDDLE);
-
-				break;
-			}
-			case WM_RBUTTONDOWN:
-			{
-				_inputHandler->sendMouseDownEvent(MouseButtonType::BUTTON_RIGHT);
-
-				break;
-			}
-			case WM_RBUTTONUP:
-			{
-				_inputHandler->sendMouseUpEvent(MouseButtonType::BUTTON_RIGHT);
-
-				break;
-			}
-			case WM_MOUSEWHEEL:
-			{
-				const short direction = GET_WHEEL_DELTA_WPARAM(messageEvent.wParam);
-
-				if(direction > 0)
-				{
-					_inputHandler->sendMouseWheelEvent(MouseWheelType::WHEEL_UP);
-				}
-				else if(direction < 0)
-				{
-					_inputHandler->sendMouseWheelEvent(MouseWheelType::WHEEL_DOWN);
-				}
-
-				break;
-			}
-			case WM_KEYDOWN:
-			{
-				_inputHandler->sendKeyboardDownEvent(KeyboardKeyType(messageEvent.wParam));
-
-				break;
-			}
-			case WM_KEYUP:
-			{
-				_inputHandler->sendKeyboardUpEvent(KeyboardKeyType(messageEvent.wParam));
+				_inputHandler->sendMouseUpEvent();
 
 				break;
 			}

@@ -146,15 +146,6 @@
     <ClInclude Include="..\src\vertex_buffer.hpp">
       <Filter>Rendering\Buffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\mouse_wheel_type.hpp">
-      <Filter>Input Handling</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\keyboard_key_type.hpp">
-      <Filter>Input Handling</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\mouse_button_type.hpp">
-      <Filter>Input Handling</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\input_handler.hpp">
       <Filter>Input Handling</Filter>
     </ClInclude>

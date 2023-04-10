@@ -116,16 +116,6 @@ void GuiElement::_updateHovering(const dvec2 & cursorPosition)
 	}
 }
 
-const bool GuiElement::isVisible() const
-{
-	return _isVisible;
-}
-
-const bool GuiElement::isHovered() const
-{
-	return _isHovered;
-}
-
 const bool GuiElement::isPressed() const
 {
 	return _isPressed;

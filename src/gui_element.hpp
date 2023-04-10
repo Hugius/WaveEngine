@@ -10,8 +10,6 @@ public:
 	void update(const dvec2 & cursorPosition, const bool isLmbPressed);
 	void setVisible(const bool value);
 
-	const bool isVisible() const;
-	const bool isHovered() const;
 	const bool isPressed() const;
 	const bool isToggled() const;
 

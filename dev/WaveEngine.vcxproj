@@ -54,11 +54,8 @@
     <ClInclude Include="..\src\image_loader.hpp" />
     <ClInclude Include="..\src\input_handler.hpp" />
     <ClInclude Include="..\src\ivec2.hpp" />
-    <ClInclude Include="..\src\keyboard_key_type.hpp" />
     <ClInclude Include="..\src\renderer.hpp" />
     <ClInclude Include="..\src\mathematics.hpp" />
-    <ClInclude Include="..\src\mouse_button_type.hpp" />
-    <ClInclude Include="..\src\mouse_wheel_type.hpp" />
     <ClInclude Include="..\src\quad.hpp" />
     <ClInclude Include="..\src\render_window.hpp" />
     <ClInclude Include="..\src\shader_buffer.hpp" />
