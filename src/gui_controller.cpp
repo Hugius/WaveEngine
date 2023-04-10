@@ -53,22 +53,22 @@ void GuiController::_updateMainMenu()
 		for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 		{
 			_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setVisible(true);
-			_guiManager->getGuiButton("waveforms_sin_val" + to_string(index))->setVisible(true);
+			_guiManager->getGuiLabel("waveforms_sin_val" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_sin_tgl" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setVisible(true);
-			_guiManager->getGuiButton("waveforms_sqr_val" + to_string(index))->setVisible(true);
+			_guiManager->getGuiLabel("waveforms_sqr_val" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_sqr_tgl" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setVisible(true);
-			_guiManager->getGuiButton("waveforms_tri_val" + to_string(index))->setVisible(true);
+			_guiManager->getGuiLabel("waveforms_tri_val" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_tri_tgl" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setVisible(true);
-			_guiManager->getGuiButton("waveforms_saw_val" + to_string(index))->setVisible(true);
+			_guiManager->getGuiLabel("waveforms_saw_val" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setVisible(true);
 			_guiManager->getGuiButton("waveforms_saw_tgl" + to_string(index))->setVisible(true);
-			_guiManager->getGuiButton("waveforms_note" + to_string(index))->setVisible(true);
+			_guiManager->getGuiLabel("waveforms_note" + to_string(index))->setVisible(true);
 		}
 	}
 	else if(_guiManager->getGuiButton("exit")->isPressed())
@@ -88,22 +88,22 @@ void GuiController::_updateWaveformMenu()
 		for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 		{
 			_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setVisible(false);
-			_guiManager->getGuiButton("waveforms_sin_val" + to_string(index))->setVisible(false);
+			_guiManager->getGuiLabel("waveforms_sin_val" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_sin_tgl" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setVisible(false);
-			_guiManager->getGuiButton("waveforms_sqr_val" + to_string(index))->setVisible(false);
+			_guiManager->getGuiLabel("waveforms_sqr_val" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_sqr_tgl" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setVisible(false);
-			_guiManager->getGuiButton("waveforms_tri_val" + to_string(index))->setVisible(false);
+			_guiManager->getGuiLabel("waveforms_tri_val" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_tri_tgl" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setVisible(false);
-			_guiManager->getGuiButton("waveforms_saw_val" + to_string(index))->setVisible(false);
+			_guiManager->getGuiLabel("waveforms_saw_val" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setVisible(false);
 			_guiManager->getGuiButton("waveforms_saw_tgl" + to_string(index))->setVisible(false);
-			_guiManager->getGuiButton("waveforms_note" + to_string(index))->setVisible(false);
+			_guiManager->getGuiLabel("waveforms_note" + to_string(index))->setVisible(false);
 		}
 
 		if(_audioPlayer->isStarted())

@@ -123,6 +123,9 @@
     <ClCompile Include="..\src\gui_rectangle.cpp">
       <Filter>GUI Management</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\gui_label.cpp">
+      <Filter>GUI Management</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\engine_orchestrator.hpp">
@@ -213,6 +216,9 @@
       <Filter>Audio Managment</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_rectangle.hpp">
+      <Filter>GUI Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_label.hpp">
       <Filter>GUI Management</Filter>
     </ClInclude>
   </ItemGroup>
