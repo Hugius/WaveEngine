@@ -7,10 +7,9 @@ using std::max;
 using std::clamp;
 using std::make_shared;
 
-Quad::Quad(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, int depth)
+Quad::Quad(const shared_ptr<VertexBuffer> & vertexBuffer, int depth)
 	:
 	_vertexBuffer(vertexBuffer),
-	_textureBuffer(textureBuffer),
 	_depth(depth)
 {
 	if(vertexBuffer == nullptr)
@@ -27,10 +26,14 @@ Quad::Quad(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<Textu
 void Quad::update()
 {
 	const dmat33 translationMatrix = Mathematics::createTranslationMatrix(_position.x, _position.y);
-	const dmat33 rotationMatrix = Mathematics::createRotationMatrix(Mathematics::convertToRadians(_rotation));
 	const dmat33 scalingMatrix = Mathematics::createScalingMatrix(_size.x, _size.y);
 
-	_transformation = (translationMatrix * rotationMatrix * scalingMatrix);
+	_transformation = (translationMatrix * scalingMatrix);
+}
+
+void Quad::setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer)
+{
+	_textureBuffer = textureBuffer;
 }
 
 void Quad::setColor(const dvec3 & value)
@@ -66,11 +69,6 @@ void Quad::setOpacity(const double value)
 void Quad::setPosition(const dvec2 & value)
 {
 	_position = value;
-}
-
-void Quad::setRotation(const double value)
-{
-	_rotation = Mathematics::limitAngle(value);
 }
 
 void Quad::setSize(const dvec2 & value)
@@ -111,11 +109,6 @@ const dmat33 & Quad::getTransformation() const
 const dvec2 & Quad::getPosition() const
 {
 	return _position;
-}
-
-const double Quad::getRotation() const
-{
-	return _rotation;
 }
 
 const double Quad::getLightness() const

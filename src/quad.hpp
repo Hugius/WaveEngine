@@ -13,13 +13,13 @@ using std::shared_ptr;
 class Quad final
 {
 public:
-	Quad(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, int depth);
+	Quad(const shared_ptr<VertexBuffer> & vertexBuffer, int depth);
 
 	void update();
+	void setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer);
 	void setOpacity(const double value);
 	void setColor(const dvec3 & value);
 	void setPosition(const dvec2 & value);
-	void setRotation(const double value);
 	void setSize(const dvec2 & value);
 	void setVisible(const bool value);
 	void setLightness(const double value);
@@ -39,7 +39,6 @@ public:
 	const dvec2 & getUvOffset() const;
 
 	const double getOpacity() const;
-	const double getRotation() const;
 	const double getLightness() const;
 
 	const int getDepth() const;
@@ -48,9 +47,10 @@ public:
 
 private:
 	const shared_ptr<VertexBuffer> _vertexBuffer;
-	const shared_ptr<TextureBuffer> _textureBuffer;
 
 	const int _depth;
+
+	shared_ptr<TextureBuffer> _textureBuffer;
 
 	dmat33 _transformation = dmat33(1.0);
 
@@ -61,7 +61,6 @@ private:
 	dvec2 _uvMultiplier = dvec2(1.0);
 	dvec2 _uvOffset = dvec2(0.0);
 
-	double _rotation = 0.0;
 	double _opacity = 1.0;
 	double _lightness = 1.0;
 

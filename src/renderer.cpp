@@ -30,14 +30,7 @@ void Renderer::render(const vector<shared_ptr<Quad>> & quads, const vector<share
 
 	for(const shared_ptr<Text> & text : texts)
 	{
-		vector<shared_ptr<Quad>> quads = {};
-
-		for(const shared_ptr<Quad> & quad : text->getQuads())
-		{
-			quads.push_back(quad);
-		}
-
-		orderedQuads.insert({text->getDepth(), quads});
+		orderedQuads.insert({text->getDepth(), text->getQuads()});
 	}
 
 	for(const auto & [depth, quads] : orderedQuads)

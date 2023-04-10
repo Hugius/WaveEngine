@@ -11,37 +11,22 @@ using std::vector;
 class Text final
 {
 public:
-	Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const int depth, const string & content);
+	Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const string & content, const int depth);
 
 	void update();
-	void setContent(const string & value);
 	void setOpacity(const double value);
 	void setColor(const dvec3 & value);
 	void setPosition(const dvec2 & value);
-	void setRotation(const double value);
 	void setSize(const dvec2 & value);
 	void setVisible(const bool value);
 	void setLightness(const double value);
 
 	const vector<shared_ptr<Quad>> & getQuads() const;
 
-	const string & getContent() const;
-
-	const dvec3 & getColor() const;
-
-	const dvec2 & getPosition() const;
-	const dvec2 & getSize() const;
-
-	const double getOpacity() const;
-	const double getRotation() const;
-	const double getLightness() const;
-
 	const int getDepth() const;
 
-	const bool isVisible() const;
-
 private:
-	static inline const unordered_map<char, ivec2> _fontMapIndices =
+	static inline const unordered_map<char, ivec2> _fontIndices =
 	{
 		{' ', ivec2(0, 5)},
 		{'!', ivec2(1, 5)},
@@ -157,7 +142,6 @@ private:
 	dvec2 _position = dvec2(0.0);
 	dvec2 _size = dvec2(1.0);
 
-	double _rotation = 0.0;
 	double _opacity = 1.0;
 	double _lightness = 1.0;
 
