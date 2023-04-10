@@ -27,10 +27,10 @@ void dvec2::operator+=(const dvec2 & other)
 
 const dvec2 dvec2::operator+(const dvec2 & other)const
 {
-	return dvec2((this->x + other.x), (this->y + other.y));
+	return dvec2(this->x + other.x, this->y + other.y);
 }
 
 const dvec2 dvec2::operator*(const dvec2 & other)const
 {
-	return dvec2((this->x * other.x), (this->y * other.y));
+	return dvec2(this->x * other.x, this->y * other.y);
 }

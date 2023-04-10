@@ -131,19 +131,12 @@ private:
 	const shared_ptr<VertexBuffer> _vertexBuffer;
 	const shared_ptr<TextureBuffer> _textureBuffer;
 
+	const string _content;
+
 	const int _depth;
 
 	vector<shared_ptr<Quad>> _quads = {};
 
-	string _content = "";
-
-	dvec3 _color = dvec3(1.0);
-
 	dvec2 _position = dvec2(0.0);
 	dvec2 _size = dvec2(1.0);
-
-	double _opacity = 1.0;
-	double _lightness = 1.0;
-
-	bool _isVisible = true;
 };

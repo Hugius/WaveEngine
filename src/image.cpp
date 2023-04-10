@@ -16,7 +16,12 @@ Image::Image(const unsigned char * pixels, const int width, const int height, co
 		abort();
 	}
 
-	if((_width == 0) || (_height == 0))
+	if(_width == 0)
+	{
+		abort();
+	}
+
+	if(_height == 0)
 	{
 		abort();
 	}

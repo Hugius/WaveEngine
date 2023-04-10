@@ -76,8 +76,8 @@ VertexBuffer::VertexBuffer(const bool isHorizontallyCentered, const bool isVerti
 	glBufferData(GL_ARRAY_BUFFER, 24 * sizeof(double), &vertices[0], GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribLPointer(0, 3, GL_DOUBLE, 4 * sizeof(double), (void *)(0 * sizeof(double)));
-	glVertexAttribLPointer(1, 2, GL_DOUBLE, 4 * sizeof(double), (void *)(2 * sizeof(double)));
+	glVertexAttribLPointer(0, 3, GL_DOUBLE, 4 * sizeof(double), reinterpret_cast<void *>(0 * sizeof(double)));
+	glVertexAttribLPointer(1, 2, GL_DOUBLE, 4 * sizeof(double), reinterpret_cast<void *>(2 * sizeof(double)));
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 

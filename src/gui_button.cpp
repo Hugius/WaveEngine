@@ -93,9 +93,8 @@ void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 	const dvec2 size = _quad->getSize();
 	const bool isHorizontallyCentered = _quad->getVertexBuffer()->isHorizontallyCentered();
 	const bool isVerticallyCentered = _quad->getVertexBuffer()->isVerticallyCentered();
-	bool isHorizontallyHovered;
-	bool isVerticallyHovered;
 
+	bool isHorizontallyHovered;
 	if(isHorizontallyCentered)
 	{
 		isHorizontallyHovered = cursorPosition.x >= position.x - size.x / 2.0 && cursorPosition.x <= position.x + size.x / 2.0;
@@ -105,6 +104,7 @@ void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 		isHorizontallyHovered = cursorPosition.x >= position.x && cursorPosition.x <= position.x + size.x;
 	}
 
+	bool isVerticallyHovered;
 	if(isVerticallyCentered)
 	{
 		isVerticallyHovered = cursorPosition.y >= position.y - size.y / 2.0 && cursorPosition.y <= position.y + size.y / 2.0;

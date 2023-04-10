@@ -3,8 +3,6 @@
 
 #include <algorithm>
 
-using std::max;
-using std::clamp;
 using std::make_shared;
 
 Quad::Quad(const shared_ptr<VertexBuffer> & vertexBuffer, int depth)
@@ -38,17 +36,52 @@ void Quad::setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer)
 
 void Quad::setColor(const dvec3 & value)
 {
-	_color = dvec3(clamp(value.r, 0.0, 1.0), clamp(value.g, 0.0, 1.0), clamp(value.b, 0.0, 1.0));
+	if(value.r < 0.0f || value.r > 1.0f)
+	{
+		abort();
+	}
+
+	if(value.g < 0.0f || value.g > 1.0f)
+	{
+		abort();
+	}
+
+	if(value.b < 0.0f || value.b > 1.0f)
+	{
+		abort();
+	}
+
+	_color = value;
 }
 
 void Quad::setUvMultiplier(const dvec2 & value)
 {
-	_uvMultiplier = dvec2(clamp(value.x, 0.0, 1.0), clamp(value.y, 0.0, 1.0));
+	if(value.x < 0.0f || value.x > 1.0f)
+	{
+		abort();
+	}
+
+	if(value.y < 0.0f || value.y > 1.0f)
+	{
+		abort();
+	}
+
+	_uvMultiplier = value;
 }
 
 void Quad::setUvOffset(const dvec2 & value)
 {
-	_uvOffset = dvec2(clamp(value.x, 0.0, 1.0), clamp(value.y, 0.0, 1.0));
+	if(value.x < 0.0f || value.x > 1.0f)
+	{
+		abort();
+	}
+
+	if(value.y < 0.0f || value.y > 1.0f)
+	{
+		abort();
+	}
+
+	_uvOffset = value;
 }
 
 const dvec2 & Quad::getUvMultiplier() const
@@ -63,7 +96,12 @@ const dvec2 & Quad::getUvOffset() const
 
 void Quad::setOpacity(const double value)
 {
-	_opacity = clamp(value, 0.0, 1.0);
+	if(value < 0.0f || value > 1.0f)
+	{
+		abort();
+	}
+
+	_opacity = value;
 }
 
 void Quad::setPosition(const dvec2 & value)
@@ -73,7 +111,17 @@ void Quad::setPosition(const dvec2 & value)
 
 void Quad::setSize(const dvec2 & value)
 {
-	_size = dvec2(max(0.0, value.x), max(0.0, value.y));
+	if(value.x < 0.0f)
+	{
+		abort();
+	}
+
+	if(value.y < 0.0f)
+	{
+		abort();
+	}
+
+	_size = value;
 }
 
 const shared_ptr<VertexBuffer> & Quad::getVertexBuffer() const
@@ -133,5 +181,10 @@ void Quad::setVisible(const bool value)
 
 void Quad::setLightness(const double value)
 {
-	_lightness = max(0.0, value);
+	if(value < 0.0f)
+	{
+		abort();
+	}
+
+	_lightness = value;
 }

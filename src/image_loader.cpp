@@ -44,14 +44,14 @@ const shared_ptr<Image> ImageLoader::_getImage(const string & filePath) const
 		header[index] = getc(file);
 	}
 
-	const unsigned char rawIdLength = (header[0]);
-	const unsigned char rawColorMap = (header[1]);
-	const unsigned char rawImageType = (header[2]);
-	const unsigned short rawOriginX = ((header[9] << 8) | header[8]);
-	const unsigned short rawOriginY = ((header[11] << 8) | header[10]);
-	const unsigned short rawWidth = ((header[13] << 8) | header[12]);
-	const unsigned short rawHeight = ((header[15] << 8) | header[14]);
-	const unsigned char rawFormat = (header[16]);
+	const unsigned char rawIdLength = header[0];
+	const unsigned char rawColorMap = header[1];
+	const unsigned char rawImageType = header[2];
+	const unsigned short rawOriginX = (header[9] << 8) | header[8];
+	const unsigned short rawOriginY = (header[11] << 8) | header[10];
+	const unsigned short rawWidth = (header[13] << 8) | header[12];
+	const unsigned short rawHeight = (header[15] << 8) | header[14];
+	const unsigned char rawFormat = header[16];
 
 	if(rawIdLength != 0)
 	{
@@ -63,22 +63,22 @@ const shared_ptr<Image> ImageLoader::_getImage(const string & filePath) const
 		abort();
 	}
 
-	if((rawImageType != 2) && (rawImageType != 3))
+	if(rawImageType != 2 && rawImageType != 3)
 	{
 		abort();
 	}
 
-	if((rawOriginX != 0) || (rawOriginY != 0))
+	if(rawOriginX != 0 || rawOriginY != 0)
 	{
 		abort();
 	}
 
-	if((rawWidth == 0) || (rawHeight == 0))
+	if(rawWidth == 0 || rawHeight == 0)
 	{
 		abort();
 	}
 
-	if((rawFormat != 24) && (rawFormat != 32))
+	if(rawFormat != 24 && rawFormat != 32)
 	{
 		abort();
 	}
@@ -95,7 +95,7 @@ const shared_ptr<Image> ImageLoader::_getImage(const string & filePath) const
 	{
 		for(int x = 0; x < width; x++)
 		{
-			const int index = ((y * width * bytesPerPixel) + (x * bytesPerPixel));
+			const int index = y * width * bytesPerPixel + x * bytesPerPixel;
 
 			switch(bitsPerPixel)
 			{

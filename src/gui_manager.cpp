@@ -15,6 +15,7 @@ void GuiManager::initialize()
 	_fontTextureBuffer = make_shared<TextureBuffer>(_imageLoader->getImage(Tools::getRootDirectoryPath() + FONT_PATH));
 
 	const dvec3 white = dvec3(1.0);
+	const dvec3 black = dvec3(0.0);
 	const dvec3 gray = dvec3(0.25);
 	const dvec3 red = dvec3(1.0, 0.0f, 0.0f);
 	const double charX = 0.0125;
@@ -56,20 +57,20 @@ void GuiManager::initialize()
 		_createGuiButton(sineDecreaseId, dvec2(positions[index] - charX, -0.35), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
 		_createGuiLabel(sineValueId, dvec2(positions[index], -0.35), dvec2(charX, charY), white, "0", true, false, false);
 		_createGuiButton(sineIncreaseId, dvec2(positions[index] + charX, -0.35), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
-		_createGuiButton(sineToggleId, dvec2(positions[index], -0.4), dvec2(0.0375, charY), gray, white, "SIN", true, false, true, true, true, false);
+		_createGuiButton(sineToggleId, dvec2(positions[index], -0.4), dvec2(charX * 3.0, charY), gray, white, "SIN", true, false, true, true, true, false);
 		_createGuiButton(squareDecreaseId, dvec2(positions[index] - charX, -0.45), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
 		_createGuiLabel(squareValueId, dvec2(positions[index], -0.45), dvec2(charX, charY), white, "0", true, false, false);
 		_createGuiButton(squareIncreaseId, dvec2(positions[index] + charX, -0.45), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
-		_createGuiButton(squareToggleId, dvec2(positions[index], -0.5), dvec2(0.0375, charY), gray, white, "SQR", true, false, true, true, true, false);
+		_createGuiButton(squareToggleId, dvec2(positions[index], -0.5), dvec2(charX * 3.0, charY), gray, white, "SQR", true, false, true, true, true, false);
 		_createGuiButton(triangleDecreaseId, dvec2(positions[index] - charX, -0.55), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
 		_createGuiLabel(triangleValueId, dvec2(positions[index], -0.55), dvec2(charX, charY), white, "0", true, false, false);
 		_createGuiButton(triangleIncreaseId, dvec2(positions[index] + charX, -0.55), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
-		_createGuiButton(triangleToggleId, dvec2(positions[index], -0.6), dvec2(0.0375, charY), gray, white, "TRI", true, false, true, true, true, false);
+		_createGuiButton(triangleToggleId, dvec2(positions[index], -0.6), dvec2(charX * 3.0, charY), gray, white, "TRI", true, false, true, true, true, false);
 		_createGuiButton(sawtoothDecreaseId, dvec2(positions[index] - charX, -0.65), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
 		_createGuiLabel(sawtoothValueId, dvec2(positions[index], -0.65), dvec2(charX, charY), white, "0", true, false, false);
 		_createGuiButton(sawtoothIncreaseId, dvec2(positions[index] + charX, -0.65), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
-		_createGuiButton(sawtoothToggleId, dvec2(positions[index], -0.7), dvec2(0.0375, charY), gray, white, "SAW", true, false, true, true, true, false);
-		_createGuiLabel(noteId, dvec2(positions[index], -0.75), dvec2(charX * static_cast<double>(noteName.size()), charY), white, noteName, true, false, false);
+		_createGuiButton(sawtoothToggleId, dvec2(positions[index], -0.7), dvec2(charX * 3.0, charY), gray, white, "SAW", true, false, true, true, true, false);
+		_createGuiLabel(noteId, dvec2(positions[index], -0.75), dvec2(charX * static_cast<double>(noteName.size()), charY), black, noteName, true, false, false);
 	}
 }
 
