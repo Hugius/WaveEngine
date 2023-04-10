@@ -36,17 +36,17 @@ void Quad::setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer)
 
 void Quad::setColor(const dvec3 & value)
 {
-	if(value.r < 0.0f || value.r > 1.0f)
+	if(value.r < 0.0 || value.r > 1.0)
 	{
 		abort();
 	}
 
-	if(value.g < 0.0f || value.g > 1.0f)
+	if(value.g < 0.0 || value.g > 1.0)
 	{
 		abort();
 	}
 
-	if(value.b < 0.0f || value.b > 1.0f)
+	if(value.b < 0.0 || value.b > 1.0)
 	{
 		abort();
 	}
@@ -56,12 +56,12 @@ void Quad::setColor(const dvec3 & value)
 
 void Quad::setUvMultiplier(const dvec2 & value)
 {
-	if(value.x < 0.0f || value.x > 1.0f)
+	if(value.x < 0.0 || value.x > 1.0)
 	{
 		abort();
 	}
 
-	if(value.y < 0.0f || value.y > 1.0f)
+	if(value.y < 0.0 || value.y > 1.0)
 	{
 		abort();
 	}
@@ -71,12 +71,12 @@ void Quad::setUvMultiplier(const dvec2 & value)
 
 void Quad::setUvOffset(const dvec2 & value)
 {
-	if(value.x < 0.0f || value.x > 1.0f)
+	if(value.x < 0.0 || value.x > 1.0)
 	{
 		abort();
 	}
 
-	if(value.y < 0.0f || value.y > 1.0f)
+	if(value.y < 0.0 || value.y > 1.0)
 	{
 		abort();
 	}
@@ -96,7 +96,7 @@ const dvec2 & Quad::getUvOffset() const
 
 void Quad::setOpacity(const double value)
 {
-	if(value < 0.0f || value > 1.0f)
+	if(value < 0.0 || value > 1.0)
 	{
 		abort();
 	}
@@ -111,12 +111,12 @@ void Quad::setPosition(const dvec2 & value)
 
 void Quad::setSize(const dvec2 & value)
 {
-	if(value.x < 0.0f)
+	if(value.x < 0.0)
 	{
 		abort();
 	}
 
-	if(value.y < 0.0f)
+	if(value.y < 0.0)
 	{
 		abort();
 	}
@@ -181,7 +181,7 @@ void Quad::setVisible(const bool value)
 
 void Quad::setLightness(const double value)
 {
-	if(value < 0.0f)
+	if(value < 0.0)
 	{
 		abort();
 	}

@@ -116,12 +116,12 @@ void Text::setPosition(const dvec2 & value)
 
 void Text::setSize(const dvec2 & value)
 {
-	if(value.x < 0.0f)
+	if(value.x < 0.0)
 	{
 		abort();
 	}
 
-	if(value.y < 0.0f)
+	if(value.y < 0.0)
 	{
 		abort();
 	}

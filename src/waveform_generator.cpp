@@ -34,12 +34,12 @@ const shared_ptr<Audio> WaveformGenerator::_generateSoundWave(const int duration
 		abort();
 	}
 
-	if(amplitude < 0.0f)
+	if(amplitude < 0.0)
 	{
 		abort();
 	}
 
-	if(frequency < 0.0f)
+	if(frequency < 0.0)
 	{
 		abort();
 	}

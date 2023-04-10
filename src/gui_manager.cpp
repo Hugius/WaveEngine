@@ -17,19 +17,19 @@ void GuiManager::initialize()
 	const dvec3 white = dvec3(1.0);
 	const dvec3 black = dvec3(0.0);
 	const dvec3 gray = dvec3(0.25);
-	const dvec3 red = dvec3(1.0, 0.0f, 0.0f);
-	const dvec3 blue = dvec3(0.25f, 0.25f, 0.5f);
+	const dvec3 red = dvec3(1.0, 0.0, 0.0);
+	const dvec3 blue = dvec3(0.25, 0.25, 0.5);
 	const double charX = 0.0125;
 	const double charY = 0.05;
 
-	_createGuiRectangle("background", dvec2(0.0f), dvec2(2.0), blue, true, true, true);
+	_createGuiRectangle("background", dvec2(0.0), dvec2(2.0), blue, true, true, true);
 	_createGuiRectangle("top", dvec2(-1.0, 0.95), dvec2(2.0, charY), gray, false, false, true);
 	_createGuiButton("new", dvec2(-1.0, 0.95), dvec2(charX * 3.0, charY), gray, white, "New", false, false, true, true, false, true);
 	_createGuiButton("load", dvec2(-0.95, 0.95), dvec2(charX * 4.0, charY), gray, white, "Load", false, false, true, true, false, true);
 	_createGuiButton("save", dvec2(-0.8875, 0.95), dvec2(charX * 4.0, charY), gray, white, "Save", false, false, true, true, false, true);
 	_createGuiButton("waveforms", dvec2(-0.825, 0.95), dvec2(charX * 9.0, charY), gray, white, "Waveforms", false, false, true, true, false, true);
 	_createGuiButton("exit", dvec2(-0.7, 0.95), dvec2(charX * 4.0, charY), gray, white, "Exit", false, false, true, true, false, true);
-	_createGuiRectangle("waveforms_menu", dvec2(0.0f), dvec2(1.5), gray, true, true, false);
+	_createGuiRectangle("waveforms_menu", dvec2(0.0), dvec2(1.5), gray, true, true, false);
 	_createGuiButton("waveforms_close", dvec2(0.75 - charX, 0.7), dvec2(charX, charY), gray, red, "X", false, false, true, true, false, false);
 	_createGuiButton("waveforms_play", dvec2(-0.75, 0.7), dvec2(charX * 4.0, charY), gray, white, "Play", false, false, true, true, false, false);
 

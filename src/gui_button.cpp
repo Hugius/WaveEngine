@@ -71,8 +71,8 @@ void GuiButton::setPressable(const bool value)
 {
 	_isPressable = value;
 
-	_quad->setOpacity(_isPressable ? 1.0f : 0.5f);
-	_text->setOpacity(_isPressable ? 1.0f : 0.5f);
+	_quad->setOpacity(_isPressable ? 1.0 : 0.5);
+	_text->setOpacity(_isPressable ? 1.0 : 0.5);
 }
 
 void GuiButton::setTogglable(const bool value)
