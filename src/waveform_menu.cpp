@@ -38,21 +38,13 @@ void WaveformMenu::update()
 {
 	if(_guiManager->getGuiButton("waveforms")->isPressed())
 	{
-		_guiManager->getGuiRectangle("waveforms_menu")->setVisible(true);
-		_guiManager->getGuiButton("waveforms_close")->setVisible(true);
-		_guiManager->getGuiButton("waveforms_play")->setVisible(true);
-
-		_setNoteMenuVisible(true);
+		_setGuiVisible(true);
 
 		_isEnabled = true;
 	}
 	else if(_guiManager->getGuiButton("waveforms_close")->isPressed())
 	{
-		_guiManager->getGuiRectangle("waveforms_menu")->setVisible(false);
-		_guiManager->getGuiButton("waveforms_close")->setVisible(false);
-		_guiManager->getGuiButton("waveforms_play")->setVisible(false);
-
-		_setNoteMenuVisible(false);
+		_setGuiVisible(false);
 
 		if(_audioPlayer->isStarted())
 		{
@@ -244,8 +236,12 @@ void WaveformMenu::_updateNotes()
 	}
 }
 
-void WaveformMenu::_setNoteMenuVisible(const bool value)
+void WaveformMenu::_setGuiVisible(const bool value)
 {
+	_guiManager->getGuiRectangle("waveforms_menu")->setVisible(value);
+	_guiManager->getGuiButton("waveforms_close")->setVisible(value);
+	_guiManager->getGuiButton("waveforms_play")->setVisible(value);
+
 	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 	{
 		_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setVisible(value);

@@ -2,6 +2,8 @@
 
 #include "waveform_menu.hpp"
 
+using std::unique_ptr;
+
 class GuiController final
 {
 public:
@@ -14,6 +16,6 @@ public:
 	void update();
 
 private:
-	shared_ptr<WaveformMenu> _waveformEditor = nullptr;
+	unique_ptr<WaveformMenu> _waveformMenu = nullptr;
 	shared_ptr<GuiManager> _guiManager = nullptr;
 };

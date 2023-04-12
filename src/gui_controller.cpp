@@ -1,33 +1,33 @@
 #include "gui_controller.hpp"
 #include "tools.hpp"
 
-using std::make_shared;
+using std::make_unique;
 
 GuiController::GuiController()
 {
-	_waveformEditor = make_shared<WaveformMenu>();
+	_waveformMenu = make_unique<WaveformMenu>();
 }
 
 void GuiController::inject(const shared_ptr<GuiManager> & guiManager)
 {
 	_guiManager = guiManager;
 
-	_waveformEditor->inject(_guiManager);
+	_waveformMenu->inject(_guiManager);
 }
 
 void GuiController::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
 {
-	_waveformEditor->inject(waveformGenerator);
+	_waveformMenu->inject(waveformGenerator);
 }
 
 void GuiController::inject(const shared_ptr<AudioPlayer> & audioPlayer)
 {
-	_waveformEditor->inject(audioPlayer);
+	_waveformMenu->inject(audioPlayer);
 }
 
 void GuiController::inject(const shared_ptr<AudioManager> & audioManager)
 {
-	_waveformEditor->inject(audioManager);
+	_waveformMenu->inject(audioManager);
 }
 
 void GuiController::update()
@@ -49,5 +49,5 @@ void GuiController::update()
 		exit(0);
 	}
 
-	_waveformEditor->update();
+	_waveformMenu->update();
 }

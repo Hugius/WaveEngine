@@ -19,7 +19,7 @@ public:
 private:
 	void _updatePlaying();
 	void _updateNotes();
-	void _setNoteMenuVisible(const bool value);
+	void _setGuiVisible(const bool value);
 
 	static inline double AMPLITUDE_STEP = 1000.0;
 
