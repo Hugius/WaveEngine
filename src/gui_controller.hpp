@@ -1,10 +1,6 @@
 #pragma once
 
-#include "gui_manager.hpp"
-#include "input_handler.hpp"
-#include "waveform_generator.hpp"
-#include "audio_player.hpp"
-#include "audio_manager.hpp"
+#include "waveform_menu.hpp"
 
 class GuiController final
 {
@@ -18,20 +14,6 @@ public:
 	void update();
 
 private:
-	void _updateMainMenu();
-	void _updateWaveformMenu();
-
-	static inline double AMPLITUDE_STEP = 1000.0;
-
-	vector<int> _sineAmplitudes = {};
-	vector<int> _squareAmplitudes = {};
-	vector<int> _triangleAmplitudes = {};
-	vector<int> _sawtoothAmplitudes = {};
-
+	shared_ptr<WaveformMenu> _waveformEditor = nullptr;
 	shared_ptr<GuiManager> _guiManager = nullptr;
-	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
-	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
-	shared_ptr<AudioManager> _audioManager = nullptr;
-
-	int _octave = 4;
 };

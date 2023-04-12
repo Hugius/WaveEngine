@@ -144,22 +144,23 @@ void GuiManager::_createGuiLabel(const string & id, const dvec2 & position, cons
 	shared_ptr<Text> text;
 	if(!isHorizontallyCentered && !isVerticallyCentered)
 	{
-		text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer, content, _renderDepth++);
+		text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer, _renderDepth++);
 	}
 	else if(isHorizontallyCentered && isVerticallyCentered)
 	{
-		text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer, content, _renderDepth++);
+		text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer, _renderDepth++);
 	}
 	else if(isHorizontallyCentered && !isVerticallyCentered)
 	{
-		text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer, content, _renderDepth++);
+		text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer, _renderDepth++);
 	}
 	else if(!isHorizontallyCentered && isVerticallyCentered)
 	{
-		text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer, content, _renderDepth++);
+		text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer, _renderDepth++);
 	}
 
 	text->setPosition(position);
+	text->setContent(content);
 	text->setSize(size);
 	text->setColor(color);
 
@@ -209,21 +210,22 @@ void GuiManager::_createGuiButton(const string & id, const dvec2 & position, con
 	{
 		if(!isHorizontallyCentered && !isVerticallyCentered)
 		{
-			text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer, content, _renderDepth++);
+			text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer, _renderDepth++);
 		}
 		else if(isHorizontallyCentered && isVerticallyCentered)
 		{
-			text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer, content, _renderDepth++);
+			text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer, _renderDepth++);
 		}
 		else if(isHorizontallyCentered && !isVerticallyCentered)
 		{
-			text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer, content, _renderDepth++);
+			text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer, _renderDepth++);
 		}
 		else if(!isHorizontallyCentered && isVerticallyCentered)
 		{
-			text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer, content, _renderDepth++);
+			text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer, _renderDepth++);
 		}
 
+		text->setContent(content);
 		text->setPosition(position);
 		text->setSize(size);
 		text->setColor(textColor);

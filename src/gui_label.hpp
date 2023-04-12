@@ -9,6 +9,7 @@ public:
 
 	void update();
 	void setVisible(const bool value);
+	void setContent(const string & value);
 
 private:
 	const shared_ptr<Text> _text;

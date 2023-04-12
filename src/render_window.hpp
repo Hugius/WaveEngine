@@ -15,7 +15,7 @@ using std::string;
 class RenderWindow final
 {
 public:
-	void inject(const shared_ptr<InputHandler> inputHandler);
+	void inject(const shared_ptr<InputHandler> & inputHandler);
 	void initialize();
 	void update();
 	void swapBuffers();

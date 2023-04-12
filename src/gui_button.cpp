@@ -58,8 +58,10 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 
 void GuiButton::setVisible(const bool value)
 {
-	_quad->setVisible(value);
-	_text->setVisible(value);
+	_isVisible = value;
+
+	_quad->setVisible(_isVisible);
+	_text->setVisible(_isVisible);
 }
 
 void GuiButton::setHoverable(const bool value)
@@ -83,6 +85,11 @@ void GuiButton::setTogglable(const bool value)
 void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 {
 	_isHovered = false;
+
+	if(!_isVisible)
+	{
+		return;
+	}
 
 	if(!_isHoverable)
 	{

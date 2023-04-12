@@ -40,6 +40,9 @@
     <Filter Include="Audio Generation">
       <UniqueIdentifier>{5ebd9f1d-65da-4378-bb52-ffd40d3d3575}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editors">
+      <UniqueIdentifier>{92d6096f-c114-491e-ada4-85d61681d3d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -125,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="..\src\gui_label.cpp">
       <Filter>GUI Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\waveform_menu.cpp">
+      <Filter>Editors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="..\src\gui_label.hpp">
       <Filter>GUI Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_menu.hpp">
+      <Filter>Editors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

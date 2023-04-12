@@ -174,7 +174,7 @@ void RenderWindow::_updateEvents()
 		{
 			case WM_LBUTTONDOWN:
 			{
-				_inputHandler->sendMouseButtonDownEvent();
+				_inputHandler->setLmbPressed();
 
 				break;
 			}
@@ -261,7 +261,7 @@ const dvec2 RenderWindow::_convertToNdc(const ivec2 & position)
 	return ndc;
 }
 
-void RenderWindow::inject(const shared_ptr<InputHandler> inputHandler)
+void RenderWindow::inject(const shared_ptr<InputHandler> & inputHandler)
 {
 	_inputHandler = inputHandler;
 }

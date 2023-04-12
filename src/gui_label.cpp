@@ -19,3 +19,8 @@ void GuiLabel::setVisible(const bool value)
 {
 	_text->setVisible(value);
 }
+
+void GuiLabel::setContent(const string & value)
+{
+	_text->setContent(value);
+}

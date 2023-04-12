@@ -11,7 +11,7 @@ using std::vector;
 class Text final
 {
 public:
-	Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const string & content, const int depth);
+	Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const int depth);
 
 	void update();
 	void setOpacity(const double value);
@@ -20,6 +20,7 @@ public:
 	void setSize(const dvec2 & value);
 	void setVisible(const bool value);
 	void setLightness(const double value);
+	void setContent(const string & value);
 
 	const vector<shared_ptr<Quad>> & getQuads() const;
 
@@ -131,11 +132,11 @@ private:
 	const shared_ptr<VertexBuffer> _vertexBuffer;
 	const shared_ptr<TextureBuffer> _textureBuffer;
 
-	const string _content;
-
 	const int _depth;
 
 	vector<shared_ptr<Quad>> _quads = {};
+
+	string _content = "";
 
 	dvec2 _position = dvec2(0.0);
 	dvec2 _size = dvec2(1.0);

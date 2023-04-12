@@ -5,12 +5,11 @@
 
 using std::make_shared;
 
-Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const string & content, const int depth)
+Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const int depth)
 	:
 	_depth(depth),
 	_vertexBuffer(vertexBuffer),
-	_textureBuffer(textureBuffer),
-	_content(content)
+	_textureBuffer(textureBuffer)
 {
 	if(vertexBuffer == nullptr)
 	{
@@ -25,31 +24,6 @@ Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<Textu
 	if(depth < 1)
 	{
 		abort();
-	}
-
-	if(content.empty())
-	{
-		abort();
-	}
-
-	for(const char & character : _content)
-	{
-		if(_fontIndices.find(character) == _fontIndices.end())
-		{
-			abort();
-		}
-
-		const int xIndex = _fontIndices.at(character).x;
-		const int yIndex = _fontIndices.at(character).y;
-		const dvec2 uvMultiplier = dvec2(1.0 / static_cast<double>(FONT_MAP_COLUMN_COUNT), 1.0 / static_cast<double>(FONT_MAP_ROW_COUNT));
-		const dvec2 uvOffset = dvec2(static_cast<double>(xIndex) * uvMultiplier.x, static_cast<double>(yIndex) * uvMultiplier.y);
-		const shared_ptr<Quad> quad = make_shared<Quad>(_vertexBuffer, _depth);
-
-		quad->setTextureBuffer(_textureBuffer);
-		quad->setUvMultiplier(uvMultiplier);
-		quad->setUvOffset(uvOffset);
-
-		_quads.push_back(quad);
 	}
 }
 
@@ -90,6 +64,38 @@ void Text::setLightness(const double value)
 	for(const shared_ptr<Quad> & quad : _quads)
 	{
 		quad->setLightness(value);
+	}
+}
+
+void Text::setContent(const string & value)
+{
+	if(value == _content)
+	{
+		return;
+	}
+
+	_content = value;
+
+	_quads.clear();
+
+	for(const char & character : _content)
+	{
+		if(_fontIndices.find(character) == _fontIndices.end())
+		{
+			abort();
+		}
+
+		const int xIndex = _fontIndices.at(character).x;
+		const int yIndex = _fontIndices.at(character).y;
+		const dvec2 uvMultiplier = dvec2(1.0 / static_cast<double>(FONT_MAP_COLUMN_COUNT), 1.0 / static_cast<double>(FONT_MAP_ROW_COUNT));
+		const dvec2 uvOffset = dvec2(static_cast<double>(xIndex) * uvMultiplier.x, static_cast<double>(yIndex) * uvMultiplier.y);
+		const shared_ptr<Quad> quad = make_shared<Quad>(_vertexBuffer, _depth);
+
+		quad->setTextureBuffer(_textureBuffer);
+		quad->setUvMultiplier(uvMultiplier);
+		quad->setUvOffset(uvOffset);
+
+		_quads.push_back(quad);
 	}
 }
 

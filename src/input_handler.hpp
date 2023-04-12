@@ -3,11 +3,11 @@
 class InputHandler final
 {
 public:
-	void sendMouseButtonDownEvent();
+	void setLmbPressed();
 	void update();
 
-	const bool isMouseButtonPressed() const;
+	const bool isLmbPressed() const;
 
 private:
-	bool _isMouseButtonPressed = false;
+	bool _isLmbPressed = false;
 };

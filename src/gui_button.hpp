@@ -22,6 +22,7 @@ private:
 	const shared_ptr<Quad> _quad;
 	const shared_ptr<Text> _text;
 
+	bool _isVisible = false;
 	bool _isHoverable = false;
 	bool _isPressable = false;
 	bool _isTogglable = false;

@@ -1,16 +1,16 @@
 #include "input_handler.hpp"
 
-void InputHandler::sendMouseButtonDownEvent()
+void InputHandler::setLmbPressed()
 {
-	_isMouseButtonPressed = true;
+	_isLmbPressed = true;
 }
 
 void InputHandler::update()
 {
-	_isMouseButtonPressed = false;
+	_isLmbPressed = false;
 }
 
-const bool InputHandler::isMouseButtonPressed() const
+const bool InputHandler::isLmbPressed() const
 {
-	return _isMouseButtonPressed;
+	return _isLmbPressed;
 }
