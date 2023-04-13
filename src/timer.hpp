@@ -9,7 +9,8 @@ using std::unique_ptr;
 class Timer final
 {
 public:
-	void initialize();
+	Timer();
+
 	void start();
 	void stop();
 
@@ -22,5 +23,5 @@ private:
 
 	static inline const int UPDATES_PER_SECOND = 75;
 
-	unique_ptr<Clock> _clock = nullptr;
+	const unique_ptr<Clock> _clock;
 };

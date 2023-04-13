@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\audio_manager.cpp" />
+    <ClCompile Include="..\src\base_renderer.cpp" />
     <ClCompile Include="..\src\engine_orchestrator.cpp" />
     <ClCompile Include="..\src\dmat33.cpp" />
     <ClCompile Include="..\src\dvec2.cpp" />
@@ -25,8 +26,10 @@
     <ClCompile Include="..\src\image_loader.cpp" />
     <ClCompile Include="..\src\input_handler.cpp" />
     <ClCompile Include="..\src\ivec2.cpp" />
+    <ClCompile Include="..\src\line.cpp" />
+    <ClCompile Include="..\src\line_renderer.cpp" />
     <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\renderer.cpp" />
+    <ClCompile Include="..\src\quad_renderer.cpp" />
     <ClCompile Include="..\src\mathematics.cpp" />
     <ClCompile Include="..\src\quad.cpp" />
     <ClCompile Include="..\src\render_window.cpp" />
@@ -44,6 +47,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\audio_constants.hpp" />
     <ClInclude Include="..\src\audio_manager.hpp" />
+    <ClInclude Include="..\src\base_renderer.hpp" />
     <ClInclude Include="..\src\clock.hpp" />
     <ClInclude Include="..\src\cursor_type.hpp" />
     <ClInclude Include="..\src\engine_orchestrator.hpp" />
@@ -59,7 +63,9 @@
     <ClInclude Include="..\src\image_loader.hpp" />
     <ClInclude Include="..\src\input_handler.hpp" />
     <ClInclude Include="..\src\ivec2.hpp" />
-    <ClInclude Include="..\src\renderer.hpp" />
+    <ClInclude Include="..\src\line.hpp" />
+    <ClInclude Include="..\src\line_renderer.hpp" />
+    <ClInclude Include="..\src\quad_renderer.hpp" />
     <ClInclude Include="..\src\mathematics.hpp" />
     <ClInclude Include="..\src\quad.hpp" />
     <ClInclude Include="..\src\render_window.hpp" />

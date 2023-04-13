@@ -8,6 +8,7 @@
 #include "gui_controller.hpp"
 #include "waveform_generator.hpp"
 #include "audio_player.hpp"
+#include "line_renderer.hpp"
 
 class EngineOrchestrator final
 {
@@ -26,12 +27,13 @@ private:
 	shared_ptr<InputHandler> _inputHandler = nullptr;
 	shared_ptr<Timer> _timer = nullptr;
 	shared_ptr<ImageLoader> _imageLoader = nullptr;
-	shared_ptr<QuadRenderer> _renderer = nullptr;
+	shared_ptr<QuadRenderer> _quadRenderer = nullptr;
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<GuiController> _guiController = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
 	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
 	shared_ptr<AudioManager> _audioManager = nullptr;
+	shared_ptr<LineRenderer> _lineRenderer = nullptr;
 
 	double _totalDeltaTime = 0.0;
 

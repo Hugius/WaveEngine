@@ -43,6 +43,9 @@
     <Filter Include="Editors">
       <UniqueIdentifier>{92d6096f-c114-491e-ada4-85d61681d3d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Renderers">
+      <UniqueIdentifier>{1e83d2b2-944d-4ddd-9316-cc1285ddc20a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -77,9 +80,6 @@
     </ClCompile>
     <ClCompile Include="..\src\texture_buffer.cpp">
       <Filter>Rendering\Buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\renderer.cpp">
-      <Filter>Rendering\Miscellaneous</Filter>
     </ClCompile>
     <ClCompile Include="..\src\dvec2.cpp">
       <Filter>Mathematics</Filter>
@@ -132,6 +132,18 @@
     <ClCompile Include="..\src\waveform_menu.cpp">
       <Filter>Editors</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\base_renderer.cpp">
+      <Filter>Rendering\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\line_renderer.cpp">
+      <Filter>Rendering\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\quad_renderer.cpp">
+      <Filter>Rendering\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\line.cpp">
+      <Filter>Rendering\Drawables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\engine_orchestrator.hpp">
@@ -169,9 +181,6 @@
     </ClInclude>
     <ClInclude Include="..\src\texture_buffer.hpp">
       <Filter>Rendering\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\renderer.hpp">
-      <Filter>Rendering\Miscellaneous</Filter>
     </ClInclude>
     <ClInclude Include="..\src\dvec2.hpp">
       <Filter>Mathematics</Filter>
@@ -229,6 +238,18 @@
     </ClInclude>
     <ClInclude Include="..\src\waveform_menu.hpp">
       <Filter>Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base_renderer.hpp">
+      <Filter>Rendering\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\line_renderer.hpp">
+      <Filter>Rendering\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\quad_renderer.hpp">
+      <Filter>Rendering\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\line.hpp">
+      <Filter>Rendering\Drawables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

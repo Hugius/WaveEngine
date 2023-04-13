@@ -7,9 +7,11 @@ using std::chrono::duration_cast;
 using std::chrono::high_resolution_clock;
 using std::chrono::nanoseconds;
 
-void Timer::initialize()
+Timer::Timer()
+	:
+	_clock(make_unique<Clock>())
 {
-	_clock = make_unique<Clock>();
+
 }
 
 void Timer::start()

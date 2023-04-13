@@ -8,18 +8,19 @@ using std::make_unique;
 using std::map;
 using std::vector;
 
-void QuadRenderer::initialize()
+QuadRenderer::QuadRenderer()
+	:
+	BaseRenderer(VERTEX_SHADER_PATH, FRAGMENT_SHADER_PATH)
 {
-	_shaderBuffer = make_unique<ShaderBuffer>(Tools::getRootDirectoryPath() + VERTEX_SHADER_PATH, Tools::getRootDirectoryPath() + FRAGMENT_SHADER_PATH);
-
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void QuadRenderer::render(const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	glEnable(GL_BLEND);
 
-	_bindShader();
+	_shaderBuffer->bind();
 
 	map<int, vector<shared_ptr<Quad>>> orderedQuads = {};
 
@@ -46,33 +47,9 @@ void QuadRenderer::render(const vector<shared_ptr<Quad>> & quads, const vector<s
 		}
 	}
 
-	_unbindShader();
-}
+	_shaderBuffer->unbind();
 
-void QuadRenderer::render(const shared_ptr<VertexBuffer> & vertexBuffer)
-{
-	_bindShader();
-
-	_shaderBuffer->uploadUniform("u_transformation", dmat33(1.0));
-	_shaderBuffer->uploadUniform("u_color", dvec3(1.0));
-	_shaderBuffer->uploadUniform("u_opacity", 1.0);
-	_shaderBuffer->uploadUniform("u_lightness", 1.0);
-	_shaderBuffer->uploadUniform("u_uvMultiplier", 0.0);
-	_shaderBuffer->uploadUniform("u_uvOffset", 0.0);
-	_shaderBuffer->uploadUniform("u_hasTexture", false);
-
-	glBindVertexArray(vertexBuffer->getVaoId());
-	glDrawArrays(GL_LINE_STRIP, 0, vertexBuffer->getVertexCount());
-	glBindVertexArray(0);
-
-	_unbindShader();
-}
-
-void QuadRenderer::_bindShader()
-{
-	_shaderBuffer->bind();
-
-	glEnable(GL_BLEND);
+	glDisable(GL_BLEND);
 }
 
 void QuadRenderer::_renderQuad(const shared_ptr<Quad> & quad)
@@ -100,11 +77,4 @@ void QuadRenderer::_renderQuad(const shared_ptr<Quad> & quad)
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-}
-
-void QuadRenderer::_unbindShader()
-{
-	glDisable(GL_BLEND);
-
-	_shaderBuffer->unbind();
 }

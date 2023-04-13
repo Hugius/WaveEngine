@@ -81,7 +81,7 @@ LRESULT CALLBACK processMessage(HWND handle, UINT message, WPARAM wParam, LPARAM
 	return 0;
 }
 
-void RenderWindow::initialize()
+RenderWindow::RenderWindow()
 {
 	if(!SetProcessDPIAware())
 	{

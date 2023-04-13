@@ -9,12 +9,13 @@ void EngineOrchestrator::initialize()
 	_inputHandler = make_shared<InputHandler>();
 	_timer = make_shared<Timer>();
 	_imageLoader = make_shared<ImageLoader>();
-	_renderer = make_shared<Renderer>();
+	_quadRenderer = make_shared<QuadRenderer>();
 	_guiManager = make_shared<GuiManager>();
 	_guiController = make_shared<GuiController>();
 	_waveformGenerator = make_shared<WaveformGenerator>();
 	_audioPlayer = make_shared<AudioPlayer>();
 	_audioManager = make_shared<AudioManager>();
+	_lineRenderer = make_shared<LineRenderer>();
 
 	_renderWindow->inject(_inputHandler);
 	_guiManager->inject(_imageLoader);
@@ -23,9 +24,6 @@ void EngineOrchestrator::initialize()
 	_guiController->inject(_audioPlayer);
 	_guiController->inject(_audioManager);
 
-	_renderWindow->initialize();
-	_timer->initialize();
-	_renderer->initialize();
 	_guiManager->initialize();
 
 	_update();
@@ -116,7 +114,7 @@ void EngineOrchestrator::_render()
 
 	auto vb = make_shared<VertexBuffer>(data);
 
-	_renderer->render(_guiManager->getQuads(), _guiManager->getTexts());
-	_renderer->render(vb);
+	_quadRenderer->render(_guiManager->getQuads(), _guiManager->getTexts());
+	//_quadRenderer->render(vb);
 	_renderWindow->swapBuffers();
 }
