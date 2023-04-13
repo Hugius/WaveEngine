@@ -1,4 +1,4 @@
-#include "renderer.hpp"
+#include "quad_renderer.hpp"
 #include "tools.hpp"
 
 #include <map>
@@ -8,14 +8,14 @@ using std::make_unique;
 using std::map;
 using std::vector;
 
-void Renderer::initialize()
+void QuadRenderer::initialize()
 {
 	_shaderBuffer = make_unique<ShaderBuffer>(Tools::getRootDirectoryPath() + VERTEX_SHADER_PATH, Tools::getRootDirectoryPath() + FRAGMENT_SHADER_PATH);
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void Renderer::render(const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts)
+void QuadRenderer::render(const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -49,14 +49,33 @@ void Renderer::render(const vector<shared_ptr<Quad>> & quads, const vector<share
 	_unbindShader();
 }
 
-void Renderer::_bindShader()
+void QuadRenderer::render(const shared_ptr<VertexBuffer> & vertexBuffer)
+{
+	_bindShader();
+
+	_shaderBuffer->uploadUniform("u_transformation", dmat33(1.0));
+	_shaderBuffer->uploadUniform("u_color", dvec3(1.0));
+	_shaderBuffer->uploadUniform("u_opacity", 1.0);
+	_shaderBuffer->uploadUniform("u_lightness", 1.0);
+	_shaderBuffer->uploadUniform("u_uvMultiplier", 0.0);
+	_shaderBuffer->uploadUniform("u_uvOffset", 0.0);
+	_shaderBuffer->uploadUniform("u_hasTexture", false);
+
+	glBindVertexArray(vertexBuffer->getVaoId());
+	glDrawArrays(GL_LINE_STRIP, 0, vertexBuffer->getVertexCount());
+	glBindVertexArray(0);
+
+	_unbindShader();
+}
+
+void QuadRenderer::_bindShader()
 {
 	_shaderBuffer->bind();
 
 	glEnable(GL_BLEND);
 }
 
-void Renderer::_renderQuad(const shared_ptr<Quad> & quad)
+void QuadRenderer::_renderQuad(const shared_ptr<Quad> & quad)
 {
 	_shaderBuffer->uploadUniform("u_transformation", quad->getTransformation());
 	_shaderBuffer->uploadUniform("u_color", quad->getColor());
@@ -83,7 +102,7 @@ void Renderer::_renderQuad(const shared_ptr<Quad> & quad)
 	}
 }
 
-void Renderer::_unbindShader()
+void QuadRenderer::_unbindShader()
 {
 	glDisable(GL_BLEND);
 

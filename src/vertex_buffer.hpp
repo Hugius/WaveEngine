@@ -3,15 +3,18 @@
 #define GLEW_STATIC
 
 #include <glew.h>
+#include <vector>
+
+using std::vector;
 
 class VertexBuffer final
 {
 public:
 	VertexBuffer(const bool isHorizontallyCentered, const bool isVerticallyCentered);
+	VertexBuffer(const vector<double> & vertices);
 	~VertexBuffer();
 
 	const unsigned int getVaoId() const;
-	const unsigned int getVboId() const;
 
 	const int getVertexCount() const;
 
@@ -19,7 +22,7 @@ public:
 	const bool isVerticallyCentered() const;
 
 private:
-	static inline const int _vertexCount = 6;
+	const int _vertexCount;
 
 	const bool _isHorizontallyCentered;
 	const bool _isVerticallyCentered;

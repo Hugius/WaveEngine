@@ -1,87 +1,123 @@
+#pragma warning(disable:6386)
+
 #include "vertex_buffer.hpp"
 
 VertexBuffer::VertexBuffer(const bool isHorizontallyCentered, const bool isVerticallyCentered)
 	:
+	_vertexCount(6),
 	_isHorizontallyCentered(isHorizontallyCentered),
 	_isVerticallyCentered(isVerticallyCentered)
 {
-	double * vertices = new double[24];
+	const int dataCount = 24;
+
+	double * data = new double[dataCount];
 
 	if(_isHorizontallyCentered)
 	{
-		vertices[0] = -0.5;
-		vertices[2] = 0.0;
-		vertices[4] = 0.5;
-		vertices[6] = 1.0;
-		vertices[8] = 0.5;
-		vertices[10] = 1.0;
-		vertices[12] = 0.5;
-		vertices[14] = 1.0;
-		vertices[16] = -0.5;
-		vertices[18] = 0.0;
-		vertices[20] = -0.5;
-		vertices[22] = 0.0;
+		data[0] = -0.5;
+		data[2] = 0.0;
+		data[4] = 0.5;
+		data[6] = 1.0;
+		data[8] = 0.5;
+		data[10] = 1.0;
+		data[12] = 0.5;
+		data[14] = 1.0;
+		data[16] = -0.5;
+		data[18] = 0.0;
+		data[20] = -0.5;
+		data[22] = 0.0;
 	}
 	else
 	{
-		vertices[0] = 0.0;
-		vertices[2] = 0.0;
-		vertices[4] = 1.0;
-		vertices[6] = 1.0;
-		vertices[8] = 1.0;
-		vertices[10] = 1.0;
-		vertices[12] = 1.0;
-		vertices[14] = 1.0;
-		vertices[16] = 0.0;
-		vertices[18] = 0.0;
-		vertices[20] = 0.0;
-		vertices[22] = 0.0;
+		data[0] = 0.0;
+		data[2] = 0.0;
+		data[4] = 1.0;
+		data[6] = 1.0;
+		data[8] = 1.0;
+		data[10] = 1.0;
+		data[12] = 1.0;
+		data[14] = 1.0;
+		data[16] = 0.0;
+		data[18] = 0.0;
+		data[20] = 0.0;
+		data[22] = 0.0;
 	}
 
 	if(_isVerticallyCentered)
 	{
-		vertices[1] = -0.5;
-		vertices[3] = 0.0;
-		vertices[5] = -0.5;
-		vertices[7] = 0.0;
-		vertices[9] = 0.5;
-		vertices[11] = 1.0;
-		vertices[13] = 0.5;
-		vertices[15] = 1.0;
-		vertices[17] = 0.5;
-		vertices[19] = 1.0;
-		vertices[21] = -0.5;
-		vertices[23] = 0.0;
+		data[1] = -0.5;
+		data[3] = 0.0;
+		data[5] = -0.5;
+		data[7] = 0.0;
+		data[9] = 0.5;
+		data[11] = 1.0;
+		data[13] = 0.5;
+		data[15] = 1.0;
+		data[17] = 0.5;
+		data[19] = 1.0;
+		data[21] = -0.5;
+		data[23] = 0.0;
 	}
 	else
 	{
-		vertices[1] = 0.0;
-		vertices[3] = 0.0;
-		vertices[5] = 0.0;
-		vertices[7] = 0.0;
-		vertices[9] = 1.0;
-		vertices[11] = 1.0;
-		vertices[13] = 1.0;
-		vertices[15] = 1.0;
-		vertices[17] = 1.0;
-		vertices[19] = 1.0;
-		vertices[21] = 0.0;
-		vertices[23] = 0.0;
+		data[1] = 0.0;
+		data[3] = 0.0;
+		data[5] = 0.0;
+		data[7] = 0.0;
+		data[9] = 1.0;
+		data[11] = 1.0;
+		data[13] = 1.0;
+		data[15] = 1.0;
+		data[17] = 1.0;
+		data[19] = 1.0;
+		data[21] = 0.0;
+		data[23] = 0.0;
 	}
 
 	glGenVertexArrays(1, &_vaoId);
 	glGenBuffers(1, &_vboId);
 	glBindVertexArray(_vaoId);
 	glBindBuffer(GL_ARRAY_BUFFER, _vboId);
-	glBufferData(GL_ARRAY_BUFFER, 24 * sizeof(double), &vertices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, dataCount * sizeof(double), data, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribLPointer(0, 3, GL_DOUBLE, 4 * sizeof(double), reinterpret_cast<void *>(0 * sizeof(double)));
+	glVertexAttribLPointer(0, 2, GL_DOUBLE, 4 * sizeof(double), reinterpret_cast<void *>(0 * sizeof(double)));
 	glVertexAttribLPointer(1, 2, GL_DOUBLE, 4 * sizeof(double), reinterpret_cast<void *>(2 * sizeof(double)));
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-	delete[] vertices;
+	delete[] data;
+}
+
+VertexBuffer::VertexBuffer(const vector<double> & vertices)
+	:
+	_vertexCount(static_cast<int>(vertices.size())),
+	_isHorizontallyCentered(false),
+	_isVerticallyCentered(false)
+{
+	const int dataCount = static_cast<int>(vertices.size()) * 2;
+
+	double * data = new double[dataCount];
+
+	for(int index = 0; index < _vertexCount; index++)
+	{
+		const int dataIndex = index * 2;
+
+		data[dataIndex + 0] = -1.0 + (static_cast<double>(index) / static_cast<double>(_vertexCount)) * 2.0;
+		data[dataIndex + 1] = vertices[index];
+	}
+
+	glGenVertexArrays(1, &_vaoId);
+	glGenBuffers(1, &_vboId);
+	glBindVertexArray(_vaoId);
+	glBindBuffer(GL_ARRAY_BUFFER, _vboId);
+	glBufferData(GL_ARRAY_BUFFER, dataCount * sizeof(double), data, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribLPointer(0, 2, GL_DOUBLE, 2 * sizeof(double), reinterpret_cast<void *>(0 * sizeof(double)));
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+
+	delete[] data;
 }
 
 VertexBuffer::~VertexBuffer()
@@ -93,11 +129,6 @@ VertexBuffer::~VertexBuffer()
 const unsigned int VertexBuffer::getVaoId() const
 {
 	return _vaoId;
-}
-
-const unsigned int VertexBuffer::getVboId() const
-{
-	return _vboId;
 }
 
 const int VertexBuffer::getVertexCount() const

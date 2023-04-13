@@ -3,7 +3,7 @@
 #include "render_window.hpp"
 #include "timer.hpp"
 #include "image_loader.hpp"
-#include "renderer.hpp"
+#include "quad_renderer.hpp"
 #include "gui_manager.hpp"
 #include "gui_controller.hpp"
 #include "waveform_generator.hpp"
@@ -26,7 +26,7 @@ private:
 	shared_ptr<InputHandler> _inputHandler = nullptr;
 	shared_ptr<Timer> _timer = nullptr;
 	shared_ptr<ImageLoader> _imageLoader = nullptr;
-	shared_ptr<Renderer> _renderer = nullptr;
+	shared_ptr<QuadRenderer> _renderer = nullptr;
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<GuiController> _guiController = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;

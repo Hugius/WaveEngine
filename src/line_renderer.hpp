@@ -10,6 +10,7 @@ class Renderer final
 public:
 	void initialize();
 	void render(const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts);
+	void render(const shared_ptr<VertexBuffer> & vertexBuffer);
 
 private:
 	void _bindShader();
