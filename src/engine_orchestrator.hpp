@@ -13,7 +13,8 @@
 class EngineOrchestrator final
 {
 public:
-	void initialize();
+	EngineOrchestrator();
+
 	void start();
 	void stop();
 
@@ -23,17 +24,17 @@ private:
 
 	static inline const double MAX_RUNTIME_LAG = 100.0;
 
-	shared_ptr<RenderWindow> _renderWindow = nullptr;
-	shared_ptr<InputHandler> _inputHandler = nullptr;
-	shared_ptr<Timer> _timer = nullptr;
-	shared_ptr<ImageLoader> _imageLoader = nullptr;
-	shared_ptr<QuadRenderer> _quadRenderer = nullptr;
-	shared_ptr<GuiManager> _guiManager = nullptr;
-	shared_ptr<GuiController> _guiController = nullptr;
-	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
-	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
-	shared_ptr<AudioManager> _audioManager = nullptr;
-	shared_ptr<LineRenderer> _lineRenderer = nullptr;
+	const shared_ptr<RenderWindow> _renderWindow;
+	const shared_ptr<InputHandler> _inputHandler;
+	const shared_ptr<Timer> _timer;
+	const shared_ptr<ImageLoader> _imageLoader;
+	const shared_ptr<QuadRenderer> _quadRenderer;
+	const shared_ptr<GuiManager> _guiManager;
+	const shared_ptr<GuiController> _guiController;
+	const shared_ptr<WaveformGenerator> _waveformGenerator;
+	const shared_ptr<AudioPlayer> _audioPlayer;
+	const shared_ptr<AudioManager> _audioManager;
+	const shared_ptr<LineRenderer> _lineRenderer;
 
 	double _totalDeltaTime = 0.0;
 

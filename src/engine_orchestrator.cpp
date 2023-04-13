@@ -3,20 +3,20 @@
 
 using std::make_shared;
 
-void EngineOrchestrator::initialize()
+EngineOrchestrator::EngineOrchestrator()
+	:
+	_renderWindow(make_shared<RenderWindow>()),
+	_inputHandler(make_shared<InputHandler>()),
+	_timer(make_shared<Timer>()),
+	_imageLoader(make_shared<ImageLoader>()),
+	_quadRenderer(make_shared<QuadRenderer>()),
+	_guiManager(make_shared<GuiManager>()),
+	_guiController(make_shared<GuiController>()),
+	_waveformGenerator(make_shared<WaveformGenerator>()),
+	_audioPlayer(make_shared<AudioPlayer>()),
+	_audioManager(make_shared<AudioManager>()),
+	_lineRenderer(make_shared<LineRenderer>())
 {
-	_renderWindow = make_shared<RenderWindow>();
-	_inputHandler = make_shared<InputHandler>();
-	_timer = make_shared<Timer>();
-	_imageLoader = make_shared<ImageLoader>();
-	_quadRenderer = make_shared<QuadRenderer>();
-	_guiManager = make_shared<GuiManager>();
-	_guiController = make_shared<GuiController>();
-	_waveformGenerator = make_shared<WaveformGenerator>();
-	_audioPlayer = make_shared<AudioPlayer>();
-	_audioManager = make_shared<AudioManager>();
-	_lineRenderer = make_shared<LineRenderer>();
-
 	_renderWindow->inject(_inputHandler);
 	_guiManager->inject(_imageLoader);
 	_guiController->inject(_guiManager);

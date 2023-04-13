@@ -16,6 +16,7 @@ public:
 	void update();
 
 private:
-	unique_ptr<WaveformMenu> _waveformMenu = nullptr;
+	const unique_ptr<WaveformMenu> _waveformMenu;
+
 	shared_ptr<GuiManager> _guiManager = nullptr;
 };

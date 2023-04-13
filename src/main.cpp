@@ -4,7 +4,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 {
 	EngineOrchestrator engineOrchestrator;
 
-	engineOrchestrator.initialize();
 	engineOrchestrator.start();
 
 	return 0;

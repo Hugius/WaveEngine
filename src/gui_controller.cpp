@@ -4,8 +4,10 @@
 using std::make_unique;
 
 GuiController::GuiController()
+	:
+	_waveformMenu(make_unique<WaveformMenu>())
 {
-	_waveformMenu = make_unique<WaveformMenu>();
+
 }
 
 void GuiController::inject(const shared_ptr<GuiManager> & guiManager)
