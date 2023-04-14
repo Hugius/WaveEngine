@@ -89,11 +89,11 @@ VertexBuffer::VertexBuffer(const bool isHorizontallyCentered, const bool isVerti
 	delete[] data;
 }
 
-VertexBuffer::VertexBuffer(const vector<double> & vertices)
+VertexBuffer::VertexBuffer(const vector<dvec2> & vertices, const bool isHorizontallyCentered, const bool isVerticallyCentered)
 	:
 	_vertexCount(static_cast<int>(vertices.size())),
-	_isHorizontallyCentered(false),
-	_isVerticallyCentered(false)
+	_isHorizontallyCentered(isHorizontallyCentered),
+	_isVerticallyCentered(isVerticallyCentered)
 {
 	const int dataCount = static_cast<int>(vertices.size()) * 2;
 
@@ -103,8 +103,24 @@ VertexBuffer::VertexBuffer(const vector<double> & vertices)
 	{
 		const int dataIndex = index * 2;
 
-		data[dataIndex + 0] = -1.0 + (static_cast<double>(index) / static_cast<double>(_vertexCount)) * 2.0;
-		data[dataIndex + 1] = vertices[index];
+		if(_isHorizontallyCentered)
+		{
+			data[dataIndex + 0] = vertices[index].x * 0.5f;
+		}
+		else
+		{
+			data[dataIndex + 0] = vertices[index].x;
+		}
+
+		if(_isVerticallyCentered)
+		{
+
+			data[dataIndex + 1] = vertices[index].y * 0.5f;
+		}
+		else
+		{
+			data[dataIndex + 1] = vertices[index].y;
+		}
 	}
 
 	glGenVertexArrays(1, &_vaoId);

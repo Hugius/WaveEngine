@@ -4,6 +4,7 @@
 #include "gui_button.hpp"
 #include "gui_rectangle.hpp"
 #include "gui_label.hpp"
+#include "line.hpp"
 
 class GuiManager final
 {
@@ -14,6 +15,7 @@ public:
 
 	const vector<shared_ptr<Quad>> & getQuads() const;
 	const vector<shared_ptr<Text>> & getTexts() const;
+	const vector<shared_ptr<Line>> & getLines() const;
 
 	const shared_ptr<GuiRectangle> & getGuiRectangle(const string & id) const;
 	const shared_ptr<GuiLabel> & getGuiLabel(const string & id) const;
@@ -35,6 +37,7 @@ private:
 	unordered_map<string, shared_ptr<GuiButton>> _guiButtons = {};
 	vector<shared_ptr<Quad>> _quads = {};
 	vector<shared_ptr<Text>> _texts = {};
+	vector<shared_ptr<Line>> _lines = {};
 
 	shared_ptr<ImageLoader> _imageLoader = nullptr;
 	shared_ptr<VertexBuffer> _corneredVertexBuffer = nullptr;
@@ -42,6 +45,4 @@ private:
 	shared_ptr<VertexBuffer> _horizontallyCenteredVertexBuffer = nullptr;
 	shared_ptr<VertexBuffer> _verticallyCenteredVertexBuffer = nullptr;
 	shared_ptr<TextureBuffer> _fontTextureBuffer = nullptr;
-
-	int _renderDepth = 1;
 };

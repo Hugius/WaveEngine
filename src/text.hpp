@@ -11,7 +11,7 @@ using std::vector;
 class Text final
 {
 public:
-	Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const int depth);
+	Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer);
 
 	void update();
 	void setOpacity(const double value);
@@ -23,8 +23,6 @@ public:
 	void setContent(const string & value);
 
 	const vector<shared_ptr<Quad>> & getQuads() const;
-
-	const int getDepth() const;
 
 private:
 	static inline const unordered_map<char, ivec2> _fontIndices =
@@ -131,8 +129,6 @@ private:
 
 	const shared_ptr<VertexBuffer> _vertexBuffer;
 	const shared_ptr<TextureBuffer> _textureBuffer;
-
-	const int _depth;
 
 	vector<shared_ptr<Quad>> _quads = {};
 

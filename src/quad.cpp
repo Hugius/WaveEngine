@@ -5,17 +5,11 @@
 
 using std::make_shared;
 
-Quad::Quad(const shared_ptr<VertexBuffer> & vertexBuffer, int depth)
+Quad::Quad(const shared_ptr<VertexBuffer> & vertexBuffer)
 	:
-	_vertexBuffer(vertexBuffer),
-	_depth(depth)
+	_vertexBuffer(vertexBuffer)
 {
 	if(vertexBuffer == nullptr)
-	{
-		abort();
-	}
-
-	if(depth < 1)
 	{
 		abort();
 	}
@@ -167,11 +161,6 @@ const double Quad::getLightness() const
 const dvec2 & Quad::getSize() const
 {
 	return _size;
-}
-
-const int Quad::getDepth() const
-{
-	return _depth;
 }
 
 void Quad::setVisible(const bool value)

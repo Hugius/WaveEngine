@@ -106,19 +106,19 @@ void GuiManager::_createGuiRectangle(const string & id, const dvec2 & position, 
 	shared_ptr<Quad> quad;
 	if(!isHorizontallyCentered && !isVerticallyCentered)
 	{
-		quad = make_shared<Quad>(_corneredVertexBuffer, _renderDepth++);
+		quad = make_shared<Quad>(_corneredVertexBuffer);
 	}
 	else if(isHorizontallyCentered && isVerticallyCentered)
 	{
-		quad = make_shared<Quad>(_centeredVertexBuffer, _renderDepth++);
+		quad = make_shared<Quad>(_centeredVertexBuffer);
 	}
 	else if(isHorizontallyCentered && !isVerticallyCentered)
 	{
-		quad = make_shared<Quad>(_horizontallyCenteredVertexBuffer, _renderDepth++);
+		quad = make_shared<Quad>(_horizontallyCenteredVertexBuffer);
 	}
 	else if(!isHorizontallyCentered && isVerticallyCentered)
 	{
-		quad = make_shared<Quad>(_verticallyCenteredVertexBuffer, _renderDepth++);
+		quad = make_shared<Quad>(_verticallyCenteredVertexBuffer);
 	}
 
 	quad->setPosition(position);
@@ -144,19 +144,19 @@ void GuiManager::_createGuiLabel(const string & id, const dvec2 & position, cons
 	shared_ptr<Text> text;
 	if(!isHorizontallyCentered && !isVerticallyCentered)
 	{
-		text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer, _renderDepth++);
+		text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer);
 	}
 	else if(isHorizontallyCentered && isVerticallyCentered)
 	{
-		text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer, _renderDepth++);
+		text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer);
 	}
 	else if(isHorizontallyCentered && !isVerticallyCentered)
 	{
-		text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer, _renderDepth++);
+		text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer);
 	}
 	else if(!isHorizontallyCentered && isVerticallyCentered)
 	{
-		text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer, _renderDepth++);
+		text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer);
 	}
 
 	text->setPosition(position);
@@ -183,19 +183,19 @@ void GuiManager::_createGuiButton(const string & id, const dvec2 & position, con
 	shared_ptr<Quad> quad;
 	if(!isHorizontallyCentered && !isVerticallyCentered)
 	{
-		quad = make_shared<Quad>(_corneredVertexBuffer, _renderDepth++);
+		quad = make_shared<Quad>(_corneredVertexBuffer);
 	}
 	else if(isHorizontallyCentered && isVerticallyCentered)
 	{
-		quad = make_shared<Quad>(_centeredVertexBuffer, _renderDepth++);
+		quad = make_shared<Quad>(_centeredVertexBuffer);
 	}
 	else if(isHorizontallyCentered && !isVerticallyCentered)
 	{
-		quad = make_shared<Quad>(_horizontallyCenteredVertexBuffer, _renderDepth++);
+		quad = make_shared<Quad>(_horizontallyCenteredVertexBuffer);
 	}
 	else if(!isHorizontallyCentered && isVerticallyCentered)
 	{
-		quad = make_shared<Quad>(_verticallyCenteredVertexBuffer, _renderDepth++);
+		quad = make_shared<Quad>(_verticallyCenteredVertexBuffer);
 	}
 
 	quad->setPosition(position);
@@ -210,19 +210,19 @@ void GuiManager::_createGuiButton(const string & id, const dvec2 & position, con
 	{
 		if(!isHorizontallyCentered && !isVerticallyCentered)
 		{
-			text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer, _renderDepth++);
+			text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer);
 		}
 		else if(isHorizontallyCentered && isVerticallyCentered)
 		{
-			text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer, _renderDepth++);
+			text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer);
 		}
 		else if(isHorizontallyCentered && !isVerticallyCentered)
 		{
-			text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer, _renderDepth++);
+			text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer);
 		}
 		else if(!isHorizontallyCentered && isVerticallyCentered)
 		{
-			text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer, _renderDepth++);
+			text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer);
 		}
 
 		text->setContent(content);
@@ -271,6 +271,11 @@ const vector<shared_ptr<Quad>> & GuiManager::getQuads() const
 const vector<shared_ptr<Text>> & GuiManager::getTexts() const
 {
 	return _texts;
+}
+
+const vector<shared_ptr<Line>> & GuiManager::getLines() const
+{
+	return _lines;
 }
 
 const shared_ptr<GuiRectangle> & GuiManager::getGuiRectangle(const string & id) const

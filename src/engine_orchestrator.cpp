@@ -99,22 +99,10 @@ void EngineOrchestrator::_update()
 
 void EngineOrchestrator::_render()
 {
-	auto audio = _waveformGenerator->generateSawtoothWave(100, 1000.0, 10.0);
+	glClear(GL_COLOR_BUFFER_BIT);
 
-	vector<double> data = {};
-
-	for(int index = 0; index < audio->getHeader()->dwBufferLength / 4; index++)
-	{
-		const unsigned char firstByte = audio->getHeader()->lpData[index * 4 + 0];
-		const unsigned char secondByte = audio->getHeader()->lpData[index * 4 + 1];
-		const short bytePair = static_cast<short>(firstByte | secondByte << 8);
-
-		data.push_back(static_cast<double>(bytePair) / 1000.0);
-	}
-
-	auto vb = make_shared<VertexBuffer>(data);
-
-	_quadRenderer->render(_guiManager->getQuads(), _guiManager->getTexts());
-	//_quadRenderer->render(vb);
+	_quadRenderer->render(_guiManager->getQuads());
+	_quadRenderer->render(_guiManager->getTexts());
+	_lineRenderer->render(_guiManager->getLines());
 	_renderWindow->swapBuffers();
 }

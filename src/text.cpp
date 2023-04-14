@@ -5,9 +5,8 @@
 
 using std::make_shared;
 
-Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const int depth)
+Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer)
 	:
-	_depth(depth),
 	_vertexBuffer(vertexBuffer),
 	_textureBuffer(textureBuffer)
 {
@@ -17,11 +16,6 @@ Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<Textu
 	}
 
 	if(textureBuffer == nullptr)
-	{
-		abort();
-	}
-
-	if(depth < 1)
 	{
 		abort();
 	}
@@ -89,7 +83,7 @@ void Text::setContent(const string & value)
 		const int yIndex = _fontIndices.at(character).y;
 		const dvec2 uvMultiplier = dvec2(1.0 / static_cast<double>(FONT_MAP_COLUMN_COUNT), 1.0 / static_cast<double>(FONT_MAP_ROW_COUNT));
 		const dvec2 uvOffset = dvec2(static_cast<double>(xIndex) * uvMultiplier.x, static_cast<double>(yIndex) * uvMultiplier.y);
-		const shared_ptr<Quad> quad = make_shared<Quad>(_vertexBuffer, _depth);
+		const shared_ptr<Quad> quad = make_shared<Quad>(_vertexBuffer);
 
 		quad->setTextureBuffer(_textureBuffer);
 		quad->setUvMultiplier(uvMultiplier);
@@ -138,9 +132,4 @@ void Text::setSize(const dvec2 & value)
 const vector<shared_ptr<Quad>> & Text::getQuads() const
 {
 	return _quads;
-}
-
-const int Text::getDepth() const
-{
-	return _depth;
 }

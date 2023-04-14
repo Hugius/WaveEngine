@@ -2,6 +2,8 @@
 
 #define GLEW_STATIC
 
+#include "dvec2.hpp"
+
 #include <glew.h>
 #include <vector>
 
@@ -11,7 +13,7 @@ class VertexBuffer final
 {
 public:
 	VertexBuffer(const bool isHorizontallyCentered, const bool isVerticallyCentered);
-	VertexBuffer(const vector<double> & vertices);
+	VertexBuffer(const vector<dvec2> & vertices, const bool isHorizontallyCentered, const bool isVerticallyCentered);
 	~VertexBuffer();
 
 	const unsigned int getVaoId() const;

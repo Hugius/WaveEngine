@@ -1,12 +1,4 @@
 #include "quad_renderer.hpp"
-#include "tools.hpp"
-
-#include <map>
-
-using std::make_shared;
-using std::make_unique;
-using std::map;
-using std::vector;
 
 QuadRenderer::QuadRenderer()
 	:
@@ -15,34 +7,32 @@ QuadRenderer::QuadRenderer()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void QuadRenderer::render(const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts)
+void QuadRenderer::render(const vector<shared_ptr<Quad>> & quads)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
 	glEnable(GL_BLEND);
 
 	_shaderBuffer->bind();
 
-	map<int, vector<shared_ptr<Quad>>> orderedQuads = {};
-
 	for(const shared_ptr<Quad> & quad : quads)
 	{
-		orderedQuads.insert({quad->getDepth(), {quad}});
+		_renderQuad(quad);
 	}
+
+	_shaderBuffer->unbind();
+
+	glDisable(GL_BLEND);
+}
+
+void QuadRenderer::render(const vector<shared_ptr<Text>> & texts)
+{
+	glEnable(GL_BLEND);
+
+	_shaderBuffer->bind();
 
 	for(const shared_ptr<Text> & text : texts)
 	{
-		orderedQuads.insert({text->getDepth(), text->getQuads()});
-	}
-
-	for(const auto & [depth, quads] : orderedQuads)
-	{
-		for(const shared_ptr<Quad> & quad : quads)
+		for(const shared_ptr<Quad> & quad : text->getQuads())
 		{
-			if(!quad->isVisible())
-			{
-				continue;
-			}
-
 			_renderQuad(quad);
 		}
 	}
@@ -54,6 +44,11 @@ void QuadRenderer::render(const vector<shared_ptr<Quad>> & quads, const vector<s
 
 void QuadRenderer::_renderQuad(const shared_ptr<Quad> & quad)
 {
+	if(!quad->isVisible())
+	{
+		return;
+	}
+
 	_shaderBuffer->uploadUniform("u_transformation", quad->getTransformation());
 	_shaderBuffer->uploadUniform("u_color", quad->getColor());
 	_shaderBuffer->uploadUniform("u_opacity", quad->getOpacity());

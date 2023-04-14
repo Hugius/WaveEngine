@@ -10,7 +10,8 @@ class QuadRenderer final : public BaseRenderer
 public:
 	QuadRenderer();
 
-	void render(const vector<shared_ptr<Quad>> & quads, const vector<shared_ptr<Text>> & texts);
+	void render(const vector<shared_ptr<Quad>> & quads);
+	void render(const vector<shared_ptr<Text>> & texts);
 
 private:
 	void _renderQuad(const shared_ptr<Quad> & quad);
