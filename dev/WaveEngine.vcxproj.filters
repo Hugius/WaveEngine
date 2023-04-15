@@ -144,6 +144,9 @@
     <ClCompile Include="..\src\line.cpp">
       <Filter>Rendering\Drawables</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\gui_waveform.cpp">
+      <Filter>GUI Management</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\engine_orchestrator.hpp">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="..\src\line.hpp">
       <Filter>Rendering\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_waveform.hpp">
+      <Filter>GUI Management</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

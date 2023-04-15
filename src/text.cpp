@@ -5,22 +5,6 @@
 
 using std::make_shared;
 
-Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer)
-	:
-	_vertexBuffer(vertexBuffer),
-	_textureBuffer(textureBuffer)
-{
-	if(vertexBuffer == nullptr)
-	{
-		abort();
-	}
-
-	if(textureBuffer == nullptr)
-	{
-		abort();
-	}
-}
-
 void Text::update()
 {
 	const dvec2 quadSize = dvec2(_size.x / static_cast<double>(_content.size()), _size.y);
@@ -43,6 +27,16 @@ void Text::update()
 
 		index++;
 	}
+}
+
+void Text::setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer)
+{
+	_vertexBuffer = vertexBuffer;
+}
+
+void Text::setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer)
+{
+	_textureBuffer = textureBuffer;
 }
 
 void Text::setVisible(const bool value)
@@ -83,8 +77,9 @@ void Text::setContent(const string & value)
 		const int yIndex = _fontIndices.at(character).y;
 		const dvec2 uvMultiplier = dvec2(1.0 / static_cast<double>(FONT_MAP_COLUMN_COUNT), 1.0 / static_cast<double>(FONT_MAP_ROW_COUNT));
 		const dvec2 uvOffset = dvec2(static_cast<double>(xIndex) * uvMultiplier.x, static_cast<double>(yIndex) * uvMultiplier.y);
-		const shared_ptr<Quad> quad = make_shared<Quad>(_vertexBuffer);
+		const shared_ptr<Quad> quad = make_shared<Quad>();
 
+		quad->setVertexBuffer(_vertexBuffer);
 		quad->setTextureBuffer(_textureBuffer);
 		quad->setUvMultiplier(uvMultiplier);
 		quad->setUvOffset(uvOffset);

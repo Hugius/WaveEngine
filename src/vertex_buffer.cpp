@@ -109,7 +109,7 @@ VertexBuffer::VertexBuffer(const vector<dvec2> & vertices, const bool isHorizont
 		}
 		else
 		{
-			data[dataIndex + 0] = vertices[index].x;
+			data[dataIndex + 0] = vertices[index].x * 0.5f + 0.5f;
 		}
 
 		if(_isVerticallyCentered)
@@ -119,7 +119,7 @@ VertexBuffer::VertexBuffer(const vector<dvec2> & vertices, const bool isHorizont
 		}
 		else
 		{
-			data[dataIndex + 1] = vertices[index].y;
+			data[dataIndex + 1] = vertices[index].y * 0.5f + 0.5f;
 		}
 	}
 

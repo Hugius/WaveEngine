@@ -13,9 +13,8 @@ using std::shared_ptr;
 class Line final
 {
 public:
-	Line(const shared_ptr<VertexBuffer> & vertexBuffer);
-
 	void update();
+	void setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer);
 	void setColor(const dvec3 & value);
 	void setPosition(const dvec2 & value);
 	void setSize(const dvec2 & value);
@@ -30,7 +29,7 @@ public:
 	const bool isVisible() const;
 
 private:
-	const shared_ptr<VertexBuffer> _vertexBuffer;
+	shared_ptr<VertexBuffer> _vertexBuffer = nullptr;
 
 	dmat33 _transformation = dmat33(1.0);
 

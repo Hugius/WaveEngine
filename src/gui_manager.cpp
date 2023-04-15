@@ -22,16 +22,17 @@ void GuiManager::initialize()
 	const double charX = 0.0125;
 	const double charY = 0.05;
 
-	_createGuiRectangle("background", dvec2(0.0), dvec2(2.0), blue, true, true, true);
-	_createGuiRectangle("top", dvec2(-1.0, 0.95), dvec2(2.0, charY), gray, false, false, true);
-	_createGuiButton("new", dvec2(-1.0, 0.95), dvec2(charX * 3.0, charY), gray, white, "New", false, false, true, true, false, true);
-	_createGuiButton("load", dvec2(-0.95, 0.95), dvec2(charX * 4.0, charY), gray, white, "Load", false, false, true, true, false, true);
-	_createGuiButton("save", dvec2(-0.8875, 0.95), dvec2(charX * 4.0, charY), gray, white, "Save", false, false, true, true, false, true);
-	_createGuiButton("waveforms", dvec2(-0.825, 0.95), dvec2(charX * 9.0, charY), gray, white, "Waveforms", false, false, true, true, false, true);
-	_createGuiButton("exit", dvec2(-0.7, 0.95), dvec2(charX * 4.0, charY), gray, white, "Exit", false, false, true, true, false, true);
-	_createGuiRectangle("waveforms_menu", dvec2(0.0), dvec2(1.5), gray, true, true, false);
-	_createGuiButton("waveforms_close", dvec2(0.75 - charX, 0.7), dvec2(charX, charY), gray, red, "X", false, false, true, true, false, false);
-	_createGuiButton("waveforms_play", dvec2(-0.75, 0.7), dvec2(charX * 4.0, charY), gray, white, "Play", false, false, true, true, false, false);
+	_addGuiRectangle("background", dvec2(0.0), dvec2(2.0), blue, true, true, true);
+	_addGuiRectangle("top", dvec2(-1.0, 0.95), dvec2(2.0, charY), gray, false, false, true);
+	_addGuiButton("new", dvec2(-1.0, 0.95), dvec2(charX * 3.0, charY), gray, white, "New", false, false, true, true, false, true);
+	_addGuiButton("load", dvec2(-0.95, 0.95), dvec2(charX * 4.0, charY), gray, white, "Load", false, false, true, true, false, true);
+	_addGuiButton("save", dvec2(-0.8875, 0.95), dvec2(charX * 4.0, charY), gray, white, "Save", false, false, true, true, false, true);
+	_addGuiButton("waveforms", dvec2(-0.825, 0.95), dvec2(charX * 9.0, charY), gray, white, "Waveforms", false, false, true, true, false, true);
+	_addGuiButton("exit", dvec2(-0.7, 0.95), dvec2(charX * 4.0, charY), gray, white, "Exit", false, false, true, true, false, true);
+	_addGuiRectangle("waveforms_menu", dvec2(0.0), dvec2(1.5), gray, true, true, false);
+	_addGuiButton("waveforms_close", dvec2(0.75 - charX, 0.7), dvec2(charX, charY), gray, red, "X", false, false, true, true, false, false);
+	_addGuiButton("waveforms_play", dvec2(-0.75, 0.7), dvec2(charX * 4.0, charY), gray, white, "Play", false, false, true, true, false, false);
+	_addGuiWaveform("waveforms_visual", dvec2(0.0f, 0.375), dvec2(1.25f, 0.75f), white, true, true, false);
 
 	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
 
@@ -56,23 +57,23 @@ void GuiManager::initialize()
 		const string noteId = "waveforms_note" + to_string(index);
 		const string noteName = AudioConstants::NOTE_NAMES[index];
 
-		_createGuiButton(sineDecreaseId, dvec2(positions[index] - charX, -0.35), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
-		_createGuiLabel(sineValueId, dvec2(positions[index], -0.35), dvec2(charX, charY), white, "0", true, false, false);
-		_createGuiButton(sineIncreaseId, dvec2(positions[index] + charX, -0.35), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
-		_createGuiButton(sineToggleId, dvec2(positions[index], -0.4), dvec2(charX * 3.0, charY), gray, white, "SIN", true, false, true, true, true, false);
-		_createGuiButton(squareDecreaseId, dvec2(positions[index] - charX, -0.45), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
-		_createGuiLabel(squareValueId, dvec2(positions[index], -0.45), dvec2(charX, charY), white, "0", true, false, false);
-		_createGuiButton(squareIncreaseId, dvec2(positions[index] + charX, -0.45), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
-		_createGuiButton(squareToggleId, dvec2(positions[index], -0.5), dvec2(charX * 3.0, charY), gray, white, "SQR", true, false, true, true, true, false);
-		_createGuiButton(triangleDecreaseId, dvec2(positions[index] - charX, -0.55), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
-		_createGuiLabel(triangleValueId, dvec2(positions[index], -0.55), dvec2(charX, charY), white, "0", true, false, false);
-		_createGuiButton(triangleIncreaseId, dvec2(positions[index] + charX, -0.55), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
-		_createGuiButton(triangleToggleId, dvec2(positions[index], -0.6), dvec2(charX * 3.0, charY), gray, white, "TRI", true, false, true, true, true, false);
-		_createGuiButton(sawtoothDecreaseId, dvec2(positions[index] - charX, -0.65), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
-		_createGuiLabel(sawtoothValueId, dvec2(positions[index], -0.65), dvec2(charX, charY), white, "0", true, false, false);
-		_createGuiButton(sawtoothIncreaseId, dvec2(positions[index] + charX, -0.65), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
-		_createGuiButton(sawtoothToggleId, dvec2(positions[index], -0.7), dvec2(charX * 3.0, charY), gray, white, "SAW", true, false, true, true, true, false);
-		_createGuiLabel(noteId, dvec2(positions[index], -0.75), dvec2(charX * static_cast<double>(noteName.size()), charY), black, noteName, true, false, false);
+		_addGuiButton(sineDecreaseId, dvec2(positions[index] - charX, -0.35), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
+		_addGuiLabel(sineValueId, dvec2(positions[index], -0.35), dvec2(charX, charY), white, "0", true, false, false);
+		_addGuiButton(sineIncreaseId, dvec2(positions[index] + charX, -0.35), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
+		_addGuiButton(sineToggleId, dvec2(positions[index], -0.4), dvec2(charX * 3.0, charY), gray, white, "SIN", true, false, true, true, true, false);
+		_addGuiButton(squareDecreaseId, dvec2(positions[index] - charX, -0.45), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
+		_addGuiLabel(squareValueId, dvec2(positions[index], -0.45), dvec2(charX, charY), white, "0", true, false, false);
+		_addGuiButton(squareIncreaseId, dvec2(positions[index] + charX, -0.45), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
+		_addGuiButton(squareToggleId, dvec2(positions[index], -0.5), dvec2(charX * 3.0, charY), gray, white, "SQR", true, false, true, true, true, false);
+		_addGuiButton(triangleDecreaseId, dvec2(positions[index] - charX, -0.55), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
+		_addGuiLabel(triangleValueId, dvec2(positions[index], -0.55), dvec2(charX, charY), white, "0", true, false, false);
+		_addGuiButton(triangleIncreaseId, dvec2(positions[index] + charX, -0.55), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
+		_addGuiButton(triangleToggleId, dvec2(positions[index], -0.6), dvec2(charX * 3.0, charY), gray, white, "TRI", true, false, true, true, true, false);
+		_addGuiButton(sawtoothDecreaseId, dvec2(positions[index] - charX, -0.65), dvec2(charX, charY), gray, white, "<", true, false, false, false, false, false);
+		_addGuiLabel(sawtoothValueId, dvec2(positions[index], -0.65), dvec2(charX, charY), white, "0", true, false, false);
+		_addGuiButton(sawtoothIncreaseId, dvec2(positions[index] + charX, -0.65), dvec2(charX, charY), gray, white, ">", true, false, true, true, false, false);
+		_addGuiButton(sawtoothToggleId, dvec2(positions[index], -0.7), dvec2(charX * 3.0, charY), gray, white, "SAW", true, false, true, true, true, false);
+		_addGuiLabel(noteId, dvec2(positions[index], -0.75), dvec2(charX * static_cast<double>(noteName.size()), charY), black, noteName, true, false, false);
 	}
 }
 
@@ -96,34 +97,14 @@ void GuiManager::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 	}
 }
 
-void GuiManager::_createGuiRectangle(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
+void GuiManager::_addGuiRectangle(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
 {
 	if(_isGuiRectangleExisting(id))
 	{
 		abort();
 	}
 
-	shared_ptr<Quad> quad;
-	if(!isHorizontallyCentered && !isVerticallyCentered)
-	{
-		quad = make_shared<Quad>(_corneredVertexBuffer);
-	}
-	else if(isHorizontallyCentered && isVerticallyCentered)
-	{
-		quad = make_shared<Quad>(_centeredVertexBuffer);
-	}
-	else if(isHorizontallyCentered && !isVerticallyCentered)
-	{
-		quad = make_shared<Quad>(_horizontallyCenteredVertexBuffer);
-	}
-	else if(!isHorizontallyCentered && isVerticallyCentered)
-	{
-		quad = make_shared<Quad>(_verticallyCenteredVertexBuffer);
-	}
-
-	quad->setPosition(position);
-	quad->setSize(size);
-	quad->setColor(color);
+	shared_ptr<Quad> quad = _createQuad(position, size, color, isHorizontallyCentered, isVerticallyCentered);
 
 	_quads.push_back(quad);
 
@@ -134,35 +115,14 @@ void GuiManager::_createGuiRectangle(const string & id, const dvec2 & position, 
 	_guiRectangles.insert({id, guiRectangle});
 }
 
-void GuiManager::_createGuiLabel(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
+void GuiManager::_addGuiLabel(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
 {
 	if(_isGuiLabelExisting(id))
 	{
 		abort();
 	}
 
-	shared_ptr<Text> text;
-	if(!isHorizontallyCentered && !isVerticallyCentered)
-	{
-		text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer);
-	}
-	else if(isHorizontallyCentered && isVerticallyCentered)
-	{
-		text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer);
-	}
-	else if(isHorizontallyCentered && !isVerticallyCentered)
-	{
-		text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer);
-	}
-	else if(!isHorizontallyCentered && isVerticallyCentered)
-	{
-		text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer);
-	}
-
-	text->setPosition(position);
-	text->setContent(content);
-	text->setSize(size);
-	text->setColor(color);
+	shared_ptr<Text> text = _createText(position, size, color, content, isHorizontallyCentered, isVerticallyCentered);
 
 	_texts.push_back(text);
 
@@ -173,34 +133,14 @@ void GuiManager::_createGuiLabel(const string & id, const dvec2 & position, cons
 	_guiLabels.insert({id, guiLabel});
 }
 
-void GuiManager::_createGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const dvec3 & textColor, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isTogglable, const bool isVisible)
+void GuiManager::_addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const dvec3 & textColor, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isTogglable, const bool isVisible)
 {
 	if(_isGuiButtonExisting(id))
 	{
 		abort();
 	}
 
-	shared_ptr<Quad> quad;
-	if(!isHorizontallyCentered && !isVerticallyCentered)
-	{
-		quad = make_shared<Quad>(_corneredVertexBuffer);
-	}
-	else if(isHorizontallyCentered && isVerticallyCentered)
-	{
-		quad = make_shared<Quad>(_centeredVertexBuffer);
-	}
-	else if(isHorizontallyCentered && !isVerticallyCentered)
-	{
-		quad = make_shared<Quad>(_horizontallyCenteredVertexBuffer);
-	}
-	else if(!isHorizontallyCentered && isVerticallyCentered)
-	{
-		quad = make_shared<Quad>(_verticallyCenteredVertexBuffer);
-	}
-
-	quad->setPosition(position);
-	quad->setSize(size);
-	quad->setColor(quadColor);
+	shared_ptr<Quad> quad = _createQuad(position, size, quadColor, isHorizontallyCentered, isVerticallyCentered);
 
 	_quads.push_back(quad);
 
@@ -208,27 +148,7 @@ void GuiManager::_createGuiButton(const string & id, const dvec2 & position, con
 
 	if(!content.empty())
 	{
-		if(!isHorizontallyCentered && !isVerticallyCentered)
-		{
-			text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer);
-		}
-		else if(isHorizontallyCentered && isVerticallyCentered)
-		{
-			text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer);
-		}
-		else if(isHorizontallyCentered && !isVerticallyCentered)
-		{
-			text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer);
-		}
-		else if(!isHorizontallyCentered && isVerticallyCentered)
-		{
-			text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer);
-		}
-
-		text->setContent(content);
-		text->setPosition(position);
-		text->setSize(size);
-		text->setColor(textColor);
+		text = _createText(position, size, textColor, content, isHorizontallyCentered, isVerticallyCentered);
 
 		_texts.push_back(text);
 	}
@@ -241,6 +161,93 @@ void GuiManager::_createGuiButton(const string & id, const dvec2 & position, con
 	guiButton->setTogglable(isTogglable);
 
 	_guiButtons.insert({id, guiButton});
+}
+
+void GuiManager::_addGuiWaveform(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
+{
+	if(_isGuiWaveformExisting(id))
+	{
+		abort();
+	}
+
+	shared_ptr<Line> line = _createLine(position, size, color, isHorizontallyCentered, isVerticallyCentered);
+
+	_lines.push_back(line);
+
+	shared_ptr<GuiWaveform> guiWaveform = make_shared<GuiWaveform>(line);
+
+	guiWaveform->setVisible(isVisible);
+
+	_guiWaveforms.insert({id, guiWaveform});
+}
+
+const shared_ptr<Quad> GuiManager::_createQuad(const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered) const
+{
+	const shared_ptr<Quad> quad = make_shared<Quad>();
+
+	if(!isHorizontallyCentered && !isVerticallyCentered)
+	{
+		quad->setVertexBuffer(_corneredVertexBuffer);
+	}
+	else if(isHorizontallyCentered && isVerticallyCentered)
+	{
+		quad->setVertexBuffer(_centeredVertexBuffer);
+	}
+	else if(isHorizontallyCentered && !isVerticallyCentered)
+	{
+		quad->setVertexBuffer(_horizontallyCenteredVertexBuffer);
+	}
+	else if(!isHorizontallyCentered && isVerticallyCentered)
+	{
+		quad->setVertexBuffer(_verticallyCenteredVertexBuffer);
+	}
+
+	quad->setPosition(position);
+	quad->setSize(size);
+	quad->setColor(color);
+
+	return quad;
+}
+
+const shared_ptr<Text> GuiManager::_createText(const dvec2 & position, const dvec2 & size, const dvec3 & color, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered) const
+{
+	const shared_ptr<Text> text = make_shared<Text>();
+
+	if(!isHorizontallyCentered && !isVerticallyCentered)
+	{
+		text->setVertexBuffer(_corneredVertexBuffer);
+	}
+	else if(isHorizontallyCentered && isVerticallyCentered)
+	{
+		text->setVertexBuffer(_centeredVertexBuffer);
+	}
+	else if(isHorizontallyCentered && !isVerticallyCentered)
+	{
+		text->setVertexBuffer(_horizontallyCenteredVertexBuffer);
+	}
+	else if(!isHorizontallyCentered && isVerticallyCentered)
+	{
+		text->setVertexBuffer(_verticallyCenteredVertexBuffer);
+	}
+
+	text->setTextureBuffer(_fontTextureBuffer);
+	text->setContent(content);
+	text->setPosition(position);
+	text->setSize(size);
+	text->setColor(color);
+
+	return text;
+}
+
+const shared_ptr<Line> GuiManager::_createLine(const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered) const
+{
+	const shared_ptr<Line> line = make_shared<Line>();
+
+	line->setPosition(position);
+	line->setSize(size);
+	line->setColor(color);
+
+	return line;
 }
 
 const bool GuiManager::_isGuiRectangleExisting(const string & id) const
@@ -256,6 +263,11 @@ const bool GuiManager::_isGuiLabelExisting(const string & id) const
 const bool GuiManager::_isGuiButtonExisting(const string & id) const
 {
 	return _guiButtons.find(id) != _guiButtons.end();
+}
+
+const bool GuiManager::_isGuiWaveformExisting(const string & id) const
+{
+	return _guiWaveforms.find(id) != _guiWaveforms.end();
 }
 
 void GuiManager::inject(const shared_ptr<ImageLoader> & imageLoader)
@@ -306,4 +318,14 @@ const shared_ptr<GuiButton> & GuiManager::getGuiButton(const string & id) const
 	}
 
 	return _guiButtons.at(id);
+}
+
+const shared_ptr<GuiWaveform> & GuiManager::getGuiWaveform(const string & id) const
+{
+	if(!_isGuiWaveformExisting(id))
+	{
+		abort();
+	}
+
+	return _guiWaveforms.at(id);
 }

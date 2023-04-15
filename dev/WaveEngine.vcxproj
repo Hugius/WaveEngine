@@ -22,6 +22,7 @@
     <ClCompile Include="..\src\gui_label.cpp" />
     <ClCompile Include="..\src\gui_manager.cpp" />
     <ClCompile Include="..\src\gui_rectangle.cpp" />
+    <ClCompile Include="..\src\gui_waveform.cpp" />
     <ClCompile Include="..\src\image.cpp" />
     <ClCompile Include="..\src\image_loader.cpp" />
     <ClCompile Include="..\src\input_handler.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="..\src\gui_label.hpp" />
     <ClInclude Include="..\src\gui_manager.hpp" />
     <ClInclude Include="..\src\gui_rectangle.hpp" />
+    <ClInclude Include="..\src\gui_waveform.hpp" />
     <ClInclude Include="..\src\image.hpp" />
     <ClInclude Include="..\src\image_loader.hpp" />
     <ClInclude Include="..\src\input_handler.hpp" />

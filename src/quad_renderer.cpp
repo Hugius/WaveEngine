@@ -9,8 +9,6 @@ QuadRenderer::QuadRenderer()
 
 void QuadRenderer::render(const vector<shared_ptr<Quad>> & quads)
 {
-	glEnable(GL_BLEND);
-
 	_shaderBuffer->bind();
 
 	for(const shared_ptr<Quad> & quad : quads)
@@ -19,8 +17,6 @@ void QuadRenderer::render(const vector<shared_ptr<Quad>> & quads)
 	}
 
 	_shaderBuffer->unbind();
-
-	glDisable(GL_BLEND);
 }
 
 void QuadRenderer::render(const vector<shared_ptr<Text>> & texts)
@@ -63,9 +59,12 @@ void QuadRenderer::_renderQuad(const shared_ptr<Quad> & quad)
 		glBindTexture(GL_TEXTURE_2D, quad->getTexture()->getTboId());
 	}
 
-	glBindVertexArray(quad->getVertexBuffer()->getVaoId());
-	glDrawArrays(GL_TRIANGLES, 0, quad->getVertexBuffer()->getVertexCount());
-	glBindVertexArray(0);
+	if(quad->getVertexBuffer() != nullptr)
+	{
+		glBindVertexArray(quad->getVertexBuffer()->getVaoId());
+		glDrawArrays(GL_TRIANGLES, 0, quad->getVertexBuffer()->getVertexCount());
+		glBindVertexArray(0);
+	}
 
 	if(quad->getTexture() != nullptr)
 	{

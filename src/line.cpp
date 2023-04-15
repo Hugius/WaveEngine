@@ -1,22 +1,17 @@
 #include "line.hpp"
 #include "mathematics.hpp"
 
-Line::Line(const shared_ptr<VertexBuffer> & vertexBuffer)
-	:
-	_vertexBuffer(vertexBuffer)
-{
-	if(vertexBuffer == nullptr)
-	{
-		abort();
-	}
-}
-
 void Line::update()
 {
 	const dmat33 translationMatrix = Mathematics::createTranslationMatrix(_position.x, _position.y);
 	const dmat33 scalingMatrix = Mathematics::createScalingMatrix(_size.x, _size.y);
 
 	_transformation = (translationMatrix * scalingMatrix);
+}
+
+void Line::setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer)
+{
+	_vertexBuffer = vertexBuffer;
 }
 
 void Line::setColor(const dvec3 & value)

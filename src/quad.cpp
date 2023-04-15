@@ -3,24 +3,17 @@
 
 #include <algorithm>
 
-using std::make_shared;
-
-Quad::Quad(const shared_ptr<VertexBuffer> & vertexBuffer)
-	:
-	_vertexBuffer(vertexBuffer)
-{
-	if(vertexBuffer == nullptr)
-	{
-		abort();
-	}
-}
-
 void Quad::update()
 {
 	const dmat33 translationMatrix = Mathematics::createTranslationMatrix(_position.x, _position.y);
 	const dmat33 scalingMatrix = Mathematics::createScalingMatrix(_size.x, _size.y);
 
 	_transformation = (translationMatrix * scalingMatrix);
+}
+
+void Quad::setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer)
+{
+	_vertexBuffer = vertexBuffer;
 }
 
 void Quad::setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer)

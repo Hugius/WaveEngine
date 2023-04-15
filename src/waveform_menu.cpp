@@ -241,6 +241,7 @@ void WaveformMenu::_setGuiVisible(const bool value)
 	_guiManager->getGuiRectangle("waveforms_menu")->setVisible(value);
 	_guiManager->getGuiButton("waveforms_close")->setVisible(value);
 	_guiManager->getGuiButton("waveforms_play")->setVisible(value);
+	_guiManager->getGuiWaveform("waveforms_visual")->setVisible(value);
 
 	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 	{

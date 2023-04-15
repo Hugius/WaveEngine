@@ -11,9 +11,9 @@ using std::vector;
 class Text final
 {
 public:
-	Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer);
-
 	void update();
+	void setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer);
+	void setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer);
 	void setOpacity(const double value);
 	void setColor(const dvec3 & value);
 	void setPosition(const dvec2 & value);
@@ -127,10 +127,10 @@ private:
 	static inline const int FONT_MAP_ROW_COUNT = 6;
 	static inline const int FONT_MAP_COLUMN_COUNT = 16;
 
-	const shared_ptr<VertexBuffer> _vertexBuffer;
-	const shared_ptr<TextureBuffer> _textureBuffer;
-
 	vector<shared_ptr<Quad>> _quads = {};
+
+	shared_ptr<VertexBuffer> _vertexBuffer = nullptr;
+	shared_ptr<TextureBuffer> _textureBuffer = nullptr;
 
 	string _content = "";
 

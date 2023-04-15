@@ -13,9 +13,8 @@ using std::shared_ptr;
 class Quad final
 {
 public:
-	Quad(const shared_ptr<VertexBuffer> & vertexBuffer);
-
 	void update();
+	void setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer);
 	void setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer);
 	void setOpacity(const double value);
 	void setColor(const dvec3 & value);
@@ -44,9 +43,8 @@ public:
 	const bool isVisible() const;
 
 private:
-	const shared_ptr<VertexBuffer> _vertexBuffer;
-
-	shared_ptr<TextureBuffer> _textureBuffer;
+	shared_ptr<VertexBuffer> _vertexBuffer = nullptr;
+	shared_ptr<TextureBuffer> _textureBuffer = nullptr;
 
 	dmat33 _transformation = dmat33(1.0);
 
