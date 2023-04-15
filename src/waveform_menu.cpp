@@ -65,8 +65,7 @@ void WaveformMenu::_updatePlayback()
 {
 	if(_guiManager->getGuiButton("waveforms_play")->isPressed())
 	{
-		vector<shared_ptr<Audio>> playbackWaveforms = {};
-		vector<shared_ptr<Audio>> visualizationWaveforms = {};
+		vector<shared_ptr<Audio>> waveforms = {};
 
 		for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 		{
@@ -76,41 +75,33 @@ void WaveformMenu::_updatePlayback()
 			if(_guiManager->getGuiButton("waveforms_sin_txt" + to_string(index))->isToggled())
 			{
 				const double amplitude = static_cast<double>(_sineAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Audio> playbackWaveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency);
-				const shared_ptr<Audio> visualizationWaveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency / VISUALIZATION_FREQUENCY_DIVIDER);
+				const shared_ptr<Audio> waveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency);
 
-				playbackWaveforms.push_back(playbackWaveform);
-				visualizationWaveforms.push_back(visualizationWaveform);
+				waveforms.push_back(waveform);
 			}
 
 			if(_guiManager->getGuiButton("waveforms_sqr_txt" + to_string(index))->isToggled())
 			{
 				const double amplitude = static_cast<double>(_squareAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Audio> playbackWaveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency);
-				const shared_ptr<Audio> visualizationWaveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency / VISUALIZATION_FREQUENCY_DIVIDER);
+				const shared_ptr<Audio> waveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency);
 
-				playbackWaveforms.push_back(playbackWaveform);
-				visualizationWaveforms.push_back(visualizationWaveform);
+				waveforms.push_back(waveform);
 			}
 
 			if(_guiManager->getGuiButton("waveforms_tri_txt" + to_string(index))->isToggled())
 			{
 				const double amplitude = static_cast<double>(_triangleAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Audio> playbackWaveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency);
-				const shared_ptr<Audio> visualizationWaveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency / VISUALIZATION_FREQUENCY_DIVIDER);
+				const shared_ptr<Audio> waveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency);
 
-				playbackWaveforms.push_back(playbackWaveform);
-				visualizationWaveforms.push_back(visualizationWaveform);
+				waveforms.push_back(waveform);
 			}
 
 			if(_guiManager->getGuiButton("waveforms_saw_txt" + to_string(index))->isToggled())
 			{
 				const double amplitude = static_cast<double>(_sawtoothAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Audio> playbackWaveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency);
-				const shared_ptr<Audio> visualizationWaveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency / VISUALIZATION_FREQUENCY_DIVIDER);
+				const shared_ptr<Audio> waveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency);
 
-				playbackWaveforms.push_back(playbackWaveform);
-				visualizationWaveforms.push_back(visualizationWaveform);
+				waveforms.push_back(waveform);
 			}
 		}
 
@@ -119,19 +110,11 @@ void WaveformMenu::_updatePlayback()
 			_audioPlayer->stop();
 		}
 
-		if(!playbackWaveforms.empty())
+		if(!waveforms.empty())
 		{
-			const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(playbackWaveforms);
+			const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(waveforms);
 
 			_audioPlayer->start(waveform);
-		}
-
-		if(!visualizationWaveforms.empty())
-		{
-			const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(visualizationWaveforms);
-			const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
-
-			_guiManager->getGuiWaveform("waveforms_visualization")->setSamples(samples);
 		}
 	}
 }
@@ -150,6 +133,8 @@ void WaveformMenu::_updateNotes()
 
 		_guiManager->getGuiButton("waveforms_oct_incr")->setPressable(true);
 		_guiManager->getGuiButton("waveforms_oct_incr")->setHoverable(true);
+
+		_refreshWaveformVisualization();
 	}
 	else if(_guiManager->getGuiButton("waveforms_oct_incr")->isPressed())
 	{
@@ -163,6 +148,8 @@ void WaveformMenu::_updateNotes()
 
 		_guiManager->getGuiButton("waveforms_oct_decr")->setPressable(true);
 		_guiManager->getGuiButton("waveforms_oct_decr")->setHoverable(true);
+
+		_refreshWaveformVisualization();
 	}
 
 	_guiManager->getGuiLabel("waveforms_oct_val")->setContent(to_string(_octave));
@@ -181,6 +168,8 @@ void WaveformMenu::_updateNotes()
 
 			_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->isPressed())
 		{
@@ -194,6 +183,8 @@ void WaveformMenu::_updateNotes()
 
 			_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->isPressed())
 		{
@@ -207,6 +198,8 @@ void WaveformMenu::_updateNotes()
 
 			_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->isPressed())
 		{
@@ -220,6 +213,8 @@ void WaveformMenu::_updateNotes()
 
 			_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->isPressed())
 		{
@@ -233,6 +228,8 @@ void WaveformMenu::_updateNotes()
 
 			_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->isPressed())
 		{
@@ -246,6 +243,8 @@ void WaveformMenu::_updateNotes()
 
 			_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->isPressed())
 		{
@@ -259,6 +258,8 @@ void WaveformMenu::_updateNotes()
 
 			_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->isPressed())
 		{
@@ -272,6 +273,8 @@ void WaveformMenu::_updateNotes()
 
 			_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
 		}
 
 		_guiManager->getGuiLabel("waveforms_sin_val" + to_string(index))->setContent(to_string(_sineAmplitudes[index]));
@@ -329,5 +332,72 @@ void WaveformMenu::_setGuiVisible(const bool value)
 		_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setVisible(value);
 		_guiManager->getGuiButton("waveforms_saw_txt" + to_string(index))->setVisible(value);
 		_guiManager->getGuiLabel("waveforms_note" + to_string(index))->setVisible(value);
+	}
+}
+
+void WaveformMenu::_refreshWaveformVisualization()
+{
+	vector<shared_ptr<Audio>> waveforms = {};
+
+	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
+	{
+		const double frequency = AudioConstants::NOTE_FREQUENCIES[index] * pow(2.0, static_cast<double>(_octave));
+		const int duration = 100;
+
+		if(_guiManager->getGuiButton("waveforms_sin_txt" + to_string(index))->isToggled())
+		{
+			if(_sineAmplitudes[index] != 0)
+			{
+				const double amplitude = static_cast<double>(_sineAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const shared_ptr<Audio> waveform = _waveformGenerator->generateSineWaveform(duration / VISUALIZATION_DURATION_DIVIDER, amplitude, frequency);
+
+				waveforms.push_back(waveform);
+			}
+		}
+
+		if(_guiManager->getGuiButton("waveforms_sqr_txt" + to_string(index))->isToggled())
+		{
+			if(_squareAmplitudes[index] != 0)
+			{
+				const double amplitude = static_cast<double>(_squareAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const shared_ptr<Audio> waveform = _waveformGenerator->generateSquareWaveform(duration / VISUALIZATION_DURATION_DIVIDER, amplitude, frequency);
+
+				waveforms.push_back(waveform);
+			}
+		}
+
+		if(_guiManager->getGuiButton("waveforms_tri_txt" + to_string(index))->isToggled())
+		{
+			if(_triangleAmplitudes[index] != 0)
+			{
+				const double amplitude = static_cast<double>(_triangleAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const shared_ptr<Audio> waveform = _waveformGenerator->generateTriangleWaveform(duration / VISUALIZATION_DURATION_DIVIDER, amplitude, frequency);
+
+				waveforms.push_back(waveform);
+			}
+		}
+
+		if(_guiManager->getGuiButton("waveforms_saw_txt" + to_string(index))->isToggled())
+		{
+			if(_sawtoothAmplitudes[index] != 0)
+			{
+				const double amplitude = static_cast<double>(_sawtoothAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const shared_ptr<Audio> waveform = _waveformGenerator->generateSawtoothWaveform(duration / VISUALIZATION_DURATION_DIVIDER, amplitude, frequency);
+
+				waveforms.push_back(waveform);
+			}
+		}
+	}
+
+	if(waveforms.empty())
+	{
+		_guiManager->getGuiWaveform("waveforms_visualization")->setSamples({0.0f, 0.0f});
+	}
+	else
+	{
+		const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(waveforms);
+		const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
+
+		_guiManager->getGuiWaveform("waveforms_visualization")->setSamples(samples);
 	}
 }

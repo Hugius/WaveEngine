@@ -100,7 +100,9 @@ VertexBuffer::VertexBuffer(const vector<dvec2> & vertices, const bool isHorizont
 		abort();
 	}
 
-	double * data = new double[_vertexCount * 2];
+	const int dataCount = _vertexCount * 2;
+
+	double * data = new double[dataCount];
 
 	for(int index = 0; index < _vertexCount; index++)
 	{
@@ -130,7 +132,7 @@ VertexBuffer::VertexBuffer(const vector<dvec2> & vertices, const bool isHorizont
 	glGenBuffers(1, &_vboId);
 	glBindVertexArray(_vaoId);
 	glBindBuffer(GL_ARRAY_BUFFER, _vboId);
-	glBufferData(GL_ARRAY_BUFFER, _vertexCount * 2 * sizeof(double), data, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, dataCount * sizeof(double), data, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribLPointer(0, 2, GL_DOUBLE, 2 * sizeof(double), reinterpret_cast<void *>(0 * sizeof(double)));
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

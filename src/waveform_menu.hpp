@@ -20,9 +20,11 @@ private:
 	void _updatePlayback();
 	void _updateNotes();
 	void _setGuiVisible(const bool value);
+	void _refreshWaveformVisualization();
 
 	static inline const double OCTAVE_AMPLITUDE_STEP = 1000.0;
-	static inline const double VISUALIZATION_FREQUENCY_DIVIDER = 10.0;
+
+	static inline const int VISUALIZATION_DURATION_DIVIDER = 10;
 
 	vector<int> _sineAmplitudes = {};
 	vector<int> _squareAmplitudes = {};

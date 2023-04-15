@@ -27,15 +27,21 @@ void GuiWaveform::setVisible(const bool value)
 
 void GuiWaveform::setSamples(const vector<double> & samples)
 {
+	if(samples.size() < 2)
+	{
+		abort();
+	}
+
 	const shared_ptr<VertexBuffer> oldVertexBuffer = _line->getVertexBuffer();
 	const double amplitude = *max_element(begin(samples), end(samples));
+	const int sampleCount = static_cast<int>(samples.size());
 
 	vector<dvec2> vertices = {};
 
-	for(int index = 0; index < static_cast<int>(samples.size()); index++)
+	for(int index = 0; index < sampleCount; index++)
 	{
-		const double x = -1.0 + static_cast<double>(index) / static_cast<double>(samples.size()) * 2.0;
-		const double y = samples[index] / amplitude;
+		const double x = -1.0 + static_cast<double>(index) / static_cast<double>(sampleCount - 1) * 2.0; // Convert to NDC
+		const double y = samples[index] / (amplitude == 0.0f ? 1.0f : amplitude); // Prevent nan
 
 		vertices.push_back(dvec2(x, y));
 	}
