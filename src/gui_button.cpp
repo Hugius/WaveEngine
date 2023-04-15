@@ -27,6 +27,17 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 
 	_updateHovering(cursorPosition);
 
+	if(!_isToggled && !wasHovered && _isHovered)
+	{
+		_quad->setColor(dvec3(1.0f) - _originalQuadColor);
+		_text->setColor(dvec3(1.0f) - _originalTextColor);
+	}
+	else if(!_isToggled && wasHovered && !_isHovered)
+	{
+		_quad->setColor(_originalQuadColor);
+		_text->setColor(_originalTextColor);
+	}
+
 	if(_isHovered)
 	{
 		Tools::setCursorType(CursorType::HAND);
@@ -43,17 +54,6 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 				_isToggled = !_isToggled;
 			}
 		}
-	}
-
-	if(!_isToggled && !wasHovered && _isHovered)
-	{
-		_quad->setColor(dvec3(1.0f) - _originalQuadColor);
-		_text->setColor(dvec3(1.0f) - _originalTextColor);
-	}
-	else if(!_isToggled && wasHovered && !_isHovered)
-	{
-		_quad->setColor(_originalQuadColor);
-		_text->setColor(_originalTextColor);
 	}
 
 	_quad->update();
