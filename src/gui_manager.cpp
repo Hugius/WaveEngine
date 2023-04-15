@@ -17,6 +17,7 @@ void GuiManager::initialize()
 	const dvec3 white = dvec3(1.0);
 	const dvec3 black = dvec3(0.0);
 	const dvec3 gray = dvec3(0.25);
+	const dvec3 darkGray = dvec3(0.15);
 	const dvec3 red = dvec3(1.0, 0.0, 0.0);
 	const dvec3 blue = dvec3(0.25, 0.25, 0.5);
 	const double charX = 0.0125;
@@ -31,8 +32,12 @@ void GuiManager::initialize()
 	_addGuiButton("exit", dvec2(-0.7, 0.95), dvec2(charX * 4.0, charY), gray, white, "Exit", false, false, true, true, false, true);
 	_addGuiRectangle("waveforms_menu", dvec2(0.0), dvec2(1.5), gray, true, true, false);
 	_addGuiButton("waveforms_close", dvec2(0.75 - charX, 0.7), dvec2(charX, charY), gray, red, "X", false, false, true, true, false, false);
-	_addGuiButton("waveforms_play", dvec2(-0.75, 0.7), dvec2(charX * 4.0, charY), gray, white, "Play", false, false, true, true, false, false);
-	_addGuiWaveform("waveforms_visualization", dvec2(0.0f, 0.25), dvec2(1.475f, 0.5f), white, true, true, false);
+	_addGuiWaveform("waveforms_visualization", dvec2(0.0f, 0.5 - charY), dvec2(1.475f, 0.5f - charY / 2.0), white, true, true, false);
+	_addGuiButton("waveforms_play", dvec2(0.0, 0.0f), dvec2(charX * 4.0, charY), darkGray, white, "Play", true, true, true, true, false, false);
+	_addGuiButton("waveforms_oct_decr", dvec2(0.0 - charX, -0.25 + charY), dvec2(charX, charY), gray, white, "<", true, true, true, true, false, false);
+	_addGuiLabel("waveforms_oct_val", dvec2(0.0, -0.25 + charY), dvec2(charX, charY), white, "0", true, true, false);
+	_addGuiButton("waveforms_oct_incr", dvec2(0.0 + charX, -0.25 + charY), dvec2(charX, charY), gray, white, ">", true, true, true, true, false, false);
+	_addGuiLabel("waveforms_oct_name", dvec2(0.0, -0.25), dvec2(charX * 6.0, charY), white, "Octave", true, true, false);
 
 	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
 
@@ -41,19 +46,19 @@ void GuiManager::initialize()
 		const string sineDecreaseId = "waveforms_sin_decr" + to_string(index);
 		const string sineValueId = "waveforms_sin_val" + to_string(index);
 		const string sineIncreaseId = "waveforms_sin_incr" + to_string(index);
-		const string sineToggleId = "waveforms_sin_tgl" + to_string(index);
+		const string sineToggleId = "waveforms_sin_txt" + to_string(index);
 		const string squareDecreaseId = "waveforms_sqr_decr" + to_string(index);
 		const string squareValueId = "waveforms_sqr_val" + to_string(index);
 		const string squareIncreaseId = "waveforms_sqr_incr" + to_string(index);
-		const string squareToggleId = "waveforms_sqr_tgl" + to_string(index);
+		const string squareToggleId = "waveforms_sqr_txt" + to_string(index);
 		const string triangleDecreaseId = "waveforms_tri_decr" + to_string(index);
 		const string triangleValueId = "waveforms_tri_val" + to_string(index);
 		const string triangleIncreaseId = "waveforms_tri_incr" + to_string(index);
-		const string triangleToggleId = "waveforms_tri_tgl" + to_string(index);
+		const string triangleToggleId = "waveforms_tri_txt" + to_string(index);
 		const string sawtoothDecreaseId = "waveforms_saw_decr" + to_string(index);
 		const string sawtoothValueId = "waveforms_saw_val" + to_string(index);
 		const string sawtoothIncreaseId = "waveforms_saw_incr" + to_string(index);
-		const string sawtoothToggleId = "waveforms_saw_tgl" + to_string(index);
+		const string sawtoothToggleId = "waveforms_saw_txt" + to_string(index);
 		const string noteId = "waveforms_note" + to_string(index);
 		const string noteName = AudioConstants::NOTE_NAMES[index];
 
