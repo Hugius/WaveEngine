@@ -95,9 +95,12 @@ VertexBuffer::VertexBuffer(const vector<dvec2> & vertices, const bool isHorizont
 	_isHorizontallyCentered(isHorizontallyCentered),
 	_isVerticallyCentered(isVerticallyCentered)
 {
-	const int dataCount = static_cast<int>(vertices.size()) * 2;
+	if(_vertexCount < 2)
+	{
+		abort();
+	}
 
-	double * data = new double[dataCount];
+	double * data = new double[_vertexCount * 2];
 
 	for(int index = 0; index < _vertexCount; index++)
 	{
@@ -127,7 +130,7 @@ VertexBuffer::VertexBuffer(const vector<dvec2> & vertices, const bool isHorizont
 	glGenBuffers(1, &_vboId);
 	glBindVertexArray(_vaoId);
 	glBindBuffer(GL_ARRAY_BUFFER, _vboId);
-	glBufferData(GL_ARRAY_BUFFER, dataCount * sizeof(double), data, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, _vertexCount * 2 * sizeof(double), data, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribLPointer(0, 2, GL_DOUBLE, 2 * sizeof(double), reinterpret_cast<void *>(0 * sizeof(double)));
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

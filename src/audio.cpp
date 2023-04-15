@@ -2,7 +2,37 @@
 
 Audio::Audio(const unsigned char * bytes, const int byteCount, const int channelCount, const int samplesPerSecond, const int bytesPerSecond, const int bytesPerBlock, const int bitsPerSample)
 {
-	if(bytes == nullptr || byteCount < 1 || channelCount < 1 || samplesPerSecond < 1 || bytesPerSecond < 1 || bytesPerBlock < 1 || bitsPerSample < 1)
+	if(bytes == nullptr)
+	{
+		abort();
+	}
+
+	if(byteCount < 1)
+	{
+		abort();
+	}
+
+	if(channelCount < 1)
+	{
+		abort();
+	}
+
+	if(samplesPerSecond < 1)
+	{
+		abort();
+	}
+
+	if(bytesPerSecond < 1)
+	{
+		abort();
+	}
+
+	if(bytesPerBlock < 1)
+	{
+		abort();
+	}
+
+	if(bitsPerSample < 1)
 	{
 		abort();
 	}

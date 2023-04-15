@@ -12,14 +12,15 @@ using std::vector;
 class WaveformGenerator final
 {
 public:
-	const shared_ptr<Audio> generateSineWave(const int duration, const double amplitude, const double frequency) const;
-	const shared_ptr<Audio> generateSquareWave(const int duration, const double amplitude, const double frequency) const;
-	const shared_ptr<Audio> generateTriangleWave(const int duration, const double amplitude, const double frequency) const;
-	const shared_ptr<Audio> generateSawtoothWave(const int duration, const double amplitude, const double frequency) const;
-	const shared_ptr<Audio> combineSoundWaves(const vector<shared_ptr<Audio>> & soundWaves) const;
+	const shared_ptr<Audio> generateSineWaveform(const int duration, const double amplitude, const double frequency) const;
+	const shared_ptr<Audio> generateSquareWaveform(const int duration, const double amplitude, const double frequency) const;
+	const shared_ptr<Audio> generateTriangleWaveform(const int duration, const double amplitude, const double frequency) const;
+	const shared_ptr<Audio> generateSawtoothWaveform(const int duration, const double amplitude, const double frequency) const;
+	const shared_ptr<Audio> combineWaveforms(const vector<shared_ptr<Audio>> & waveforms) const;
+	const vector<double> extractSamplesFromWaveform(const shared_ptr<Audio> & waveform);
 
 private:
-	const shared_ptr<Audio> _generateSoundWave(const int duration, const double amplitude, const double frequency, const WaveformType type) const;
+	const shared_ptr<Audio> _generateWaveform(const int duration, const double amplitude, const double frequency, const WaveformType type) const;
 
 	static inline const int CHANNEL_COUNT = 2;
 	static inline const int SAMPLES_PER_SECOND = 44100;

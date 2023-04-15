@@ -32,7 +32,7 @@ void GuiManager::initialize()
 	_addGuiRectangle("waveforms_menu", dvec2(0.0), dvec2(1.5), gray, true, true, false);
 	_addGuiButton("waveforms_close", dvec2(0.75 - charX, 0.7), dvec2(charX, charY), gray, red, "X", false, false, true, true, false, false);
 	_addGuiButton("waveforms_play", dvec2(-0.75, 0.7), dvec2(charX * 4.0, charY), gray, white, "Play", false, false, true, true, false, false);
-	_addGuiWaveform("waveforms_visual", dvec2(0.0f, 0.375), dvec2(1.25f, 0.75f), white, true, true, false);
+	_addGuiWaveform("waveforms_visualization", dvec2(0.0f, 0.25), dvec2(1.475f, 0.5f), white, true, true, false);
 
 	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
 
@@ -94,6 +94,11 @@ void GuiManager::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 	for(const auto & [guiButtonId, guiButton] : _guiButtons)
 	{
 		guiButton->update(cursorPosition, isLmbPressed);
+	}
+
+	for(const auto & [guiWaveformId, guiWaveform] : _guiWaveforms)
+	{
+		guiWaveform->update();
 	}
 }
 
@@ -242,7 +247,10 @@ const shared_ptr<Text> GuiManager::_createText(const dvec2 & position, const dve
 const shared_ptr<Line> GuiManager::_createLine(const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered) const
 {
 	const shared_ptr<Line> line = make_shared<Line>();
+	const vector<dvec2> vertices = {dvec2(-1.0f, 0.0), dvec2(1.0f, 0.0)};
+	const shared_ptr<VertexBuffer> vertexBuffer = make_shared<VertexBuffer>(vertices, isHorizontallyCentered, isVerticallyCentered);
 
+	line->setVertexBuffer(vertexBuffer);
 	line->setPosition(position);
 	line->setSize(size);
 	line->setColor(color);

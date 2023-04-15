@@ -56,16 +56,17 @@ void WaveformMenu::update()
 
 	if(_isEnabled)
 	{
-		_updatePlaying();
+		_updatePlayback();
 		_updateNotes();
 	}
 }
 
-void WaveformMenu::_updatePlaying()
+void WaveformMenu::_updatePlayback()
 {
 	if(_guiManager->getGuiButton("waveforms_play")->isPressed())
 	{
-		vector<shared_ptr<Audio>> soundWaves = {};
+		vector<shared_ptr<Audio>> playbackWaveforms = {};
+		vector<shared_ptr<Audio>> visualizationWaveforms = {};
 
 		for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 		{
@@ -74,19 +75,42 @@ void WaveformMenu::_updatePlaying()
 
 			if(_guiManager->getGuiButton("waveforms_sin_tgl" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateSineWave(duration, static_cast<double>(_sineAmplitudes[index]) * AMPLITUDE_STEP, frequency));
+				const double amplitude = static_cast<double>(_sineAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const shared_ptr<Audio> playbackWaveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency);
+				const shared_ptr<Audio> visualizationWaveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency / VISUALIZATION_FREQUENCY_DIVIDER);
+
+				playbackWaveforms.push_back(playbackWaveform);
+				visualizationWaveforms.push_back(visualizationWaveform);
 			}
+
 			if(_guiManager->getGuiButton("waveforms_sqr_tgl" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateSquareWave(duration, static_cast<double>(_squareAmplitudes[index]) * AMPLITUDE_STEP, frequency));
+				const double amplitude = static_cast<double>(_squareAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const shared_ptr<Audio> playbackWaveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency);
+				const shared_ptr<Audio> visualizationWaveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency / VISUALIZATION_FREQUENCY_DIVIDER);
+
+				playbackWaveforms.push_back(playbackWaveform);
+				visualizationWaveforms.push_back(visualizationWaveform);
 			}
+
 			if(_guiManager->getGuiButton("waveforms_tri_tgl" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateTriangleWave(duration, static_cast<double>(_triangleAmplitudes[index]) * AMPLITUDE_STEP, frequency));
+				const double amplitude = static_cast<double>(_triangleAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const shared_ptr<Audio> playbackWaveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency);
+				const shared_ptr<Audio> visualizationWaveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency / VISUALIZATION_FREQUENCY_DIVIDER);
+
+				playbackWaveforms.push_back(playbackWaveform);
+				visualizationWaveforms.push_back(visualizationWaveform);
 			}
+
 			if(_guiManager->getGuiButton("waveforms_saw_tgl" + to_string(index))->isToggled())
 			{
-				soundWaves.push_back(_waveformGenerator->generateSawtoothWave(duration, static_cast<double>(_sawtoothAmplitudes[index]) * AMPLITUDE_STEP, frequency));
+				const double amplitude = static_cast<double>(_sawtoothAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const shared_ptr<Audio> playbackWaveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency);
+				const shared_ptr<Audio> visualizationWaveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency / VISUALIZATION_FREQUENCY_DIVIDER);
+
+				playbackWaveforms.push_back(playbackWaveform);
+				visualizationWaveforms.push_back(visualizationWaveform);
 			}
 		}
 
@@ -95,9 +119,19 @@ void WaveformMenu::_updatePlaying()
 			_audioPlayer->stop();
 		}
 
-		if(!soundWaves.empty())
+		if(!playbackWaveforms.empty())
 		{
-			_audioPlayer->start(_waveformGenerator->combineSoundWaves(soundWaves));
+			const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(playbackWaveforms);
+
+			_audioPlayer->start(waveform);
+		}
+
+		if(!visualizationWaveforms.empty())
+		{
+			const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(visualizationWaveforms);
+			const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
+
+			_guiManager->getGuiWaveform("waveforms_visualization")->setSamples(samples);
 		}
 	}
 }
@@ -241,7 +275,7 @@ void WaveformMenu::_setGuiVisible(const bool value)
 	_guiManager->getGuiRectangle("waveforms_menu")->setVisible(value);
 	_guiManager->getGuiButton("waveforms_close")->setVisible(value);
 	_guiManager->getGuiButton("waveforms_play")->setVisible(value);
-	_guiManager->getGuiWaveform("waveforms_visual")->setVisible(value);
+	_guiManager->getGuiWaveform("waveforms_visualization")->setVisible(value);
 
 	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 	{

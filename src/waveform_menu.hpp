@@ -17,11 +17,12 @@ public:
 	void update();
 
 private:
-	void _updatePlaying();
+	void _updatePlayback();
 	void _updateNotes();
 	void _setGuiVisible(const bool value);
 
-	static inline double AMPLITUDE_STEP = 1000.0;
+	static inline const double OCTAVE_AMPLITUDE_STEP = 1000.0;
+	static inline const double VISUALIZATION_FREQUENCY_DIVIDER = 10.0;
 
 	vector<int> _sineAmplitudes = {};
 	vector<int> _squareAmplitudes = {};

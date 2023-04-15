@@ -7,27 +7,27 @@
 
 using std::make_shared;
 
-const shared_ptr<Audio> WaveformGenerator::generateSineWave(const int duration, const double amplitude, const double frequency) const
+const shared_ptr<Audio> WaveformGenerator::generateSineWaveform(const int duration, const double amplitude, const double frequency) const
 {
-	return _generateSoundWave(duration, amplitude, frequency, WaveformType::SINE);
+	return _generateWaveform(duration, amplitude, frequency, WaveformType::SINE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::generateSquareWave(const int duration, const double amplitude, const double frequency) const
+const shared_ptr<Audio> WaveformGenerator::generateSquareWaveform(const int duration, const double amplitude, const double frequency) const
 {
-	return _generateSoundWave(duration, amplitude, frequency, WaveformType::SQUARE);
+	return _generateWaveform(duration, amplitude, frequency, WaveformType::SQUARE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::generateTriangleWave(const int duration, const double amplitude, const double frequency) const
+const shared_ptr<Audio> WaveformGenerator::generateTriangleWaveform(const int duration, const double amplitude, const double frequency) const
 {
-	return _generateSoundWave(duration, amplitude, frequency, WaveformType::TRIANGLE);
+	return _generateWaveform(duration, amplitude, frequency, WaveformType::TRIANGLE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::generateSawtoothWave(const int duration, const double amplitude, const double frequency) const
+const shared_ptr<Audio> WaveformGenerator::generateSawtoothWaveform(const int duration, const double amplitude, const double frequency) const
 {
-	return _generateSoundWave(duration, amplitude, frequency, WaveformType::SAWTOOTH);
+	return _generateWaveform(duration, amplitude, frequency, WaveformType::SAWTOOTH);
 }
 
-const shared_ptr<Audio> WaveformGenerator::_generateSoundWave(const int duration, const double amplitude, const double frequency, const WaveformType type) const
+const shared_ptr<Audio> WaveformGenerator::_generateWaveform(const int duration, const double amplitude, const double frequency, const WaveformType type) const
 {
 	if(duration < 0)
 	{
@@ -97,22 +97,22 @@ const shared_ptr<Audio> WaveformGenerator::_generateSoundWave(const int duration
 	return make_shared<Audio>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared_ptr<Audio>> & soundWaves) const
+const shared_ptr<Audio> WaveformGenerator::combineWaveforms(const vector<shared_ptr<Audio>> & waveforms) const
 {
-	if(soundWaves.empty())
+	if(waveforms.empty())
 	{
 		abort();
 	}
 
-	for(const shared_ptr<Audio> & soundWave : soundWaves)
+	for(const shared_ptr<Audio> & waveform : waveforms)
 	{
-		if(soundWave->getHeader()->dwBufferLength != soundWaves.front()->getHeader()->dwBufferLength)
+		if(waveform->getHeader()->dwBufferLength != waveforms.front()->getHeader()->dwBufferLength)
 		{
 			abort();
 		}
 	}
 
-	const int byteCount = soundWaves.front()->getHeader()->dwBufferLength;
+	const int byteCount = waveforms.front()->getHeader()->dwBufferLength;
 	const int sampleCount = byteCount / BYTES_PER_BLOCK;
 	unsigned char * bytes = new unsigned char[byteCount];
 
@@ -121,10 +121,10 @@ const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared
 		const int byteIndex = index * BYTES_PER_BLOCK;
 		short newBytePair = 0;
 
-		for(const shared_ptr<Audio> & soundWave : soundWaves)
+		for(const shared_ptr<Audio> & waveform : waveforms)
 		{
-			const unsigned char firstByte = soundWave->getHeader()->lpData[byteIndex + 0];
-			const unsigned char secondByte = soundWave->getHeader()->lpData[byteIndex + 1];
+			const unsigned char firstByte = waveform->getHeader()->lpData[byteIndex + 0];
+			const unsigned char secondByte = waveform->getHeader()->lpData[byteIndex + 1];
 			const short bytePair = static_cast<short>(firstByte | secondByte << 8);
 
 			newBytePair += bytePair;
@@ -140,4 +140,23 @@ const shared_ptr<Audio> WaveformGenerator::combineSoundWaves(const vector<shared
 	}
 
 	return make_shared<Audio>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
+}
+
+const vector<double> WaveformGenerator::extractSamplesFromWaveform(const shared_ptr<Audio> & waveform)
+{
+	const int sampleCount = static_cast<int>(waveform->getHeader()->dwBufferLength / BYTES_PER_BLOCK);
+
+	vector<double> samples = {};
+
+	for(int index = 0; index < sampleCount; index++)
+	{
+		const int byteIndex = index * BYTES_PER_BLOCK;
+		const unsigned char firstByte = waveform->getHeader()->lpData[byteIndex + 0]; // L
+		const unsigned char secondByte = waveform->getHeader()->lpData[byteIndex + 1]; // L
+		const short bytePair = static_cast<short>(firstByte | secondByte << 8);
+
+		samples.push_back(static_cast<double>(bytePair));
+	}
+
+	return samples;
 }
