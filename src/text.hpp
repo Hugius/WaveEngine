@@ -24,6 +24,8 @@ public:
 
 	const vector<shared_ptr<Quad>> & getQuads() const;
 
+	const dvec3 & getColor() const;
+
 private:
 	static inline const unordered_map<char, ivec2> _fontIndices =
 	{
@@ -133,6 +135,8 @@ private:
 	shared_ptr<TextureBuffer> _textureBuffer = nullptr;
 
 	string _content = "";
+
+	dvec3 _color = dvec3(0.0);
 
 	dvec2 _position = dvec2(0.0);
 	dvec2 _size = dvec2(1.0);

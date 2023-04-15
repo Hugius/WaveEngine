@@ -22,6 +22,9 @@ private:
 	const shared_ptr<Quad> _quad;
 	const shared_ptr<Text> _text;
 
+	const dvec3 _originalQuadColor;
+	const dvec3 _originalTextColor;
+
 	bool _isVisible = false;
 	bool _isHoverable = false;
 	bool _isPressable = false;

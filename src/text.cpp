@@ -90,9 +90,11 @@ void Text::setContent(const string & value)
 
 void Text::setColor(const dvec3 & value)
 {
+	_color = value;
+
 	for(const shared_ptr<Quad> & quad : _quads)
 	{
-		quad->setColor(value);
+		quad->setColor(_color);
 	}
 }
 
@@ -127,4 +129,9 @@ void Text::setSize(const dvec2 & value)
 const vector<shared_ptr<Quad>> & Text::getQuads() const
 {
 	return _quads;
+}
+
+const dvec3 & Text::getColor() const
+{
+	return _color;
 }

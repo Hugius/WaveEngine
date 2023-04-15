@@ -4,7 +4,9 @@
 GuiButton::GuiButton(const shared_ptr<Quad> & quad, const shared_ptr<Text> & text)
 	:
 	_quad(quad),
-	_text(text)
+	_text(text),
+	_originalQuadColor(quad->getColor()),
+	_originalTextColor(text->getColor())
 {
 	if(quad == nullptr)
 	{
@@ -45,11 +47,13 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 
 	if(!_isToggled && !wasHovered && _isHovered)
 	{
-		_quad->setLightness(1.5);
+		_quad->setColor(dvec3(1.0f) - _originalQuadColor);
+		_text->setColor(dvec3(1.0f) - _originalTextColor);
 	}
 	else if(!_isToggled && wasHovered && !_isHovered)
 	{
-		_quad->setLightness(1.0);
+		_quad->setColor(_originalQuadColor);
+		_text->setColor(_originalTextColor);
 	}
 
 	_quad->update();

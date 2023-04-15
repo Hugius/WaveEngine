@@ -15,3 +15,8 @@ dvec3::dvec3(const double x, const double y, const double z)
 	this->y = y;
 	this->z = z;
 }
+
+const dvec3 dvec3::operator-(const dvec3 & other) const
+{
+	return dvec3(this->x - other.x, this->y - other.y, this->z - other.z);
+}
