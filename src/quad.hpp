@@ -21,7 +21,6 @@ public:
 	void setPosition(const dvec2 & value);
 	void setSize(const dvec2 & value);
 	void setVisible(const bool value);
-	void setLightness(const double value);
 	void setUvMultiplier(const dvec2 & value);
 	void setUvOffset(const dvec2 & value);
 
@@ -38,7 +37,6 @@ public:
 	const dvec2 & getUvOffset() const;
 
 	const double getOpacity() const;
-	const double getLightness() const;
 
 	const bool isVisible() const;
 
@@ -56,7 +54,6 @@ private:
 	dvec2 _uvOffset = dvec2(0.0);
 
 	double _opacity = 1.0;
-	double _lightness = 1.0;
 
 	bool _isVisible = true;
 };

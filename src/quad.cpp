@@ -146,11 +146,6 @@ const dvec2 & Quad::getPosition() const
 	return _position;
 }
 
-const double Quad::getLightness() const
-{
-	return _lightness;
-}
-
 const dvec2 & Quad::getSize() const
 {
 	return _size;
@@ -159,14 +154,4 @@ const dvec2 & Quad::getSize() const
 void Quad::setVisible(const bool value)
 {
 	_isVisible = value;
-}
-
-void Quad::setLightness(const double value)
-{
-	if(value < 0.0)
-	{
-		abort();
-	}
-
-	_lightness = value;
 }

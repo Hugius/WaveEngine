@@ -19,7 +19,6 @@ public:
 	void setPosition(const dvec2 & value);
 	void setSize(const dvec2 & value);
 	void setVisible(const bool value);
-	void setLightness(const double value);
 	void setContent(const string & value);
 
 	const vector<shared_ptr<Quad>> & getQuads() const;

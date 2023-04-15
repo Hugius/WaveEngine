@@ -7,7 +7,6 @@ uniform sampler2D u_texture;
 uniform dvec3 u_color;
 
 uniform double u_opacity;
-uniform double u_lightness;
 
 uniform bool u_hasTexture;
 
@@ -34,7 +33,6 @@ void main()
 
 	finalColor.rgb += textureColor.rgb;
 	finalColor.rgb *= vec3(u_color);
-	finalColor.rgb *= float(u_lightness);
 	finalColor.rgb = clamp(finalColor.rgb, vec3(0.0f), vec3(1.0f));
 	finalColor.a += textureColor.a;
 	finalColor.a *= float(u_opacity);

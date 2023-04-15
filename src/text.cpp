@@ -47,14 +47,6 @@ void Text::setVisible(const bool value)
 	}
 }
 
-void Text::setLightness(const double value)
-{
-	for(const shared_ptr<Quad> & quad : _quads)
-	{
-		quad->setLightness(value);
-	}
-}
-
 void Text::setContent(const string & value)
 {
 	if(value == _content)

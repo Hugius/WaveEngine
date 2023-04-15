@@ -48,7 +48,6 @@ void QuadRenderer::_renderQuad(const shared_ptr<Quad> & quad)
 	_shaderBuffer->uploadUniform("u_transformation", quad->getTransformation());
 	_shaderBuffer->uploadUniform("u_color", quad->getColor());
 	_shaderBuffer->uploadUniform("u_opacity", quad->getOpacity());
-	_shaderBuffer->uploadUniform("u_lightness", quad->getLightness());
 	_shaderBuffer->uploadUniform("u_uvMultiplier", quad->getUvMultiplier());
 	_shaderBuffer->uploadUniform("u_uvOffset", quad->getUvOffset());
 	_shaderBuffer->uploadUniform("u_hasTexture", quad->getTexture() != nullptr);
