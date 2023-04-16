@@ -13,4 +13,5 @@ struct AudioConstants final
 
 	static inline const int MIN_OCTAVE = 0;
 	static inline const int MAX_OCTAVE = 9;
+	static inline const int DEFAULT_OCTAVE = 4;
 };

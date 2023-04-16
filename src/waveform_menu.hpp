@@ -37,7 +37,7 @@ private:
 	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
 	shared_ptr<AudioManager> _audioManager = nullptr;
 
-	int _octave = 4;
+	int _octave = 0;
 
 	bool _isEnabled = false;
 };

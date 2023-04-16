@@ -12,26 +12,8 @@ WaveformMenu::WaveformMenu()
 		_triangleAmplitudes.push_back(0);
 		_sawtoothAmplitudes.push_back(0);
 	}
-}
 
-void WaveformMenu::inject(const shared_ptr<GuiManager> & guiManager)
-{
-	_guiManager = guiManager;
-}
-
-void WaveformMenu::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
-{
-	_waveformGenerator = waveformGenerator;
-}
-
-void WaveformMenu::inject(const shared_ptr<AudioPlayer> & audioPlayer)
-{
-	_audioPlayer = audioPlayer;
-}
-
-void WaveformMenu::inject(const shared_ptr<AudioManager> & audioManager)
-{
-	_audioManager = audioManager;
+	_octave = AudioConstants::DEFAULT_OCTAVE;
 }
 
 void WaveformMenu::update()
@@ -265,4 +247,24 @@ const vector<shared_ptr<Audio>> WaveformMenu::_generateWaveforms(const int durat
 	}
 
 	return waveforms;
+}
+
+void WaveformMenu::inject(const shared_ptr<GuiManager> & guiManager)
+{
+	_guiManager = guiManager;
+}
+
+void WaveformMenu::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
+{
+	_waveformGenerator = waveformGenerator;
+}
+
+void WaveformMenu::inject(const shared_ptr<AudioPlayer> & audioPlayer)
+{
+	_audioPlayer = audioPlayer;
+}
+
+void WaveformMenu::inject(const shared_ptr<AudioManager> & audioManager)
+{
+	_audioManager = audioManager;
 }
