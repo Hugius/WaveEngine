@@ -113,6 +113,10 @@ void WaveformMenu::_updateNotes()
 
 			_refreshWaveformVisualization();
 		}
+		else if(_guiManager->getGuiButton("waveforms_sin_txt" + to_string(index))->isPressed())
+		{
+			_refreshWaveformVisualization();
+		}
 		else if(_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->isPressed())
 		{
 			_sineAmplitudes[index]++;
@@ -141,6 +145,10 @@ void WaveformMenu::_updateNotes()
 			_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setHoverable(true);
 
+			_refreshWaveformVisualization();
+		}
+		else if(_guiManager->getGuiButton("waveforms_sqr_txt" + to_string(index))->isPressed())
+		{
 			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->isPressed())
@@ -173,6 +181,10 @@ void WaveformMenu::_updateNotes()
 
 			_refreshWaveformVisualization();
 		}
+		else if(_guiManager->getGuiButton("waveforms_tri_txt" + to_string(index))->isPressed())
+		{
+			_refreshWaveformVisualization();
+		}
 		else if(_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->isPressed())
 		{
 			_triangleAmplitudes[index]++;
@@ -201,6 +213,10 @@ void WaveformMenu::_updateNotes()
 			_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setPressable(true);
 			_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setHoverable(true);
 
+			_refreshWaveformVisualization();
+		}
+		else if(_guiManager->getGuiButton("waveforms_saw_txt" + to_string(index))->isPressed())
+		{
 			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->isPressed())
