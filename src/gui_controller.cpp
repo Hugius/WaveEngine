@@ -34,19 +34,28 @@ void GuiController::inject(const shared_ptr<AudioManager> & audioManager)
 
 void GuiController::update()
 {
-	if(_guiManager->getGuiButton("new")->isPressed())
+	if(_guiManager->getGuiButton("top_menu_new")->isPressed())
 	{
 
 	}
-	else if(_guiManager->getGuiButton("load")->isPressed())
+	else if(_guiManager->getGuiButton("top_menu_load")->isPressed())
 	{
 		Tools::chooseWindowsExplorerFile(Tools::getRootDirectoryPath() + "projects\\", "wavproj");
 	}
-	else if(_guiManager->getGuiButton("save")->isPressed())
+	else if(_guiManager->getGuiButton("top_menu_save")->isPressed())
 	{
 
 	}
-	else if(_guiManager->getGuiButton("exit")->isPressed())
+	else if(_guiManager->getGuiButton("top_menu_waveform")->isPressed())
+	{
+		_waveformMenu->setGuiVisible(true);
+		_waveformMenu->setEnabled(true);
+	}
+	else if(_guiManager->getGuiButton("top_menu_export")->isPressed())
+	{
+
+	}
+	else if(_guiManager->getGuiButton("top_menu_exit")->isPressed())
 	{
 		exit(0);
 	}

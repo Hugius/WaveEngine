@@ -15,12 +15,13 @@ public:
 	void inject(const shared_ptr<AudioPlayer> & audioPlayer);
 	void inject(const shared_ptr<AudioManager> & audioManager);
 	void update();
+	void setGuiVisible(const bool value);
+	void setEnabled(const bool value);
 
 private:
 	void _updatePlaybackGui();
 	void _updateOctaveGui();
 	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes);
-	void _setGuiVisible(const bool value);
 	void _refreshWaveformVisualization();
 
 	const vector<shared_ptr<Audio>> _generateWaveforms(const int duration) const;
