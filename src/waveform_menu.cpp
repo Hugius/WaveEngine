@@ -56,12 +56,84 @@ void WaveformMenu::update()
 
 	if(_isEnabled)
 	{
-		_updatePlayback();
-		_updateNotes();
+		_updatePlaybackGui();
+		_updateOctaveGui();
+		_updateAmplitudeGui("sin", _sineAmplitudes);
+		_updateAmplitudeGui("sqr", _squareAmplitudes);
+		_updateAmplitudeGui("tri", _triangleAmplitudes);
+		_updateAmplitudeGui("saw", _sawtoothAmplitudes);
 	}
 }
 
-void WaveformMenu::_updateNotes()
+void WaveformMenu::_updateAmplitudeGui(const string & type, vector<int> & amplitudes)
+{
+	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
+	{
+		if(_guiManager->getGuiButton("waveforms_" + type + "_decr" + to_string(index))->isPressed())
+		{
+			amplitudes[index]--;
+
+			if(amplitudes[index] == 0)
+			{
+				_guiManager->getGuiButton("waveforms_" + type + "_decr" + to_string(index))->setPressable(false);
+				_guiManager->getGuiButton("waveforms_" + type + "_decr" + to_string(index))->setHoverable(false);
+			}
+
+			_guiManager->getGuiButton("waveforms_" + type + "_incr" + to_string(index))->setPressable(true);
+			_guiManager->getGuiButton("waveforms_" + type + "_incr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
+		}
+		else if(_guiManager->getGuiButton("waveforms_" + type + "_txt" + to_string(index))->isPressed())
+		{
+			_refreshWaveformVisualization();
+		}
+		else if(_guiManager->getGuiButton("waveforms_" + type + "_incr" + to_string(index))->isPressed())
+		{
+			amplitudes[index]++;
+
+			if(amplitudes[index] == 9)
+			{
+				_guiManager->getGuiButton("waveforms_" + type + "_incr" + to_string(index))->setPressable(false);
+				_guiManager->getGuiButton("waveforms_" + type + "_incr" + to_string(index))->setHoverable(false);
+			}
+
+			_guiManager->getGuiButton("waveforms_" + type + "_decr" + to_string(index))->setPressable(true);
+			_guiManager->getGuiButton("waveforms_" + type + "_decr" + to_string(index))->setHoverable(true);
+
+			_refreshWaveformVisualization();
+		}
+
+		const bool isToggled = _guiManager->getGuiButton("waveforms_" + type + "_txt" + to_string(index))->isToggled();
+
+		_guiManager->getGuiButton("waveforms_" + type + "_decr" + to_string(index))->setVisible(isToggled);
+		_guiManager->getGuiLabel("waveforms_" + type + "_val" + to_string(index))->setVisible(isToggled);
+		_guiManager->getGuiLabel("waveforms_" + type + "_val" + to_string(index))->setContent(to_string(amplitudes[index]));
+		_guiManager->getGuiButton("waveforms_" + type + "_incr" + to_string(index))->setVisible(isToggled);
+	}
+}
+
+void WaveformMenu::_updatePlaybackGui()
+{
+	if(_guiManager->getGuiButton("waveforms_play")->isPressed())
+	{
+		vector<shared_ptr<Audio>> waveforms = _generateWaveforms(100);
+
+		if(_audioPlayer->isStarted())
+		{
+			_audioPlayer->stop();
+		}
+
+		if(!waveforms.empty())
+		{
+			const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(waveforms);
+
+			_audioPlayer->start(waveform);
+		}
+	}
+}
+
+void WaveformMenu::_updateOctaveGui()
 {
 	if(_guiManager->getGuiButton("waveforms_oct_decr")->isPressed())
 	{
@@ -95,177 +167,14 @@ void WaveformMenu::_updateNotes()
 	}
 
 	_guiManager->getGuiLabel("waveforms_oct_val")->setContent(to_string(_octave));
-
-	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
-	{
-		if(_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->isPressed())
-		{
-			_sineAmplitudes[index]--;
-
-			if(_sineAmplitudes[index] == 0)
-			{
-				_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setHoverable(true);
-
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_sin_txt" + to_string(index))->isPressed())
-		{
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->isPressed())
-		{
-			_sineAmplitudes[index]++;
-
-			if(_sineAmplitudes[index] == 9)
-			{
-				_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setHoverable(true);
-
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->isPressed())
-		{
-			_squareAmplitudes[index]--;
-
-			if(_squareAmplitudes[index] == 0)
-			{
-				_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setHoverable(true);
-
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_sqr_txt" + to_string(index))->isPressed())
-		{
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->isPressed())
-		{
-			_squareAmplitudes[index]++;
-
-			if(_squareAmplitudes[index] == 9)
-			{
-				_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setHoverable(true);
-
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->isPressed())
-		{
-			_triangleAmplitudes[index]--;
-
-			if(_triangleAmplitudes[index] == 0)
-			{
-				_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setHoverable(true);
-
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_tri_txt" + to_string(index))->isPressed())
-		{
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->isPressed())
-		{
-			_triangleAmplitudes[index]++;
-
-			if(_triangleAmplitudes[index] == 9)
-			{
-				_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setHoverable(true);
-
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->isPressed())
-		{
-			_sawtoothAmplitudes[index]--;
-
-			if(_sawtoothAmplitudes[index] == 0)
-			{
-				_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setHoverable(true);
-
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_saw_txt" + to_string(index))->isPressed())
-		{
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->isPressed())
-		{
-			_sawtoothAmplitudes[index]++;
-
-			if(_sawtoothAmplitudes[index] == 9)
-			{
-				_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setHoverable(true);
-
-			_refreshWaveformVisualization();
-		}
-
-		_guiManager->getGuiLabel("waveforms_sin_val" + to_string(index))->setContent(to_string(_sineAmplitudes[index]));
-		_guiManager->getGuiLabel("waveforms_sqr_val" + to_string(index))->setContent(to_string(_squareAmplitudes[index]));
-		_guiManager->getGuiLabel("waveforms_tri_val" + to_string(index))->setContent(to_string(_triangleAmplitudes[index]));
-		_guiManager->getGuiLabel("waveforms_saw_val" + to_string(index))->setContent(to_string(_sawtoothAmplitudes[index]));
-
-		const bool isSineToggled = _guiManager->getGuiButton("waveforms_sin_txt" + to_string(index))->isToggled();
-		const bool isSquareToggled = _guiManager->getGuiButton("waveforms_sqr_txt" + to_string(index))->isToggled();
-		const bool isTriangleToggled = _guiManager->getGuiButton("waveforms_tri_txt" + to_string(index))->isToggled();
-		const bool isSawoothToggled = _guiManager->getGuiButton("waveforms_saw_txt" + to_string(index))->isToggled();
-
-		_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setVisible(isSineToggled);
-		_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setVisible(isSquareToggled);
-		_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setVisible(isTriangleToggled);
-		_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setVisible(isSawoothToggled);
-		_guiManager->getGuiLabel("waveforms_sin_val" + to_string(index))->setVisible(isSineToggled);
-		_guiManager->getGuiLabel("waveforms_sqr_val" + to_string(index))->setVisible(isSquareToggled);
-		_guiManager->getGuiLabel("waveforms_tri_val" + to_string(index))->setVisible(isTriangleToggled);
-		_guiManager->getGuiLabel("waveforms_saw_val" + to_string(index))->setVisible(isSawoothToggled);
-		_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setVisible(isSineToggled);
-		_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setVisible(isSquareToggled);
-		_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setVisible(isTriangleToggled);
-		_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setVisible(isSawoothToggled);
-	}
 }
 
 void WaveformMenu::_setGuiVisible(const bool value)
 {
 	_guiManager->getGuiRectangle("waveforms_menu")->setVisible(value);
 	_guiManager->getGuiButton("waveforms_close")->setVisible(value);
-	_guiManager->getGuiButton("waveforms_play")->setVisible(value);
 	_guiManager->getGuiWaveform("waveforms_visualization")->setVisible(value);
+	_guiManager->getGuiButton("waveforms_play")->setVisible(value);
 	_guiManager->getGuiButton("waveforms_oct_decr")->setVisible(value);
 	_guiManager->getGuiLabel("waveforms_oct_val")->setVisible(value);
 	_guiManager->getGuiButton("waveforms_oct_incr")->setVisible(value);
@@ -273,43 +182,15 @@ void WaveformMenu::_setGuiVisible(const bool value)
 
 	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
 	{
-		_guiManager->getGuiButton("waveforms_sin_decr" + to_string(index))->setVisible(value);
-		_guiManager->getGuiLabel("waveforms_sin_val" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_sin_incr" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_sin_txt" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_sqr_decr" + to_string(index))->setVisible(value);
-		_guiManager->getGuiLabel("waveforms_sqr_val" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_sqr_incr" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_sqr_txt" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_tri_decr" + to_string(index))->setVisible(value);
-		_guiManager->getGuiLabel("waveforms_tri_val" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_tri_incr" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_tri_txt" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_saw_decr" + to_string(index))->setVisible(value);
-		_guiManager->getGuiLabel("waveforms_saw_val" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_saw_incr" + to_string(index))->setVisible(value);
-		_guiManager->getGuiButton("waveforms_saw_txt" + to_string(index))->setVisible(value);
+		for(const string & type : {"sin", "sqr", "tri", "saw"})
+		{
+			_guiManager->getGuiButton("waveforms_" + type + "_decr" + to_string(index))->setVisible(value);
+			_guiManager->getGuiLabel("waveforms_" + type + "_val" + to_string(index))->setVisible(value);
+			_guiManager->getGuiButton("waveforms_" + type + "_incr" + to_string(index))->setVisible(value);
+			_guiManager->getGuiButton("waveforms_" + type + "_txt" + to_string(index))->setVisible(value);
+		}
+
 		_guiManager->getGuiLabel("waveforms_note" + to_string(index))->setVisible(value);
-	}
-}
-
-void WaveformMenu::_updatePlayback()
-{
-	if(_guiManager->getGuiButton("waveforms_play")->isPressed())
-	{
-		vector<shared_ptr<Audio>> waveforms = _generateWaveforms(100);
-
-		if(_audioPlayer->isStarted())
-		{
-			_audioPlayer->stop();
-		}
-
-		if(!waveforms.empty())
-		{
-			const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(waveforms);
-
-			_audioPlayer->start(waveform);
-		}
 	}
 }
 

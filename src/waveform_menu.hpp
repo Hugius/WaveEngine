@@ -17,8 +17,9 @@ public:
 	void update();
 
 private:
-	void _updatePlayback();
-	void _updateNotes();
+	void _updatePlaybackGui();
+	void _updateOctaveGui();
+	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes);
 	void _setGuiVisible(const bool value);
 	void _refreshWaveformVisualization();
 
