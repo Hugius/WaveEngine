@@ -1,6 +1,6 @@
 #pragma once
 
-#include "waveform_menu.hpp"
+#include "tone_menu.hpp"
 
 using std::unique_ptr;
 
@@ -16,7 +16,7 @@ public:
 	void update();
 
 private:
-	const unique_ptr<WaveformMenu> _waveformMenu;
+	const unique_ptr<ToneMenu> _toneMenu;
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
 };

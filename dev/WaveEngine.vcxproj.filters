@@ -126,7 +126,7 @@
     <ClCompile Include="..\src\gui_controller.cpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\waveform_menu.cpp">
+    <ClCompile Include="..\src\tone_menu.cpp">
       <Filter>GUI\Menus</Filter>
     </ClCompile>
     <ClCompile Include="..\src\gui_button.cpp">
@@ -230,7 +230,7 @@
     <ClInclude Include="..\src\gui_controller.hpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\waveform_menu.hpp">
+    <ClInclude Include="..\src\tone_menu.hpp">
       <Filter>GUI\Menus</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_button.hpp">

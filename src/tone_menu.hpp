@@ -5,10 +5,10 @@
 #include "waveform_player.hpp"
 #include "waveform_manager.hpp"
 
-class WaveformMenu final
+class ToneMenu final
 {
 public:
-	WaveformMenu();
+	ToneMenu();
 
 	void inject(const shared_ptr<GuiManager> & guiManager);
 	void inject(const shared_ptr<WaveformGenerator> & waveformGenerator);
