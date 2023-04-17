@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\audio_manager.cpp" />
+    <ClCompile Include="..\src\waveform_manager.cpp" />
     <ClCompile Include="..\src\base_renderer.cpp" />
     <ClCompile Include="..\src\engine_orchestrator.cpp" />
     <ClCompile Include="..\src\dmat33.cpp" />
@@ -35,7 +35,7 @@
     <ClCompile Include="..\src\quad.cpp" />
     <ClCompile Include="..\src\render_window.cpp" />
     <ClCompile Include="..\src\shader_buffer.cpp" />
-    <ClCompile Include="..\src\audio_player.cpp" />
+    <ClCompile Include="..\src\waveform_player.cpp" />
     <ClCompile Include="..\src\text.cpp" />
     <ClCompile Include="..\src\texture_buffer.cpp" />
     <ClCompile Include="..\src\timer.cpp" />
@@ -43,11 +43,11 @@
     <ClCompile Include="..\src\vertex_buffer.cpp" />
     <ClCompile Include="..\src\waveform_menu.cpp" />
     <ClCompile Include="..\src\waveform_generator.cpp" />
-    <ClCompile Include="..\src\audio.cpp" />
+    <ClCompile Include="..\src\waveform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\audio_constants.hpp" />
-    <ClInclude Include="..\src\audio_manager.hpp" />
+    <ClInclude Include="..\src\waveform_constants.hpp" />
+    <ClInclude Include="..\src\waveform_manager.hpp" />
     <ClInclude Include="..\src\base_renderer.hpp" />
     <ClInclude Include="..\src\clock.hpp" />
     <ClInclude Include="..\src\cursor_type.hpp" />
@@ -72,7 +72,7 @@
     <ClInclude Include="..\src\quad.hpp" />
     <ClInclude Include="..\src\render_window.hpp" />
     <ClInclude Include="..\src\shader_buffer.hpp" />
-    <ClInclude Include="..\src\audio_player.hpp" />
+    <ClInclude Include="..\src\waveform_player.hpp" />
     <ClInclude Include="..\src\text.hpp" />
     <ClInclude Include="..\src\texture_buffer.hpp" />
     <ClInclude Include="..\src\timer.hpp" />
@@ -80,7 +80,7 @@
     <ClInclude Include="..\src\vertex_buffer.hpp" />
     <ClInclude Include="..\src\waveform_menu.hpp" />
     <ClInclude Include="..\src\waveform_generator.hpp" />
-    <ClInclude Include="..\src\audio.hpp" />
+    <ClInclude Include="..\src\waveform.hpp" />
     <ClInclude Include="..\src\waveform_type.hpp" />
   </ItemGroup>
   <ItemGroup>

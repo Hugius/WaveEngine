@@ -1,22 +1,22 @@
-#include "audio_player.hpp"
+#include "waveform_player.hpp"
 
 using std::make_shared;
 
-void AudioPlayer::start(const shared_ptr<Audio> & audio)
+void WaveformPlayer::start(const shared_ptr<Waveform> & waveform)
 {
 	if(isStarted())
 	{
 		abort();
 	}
 
-	const MMRESULT openResult = waveOutOpen(&_handle, WAVE_MAPPER, audio->getFormat(), 0, 0, CALLBACK_NULL);
+	const MMRESULT openResult = waveOutOpen(&_handle, WAVE_MAPPER, waveform->getFormat(), 0, 0, CALLBACK_NULL);
 
 	if(openResult != MMSYSERR_NOERROR)
 	{
 		abort();
 	}
 
-	const int bufferLength = static_cast<int>(audio->getHeader()->dwBufferLength);
+	const int bufferLength = static_cast<int>(waveform->getHeader()->dwBufferLength);
 
 	_header = new WAVEHDR();
 	_header->lpData = new char[bufferLength];
@@ -24,7 +24,7 @@ void AudioPlayer::start(const shared_ptr<Audio> & audio)
 
 	for(int index = 0; index < bufferLength; index++)
 	{
-		_header->lpData[index] = audio->getHeader()->lpData[index];
+		_header->lpData[index] = waveform->getHeader()->lpData[index];
 	}
 
 	const MMRESULT prepareResult = waveOutPrepareHeader(_handle, _header, sizeof(WAVEHDR));
@@ -42,7 +42,7 @@ void AudioPlayer::start(const shared_ptr<Audio> & audio)
 	}
 }
 
-void AudioPlayer::stop()
+void WaveformPlayer::stop()
 {
 	if(!isStarted())
 	{
@@ -57,7 +57,7 @@ void AudioPlayer::stop()
 	_header = nullptr;
 }
 
-const bool AudioPlayer::isStarted() const
+const bool WaveformPlayer::isStarted() const
 {
 	return _handle != nullptr;
 }

@@ -3,31 +3,31 @@
 
 #include "waveform_generator.hpp"
 #include "mathematics.hpp"
-#include "audio_constants.hpp"
+#include "waveform_constants.hpp"
 
 using std::make_shared;
 
-const shared_ptr<Audio> WaveformGenerator::generateSineWaveform(const int duration, const double amplitude, const double frequency) const
+const shared_ptr<Waveform> WaveformGenerator::generateSineWaveform(const int duration, const double amplitude, const double frequency) const
 {
 	return _generateWaveform(duration, amplitude, frequency, WaveformType::SINE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::generateSquareWaveform(const int duration, const double amplitude, const double frequency) const
+const shared_ptr<Waveform> WaveformGenerator::generateSquareWaveform(const int duration, const double amplitude, const double frequency) const
 {
 	return _generateWaveform(duration, amplitude, frequency, WaveformType::SQUARE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::generateTriangleWaveform(const int duration, const double amplitude, const double frequency) const
+const shared_ptr<Waveform> WaveformGenerator::generateTriangleWaveform(const int duration, const double amplitude, const double frequency) const
 {
 	return _generateWaveform(duration, amplitude, frequency, WaveformType::TRIANGLE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::generateSawtoothWaveform(const int duration, const double amplitude, const double frequency) const
+const shared_ptr<Waveform> WaveformGenerator::generateSawtoothWaveform(const int duration, const double amplitude, const double frequency) const
 {
 	return _generateWaveform(duration, amplitude, frequency, WaveformType::SAWTOOTH);
 }
 
-const shared_ptr<Audio> WaveformGenerator::_generateWaveform(const int duration, const double amplitude, const double frequency, const WaveformType type) const
+const shared_ptr<Waveform> WaveformGenerator::_generateWaveform(const int duration, const double amplitude, const double frequency, const WaveformType type) const
 {
 	if(duration < 0)
 	{
@@ -94,17 +94,17 @@ const shared_ptr<Audio> WaveformGenerator::_generateWaveform(const int duration,
 		time += delta;
 	}
 
-	return make_shared<Audio>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
+	return make_shared<Waveform>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
 }
 
-const shared_ptr<Audio> WaveformGenerator::combineWaveforms(const vector<shared_ptr<Audio>> & waveforms) const
+const shared_ptr<Waveform> WaveformGenerator::combineWaveforms(const vector<shared_ptr<Waveform>> & waveforms) const
 {
 	if(waveforms.empty())
 	{
 		abort();
 	}
 
-	for(const shared_ptr<Audio> & waveform : waveforms)
+	for(const shared_ptr<Waveform> & waveform : waveforms)
 	{
 		if(waveform->getHeader()->dwBufferLength != waveforms.front()->getHeader()->dwBufferLength)
 		{
@@ -121,7 +121,7 @@ const shared_ptr<Audio> WaveformGenerator::combineWaveforms(const vector<shared_
 		const int byteIndex = index * BYTES_PER_BLOCK;
 		short newBytePair = 0;
 
-		for(const shared_ptr<Audio> & waveform : waveforms)
+		for(const shared_ptr<Waveform> & waveform : waveforms)
 		{
 			const unsigned char firstByte = waveform->getHeader()->lpData[byteIndex + 0];
 			const unsigned char secondByte = waveform->getHeader()->lpData[byteIndex + 1];
@@ -139,10 +139,10 @@ const shared_ptr<Audio> WaveformGenerator::combineWaveforms(const vector<shared_
 		bytes[byteIndex + 3] = newSecondByte; // R
 	}
 
-	return make_shared<Audio>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
+	return make_shared<Waveform>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
 }
 
-const vector<double> WaveformGenerator::extractSamplesFromWaveform(const shared_ptr<Audio> & waveform)
+const vector<double> WaveformGenerator::extractSamplesFromWaveform(const shared_ptr<Waveform> & waveform)
 {
 	const int sampleCount = static_cast<int>(waveform->getHeader()->dwBufferLength / BYTES_PER_BLOCK);
 

@@ -1,11 +1,11 @@
 #include "waveform_menu.hpp"
-#include "audio_constants.hpp"
+#include "waveform_constants.hpp"
 
 using std::to_string;
 
 WaveformMenu::WaveformMenu()
 {
-	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
+	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
 	{
 		_sineAmplitudes.push_back(0);
 		_squareAmplitudes.push_back(0);
@@ -13,7 +13,7 @@ WaveformMenu::WaveformMenu()
 		_sawtoothAmplitudes.push_back(0);
 	}
 
-	_octave = AudioConstants::DEFAULT_OCTAVE;
+	_octave = WaveformConstants::DEFAULT_OCTAVE;
 }
 
 void WaveformMenu::update()
@@ -23,9 +23,9 @@ void WaveformMenu::update()
 		setGuiVisible(false);
 		setEnabled(false);
 
-		if(_audioPlayer->isStarted())
+		if(_waveformPlayer->isStarted())
 		{
-			_audioPlayer->stop();
+			_waveformPlayer->stop();
 		}
 	}
 
@@ -44,18 +44,18 @@ void WaveformMenu::_updatePlaybackGui()
 {
 	if(_guiManager->getGuiButton("waveform_menu_play")->isPressed())
 	{
-		vector<shared_ptr<Audio>> waveforms = _generateWaveforms(100);
+		vector<shared_ptr<Waveform>> waveforms = _generateWaveforms(100);
 
-		if(_audioPlayer->isStarted())
+		if(_waveformPlayer->isStarted())
 		{
-			_audioPlayer->stop();
+			_waveformPlayer->stop();
 		}
 
 		if(!waveforms.empty())
 		{
-			const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(waveforms);
+			const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
 
-			_audioPlayer->start(waveform);
+			_waveformPlayer->start(waveform);
 		}
 	}
 }
@@ -66,7 +66,7 @@ void WaveformMenu::_updateOctaveGui()
 	{
 		_octave--;
 
-		if(_octave == AudioConstants::MIN_OCTAVE)
+		if(_octave == WaveformConstants::MIN_OCTAVE)
 		{
 			_guiManager->getGuiButton("waveform_menu_oct_decr")->setPressable(false);
 			_guiManager->getGuiButton("waveform_menu_oct_decr")->setHoverable(false);
@@ -81,7 +81,7 @@ void WaveformMenu::_updateOctaveGui()
 	{
 		_octave++;
 
-		if(_octave == AudioConstants::MAX_OCTAVE)
+		if(_octave == WaveformConstants::MAX_OCTAVE)
 		{
 			_guiManager->getGuiButton("waveform_menu_oct_incr")->setPressable(false);
 			_guiManager->getGuiButton("waveform_menu_oct_incr")->setHoverable(false);
@@ -98,7 +98,7 @@ void WaveformMenu::_updateOctaveGui()
 
 void WaveformMenu::_updateAmplitudeGui(const string & type, vector<int> & amplitudes)
 {
-	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
+	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
 	{
 		if(_guiManager->getGuiButton("waveform_menu_" + type + "_decr" + to_string(index))->isPressed())
 		{
@@ -159,7 +159,7 @@ void WaveformMenu::setGuiVisible(const bool value)
 	_guiManager->getGuiButton("waveform_menu_oct_incr")->setVisible(value);
 	_guiManager->getGuiLabel("waveform_menu_oct_name")->setVisible(value);
 
-	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
+	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
 	{
 		for(const string & type : {"sin", "sqr", "tri", "saw"})
 		{
@@ -180,7 +180,7 @@ void WaveformMenu::setEnabled(const bool value)
 
 void WaveformMenu::_refreshWaveformVisualization()
 {
-	vector<shared_ptr<Audio>> waveforms = _generateWaveforms(10);
+	vector<shared_ptr<Waveform>> waveforms = _generateWaveforms(10);
 
 	if(waveforms.empty())
 	{
@@ -188,27 +188,27 @@ void WaveformMenu::_refreshWaveformVisualization()
 	}
 	else
 	{
-		const shared_ptr<Audio> waveform = _waveformGenerator->combineWaveforms(waveforms);
+		const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
 		const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
 
 		_guiManager->getGuiWaveform("waveform_menu_visualization")->setSamples(samples);
 	}
 }
 
-const vector<shared_ptr<Audio>> WaveformMenu::_generateWaveforms(const int duration) const
+const vector<shared_ptr<Waveform>> WaveformMenu::_generateWaveforms(const int duration) const
 {
-	vector<shared_ptr<Audio>> waveforms = {};
+	vector<shared_ptr<Waveform>> waveforms = {};
 
-	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
+	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
 	{
-		const double frequency = AudioConstants::NOTE_FREQUENCIES[index] * pow(2.0, static_cast<double>(_octave));
+		const double frequency = WaveformConstants::NOTE_FREQUENCIES[index] * pow(2.0, static_cast<double>(_octave));
 
 		if(_guiManager->getGuiButton("waveform_menu_sin_txt" + to_string(index))->isToggled())
 		{
 			if(_sineAmplitudes[index] != 0)
 			{
 				const double amplitude = static_cast<double>(_sineAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Audio> waveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency);
+				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
 			}
@@ -219,7 +219,7 @@ const vector<shared_ptr<Audio>> WaveformMenu::_generateWaveforms(const int durat
 			if(_squareAmplitudes[index] != 0)
 			{
 				const double amplitude = static_cast<double>(_squareAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Audio> waveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency);
+				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
 			}
@@ -230,7 +230,7 @@ const vector<shared_ptr<Audio>> WaveformMenu::_generateWaveforms(const int durat
 			if(_triangleAmplitudes[index] != 0)
 			{
 				const double amplitude = static_cast<double>(_triangleAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Audio> waveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency);
+				const shared_ptr<Waveform> waveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
 			}
@@ -241,7 +241,7 @@ const vector<shared_ptr<Audio>> WaveformMenu::_generateWaveforms(const int durat
 			if(_sawtoothAmplitudes[index] != 0)
 			{
 				const double amplitude = static_cast<double>(_sawtoothAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Audio> waveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency);
+				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
 			}
@@ -261,12 +261,12 @@ void WaveformMenu::inject(const shared_ptr<WaveformGenerator> & waveformGenerato
 	_waveformGenerator = waveformGenerator;
 }
 
-void WaveformMenu::inject(const shared_ptr<AudioPlayer> & audioPlayer)
+void WaveformMenu::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
 {
-	_audioPlayer = audioPlayer;
+	_waveformPlayer = waveformPlayer;
 }
 
-void WaveformMenu::inject(const shared_ptr<AudioManager> & audioManager)
+void WaveformMenu::inject(const shared_ptr<WaveformManager> & waveformManager)
 {
-	_audioManager = audioManager;
+	_waveformManager = waveformManager;
 }

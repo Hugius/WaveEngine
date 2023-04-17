@@ -2,8 +2,8 @@
 
 #include "gui_manager.hpp"
 #include "waveform_generator.hpp"
-#include "audio_player.hpp"
-#include "audio_manager.hpp"
+#include "waveform_player.hpp"
+#include "waveform_manager.hpp"
 
 class WaveformMenu final
 {
@@ -12,8 +12,8 @@ public:
 
 	void inject(const shared_ptr<GuiManager> & guiManager);
 	void inject(const shared_ptr<WaveformGenerator> & waveformGenerator);
-	void inject(const shared_ptr<AudioPlayer> & audioPlayer);
-	void inject(const shared_ptr<AudioManager> & audioManager);
+	void inject(const shared_ptr<WaveformPlayer> & waveformPlayer);
+	void inject(const shared_ptr<WaveformManager> & waveformManager);
 	void update();
 	void setGuiVisible(const bool value);
 	void setEnabled(const bool value);
@@ -24,7 +24,7 @@ private:
 	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes);
 	void _refreshWaveformVisualization();
 
-	const vector<shared_ptr<Audio>> _generateWaveforms(const int duration) const;
+	const vector<shared_ptr<Waveform>> _generateWaveforms(const int duration) const;
 
 	static inline const double OCTAVE_AMPLITUDE_STEP = 1000.0;
 
@@ -35,8 +35,8 @@ private:
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
-	shared_ptr<AudioPlayer> _audioPlayer = nullptr;
-	shared_ptr<AudioManager> _audioManager = nullptr;
+	shared_ptr<WaveformPlayer> _waveformPlayer = nullptr;
+	shared_ptr<WaveformManager> _waveformManager = nullptr;
 
 	int _octave = 0;
 

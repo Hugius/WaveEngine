@@ -25,26 +25,44 @@
     <Filter Include="Input Handling">
       <UniqueIdentifier>{c5890f2d-1d8e-4bc7-8ac3-06aeac7aa5d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI Management">
-      <UniqueIdentifier>{57b1f732-334c-45ad-ae40-202d814f1dcd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Image Loading">
       <UniqueIdentifier>{d8a8b087-92a6-447b-90c4-b533881ae17b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Icon">
       <UniqueIdentifier>{c267fea5-b2a7-4d34-8e10-1b9572c05552}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Audio Managment">
-      <UniqueIdentifier>{b222a278-75c3-45fb-a266-b1c3efce3a00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Audio Generation">
-      <UniqueIdentifier>{5ebd9f1d-65da-4378-bb52-ffd40d3d3575}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Editors">
-      <UniqueIdentifier>{92d6096f-c114-491e-ada4-85d61681d3d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Rendering\Renderers">
       <UniqueIdentifier>{1e83d2b2-944d-4ddd-9316-cc1285ddc20a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{57b1f732-334c-45ad-ae40-202d814f1dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Waveforms">
+      <UniqueIdentifier>{b222a278-75c3-45fb-a266-b1c3efce3a00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Menus">
+      <UniqueIdentifier>{9c2a9ce5-3463-4f1c-9e7e-92f6ce993eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Domain">
+      <UniqueIdentifier>{711cd747-c3bf-4153-9ae4-a927c5d44c23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Waveforms\Domain">
+      <UniqueIdentifier>{95f51c20-db0c-4531-acdc-61081edc9e56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mathematics\Matrix">
+      <UniqueIdentifier>{bfd2056e-c49d-4049-aa67-8450fba26ae8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mathematics\Vector">
+      <UniqueIdentifier>{29dd8a33-c5ca-4107-8166-47ce7c5d0c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mathematics\Miscellaneous">
+      <UniqueIdentifier>{9ecae375-8763-40ee-b649-e20b1a0ea3cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Waveforms\Miscellaneous">
+      <UniqueIdentifier>{8b5f7c98-92bf-4001-989b-0372a86e33fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Miscellaneous">
+      <UniqueIdentifier>{cca38dd0-9ce1-4829-9260-04b74b8cd3d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -81,56 +99,11 @@
     <ClCompile Include="..\src\texture_buffer.cpp">
       <Filter>Rendering\Buffers</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\dvec2.cpp">
-      <Filter>Mathematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\dvec3.cpp">
-      <Filter>Mathematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ivec2.cpp">
-      <Filter>Mathematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\dmat33.cpp">
-      <Filter>Mathematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\mathematics.cpp">
-      <Filter>Mathematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_manager.cpp">
-      <Filter>GUI Management</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\image.cpp">
       <Filter>Image Loading</Filter>
     </ClCompile>
     <ClCompile Include="..\src\image_loader.cpp">
       <Filter>Image Loading</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_button.cpp">
-      <Filter>GUI Management</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_controller.cpp">
-      <Filter>GUI Management</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\audio_player.cpp">
-      <Filter>Audio Managment</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\audio.cpp">
-      <Filter>Audio Managment</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\waveform_generator.cpp">
-      <Filter>Audio Generation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\audio_manager.cpp">
-      <Filter>Audio Managment</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_rectangle.cpp">
-      <Filter>GUI Management</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_label.cpp">
-      <Filter>GUI Management</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\waveform_menu.cpp">
-      <Filter>Editors</Filter>
     </ClCompile>
     <ClCompile Include="..\src\base_renderer.cpp">
       <Filter>Rendering\Renderers</Filter>
@@ -144,8 +117,53 @@
     <ClCompile Include="..\src\line.cpp">
       <Filter>Rendering\Drawables</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\waveform_generator.cpp">
+      <Filter>Waveforms\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_manager.cpp">
+      <Filter>GUI\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_controller.cpp">
+      <Filter>GUI\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\waveform_menu.cpp">
+      <Filter>GUI\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_button.cpp">
+      <Filter>GUI\Domain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_label.cpp">
+      <Filter>GUI\Domain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_rectangle.cpp">
+      <Filter>GUI\Domain</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\gui_waveform.cpp">
-      <Filter>GUI Management</Filter>
+      <Filter>GUI\Domain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\waveform.cpp">
+      <Filter>Waveforms\Domain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dmat33.cpp">
+      <Filter>Mathematics\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dvec2.cpp">
+      <Filter>Mathematics\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dvec3.cpp">
+      <Filter>Mathematics\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ivec2.cpp">
+      <Filter>Mathematics\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mathematics.cpp">
+      <Filter>Mathematics\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\waveform_manager.cpp">
+      <Filter>Waveforms\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\waveform_player.cpp">
+      <Filter>Waveforms\Miscellaneous</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,62 +203,11 @@
     <ClInclude Include="..\src\texture_buffer.hpp">
       <Filter>Rendering\Buffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\dvec2.hpp">
-      <Filter>Mathematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\dvec3.hpp">
-      <Filter>Mathematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\ivec2.hpp">
-      <Filter>Mathematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\dmat33.hpp">
-      <Filter>Mathematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\mathematics.hpp">
-      <Filter>Mathematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_manager.hpp">
-      <Filter>GUI Management</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\image.hpp">
       <Filter>Image Loading</Filter>
     </ClInclude>
     <ClInclude Include="..\src\image_loader.hpp">
       <Filter>Image Loading</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_button.hpp">
-      <Filter>GUI Management</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_controller.hpp">
-      <Filter>GUI Management</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\audio_player.hpp">
-      <Filter>Audio Managment</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\audio.hpp">
-      <Filter>Audio Managment</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\waveform_generator.hpp">
-      <Filter>Audio Generation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\waveform_type.hpp">
-      <Filter>Audio Generation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\audio_manager.hpp">
-      <Filter>Audio Managment</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\audio_constants.hpp">
-      <Filter>Audio Managment</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_rectangle.hpp">
-      <Filter>GUI Management</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_label.hpp">
-      <Filter>GUI Management</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\waveform_menu.hpp">
-      <Filter>Editors</Filter>
     </ClInclude>
     <ClInclude Include="..\src\base_renderer.hpp">
       <Filter>Rendering\Renderers</Filter>
@@ -254,8 +221,59 @@
     <ClInclude Include="..\src\line.hpp">
       <Filter>Rendering\Drawables</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\waveform_generator.hpp">
+      <Filter>Waveforms\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_manager.hpp">
+      <Filter>GUI\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_controller.hpp">
+      <Filter>GUI\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_menu.hpp">
+      <Filter>GUI\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_button.hpp">
+      <Filter>GUI\Domain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_label.hpp">
+      <Filter>GUI\Domain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_rectangle.hpp">
+      <Filter>GUI\Domain</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\gui_waveform.hpp">
-      <Filter>GUI Management</Filter>
+      <Filter>GUI\Domain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform.hpp">
+      <Filter>Waveforms\Domain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_constants.hpp">
+      <Filter>Waveforms\Domain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_type.hpp">
+      <Filter>Waveforms\Domain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dmat33.hpp">
+      <Filter>Mathematics\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dvec2.hpp">
+      <Filter>Mathematics\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dvec3.hpp">
+      <Filter>Mathematics\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ivec2.hpp">
+      <Filter>Mathematics\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mathematics.hpp">
+      <Filter>Mathematics\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_manager.hpp">
+      <Filter>Waveforms\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_player.hpp">
+      <Filter>Waveforms\Miscellaneous</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

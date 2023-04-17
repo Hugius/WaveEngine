@@ -1,6 +1,6 @@
-#include "audio.hpp"
+#include "waveform.hpp"
 
-Audio::Audio(const unsigned char * bytes, const int byteCount, const int channelCount, const int samplesPerSecond, const int bytesPerSecond, const int bytesPerBlock, const int bitsPerSample)
+Waveform::Waveform(const unsigned char * bytes, const int byteCount, const int channelCount, const int samplesPerSecond, const int bytesPerSecond, const int bytesPerBlock, const int bitsPerSample)
 {
 	if(bytes == nullptr)
 	{
@@ -50,7 +50,7 @@ Audio::Audio(const unsigned char * bytes, const int byteCount, const int channel
 	_format->wBitsPerSample = bitsPerSample;
 }
 
-Audio::~Audio()
+Waveform::~Waveform()
 {
 	delete[] _header->lpData;
 
@@ -58,12 +58,12 @@ Audio::~Audio()
 	delete _header;
 }
 
-const PWAVEFORMATEX Audio::getFormat() const
+const PWAVEFORMATEX Waveform::getFormat() const
 {
 	return _format;
 }
 
-const PWAVEHDR Audio::getHeader() const
+const PWAVEHDR Waveform::getHeader() const
 {
 	return _header;
 }

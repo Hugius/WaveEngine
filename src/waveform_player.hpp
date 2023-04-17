@@ -1,15 +1,15 @@
 #pragma once
 
-#include "audio.hpp"
+#include "waveform.hpp"
 
 #include <memory>
 
 using std::shared_ptr;
 
-class AudioPlayer final
+class WaveformPlayer final
 {
 public:
-	void start(const shared_ptr<Audio> & audio);
+	void start(const shared_ptr<Waveform> & waveform);
 	void stop();
 
 	const bool isStarted() const;

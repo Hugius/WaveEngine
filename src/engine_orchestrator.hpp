@@ -7,7 +7,7 @@
 #include "gui_manager.hpp"
 #include "gui_controller.hpp"
 #include "waveform_generator.hpp"
-#include "audio_player.hpp"
+#include "waveform_player.hpp"
 #include "line_renderer.hpp"
 
 class EngineOrchestrator final
@@ -32,8 +32,8 @@ private:
 	const shared_ptr<GuiManager> _guiManager;
 	const shared_ptr<GuiController> _guiController;
 	const shared_ptr<WaveformGenerator> _waveformGenerator;
-	const shared_ptr<AudioPlayer> _audioPlayer;
-	const shared_ptr<AudioManager> _audioManager;
+	const shared_ptr<WaveformPlayer> _waveformPlayer;
+	const shared_ptr<WaveformManager> _waveformManager;
 	const shared_ptr<LineRenderer> _lineRenderer;
 
 	double _totalDeltaTime = 0.0;

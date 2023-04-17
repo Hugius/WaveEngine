@@ -22,14 +22,14 @@ void GuiController::inject(const shared_ptr<WaveformGenerator> & waveformGenerat
 	_waveformMenu->inject(waveformGenerator);
 }
 
-void GuiController::inject(const shared_ptr<AudioPlayer> & audioPlayer)
+void GuiController::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
 {
-	_waveformMenu->inject(audioPlayer);
+	_waveformMenu->inject(waveformPlayer);
 }
 
-void GuiController::inject(const shared_ptr<AudioManager> & audioManager)
+void GuiController::inject(const shared_ptr<WaveformManager> & waveformManager)
 {
-	_waveformMenu->inject(audioManager);
+	_waveformMenu->inject(waveformManager);
 }
 
 void GuiController::update()

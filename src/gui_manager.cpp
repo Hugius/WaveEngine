@@ -1,7 +1,7 @@
 #include "gui_manager.hpp"
 #include "tools.hpp"
 #include "mathematics.hpp"
-#include "audio_constants.hpp"
+#include "waveform_constants.hpp"
 
 using std::make_shared;
 using std::to_string;
@@ -43,9 +43,9 @@ void GuiManager::_initializeWaveformMenu()
 	_addGuiButton("waveform_menu_oct_incr", dvec2(0.0 + CHAR_X, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, ">", true, true, true, true, false, false);
 	_addGuiLabel("waveform_menu_oct_name", dvec2(0.0, -0.25), dvec2(CHAR_X * 6.0, CHAR_Y), WHITE, "Octave", true, true, false);
 
-	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(AudioConstants::NOTE_NAMES.size()));
+	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(WaveformConstants::NOTE_NAMES.size()));
 
-	for(int index = 0; index < static_cast<int>(AudioConstants::NOTE_NAMES.size()); index++)
+	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
 	{
 		const string sineDecreaseId = "waveform_menu_sin_decr" + to_string(index);
 		const string sineValueId = "waveform_menu_sin_val" + to_string(index);
@@ -64,7 +64,7 @@ void GuiManager::_initializeWaveformMenu()
 		const string sawtoothIncreaseId = "waveform_menu_saw_incr" + to_string(index);
 		const string sawtoothToggleId = "waveform_menu_saw_txt" + to_string(index);
 		const string noteId = "waveform_menu_note" + to_string(index);
-		const string noteName = AudioConstants::NOTE_NAMES[index];
+		const string noteName = WaveformConstants::NOTE_NAMES[index];
 
 		_addGuiButton(sineDecreaseId, dvec2(positions[index] - CHAR_X, -0.35), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, false, false, false, false, false);
 		_addGuiLabel(sineValueId, dvec2(positions[index], -0.35), dvec2(CHAR_X, CHAR_Y), WHITE, "0", true, false, false);

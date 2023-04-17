@@ -13,16 +13,16 @@ EngineOrchestrator::EngineOrchestrator()
 	_guiManager(make_shared<GuiManager>()),
 	_guiController(make_shared<GuiController>()),
 	_waveformGenerator(make_shared<WaveformGenerator>()),
-	_audioPlayer(make_shared<AudioPlayer>()),
-	_audioManager(make_shared<AudioManager>()),
+	_waveformPlayer(make_shared<WaveformPlayer>()),
+	_waveformManager(make_shared<WaveformManager>()),
 	_lineRenderer(make_shared<LineRenderer>())
 {
 	_renderWindow->inject(_inputHandler);
 	_guiManager->inject(_imageLoader);
 	_guiController->inject(_guiManager);
 	_guiController->inject(_waveformGenerator);
-	_guiController->inject(_audioPlayer);
-	_guiController->inject(_audioManager);
+	_guiController->inject(_waveformPlayer);
+	_guiController->inject(_waveformManager);
 
 	_guiManager->initialize();
 
