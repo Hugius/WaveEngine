@@ -37,6 +37,7 @@ void GuiManager::_initializeWaveformMenu()
 	_addGuiButton("waveform_menu_close", dvec2(0.75 - CHAR_X, 0.7), dvec2(CHAR_X, CHAR_Y), GRAY, RED, "X", false, false, true, true, false, false);
 	_addGuiWaveform("waveform_menu_visualization", dvec2(0.0f, 0.5 - CHAR_Y), dvec2(1.475f, 0.5f - CHAR_Y / 2.0), WHITE, true, true, false);
 	_addGuiButton("waveform_menu_play", dvec2(0.0, 0.0f), dvec2(CHAR_X * 4.0, CHAR_Y), DARK_GRAY, WHITE, "Play", true, true, true, true, false, false);
+	_addGuiButton("waveform_menu_save", dvec2(0.0, -0.1f), dvec2(CHAR_X * 4.0, CHAR_Y), DARK_GRAY, WHITE, "Save", true, true, true, true, false, false);
 	_addGuiButton("waveform_menu_oct_decr", dvec2(0.0 - CHAR_X, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, true, true, true, false, false);
 	_addGuiLabel("waveform_menu_oct_val", dvec2(0.0, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), WHITE, "0", true, true, false);
 	_addGuiButton("waveform_menu_oct_incr", dvec2(0.0 + CHAR_X, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, ">", true, true, true, true, false, false);

@@ -153,6 +153,7 @@ void WaveformMenu::setGuiVisible(const bool value)
 	_guiManager->getGuiButton("waveform_menu_close")->setVisible(value);
 	_guiManager->getGuiWaveform("waveform_menu_visualization")->setVisible(value);
 	_guiManager->getGuiButton("waveform_menu_play")->setVisible(value);
+	_guiManager->getGuiButton("waveform_menu_save")->setVisible(value);
 	_guiManager->getGuiButton("waveform_menu_oct_decr")->setVisible(value);
 	_guiManager->getGuiLabel("waveform_menu_oct_val")->setVisible(value);
 	_guiManager->getGuiButton("waveform_menu_oct_incr")->setVisible(value);
