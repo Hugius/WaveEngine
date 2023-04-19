@@ -14,6 +14,7 @@ public:
 	void update();
 	void setGuiVisible(const bool value);
 	void setEnabled(const bool value);
+	void setTone(const shared_ptr<Tone> & tone);
 
 private:
 	void _updatePlaybackGui();
@@ -26,6 +27,7 @@ private:
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
 	shared_ptr<WaveformPlayer> _waveformPlayer = nullptr;
+	shared_ptr<Tone> _tone = nullptr;
 
 	bool _isEnabled = false;
 };

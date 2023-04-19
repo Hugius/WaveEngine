@@ -36,6 +36,7 @@ void TopMenuController::update()
 	{
 		_toneEditorController->setGuiVisible(true);
 		_toneEditorController->setEnabled(true);
+		_toneEditorController->setTone(_toneManager->getCurrentTone());
 	}
 	else if(_guiManager->getGuiButton("top_menu_export")->isPressed())
 	{

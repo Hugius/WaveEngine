@@ -9,6 +9,7 @@ void ToneEditorController::update()
 	{
 		setGuiVisible(false);
 		setEnabled(false);
+		setTone(nullptr);
 
 		if(_waveformPlayer->isStarted())
 		{
@@ -20,10 +21,10 @@ void ToneEditorController::update()
 	{
 		_updatePlaybackGui();
 		_updateOctaveGui();
-		//_updateAmplitudeGui("sin", _sineAmplitudes);
-		//_updateAmplitudeGui("sqr", _squareAmplitudes);
-		//_updateAmplitudeGui("tri", _triangleAmplitudes);
-		//_updateAmplitudeGui("saw", _sawtoothAmplitudes);
+		_updateAmplitudeGui("sin", _tone->sineAmplitudes);
+		_updateAmplitudeGui("sqr", _tone->squareAmplitudes);
+		_updateAmplitudeGui("tri", _tone->triangleAmplitudes);
+		_updateAmplitudeGui("saw", _tone->sawtoothAmplitudes);
 	}
 }
 
@@ -51,13 +52,13 @@ void ToneEditorController::_updateOctaveGui()
 {
 	if(_guiManager->getGuiButton("tone_editor_oct_decr")->isPressed())
 	{
-		//_octave--;
+		_tone->octave--;
 
-		//if(_octave == ToneConstants::MIN_OCTAVE)
-		//{
-		//	_guiManager->getGuiButton("tone_editor_oct_decr")->setPressable(false);
-		//	_guiManager->getGuiButton("tone_editor_oct_decr")->setHoverable(false);
-		//}
+		if(_tone->octave == ToneConstants::MIN_OCTAVE)
+		{
+			_guiManager->getGuiButton("tone_editor_oct_decr")->setPressable(false);
+			_guiManager->getGuiButton("tone_editor_oct_decr")->setHoverable(false);
+		}
 
 		_guiManager->getGuiButton("tone_editor_oct_incr")->setPressable(true);
 		_guiManager->getGuiButton("tone_editor_oct_incr")->setHoverable(true);
@@ -66,13 +67,13 @@ void ToneEditorController::_updateOctaveGui()
 	}
 	else if(_guiManager->getGuiButton("tone_editor_oct_incr")->isPressed())
 	{
-		//_octave++;
+		_tone->octave++;
 
-		//if(_octave == ToneConstants::MAX_OCTAVE)
-		//{
-		//	_guiManager->getGuiButton("tone_editor_oct_incr")->setPressable(false);
-		//	_guiManager->getGuiButton("tone_editor_oct_incr")->setHoverable(false);
-		//}
+		if(_tone->octave == ToneConstants::MAX_OCTAVE)
+		{
+			_guiManager->getGuiButton("tone_editor_oct_incr")->setPressable(false);
+			_guiManager->getGuiButton("tone_editor_oct_incr")->setHoverable(false);
+		}
 
 		_guiManager->getGuiButton("tone_editor_oct_decr")->setPressable(true);
 		_guiManager->getGuiButton("tone_editor_oct_decr")->setHoverable(true);
@@ -80,7 +81,7 @@ void ToneEditorController::_updateOctaveGui()
 		_refreshWaveformVisualization();
 	}
 
-	//_guiManager->getGuiLabel("tone_editor_oct_val")->setContent(to_string(_octave));
+	_guiManager->getGuiLabel("tone_editor_oct_val")->setContent(to_string(_tone->octave));
 }
 
 void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes)
@@ -165,6 +166,11 @@ void ToneEditorController::setEnabled(const bool value)
 	_isEnabled = value;
 }
 
+void ToneEditorController::setTone(const shared_ptr<Tone> & tone)
+{
+	_tone = tone;
+}
+
 void ToneEditorController::_refreshWaveformVisualization()
 {
 	vector<shared_ptr<Waveform>> waveforms = _generateWaveforms(10);
@@ -188,13 +194,13 @@ const vector<shared_ptr<Waveform>> ToneEditorController::_generateWaveforms(cons
 
 	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
-		//const double frequency = ToneConstants::NOTE_FREQUENCIES[index] * pow(2.0, static_cast<double>(_octave));
+		const double frequency = ToneConstants::NOTE_FREQUENCIES[index] * pow(2.0, static_cast<double>(_tone->octave));
 
-		/*if(_guiManager->getGuiButton("tone_editor_sin_txt" + to_string(index))->isToggled())
+		if(_guiManager->getGuiButton("tone_editor_sin_txt" + to_string(index))->isToggled())
 		{
-			if(_sineAmplitudes[index] != 0)
+			if(_tone->sineAmplitudes[index] != 0)
 			{
-				const double amplitude = static_cast<double>(_sineAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
+				const double amplitude = static_cast<double>(_tone->sineAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
@@ -203,9 +209,9 @@ const vector<shared_ptr<Waveform>> ToneEditorController::_generateWaveforms(cons
 
 		if(_guiManager->getGuiButton("tone_editor_sqr_txt" + to_string(index))->isToggled())
 		{
-			if(_squareAmplitudes[index] != 0)
+			if(_tone->squareAmplitudes[index] != 0)
 			{
-				const double amplitude = static_cast<double>(_squareAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
+				const double amplitude = static_cast<double>(_tone->squareAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
@@ -214,9 +220,9 @@ const vector<shared_ptr<Waveform>> ToneEditorController::_generateWaveforms(cons
 
 		if(_guiManager->getGuiButton("tone_editor_tri_txt" + to_string(index))->isToggled())
 		{
-			if(_triangleAmplitudes[index] != 0)
+			if(_tone->triangleAmplitudes[index] != 0)
 			{
-				const double amplitude = static_cast<double>(_triangleAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
+				const double amplitude = static_cast<double>(_tone->triangleAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 				const shared_ptr<Waveform> waveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
@@ -225,14 +231,14 @@ const vector<shared_ptr<Waveform>> ToneEditorController::_generateWaveforms(cons
 
 		if(_guiManager->getGuiButton("tone_editor_saw_txt" + to_string(index))->isToggled())
 		{
-			if(_sawtoothAmplitudes[index] != 0)
+			if(_tone->sawtoothAmplitudes[index] != 0)
 			{
-				const double amplitude = static_cast<double>(_sawtoothAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
+				const double amplitude = static_cast<double>(_tone->sawtoothAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
 			}
-		}*/
+		}
 	}
 
 	return waveforms;

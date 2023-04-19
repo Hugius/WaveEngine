@@ -58,18 +58,18 @@ void GuiManager::_initializeTopMenu()
 	_addGuiButton("top_menu_exit", dvec2(x, y), dvec2(WIDTH("Exit"), CHAR_Y), GRAY, WHITE, "Exit", false, false, true, true, false, true);
 }
 
+void GuiManager::_initializeTimeline()
+{
+	_addGuiRectangle("timeline_background", dvec2(-1.0, -0.75), dvec2(2.0, 2.0 - CHAR_Y - 0.25), BLUE, false, false, true);
+}
+
 void GuiManager::_initializeBottomMenu()
 {
-	const vector<double> positions = Mathematics::calculateDistributedPositions(-1.0, 0.25, 3);
+	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, -0.25, 2);
 
 	_addGuiRectangle("bottom_menu_background", dvec2(-1.0, -1.0), dvec2(2.0, 0.25), DARK_GRAY, false, false, true);
 	_addGuiButton("bottom_menu_create", dvec2(-0.95, positions[0]), dvec2(WIDTH("Create"), CHAR_Y), GRAY, WHITE, "Create", false, true, true, true, false, true);
 	_addGuiButton("bottom_menu_delete", dvec2(-0.95, positions[1]), dvec2(WIDTH("Delete"), CHAR_Y), GRAY, WHITE, "Delete", false, true, true, true, false, true);
-}
-
-void GuiManager::_initializeTimeline()
-{
-	_addGuiRectangle("timeline_background", dvec2(-0.8, -1.0), dvec2(1.8, 2.0 - CHAR_Y), BLUE, false, false, true);
 }
 
 void GuiManager::_initializeToneEditor()

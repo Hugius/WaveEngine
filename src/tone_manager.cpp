@@ -5,19 +5,14 @@ void ToneManager::addTone(const shared_ptr<Tone> & tone)
 	_tones.push_back(tone);
 }
 
-const shared_ptr<Tone> & ToneManager::getTone(const int index) const
+const shared_ptr<Tone> & ToneManager::getCurrentTone() const
 {
-	if(index < 0)
+	if(_tones.empty())
 	{
 		abort();
 	}
 
-	if(index >= _tones.size())
-	{
-		abort();
-	}
-
-	return _tones.at(index);
+	return _tones.at(_currentIndex);
 }
 
 const vector<shared_ptr<Tone>> & ToneManager::getTones() const
