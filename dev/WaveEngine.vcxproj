@@ -42,7 +42,7 @@
     <ClCompile Include="..\src\timer.cpp" />
     <ClCompile Include="..\src\tools.cpp" />
     <ClCompile Include="..\src\vertex_buffer.cpp" />
-    <ClCompile Include="..\src\tone_editor.cpp" />
+    <ClCompile Include="..\src\tone_editor_controller.cpp" />
     <ClCompile Include="..\src\waveform_generator.cpp" />
     <ClCompile Include="..\src\waveform.cpp" />
   </ItemGroup>
@@ -79,7 +79,7 @@
     <ClInclude Include="..\src\timer.hpp" />
     <ClInclude Include="..\src\tools.hpp" />
     <ClInclude Include="..\src\vertex_buffer.hpp" />
-    <ClInclude Include="..\src\tone_editor.hpp" />
+    <ClInclude Include="..\src\tone_editor_controller.hpp" />
     <ClInclude Include="..\src\waveform_generator.hpp" />
     <ClInclude Include="..\src\waveform.hpp" />
     <ClInclude Include="..\src\waveform_type.hpp" />

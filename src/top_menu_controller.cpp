@@ -13,9 +13,9 @@ void TopMenuController::inject(const shared_ptr<ToneManager> & toneManager)
 	_toneManager = toneManager;
 }
 
-void TopMenuController::inject(const shared_ptr<ToneEditor> & toneEditor)
+void TopMenuController::inject(const shared_ptr<ToneEditorController> & toneEditorController)
 {
-	_toneEditor = toneEditor;
+	_toneEditorController = toneEditorController;
 }
 
 void TopMenuController::update()
@@ -34,8 +34,8 @@ void TopMenuController::update()
 	}
 	else if(_guiManager->getGuiButton("top_menu_tone")->isPressed())
 	{
-		_toneEditor->setGuiVisible(true);
-		_toneEditor->setEnabled(true);
+		_toneEditorController->setGuiVisible(true);
+		_toneEditorController->setEnabled(true);
 	}
 	else if(_guiManager->getGuiButton("top_menu_export")->isPressed())
 	{
@@ -46,7 +46,7 @@ void TopMenuController::update()
 		exit(0);
 	}
 
-	_toneEditor->update();
+	_toneEditorController->update();
 
 	_guiManager->getGuiButton("top_menu_tone")->setHoverable(_currentToneIndex != -1);
 

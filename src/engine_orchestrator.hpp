@@ -33,7 +33,7 @@ private:
 	const shared_ptr<TopMenuController> _topMenuController;
 	const shared_ptr<WaveformGenerator> _waveformGenerator;
 	const shared_ptr<WaveformPlayer> _waveformPlayer;
-	const shared_ptr<ToneEditor> _toneEditor;
+	const shared_ptr<ToneEditorController> _toneEditorController;
 	const shared_ptr<ToneManager> _toneManager;
 	const shared_ptr<LineRenderer> _lineRenderer;
 

@@ -126,7 +126,7 @@
     <ClCompile Include="..\src\gui_manager.cpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\tone_editor.cpp">
+    <ClCompile Include="..\src\tone_editor_controller.cpp">
       <Filter>GUI\Controllers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\gui_button.cpp">
@@ -230,7 +230,7 @@
     <ClInclude Include="..\src\gui_manager.hpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\tone_editor.hpp">
+    <ClInclude Include="..\src\tone_editor_controller.hpp">
       <Filter>GUI\Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_button.hpp">

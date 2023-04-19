@@ -1,9 +1,9 @@
-#include "tone_editor.hpp"
+#include "tone_editor_controller.hpp"
 #include "tone_constants.hpp"
 
 using std::to_string;
 
-void ToneEditor::update()
+void ToneEditorController::update()
 {
 	if(_guiManager->getGuiButton("tone_editor_close")->isPressed())
 	{
@@ -27,7 +27,7 @@ void ToneEditor::update()
 	}
 }
 
-void ToneEditor::_updatePlaybackGui()
+void ToneEditorController::_updatePlaybackGui()
 {
 	if(_guiManager->getGuiButton("tone_editor_play")->isPressed())
 	{
@@ -47,7 +47,7 @@ void ToneEditor::_updatePlaybackGui()
 	}
 }
 
-void ToneEditor::_updateOctaveGui()
+void ToneEditorController::_updateOctaveGui()
 {
 	if(_guiManager->getGuiButton("tone_editor_oct_decr")->isPressed())
 	{
@@ -83,7 +83,7 @@ void ToneEditor::_updateOctaveGui()
 	//_guiManager->getGuiLabel("tone_editor_oct_val")->setContent(to_string(_octave));
 }
 
-void ToneEditor::_updateAmplitudeGui(const string & type, vector<int> & amplitudes)
+void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes)
 {
 	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
@@ -134,7 +134,7 @@ void ToneEditor::_updateAmplitudeGui(const string & type, vector<int> & amplitud
 	}
 }
 
-void ToneEditor::setGuiVisible(const bool value)
+void ToneEditorController::setGuiVisible(const bool value)
 {
 	_guiManager->getGuiRectangle("tone_editor_background")->setVisible(value);
 	_guiManager->getGuiButton("tone_editor_close")->setVisible(value);
@@ -160,12 +160,12 @@ void ToneEditor::setGuiVisible(const bool value)
 	}
 }
 
-void ToneEditor::setEnabled(const bool value)
+void ToneEditorController::setEnabled(const bool value)
 {
 	_isEnabled = value;
 }
 
-void ToneEditor::_refreshWaveformVisualization()
+void ToneEditorController::_refreshWaveformVisualization()
 {
 	vector<shared_ptr<Waveform>> waveforms = _generateWaveforms(10);
 
@@ -182,7 +182,7 @@ void ToneEditor::_refreshWaveformVisualization()
 	}
 }
 
-const vector<shared_ptr<Waveform>> ToneEditor::_generateWaveforms(const int duration) const
+const vector<shared_ptr<Waveform>> ToneEditorController::_generateWaveforms(const int duration) const
 {
 	vector<shared_ptr<Waveform>> waveforms = {};
 
@@ -238,17 +238,17 @@ const vector<shared_ptr<Waveform>> ToneEditor::_generateWaveforms(const int dura
 	return waveforms;
 }
 
-void ToneEditor::inject(const shared_ptr<GuiManager> & guiManager)
+void ToneEditorController::inject(const shared_ptr<GuiManager> & guiManager)
 {
 	_guiManager = guiManager;
 }
 
-void ToneEditor::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
+void ToneEditorController::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
 {
 	_waveformGenerator = waveformGenerator;
 }
 
-void ToneEditor::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
+void ToneEditorController::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
 {
 	_waveformPlayer = waveformPlayer;
 }

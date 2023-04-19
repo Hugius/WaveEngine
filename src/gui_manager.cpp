@@ -17,8 +17,8 @@ void GuiManager::initialize()
 	_fontTextureBuffer = make_shared<TextureBuffer>(_imageLoader->getImage(Tools::getRootDirectoryPath() + FONT_PATH));
 
 	_initializeTopMenu();
-	_initializeBottomMenu();
 	_initializeTimeline();
+	_initializeBottomMenu();
 	_initializeToneEditor();
 }
 

@@ -16,16 +16,16 @@ EngineOrchestrator::EngineOrchestrator()
 	_waveformPlayer(make_shared<WaveformPlayer>()),
 	_toneManager(make_shared<ToneManager>()),
 	_lineRenderer(make_shared<LineRenderer>()),
-	_toneEditor(make_shared<ToneEditor>())
+	_toneEditorController(make_shared<ToneEditorController>())
 {
 	_renderWindow->inject(_inputHandler);
 	_guiManager->inject(_imageLoader);
-	_toneEditor->inject(_guiManager);
-	_toneEditor->inject(_waveformGenerator);
-	_toneEditor->inject(_waveformPlayer);
+	_toneEditorController->inject(_guiManager);
+	_toneEditorController->inject(_waveformGenerator);
+	_toneEditorController->inject(_waveformPlayer);
 	_topMenuController->inject(_guiManager);
 	_topMenuController->inject(_toneManager);
-	_topMenuController->inject(_toneEditor);
+	_topMenuController->inject(_toneEditorController);
 
 	_guiManager->initialize();
 

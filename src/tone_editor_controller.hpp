@@ -5,7 +5,7 @@
 #include "waveform_player.hpp"
 #include "tone_manager.hpp"
 
-class ToneEditor final
+class ToneEditorController final
 {
 public:
 	void inject(const shared_ptr<GuiManager> & guiManager);
