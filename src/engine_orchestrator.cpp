@@ -11,18 +11,21 @@ EngineOrchestrator::EngineOrchestrator()
 	_imageLoader(make_shared<ImageLoader>()),
 	_quadRenderer(make_shared<QuadRenderer>()),
 	_guiManager(make_shared<GuiManager>()),
-	_guiController(make_shared<GuiController>()),
+	_topMenuController(make_shared<TopMenuController>()),
 	_waveformGenerator(make_shared<WaveformGenerator>()),
 	_waveformPlayer(make_shared<WaveformPlayer>()),
 	_toneManager(make_shared<ToneManager>()),
-	_lineRenderer(make_shared<LineRenderer>())
+	_lineRenderer(make_shared<LineRenderer>()),
+	_toneEditor(make_shared<ToneEditor>())
 {
 	_renderWindow->inject(_inputHandler);
 	_guiManager->inject(_imageLoader);
-	_guiController->inject(_guiManager);
-	_guiController->inject(_waveformGenerator);
-	_guiController->inject(_waveformPlayer);
-	_guiController->inject(_toneManager);
+	_toneEditor->inject(_guiManager);
+	_toneEditor->inject(_waveformGenerator);
+	_toneEditor->inject(_waveformPlayer);
+	_topMenuController->inject(_guiManager);
+	_topMenuController->inject(_toneManager);
+	_topMenuController->inject(_toneEditor);
 
 	_guiManager->initialize();
 
@@ -93,7 +96,7 @@ void EngineOrchestrator::_update()
 
 	_inputHandler->update();
 	_renderWindow->update();
-	_guiController->update();
+	_topMenuController->update();
 	_guiManager->update(_renderWindow->getCursorPosition(), _inputHandler->isLmbPressed());
 }
 

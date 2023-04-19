@@ -16,44 +16,60 @@ void GuiManager::initialize()
 	_verticallyCenteredVertexBuffer = make_shared<VertexBuffer>(false, true);
 	_fontTextureBuffer = make_shared<TextureBuffer>(_imageLoader->getImage(Tools::getRootDirectoryPath() + FONT_PATH));
 
-	_addGuiRectangle("background", dvec2(0.0), dvec2(2.0), BLUE, true, true, true); // Temporary
-
 	_initializeTopMenu();
+	_initializeBottomMenu();
+	_initializeTimeline();
 	_initializeToneEditor();
 }
 
 void GuiManager::_initializeTopMenu()
 {
-	_addGuiRectangle("main_menu_background", dvec2(-1.0, 0.95), dvec2(2.0, CHAR_Y), GRAY, false, false, true);
+	const double y = 0.95;
+
+	_addGuiRectangle("top_menu_background", dvec2(-1.0, y), dvec2(2.0, CHAR_Y), GRAY, false, false, true);
 
 	double x = -1.0;
 
-	_addGuiButton("main_menu_new", dvec2(x, 0.95), dvec2(WIDTH("New"), CHAR_Y), GRAY, WHITE, "New", false, false, true, true, false, true);
+	_addGuiButton("top_menu_new", dvec2(x, y), dvec2(WIDTH("New"), CHAR_Y), GRAY, WHITE, "New", false, false, true, true, false, true);
 
 	x += WIDTH("New");
 	x += CHAR_X;
 
-	_addGuiButton("main_menu_load", dvec2(x, 0.95), dvec2(WIDTH("Load"), CHAR_Y), GRAY, WHITE, "Load", false, false, true, true, false, true);
+	_addGuiButton("top_menu_load", dvec2(x, y), dvec2(WIDTH("Load"), CHAR_Y), GRAY, WHITE, "Load", false, false, true, true, false, true);
 
 	x += WIDTH("Load");
 	x += CHAR_X;
 
-	_addGuiButton("main_menu_save", dvec2(x, 0.95), dvec2(WIDTH("Save"), CHAR_Y), GRAY, WHITE, "Save", false, false, true, true, false, true);
+	_addGuiButton("top_menu_save", dvec2(x, y), dvec2(WIDTH("Save"), CHAR_Y), GRAY, WHITE, "Save", false, false, true, true, false, true);
 
 	x += WIDTH("Save");
 	x += CHAR_X;
 
-	_addGuiButton("main_menu_tone", dvec2(x, 0.95), dvec2(WIDTH("ToneEditor"), CHAR_Y), GRAY, WHITE, "ToneEditor", false, false, true, true, false, true);
+	_addGuiButton("top_menu_tone", dvec2(x, y), dvec2(WIDTH("ToneEditor"), CHAR_Y), GRAY, WHITE, "ToneEditor", false, false, true, true, false, true);
 
 	x += WIDTH("ToneEditor");
 	x += CHAR_X;
 
-	_addGuiButton("main_menu_export", dvec2(x, 0.95), dvec2(WIDTH("Export"), CHAR_Y), GRAY, WHITE, "Export", false, false, true, true, false, true);
+	_addGuiButton("top_menu_export", dvec2(x, y), dvec2(WIDTH("Export"), CHAR_Y), GRAY, WHITE, "Export", false, false, true, true, false, true);
 
 	x += WIDTH("Export");
 	x += CHAR_X;
 
-	_addGuiButton("main_menu_exit", dvec2(x, 0.95), dvec2(WIDTH("Exit"), CHAR_Y), GRAY, WHITE, "Exit", false, false, true, true, false, true);
+	_addGuiButton("top_menu_exit", dvec2(x, y), dvec2(WIDTH("Exit"), CHAR_Y), GRAY, WHITE, "Exit", false, false, true, true, false, true);
+}
+
+void GuiManager::_initializeBottomMenu()
+{
+	const vector<double> positions = Mathematics::calculateDistributedPositions(-1.0, 0.25, 3);
+
+	_addGuiRectangle("bottom_menu_background", dvec2(-1.0, -1.0), dvec2(2.0, 0.25), DARK_GRAY, false, false, true);
+	_addGuiButton("bottom_menu_create", dvec2(-0.95, positions[0]), dvec2(WIDTH("Create"), CHAR_Y), GRAY, WHITE, "Create", false, true, true, true, false, true);
+	_addGuiButton("bottom_menu_delete", dvec2(-0.95, positions[1]), dvec2(WIDTH("Delete"), CHAR_Y), GRAY, WHITE, "Delete", false, true, true, true, false, true);
+}
+
+void GuiManager::_initializeTimeline()
+{
+	_addGuiRectangle("timeline_background", dvec2(-0.8, -1.0), dvec2(1.8, 2.0 - CHAR_Y), BLUE, false, false, true);
 }
 
 void GuiManager::_initializeToneEditor()

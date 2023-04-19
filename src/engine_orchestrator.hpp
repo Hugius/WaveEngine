@@ -5,7 +5,7 @@
 #include "image_loader.hpp"
 #include "quad_renderer.hpp"
 #include "gui_manager.hpp"
-#include "gui_controller.hpp"
+#include "top_menu_controller.hpp"
 #include "waveform_generator.hpp"
 #include "waveform_player.hpp"
 #include "line_renderer.hpp"
@@ -30,9 +30,10 @@ private:
 	const shared_ptr<ImageLoader> _imageLoader;
 	const shared_ptr<QuadRenderer> _quadRenderer;
 	const shared_ptr<GuiManager> _guiManager;
-	const shared_ptr<GuiController> _guiController;
+	const shared_ptr<TopMenuController> _topMenuController;
 	const shared_ptr<WaveformGenerator> _waveformGenerator;
 	const shared_ptr<WaveformPlayer> _waveformPlayer;
+	const shared_ptr<ToneEditor> _toneEditor;
 	const shared_ptr<ToneManager> _toneManager;
 	const shared_ptr<LineRenderer> _lineRenderer;
 

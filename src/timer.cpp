@@ -7,43 +7,36 @@ using std::chrono::duration_cast;
 using std::chrono::high_resolution_clock;
 using std::chrono::nanoseconds;
 
-Timer::Timer()
-	:
-	_clock(make_unique<Clock>())
-{
-
-}
-
 void Timer::start()
 {
-	if(_clock->isStarted)
+	if(_isStarted)
 	{
 		abort();
 	}
 
-	_clock->startEpoch = _getEpoch();
-	_clock->isStarted = true;
+	_startEpoch = _getEpoch();
+	_isStarted = true;
 }
 
 void Timer::stop()
 {
-	if(!_clock->isStarted)
+	if(!_isStarted)
 	{
 		abort();
 	}
 
-	_clock->stopEpoch = _getEpoch();
-	_clock->isStarted = false;
+	_stopEpoch = _getEpoch();
+	_isStarted = false;
 }
 
 const double Timer::getDeltaTime() const
 {
-	if(_clock->isStarted)
+	if(_isStarted)
 	{
 		abort();
 	}
 
-	const long long difference = (_clock->stopEpoch - _clock->startEpoch);
+	const long long difference = (_stopEpoch - _startEpoch);
 	const double deltaTime = static_cast<double>(difference) / 1000000.0;
 
 	return deltaTime;

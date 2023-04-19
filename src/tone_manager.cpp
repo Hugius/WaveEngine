@@ -1,31 +1,26 @@
 #include "tone_manager.hpp"
 
-void ToneManager::addTone(const string & id, const shared_ptr<Tone> & tone)
+void ToneManager::addTone(const shared_ptr<Tone> & tone)
 {
-	if(_isToneExisting(id))
+	_tones.push_back(tone);
+}
+
+const shared_ptr<Tone> & ToneManager::getTone(const int index) const
+{
+	if(index < 0)
 	{
 		abort();
 	}
 
-	_tones.insert({id, tone});
-}
-
-const shared_ptr<Tone> & ToneManager::getTone(const string & id) const
-{
-	if(!_isToneExisting(id))
+	if(index >= _tones.size())
 	{
 		abort();
 	}
 
-	return _tones.at(id);
+	return _tones.at(index);
 }
 
-const unordered_map<string, shared_ptr<Tone>> & ToneManager::getTones() const
+const vector<shared_ptr<Tone>> & ToneManager::getTones() const
 {
 	return _tones;
-}
-
-const bool ToneManager::_isToneExisting(const string & id) const
-{
-	return _tones.find(id) != _tones.end();
 }

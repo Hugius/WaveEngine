@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\clock.cpp" />
     <ClCompile Include="..\src\tone.cpp" />
     <ClCompile Include="..\src\tone_manager.cpp" />
     <ClCompile Include="..\src\base_renderer.cpp" />
@@ -20,7 +19,7 @@
     <ClCompile Include="..\src\dvec2.cpp" />
     <ClCompile Include="..\src\dvec3.cpp" />
     <ClCompile Include="..\src\gui_button.cpp" />
-    <ClCompile Include="..\src\gui_controller.cpp" />
+    <ClCompile Include="..\src\top_menu_controller.cpp" />
     <ClCompile Include="..\src\gui_label.cpp" />
     <ClCompile Include="..\src\gui_manager.cpp" />
     <ClCompile Include="..\src\gui_rectangle.cpp" />
@@ -52,14 +51,13 @@
     <ClInclude Include="..\src\tone_constants.hpp" />
     <ClInclude Include="..\src\tone_manager.hpp" />
     <ClInclude Include="..\src\base_renderer.hpp" />
-    <ClInclude Include="..\src\clock.hpp" />
     <ClInclude Include="..\src\cursor_type.hpp" />
     <ClInclude Include="..\src\engine_orchestrator.hpp" />
     <ClInclude Include="..\src\dmat33.hpp" />
     <ClInclude Include="..\src\dvec2.hpp" />
     <ClInclude Include="..\src\dvec3.hpp" />
     <ClInclude Include="..\src\gui_button.hpp" />
-    <ClInclude Include="..\src\gui_controller.hpp" />
+    <ClInclude Include="..\src\top_menu_controller.hpp" />
     <ClInclude Include="..\src\gui_label.hpp" />
     <ClInclude Include="..\src\gui_manager.hpp" />
     <ClInclude Include="..\src\gui_rectangle.hpp" />

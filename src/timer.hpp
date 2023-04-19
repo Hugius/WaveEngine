@@ -1,7 +1,5 @@
 #pragma once
 
-#include "clock.hpp"
-
 #include <memory>
 
 using std::unique_ptr;
@@ -9,8 +7,6 @@ using std::unique_ptr;
 class Timer final
 {
 public:
-	Timer();
-
 	void start();
 	void stop();
 
@@ -23,5 +19,8 @@ private:
 
 	static inline const int UPDATES_PER_SECOND = 75;
 
-	const unique_ptr<Clock> _clock;
+	long long _startEpoch = 0;
+	long long _stopEpoch = 0;
+
+	bool _isStarted = false;
 };

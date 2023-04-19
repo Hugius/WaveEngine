@@ -25,6 +25,8 @@ public:
 
 private:
 	void _initializeTopMenu();
+	void _initializeBottomMenu();
+	void _initializeTimeline();
 	void _initializeToneEditor();
 	void _addGuiRectangle(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible);
 	void _addGuiLabel(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible);

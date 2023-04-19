@@ -252,8 +252,3 @@ void ToneEditor::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
 {
 	_waveformPlayer = waveformPlayer;
 }
-
-void ToneEditor::inject(const shared_ptr<ToneManager> & toneManager)
-{
-	_toneManager = toneManager;
-}

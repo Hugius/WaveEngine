@@ -64,7 +64,7 @@
     <Filter Include="Tones">
       <UniqueIdentifier>{af4fc721-c4b3-4eb8-baec-3f0608e6b2a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI\Editors">
+    <Filter Include="GUI\Controllers">
       <UniqueIdentifier>{9c2a9ce5-3463-4f1c-9e7e-92f6ce993eec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -126,11 +126,8 @@
     <ClCompile Include="..\src\gui_manager.cpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\gui_controller.cpp">
-      <Filter>GUI\Miscellaneous</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\tone_editor.cpp">
-      <Filter>GUI\Editors</Filter>
+      <Filter>GUI\Controllers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\gui_button.cpp">
       <Filter>GUI\Domain</Filter>
@@ -171,16 +168,13 @@
     <ClCompile Include="..\src\tone.cpp">
       <Filter>Tones</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\clock.cpp">
-      <Filter>Miscellaneous</Filter>
+    <ClCompile Include="..\src\top_menu_controller.cpp">
+      <Filter>GUI\Controllers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\engine_orchestrator.hpp">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\clock.hpp">
-      <Filter>Miscellaneous</Filter>
     </ClInclude>
     <ClInclude Include="..\src\timer.hpp">
       <Filter>Miscellaneous</Filter>
@@ -236,11 +230,8 @@
     <ClInclude Include="..\src\gui_manager.hpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\gui_controller.hpp">
-      <Filter>GUI\Miscellaneous</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\tone_editor.hpp">
-      <Filter>GUI\Editors</Filter>
+      <Filter>GUI\Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_button.hpp">
       <Filter>GUI\Domain</Filter>
@@ -286,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="..\src\tone_constants.hpp">
       <Filter>Tones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\top_menu_controller.hpp">
+      <Filter>GUI\Controllers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
