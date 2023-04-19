@@ -1,11 +1,11 @@
 #pragma once
 
-class Clock final
+struct Clock final
 {
-	friend class Timer;
+	Clock();
 
-	long long startEpoch = 0;
-	long long stopEpoch = 0;
+	long long startEpoch;
+	long long stopEpoch;
 
-	bool isStarted = false;
+	bool isStarted;
 };

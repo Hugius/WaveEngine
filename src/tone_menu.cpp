@@ -1,20 +1,7 @@
 #include "tone_menu.hpp"
-#include "waveform_constants.hpp"
+#include "tone_constants.hpp"
 
 using std::to_string;
-
-ToneMenu::ToneMenu()
-{
-	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
-	{
-		_sineAmplitudes.push_back(0);
-		_squareAmplitudes.push_back(0);
-		_triangleAmplitudes.push_back(0);
-		_sawtoothAmplitudes.push_back(0);
-	}
-
-	_octave = WaveformConstants::DEFAULT_OCTAVE;
-}
 
 void ToneMenu::update()
 {
@@ -33,10 +20,10 @@ void ToneMenu::update()
 	{
 		_updatePlaybackGui();
 		_updateOctaveGui();
-		_updateAmplitudeGui("sin", _sineAmplitudes);
-		_updateAmplitudeGui("sqr", _squareAmplitudes);
-		_updateAmplitudeGui("tri", _triangleAmplitudes);
-		_updateAmplitudeGui("saw", _sawtoothAmplitudes);
+		//_updateAmplitudeGui("sin", _sineAmplitudes);
+		//_updateAmplitudeGui("sqr", _squareAmplitudes);
+		//_updateAmplitudeGui("tri", _triangleAmplitudes);
+		//_updateAmplitudeGui("saw", _sawtoothAmplitudes);
 	}
 }
 
@@ -64,13 +51,13 @@ void ToneMenu::_updateOctaveGui()
 {
 	if(_guiManager->getGuiButton("tone_menu_oct_decr")->isPressed())
 	{
-		_octave--;
+		//_octave--;
 
-		if(_octave == WaveformConstants::MIN_OCTAVE)
-		{
-			_guiManager->getGuiButton("tone_menu_oct_decr")->setPressable(false);
-			_guiManager->getGuiButton("tone_menu_oct_decr")->setHoverable(false);
-		}
+		//if(_octave == ToneConstants::MIN_OCTAVE)
+		//{
+		//	_guiManager->getGuiButton("tone_menu_oct_decr")->setPressable(false);
+		//	_guiManager->getGuiButton("tone_menu_oct_decr")->setHoverable(false);
+		//}
 
 		_guiManager->getGuiButton("tone_menu_oct_incr")->setPressable(true);
 		_guiManager->getGuiButton("tone_menu_oct_incr")->setHoverable(true);
@@ -79,13 +66,13 @@ void ToneMenu::_updateOctaveGui()
 	}
 	else if(_guiManager->getGuiButton("tone_menu_oct_incr")->isPressed())
 	{
-		_octave++;
+		//_octave++;
 
-		if(_octave == WaveformConstants::MAX_OCTAVE)
-		{
-			_guiManager->getGuiButton("tone_menu_oct_incr")->setPressable(false);
-			_guiManager->getGuiButton("tone_menu_oct_incr")->setHoverable(false);
-		}
+		//if(_octave == ToneConstants::MAX_OCTAVE)
+		//{
+		//	_guiManager->getGuiButton("tone_menu_oct_incr")->setPressable(false);
+		//	_guiManager->getGuiButton("tone_menu_oct_incr")->setHoverable(false);
+		//}
 
 		_guiManager->getGuiButton("tone_menu_oct_decr")->setPressable(true);
 		_guiManager->getGuiButton("tone_menu_oct_decr")->setHoverable(true);
@@ -93,12 +80,12 @@ void ToneMenu::_updateOctaveGui()
 		_refreshWaveformVisualization();
 	}
 
-	_guiManager->getGuiLabel("tone_menu_oct_val")->setContent(to_string(_octave));
+	//_guiManager->getGuiLabel("tone_menu_oct_val")->setContent(to_string(_octave));
 }
 
 void ToneMenu::_updateAmplitudeGui(const string & type, vector<int> & amplitudes)
 {
-	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
+	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
 		if(_guiManager->getGuiButton("tone_menu_" + type + "_decr" + to_string(index))->isPressed())
 		{
@@ -159,7 +146,7 @@ void ToneMenu::setGuiVisible(const bool value)
 	_guiManager->getGuiButton("tone_menu_oct_incr")->setVisible(value);
 	_guiManager->getGuiLabel("tone_menu_oct_name")->setVisible(value);
 
-	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
+	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
 		for(const string & type : {"sin", "sqr", "tri", "saw"})
 		{
@@ -199,15 +186,15 @@ const vector<shared_ptr<Waveform>> ToneMenu::_generateWaveforms(const int durati
 {
 	vector<shared_ptr<Waveform>> waveforms = {};
 
-	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
+	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
-		const double frequency = WaveformConstants::NOTE_FREQUENCIES[index] * pow(2.0, static_cast<double>(_octave));
+		//const double frequency = ToneConstants::NOTE_FREQUENCIES[index] * pow(2.0, static_cast<double>(_octave));
 
-		if(_guiManager->getGuiButton("tone_menu_sin_txt" + to_string(index))->isToggled())
+		/*if(_guiManager->getGuiButton("tone_menu_sin_txt" + to_string(index))->isToggled())
 		{
 			if(_sineAmplitudes[index] != 0)
 			{
-				const double amplitude = static_cast<double>(_sineAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const double amplitude = static_cast<double>(_sineAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
@@ -218,7 +205,7 @@ const vector<shared_ptr<Waveform>> ToneMenu::_generateWaveforms(const int durati
 		{
 			if(_squareAmplitudes[index] != 0)
 			{
-				const double amplitude = static_cast<double>(_squareAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const double amplitude = static_cast<double>(_squareAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
@@ -229,7 +216,7 @@ const vector<shared_ptr<Waveform>> ToneMenu::_generateWaveforms(const int durati
 		{
 			if(_triangleAmplitudes[index] != 0)
 			{
-				const double amplitude = static_cast<double>(_triangleAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const double amplitude = static_cast<double>(_triangleAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 				const shared_ptr<Waveform> waveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
@@ -240,12 +227,12 @@ const vector<shared_ptr<Waveform>> ToneMenu::_generateWaveforms(const int durati
 		{
 			if(_sawtoothAmplitudes[index] != 0)
 			{
-				const double amplitude = static_cast<double>(_sawtoothAmplitudes[index]) * OCTAVE_AMPLITUDE_STEP;
+				const double amplitude = static_cast<double>(_sawtoothAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency);
 
 				waveforms.push_back(waveform);
 			}
-		}
+		}*/
 	}
 
 	return waveforms;
@@ -266,7 +253,7 @@ void ToneMenu::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
 	_waveformPlayer = waveformPlayer;
 }
 
-void ToneMenu::inject(const shared_ptr<WaveformManager> & waveformManager)
+void ToneMenu::inject(const shared_ptr<ToneManager> & toneManager)
 {
-	_waveformManager = waveformManager;
+	_toneManager = toneManager;
 }

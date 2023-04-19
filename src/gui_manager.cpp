@@ -1,7 +1,9 @@
 #include "gui_manager.hpp"
 #include "tools.hpp"
 #include "mathematics.hpp"
-#include "waveform_constants.hpp"
+#include "tone_constants.hpp"
+
+#define WIDTH(content) (CHAR_X * static_cast<double>(string(content).size()))
 
 using std::make_shared;
 using std::to_string;
@@ -23,12 +25,35 @@ void GuiManager::initialize()
 void GuiManager::_initializeMainMenu()
 {
 	_addGuiRectangle("main_menu_background", dvec2(-1.0, 0.95), dvec2(2.0, CHAR_Y), GRAY, false, false, true);
-	_addGuiButton("main_menu_new", dvec2(-1.0, 0.95), dvec2(CHAR_X * 3.0, CHAR_Y), GRAY, WHITE, "New", false, false, true, true, false, true);
-	_addGuiButton("main_menu_load", dvec2(-0.95, 0.95), dvec2(CHAR_X * 4.0, CHAR_Y), GRAY, WHITE, "Load", false, false, true, true, false, true);
-	_addGuiButton("main_menu_save", dvec2(-0.8875, 0.95), dvec2(CHAR_X * 4.0, CHAR_Y), GRAY, WHITE, "Save", false, false, true, true, false, true);
-	_addGuiButton("main_menu_waveform", dvec2(-0.825, 0.95), dvec2(CHAR_X * 9.0, CHAR_Y), GRAY, WHITE, "Waveform", false, false, true, true, false, true);
-	_addGuiButton("main_menu_export", dvec2(-0.7, 0.95), dvec2(CHAR_X * 6.0, CHAR_Y), GRAY, WHITE, "Export", false, false, true, true, false, true);
-	_addGuiButton("main_menu_exit", dvec2(-0.6125, 0.95), dvec2(CHAR_X * 4.0, CHAR_Y), GRAY, WHITE, "Exit", false, false, true, true, false, true);
+
+	double x = -1.0;
+
+	_addGuiButton("main_menu_new", dvec2(x, 0.95), dvec2(WIDTH("New"), CHAR_Y), GRAY, WHITE, "New", false, false, true, true, false, true);
+
+	x += WIDTH("New");
+	x += CHAR_X;
+
+	_addGuiButton("main_menu_load", dvec2(x, 0.95), dvec2(WIDTH("Load"), CHAR_Y), GRAY, WHITE, "Load", false, false, true, true, false, true);
+
+	x += WIDTH("Load");
+	x += CHAR_X;
+
+	_addGuiButton("main_menu_save", dvec2(x, 0.95), dvec2(WIDTH("Save"), CHAR_Y), GRAY, WHITE, "Save", false, false, true, true, false, true);
+
+	x += WIDTH("Save");
+	x += CHAR_X;
+
+	_addGuiButton("main_menu_tone", dvec2(x, 0.95), dvec2(WIDTH("ToneMenu"), CHAR_Y), GRAY, WHITE, "ToneMenu", false, false, true, true, false, true);
+
+	x += WIDTH("ToneMenu");
+	x += CHAR_X;
+
+	_addGuiButton("main_menu_export", dvec2(x, 0.95), dvec2(WIDTH("Export"), CHAR_Y), GRAY, WHITE, "Export", false, false, true, true, false, true);
+
+	x += WIDTH("Export");
+	x += CHAR_X;
+
+	_addGuiButton("main_menu_exit", dvec2(x, 0.95), dvec2(WIDTH("Exit"), CHAR_Y), GRAY, WHITE, "Exit", false, false, true, true, false, true);
 }
 
 void GuiManager::_initializeToneMenu()
@@ -36,16 +61,16 @@ void GuiManager::_initializeToneMenu()
 	_addGuiRectangle("tone_menu_background", dvec2(0.0), dvec2(1.5), GRAY, true, true, false);
 	_addGuiButton("tone_menu_close", dvec2(0.75 - CHAR_X, 0.7), dvec2(CHAR_X, CHAR_Y), GRAY, RED, "X", false, false, true, true, false, false);
 	_addGuiWaveform("tone_menu_visualization", dvec2(0.0f, 0.5 - CHAR_Y), dvec2(1.475f, 0.5f - CHAR_Y / 2.0), WHITE, true, true, false);
-	_addGuiButton("tone_menu_play", dvec2(0.0, 0.0f), dvec2(CHAR_X * 4.0, CHAR_Y), DARK_GRAY, WHITE, "Play", true, true, true, true, false, false);
-	_addGuiButton("tone_menu_save", dvec2(0.0, -0.1f), dvec2(CHAR_X * 4.0, CHAR_Y), DARK_GRAY, WHITE, "Save", true, true, true, true, false, false);
+	_addGuiButton("tone_menu_play", dvec2(0.0, 0.0f), dvec2(WIDTH("Play"), CHAR_Y), DARK_GRAY, WHITE, "Play", true, true, true, true, false, false);
+	_addGuiButton("tone_menu_save", dvec2(0.0, -0.1f), dvec2(WIDTH("Save"), CHAR_Y), DARK_GRAY, WHITE, "Save", true, true, true, true, false, false);
 	_addGuiButton("tone_menu_oct_decr", dvec2(0.0 - CHAR_X, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, true, true, true, false, false);
 	_addGuiLabel("tone_menu_oct_val", dvec2(0.0, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), WHITE, "0", true, true, false);
 	_addGuiButton("tone_menu_oct_incr", dvec2(0.0 + CHAR_X, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, ">", true, true, true, true, false, false);
-	_addGuiLabel("tone_menu_oct_name", dvec2(0.0, -0.25), dvec2(CHAR_X * 6.0, CHAR_Y), WHITE, "Octave", true, true, false);
+	_addGuiLabel("tone_menu_oct_name", dvec2(0.0, -0.25), dvec2(WIDTH("Octave"), CHAR_Y), WHITE, "Octave", true, true, false);
 
-	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(WaveformConstants::NOTE_NAMES.size()));
+	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(ToneConstants::NOTE_NAMES.size()));
 
-	for(int index = 0; index < static_cast<int>(WaveformConstants::NOTE_NAMES.size()); index++)
+	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
 		const string sineDecreaseId = "tone_menu_sin_decr" + to_string(index);
 		const string sineValueId = "tone_menu_sin_val" + to_string(index);
@@ -64,25 +89,25 @@ void GuiManager::_initializeToneMenu()
 		const string sawtoothIncreaseId = "tone_menu_saw_incr" + to_string(index);
 		const string sawtoothToggleId = "tone_menu_saw_txt" + to_string(index);
 		const string noteId = "tone_menu_note" + to_string(index);
-		const string noteName = WaveformConstants::NOTE_NAMES[index];
+		const string noteName = ToneConstants::NOTE_NAMES[index];
 
 		_addGuiButton(sineDecreaseId, dvec2(positions[index] - CHAR_X, -0.35), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, false, false, false, false, false);
 		_addGuiLabel(sineValueId, dvec2(positions[index], -0.35), dvec2(CHAR_X, CHAR_Y), WHITE, "0", true, false, false);
 		_addGuiButton(sineIncreaseId, dvec2(positions[index] + CHAR_X, -0.35), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, ">", true, false, true, true, false, false);
-		_addGuiButton(sineToggleId, dvec2(positions[index], -0.4), dvec2(CHAR_X * 3.0, CHAR_Y), GRAY, WHITE, "SIN", true, false, true, true, true, false);
+		_addGuiButton(sineToggleId, dvec2(positions[index], -0.4), dvec2(WIDTH("SIN"), CHAR_Y), GRAY, WHITE, "SIN", true, false, true, true, true, false);
 		_addGuiButton(squareDecreaseId, dvec2(positions[index] - CHAR_X, -0.45), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, false, false, false, false, false);
 		_addGuiLabel(squareValueId, dvec2(positions[index], -0.45), dvec2(CHAR_X, CHAR_Y), WHITE, "0", true, false, false);
 		_addGuiButton(squareIncreaseId, dvec2(positions[index] + CHAR_X, -0.45), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, ">", true, false, true, true, false, false);
-		_addGuiButton(squareToggleId, dvec2(positions[index], -0.5), dvec2(CHAR_X * 3.0, CHAR_Y), GRAY, WHITE, "SQR", true, false, true, true, true, false);
+		_addGuiButton(squareToggleId, dvec2(positions[index], -0.5), dvec2(WIDTH("SQR"), CHAR_Y), GRAY, WHITE, "SQR", true, false, true, true, true, false);
 		_addGuiButton(triangleDecreaseId, dvec2(positions[index] - CHAR_X, -0.55), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, false, false, false, false, false);
 		_addGuiLabel(triangleValueId, dvec2(positions[index], -0.55), dvec2(CHAR_X, CHAR_Y), WHITE, "0", true, false, false);
 		_addGuiButton(triangleIncreaseId, dvec2(positions[index] + CHAR_X, -0.55), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, ">", true, false, true, true, false, false);
-		_addGuiButton(triangleToggleId, dvec2(positions[index], -0.6), dvec2(CHAR_X * 3.0, CHAR_Y), GRAY, WHITE, "TRI", true, false, true, true, true, false);
+		_addGuiButton(triangleToggleId, dvec2(positions[index], -0.6), dvec2(WIDTH("TRI"), CHAR_Y), GRAY, WHITE, "TRI", true, false, true, true, true, false);
 		_addGuiButton(sawtoothDecreaseId, dvec2(positions[index] - CHAR_X, -0.65), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, false, false, false, false, false);
 		_addGuiLabel(sawtoothValueId, dvec2(positions[index], -0.65), dvec2(CHAR_X, CHAR_Y), WHITE, "0", true, false, false);
 		_addGuiButton(sawtoothIncreaseId, dvec2(positions[index] + CHAR_X, -0.65), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, ">", true, false, true, true, false, false);
-		_addGuiButton(sawtoothToggleId, dvec2(positions[index], -0.7), dvec2(CHAR_X * 3.0, CHAR_Y), GRAY, WHITE, "SAW", true, false, true, true, true, false);
-		_addGuiLabel(noteId, dvec2(positions[index], -0.75), dvec2(CHAR_X * static_cast<double>(noteName.size()), CHAR_Y), BLACK, noteName, true, false, false);
+		_addGuiButton(sawtoothToggleId, dvec2(positions[index], -0.7), dvec2(WIDTH("SAW"), CHAR_Y), GRAY, WHITE, "SAW", true, false, true, true, true, false);
+		_addGuiLabel(noteId, dvec2(positions[index], -0.75), dvec2(WIDTH(noteName), CHAR_Y), BLACK, noteName, true, false, false);
 	}
 }
 

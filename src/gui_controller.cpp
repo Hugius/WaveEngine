@@ -27,9 +27,9 @@ void GuiController::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
 	_toneMenu->inject(waveformPlayer);
 }
 
-void GuiController::inject(const shared_ptr<WaveformManager> & waveformManager)
+void GuiController::inject(const shared_ptr<ToneManager> & toneManager)
 {
-	_toneMenu->inject(waveformManager);
+	_toneMenu->inject(toneManager);
 }
 
 void GuiController::update()
@@ -46,7 +46,7 @@ void GuiController::update()
 	{
 
 	}
-	else if(_guiManager->getGuiButton("main_menu_waveform")->isPressed())
+	else if(_guiManager->getGuiButton("main_menu_tone")->isPressed())
 	{
 		_toneMenu->setGuiVisible(true);
 		_toneMenu->setEnabled(true);

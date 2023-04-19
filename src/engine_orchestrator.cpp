@@ -14,7 +14,7 @@ EngineOrchestrator::EngineOrchestrator()
 	_guiController(make_shared<GuiController>()),
 	_waveformGenerator(make_shared<WaveformGenerator>()),
 	_waveformPlayer(make_shared<WaveformPlayer>()),
-	_waveformManager(make_shared<WaveformManager>()),
+	_toneManager(make_shared<ToneManager>()),
 	_lineRenderer(make_shared<LineRenderer>())
 {
 	_renderWindow->inject(_inputHandler);
@@ -22,7 +22,7 @@ EngineOrchestrator::EngineOrchestrator()
 	_guiController->inject(_guiManager);
 	_guiController->inject(_waveformGenerator);
 	_guiController->inject(_waveformPlayer);
-	_guiController->inject(_waveformManager);
+	_guiController->inject(_toneManager);
 
 	_guiManager->initialize();
 

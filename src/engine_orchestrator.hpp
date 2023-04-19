@@ -33,7 +33,7 @@ private:
 	const shared_ptr<GuiController> _guiController;
 	const shared_ptr<WaveformGenerator> _waveformGenerator;
 	const shared_ptr<WaveformPlayer> _waveformPlayer;
-	const shared_ptr<WaveformManager> _waveformManager;
+	const shared_ptr<ToneManager> _toneManager;
 	const shared_ptr<LineRenderer> _lineRenderer;
 
 	double _totalDeltaTime = 0.0;

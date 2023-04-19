@@ -11,7 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\waveform_manager.cpp" />
+    <ClCompile Include="..\src\clock.cpp" />
+    <ClCompile Include="..\src\tone.cpp" />
+    <ClCompile Include="..\src\tone_manager.cpp" />
     <ClCompile Include="..\src\base_renderer.cpp" />
     <ClCompile Include="..\src\engine_orchestrator.cpp" />
     <ClCompile Include="..\src\dmat33.cpp" />
@@ -46,8 +48,9 @@
     <ClCompile Include="..\src\waveform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\waveform_constants.hpp" />
-    <ClInclude Include="..\src\waveform_manager.hpp" />
+    <ClInclude Include="..\src\tone.hpp" />
+    <ClInclude Include="..\src\tone_constants.hpp" />
+    <ClInclude Include="..\src\tone_manager.hpp" />
     <ClInclude Include="..\src\base_renderer.hpp" />
     <ClInclude Include="..\src\clock.hpp" />
     <ClInclude Include="..\src\cursor_type.hpp" />

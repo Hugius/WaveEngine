@@ -3,7 +3,6 @@
 
 #include "waveform_generator.hpp"
 #include "mathematics.hpp"
-#include "waveform_constants.hpp"
 
 using std::make_shared;
 

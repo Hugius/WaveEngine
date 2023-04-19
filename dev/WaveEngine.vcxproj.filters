@@ -64,6 +64,9 @@
     <Filter Include="GUI\Miscellaneous">
       <UniqueIdentifier>{cca38dd0-9ce1-4829-9260-04b74b8cd3d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tones">
+      <UniqueIdentifier>{af4fc721-c4b3-4eb8-baec-3f0608e6b2a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -159,11 +162,17 @@
     <ClCompile Include="..\src\mathematics.cpp">
       <Filter>Mathematics\Miscellaneous</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\waveform_manager.cpp">
-      <Filter>Waveforms\Miscellaneous</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\waveform_player.cpp">
       <Filter>Waveforms\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tone_manager.cpp">
+      <Filter>Tones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tone.cpp">
+      <Filter>Tones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\clock.cpp">
+      <Filter>Miscellaneous</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,9 +257,6 @@
     <ClInclude Include="..\src\waveform.hpp">
       <Filter>Waveforms\Domain</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\waveform_constants.hpp">
-      <Filter>Waveforms\Domain</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\waveform_type.hpp">
       <Filter>Waveforms\Domain</Filter>
     </ClInclude>
@@ -269,11 +275,17 @@
     <ClInclude Include="..\src\mathematics.hpp">
       <Filter>Mathematics\Miscellaneous</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\waveform_manager.hpp">
-      <Filter>Waveforms\Miscellaneous</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\waveform_player.hpp">
       <Filter>Waveforms\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tone.hpp">
+      <Filter>Tones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tone_manager.hpp">
+      <Filter>Tones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tone_constants.hpp">
+      <Filter>Tones</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
