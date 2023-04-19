@@ -171,6 +171,9 @@
     <ClCompile Include="..\src\top_menu_controller.cpp">
       <Filter>GUI\Controllers</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\bottom_menu_controller.cpp">
+      <Filter>GUI\Controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\engine_orchestrator.hpp">
@@ -279,6 +282,9 @@
       <Filter>Tones</Filter>
     </ClInclude>
     <ClInclude Include="..\src\top_menu_controller.hpp">
+      <Filter>GUI\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\bottom_menu_controller.hpp">
       <Filter>GUI\Controllers</Filter>
     </ClInclude>
   </ItemGroup>

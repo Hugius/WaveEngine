@@ -9,6 +9,7 @@
 #include "waveform_generator.hpp"
 #include "waveform_player.hpp"
 #include "line_renderer.hpp"
+#include "bottom_menu_controller.hpp"
 
 class EngineOrchestrator final
 {
@@ -31,6 +32,7 @@ private:
 	const shared_ptr<QuadRenderer> _quadRenderer;
 	const shared_ptr<GuiManager> _guiManager;
 	const shared_ptr<TopMenuController> _topMenuController;
+	const shared_ptr<BottomMenuController> _bottomMenuController;
 	const shared_ptr<WaveformGenerator> _waveformGenerator;
 	const shared_ptr<WaveformPlayer> _waveformPlayer;
 	const shared_ptr<ToneEditorController> _toneEditorController;

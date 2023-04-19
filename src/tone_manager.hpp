@@ -14,6 +14,10 @@ public:
 	const shared_ptr<Tone> & getTone(const int index) const;
 	const vector<shared_ptr<Tone>> & getTones() const;
 
+	const int getCurrentIndex() const;
+
 private:
 	vector<shared_ptr<Tone>> _tones = {};
+
+	int _currentIndex = 0;
 };

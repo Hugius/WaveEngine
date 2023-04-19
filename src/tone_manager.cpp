@@ -24,3 +24,8 @@ const vector<shared_ptr<Tone>> & ToneManager::getTones() const
 {
 	return _tones;
 }
+
+const int ToneManager::getCurrentIndex() const
+{
+	return _currentIndex;
+}

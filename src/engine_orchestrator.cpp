@@ -12,6 +12,7 @@ EngineOrchestrator::EngineOrchestrator()
 	_quadRenderer(make_shared<QuadRenderer>()),
 	_guiManager(make_shared<GuiManager>()),
 	_topMenuController(make_shared<TopMenuController>()),
+	_bottomMenuController(make_shared<BottomMenuController>()),
 	_waveformGenerator(make_shared<WaveformGenerator>()),
 	_waveformPlayer(make_shared<WaveformPlayer>()),
 	_toneManager(make_shared<ToneManager>()),
@@ -26,6 +27,8 @@ EngineOrchestrator::EngineOrchestrator()
 	_topMenuController->inject(_guiManager);
 	_topMenuController->inject(_toneManager);
 	_topMenuController->inject(_toneEditorController);
+	_bottomMenuController->inject(_guiManager);
+	_bottomMenuController->inject(_toneManager);
 
 	_guiManager->initialize();
 
@@ -97,6 +100,8 @@ void EngineOrchestrator::_update()
 	_inputHandler->update();
 	_renderWindow->update();
 	_topMenuController->update();
+	_bottomMenuController->update();
+	_toneEditorController->update();
 	_guiManager->update(_renderWindow->getCursorPosition(), _inputHandler->isLmbPressed());
 }
 
