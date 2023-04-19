@@ -24,8 +24,8 @@ public:
 	const shared_ptr<GuiWaveform> & getGuiWaveform(const string & id) const;
 
 private:
-	void _initializeMainMenu();
-	void _initializeToneMenu();
+	void _initializeTopMenu();
+	void _initializeToneEditor();
 	void _addGuiRectangle(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible);
 	void _addGuiLabel(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible);
 	void _addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const dvec3 & textColor, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isTogglable, const bool isVisible);

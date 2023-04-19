@@ -5,7 +5,7 @@ using std::make_unique;
 
 GuiController::GuiController()
 	:
-	_toneMenu(make_unique<ToneMenu>())
+	_toneEditor(make_unique<ToneEditor>())
 {
 
 }
@@ -14,22 +14,22 @@ void GuiController::inject(const shared_ptr<GuiManager> & guiManager)
 {
 	_guiManager = guiManager;
 
-	_toneMenu->inject(_guiManager);
+	_toneEditor->inject(_guiManager);
 }
 
 void GuiController::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
 {
-	_toneMenu->inject(waveformGenerator);
+	_toneEditor->inject(waveformGenerator);
 }
 
 void GuiController::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
 {
-	_toneMenu->inject(waveformPlayer);
+	_toneEditor->inject(waveformPlayer);
 }
 
 void GuiController::inject(const shared_ptr<ToneManager> & toneManager)
 {
-	_toneMenu->inject(toneManager);
+	_toneEditor->inject(toneManager);
 }
 
 void GuiController::update()
@@ -48,8 +48,8 @@ void GuiController::update()
 	}
 	else if(_guiManager->getGuiButton("main_menu_tone")->isPressed())
 	{
-		_toneMenu->setGuiVisible(true);
-		_toneMenu->setEnabled(true);
+		_toneEditor->setGuiVisible(true);
+		_toneEditor->setEnabled(true);
 	}
 	else if(_guiManager->getGuiButton("main_menu_export")->isPressed())
 	{
@@ -60,5 +60,5 @@ void GuiController::update()
 		exit(0);
 	}
 
-	_toneMenu->update();
+	_toneEditor->update();
 }

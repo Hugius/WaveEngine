@@ -18,11 +18,11 @@ void GuiManager::initialize()
 
 	_addGuiRectangle("background", dvec2(0.0), dvec2(2.0), BLUE, true, true, true); // Temporary
 
-	_initializeMainMenu();
-	_initializeToneMenu();
+	_initializeTopMenu();
+	_initializeToneEditor();
 }
 
-void GuiManager::_initializeMainMenu()
+void GuiManager::_initializeTopMenu()
 {
 	_addGuiRectangle("main_menu_background", dvec2(-1.0, 0.95), dvec2(2.0, CHAR_Y), GRAY, false, false, true);
 
@@ -43,9 +43,9 @@ void GuiManager::_initializeMainMenu()
 	x += WIDTH("Save");
 	x += CHAR_X;
 
-	_addGuiButton("main_menu_tone", dvec2(x, 0.95), dvec2(WIDTH("ToneMenu"), CHAR_Y), GRAY, WHITE, "ToneMenu", false, false, true, true, false, true);
+	_addGuiButton("main_menu_tone", dvec2(x, 0.95), dvec2(WIDTH("ToneEditor"), CHAR_Y), GRAY, WHITE, "ToneEditor", false, false, true, true, false, true);
 
-	x += WIDTH("ToneMenu");
+	x += WIDTH("ToneEditor");
 	x += CHAR_X;
 
 	_addGuiButton("main_menu_export", dvec2(x, 0.95), dvec2(WIDTH("Export"), CHAR_Y), GRAY, WHITE, "Export", false, false, true, true, false, true);
@@ -56,39 +56,39 @@ void GuiManager::_initializeMainMenu()
 	_addGuiButton("main_menu_exit", dvec2(x, 0.95), dvec2(WIDTH("Exit"), CHAR_Y), GRAY, WHITE, "Exit", false, false, true, true, false, true);
 }
 
-void GuiManager::_initializeToneMenu()
+void GuiManager::_initializeToneEditor()
 {
-	_addGuiRectangle("tone_menu_background", dvec2(0.0), dvec2(1.5), GRAY, true, true, false);
-	_addGuiButton("tone_menu_close", dvec2(0.75 - CHAR_X, 0.7), dvec2(CHAR_X, CHAR_Y), GRAY, RED, "X", false, false, true, true, false, false);
-	_addGuiWaveform("tone_menu_visualization", dvec2(0.0f, 0.5 - CHAR_Y), dvec2(1.475f, 0.5f - CHAR_Y / 2.0), WHITE, true, true, false);
-	_addGuiButton("tone_menu_play", dvec2(0.0, 0.0f), dvec2(WIDTH("Play"), CHAR_Y), DARK_GRAY, WHITE, "Play", true, true, true, true, false, false);
-	_addGuiButton("tone_menu_save", dvec2(0.0, -0.1f), dvec2(WIDTH("Save"), CHAR_Y), DARK_GRAY, WHITE, "Save", true, true, true, true, false, false);
-	_addGuiButton("tone_menu_oct_decr", dvec2(0.0 - CHAR_X, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, true, true, true, false, false);
-	_addGuiLabel("tone_menu_oct_val", dvec2(0.0, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), WHITE, "0", true, true, false);
-	_addGuiButton("tone_menu_oct_incr", dvec2(0.0 + CHAR_X, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, ">", true, true, true, true, false, false);
-	_addGuiLabel("tone_menu_oct_name", dvec2(0.0, -0.25), dvec2(WIDTH("Octave"), CHAR_Y), WHITE, "Octave", true, true, false);
+	_addGuiRectangle("tone_editor_background", dvec2(0.0), dvec2(1.5), GRAY, true, true, false);
+	_addGuiButton("tone_editor_close", dvec2(0.75 - CHAR_X, 0.7), dvec2(CHAR_X, CHAR_Y), GRAY, RED, "X", false, false, true, true, false, false);
+	_addGuiWaveform("tone_editor_visualization", dvec2(0.0f, 0.5 - CHAR_Y), dvec2(1.475f, 0.5f - CHAR_Y / 2.0), WHITE, true, true, false);
+	_addGuiButton("tone_editor_play", dvec2(0.0, 0.0f), dvec2(WIDTH("Play"), CHAR_Y), DARK_GRAY, WHITE, "Play", true, true, true, true, false, false);
+	_addGuiButton("tone_editor_save", dvec2(0.0, -0.1f), dvec2(WIDTH("Save"), CHAR_Y), DARK_GRAY, WHITE, "Save", true, true, true, true, false, false);
+	_addGuiButton("tone_editor_oct_decr", dvec2(0.0 - CHAR_X, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, true, true, true, false, false);
+	_addGuiLabel("tone_editor_oct_val", dvec2(0.0, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), WHITE, "0", true, true, false);
+	_addGuiButton("tone_editor_oct_incr", dvec2(0.0 + CHAR_X, -0.25 + CHAR_Y), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, ">", true, true, true, true, false, false);
+	_addGuiLabel("tone_editor_oct_name", dvec2(0.0, -0.25), dvec2(WIDTH("Octave"), CHAR_Y), WHITE, "Octave", true, true, false);
 
 	const vector<double> positions = Mathematics::calculateDistributedPositions(-0.75, 1.5, static_cast<int>(ToneConstants::NOTE_NAMES.size()));
 
 	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
-		const string sineDecreaseId = "tone_menu_sin_decr" + to_string(index);
-		const string sineValueId = "tone_menu_sin_val" + to_string(index);
-		const string sineIncreaseId = "tone_menu_sin_incr" + to_string(index);
-		const string sineToggleId = "tone_menu_sin_txt" + to_string(index);
-		const string squareDecreaseId = "tone_menu_sqr_decr" + to_string(index);
-		const string squareValueId = "tone_menu_sqr_val" + to_string(index);
-		const string squareIncreaseId = "tone_menu_sqr_incr" + to_string(index);
-		const string squareToggleId = "tone_menu_sqr_txt" + to_string(index);
-		const string triangleDecreaseId = "tone_menu_tri_decr" + to_string(index);
-		const string triangleValueId = "tone_menu_tri_val" + to_string(index);
-		const string triangleIncreaseId = "tone_menu_tri_incr" + to_string(index);
-		const string triangleToggleId = "tone_menu_tri_txt" + to_string(index);
-		const string sawtoothDecreaseId = "tone_menu_saw_decr" + to_string(index);
-		const string sawtoothValueId = "tone_menu_saw_val" + to_string(index);
-		const string sawtoothIncreaseId = "tone_menu_saw_incr" + to_string(index);
-		const string sawtoothToggleId = "tone_menu_saw_txt" + to_string(index);
-		const string noteId = "tone_menu_note" + to_string(index);
+		const string sineDecreaseId = "tone_editor_sin_decr" + to_string(index);
+		const string sineValueId = "tone_editor_sin_val" + to_string(index);
+		const string sineIncreaseId = "tone_editor_sin_incr" + to_string(index);
+		const string sineToggleId = "tone_editor_sin_txt" + to_string(index);
+		const string squareDecreaseId = "tone_editor_sqr_decr" + to_string(index);
+		const string squareValueId = "tone_editor_sqr_val" + to_string(index);
+		const string squareIncreaseId = "tone_editor_sqr_incr" + to_string(index);
+		const string squareToggleId = "tone_editor_sqr_txt" + to_string(index);
+		const string triangleDecreaseId = "tone_editor_tri_decr" + to_string(index);
+		const string triangleValueId = "tone_editor_tri_val" + to_string(index);
+		const string triangleIncreaseId = "tone_editor_tri_incr" + to_string(index);
+		const string triangleToggleId = "tone_editor_tri_txt" + to_string(index);
+		const string sawtoothDecreaseId = "tone_editor_saw_decr" + to_string(index);
+		const string sawtoothValueId = "tone_editor_saw_val" + to_string(index);
+		const string sawtoothIncreaseId = "tone_editor_saw_incr" + to_string(index);
+		const string sawtoothToggleId = "tone_editor_saw_txt" + to_string(index);
+		const string noteId = "tone_editor_note" + to_string(index);
 		const string noteName = ToneConstants::NOTE_NAMES[index];
 
 		_addGuiButton(sineDecreaseId, dvec2(positions[index] - CHAR_X, -0.35), dvec2(CHAR_X, CHAR_Y), GRAY, WHITE, "<", true, false, false, false, false, false);

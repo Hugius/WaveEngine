@@ -40,9 +40,6 @@
     <Filter Include="Waveforms">
       <UniqueIdentifier>{b222a278-75c3-45fb-a266-b1c3efce3a00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI\Menus">
-      <UniqueIdentifier>{9c2a9ce5-3463-4f1c-9e7e-92f6ce993eec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUI\Domain">
       <UniqueIdentifier>{711cd747-c3bf-4153-9ae4-a927c5d44c23}</UniqueIdentifier>
     </Filter>
@@ -66,6 +63,9 @@
     </Filter>
     <Filter Include="Tones">
       <UniqueIdentifier>{af4fc721-c4b3-4eb8-baec-3f0608e6b2a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Editors">
+      <UniqueIdentifier>{9c2a9ce5-3463-4f1c-9e7e-92f6ce993eec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,8 +129,8 @@
     <ClCompile Include="..\src\gui_controller.cpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\tone_menu.cpp">
-      <Filter>GUI\Menus</Filter>
+    <ClCompile Include="..\src\tone_editor.cpp">
+      <Filter>GUI\Editors</Filter>
     </ClCompile>
     <ClCompile Include="..\src\gui_button.cpp">
       <Filter>GUI\Domain</Filter>
@@ -239,8 +239,8 @@
     <ClInclude Include="..\src\gui_controller.hpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\tone_menu.hpp">
-      <Filter>GUI\Menus</Filter>
+    <ClInclude Include="..\src\tone_editor.hpp">
+      <Filter>GUI\Editors</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_button.hpp">
       <Filter>GUI\Domain</Filter>
