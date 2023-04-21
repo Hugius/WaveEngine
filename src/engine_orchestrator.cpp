@@ -29,6 +29,7 @@ EngineOrchestrator::EngineOrchestrator()
 	_topMenuController->inject(_toneEditorController);
 	_bottomMenuController->inject(_guiManager);
 	_bottomMenuController->inject(_toneManager);
+	_bottomMenuController->inject(_waveformGenerator);
 
 	_guiManager->initialize();
 

@@ -14,4 +14,9 @@ struct Tone final
 	vector<int> sawtoothAmplitudes;
 
 	int octave;
+
+	bool isSineEnabled;
+	bool isSquareEnabled;
+	bool isTriangleEnabled;
+	bool isSawtoothEnabled;
 };

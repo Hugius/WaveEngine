@@ -3,7 +3,11 @@
 
 Tone::Tone()
 	:
-	octave(ToneConstants::DEFAULT_OCTAVE)
+	octave(ToneConstants::DEFAULT_OCTAVE),
+	isSineEnabled(false),
+	isSquareEnabled(false),
+	isTriangleEnabled(false),
+	isSawtoothEnabled(false)
 {
 	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{

@@ -14,15 +14,13 @@ public:
 	void update();
 	void setGuiVisible(const bool value);
 	void setEnabled(const bool value);
-	void setTone(const shared_ptr<Tone> & tone);
+	void setTone(const shared_ptr<Tone> & value);
 
 private:
 	void _updatePlaybackGui();
 	void _updateOctaveGui();
-	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes);
+	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes, bool & isEnabled);
 	void _refreshWaveformVisualization();
-
-	const vector<shared_ptr<Waveform>> _generateWaveforms(const int duration) const;
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;

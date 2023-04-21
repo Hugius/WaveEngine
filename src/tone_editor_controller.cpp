@@ -21,10 +21,10 @@ void ToneEditorController::update()
 	{
 		_updatePlaybackGui();
 		_updateOctaveGui();
-		_updateAmplitudeGui("sin", _tone->sineAmplitudes);
-		_updateAmplitudeGui("sqr", _tone->squareAmplitudes);
-		_updateAmplitudeGui("tri", _tone->triangleAmplitudes);
-		_updateAmplitudeGui("saw", _tone->sawtoothAmplitudes);
+		_updateAmplitudeGui("sin", _tone->sineAmplitudes, _tone->isSineEnabled);
+		_updateAmplitudeGui("sqr", _tone->squareAmplitudes, _tone->isSquareEnabled);
+		_updateAmplitudeGui("tri", _tone->triangleAmplitudes, _tone->isTriangleEnabled);
+		_updateAmplitudeGui("saw", _tone->sawtoothAmplitudes, _tone->isSawtoothEnabled);
 	}
 }
 
@@ -32,12 +32,12 @@ void ToneEditorController::_updatePlaybackGui()
 {
 	if(_guiManager->getGuiButton("tone_editor_play")->isPressed())
 	{
-		vector<shared_ptr<Waveform>> waveforms = _generateWaveforms(100);
-
 		if(_waveformPlayer->isStarted())
 		{
 			_waveformPlayer->stop();
 		}
+
+		vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_tone, 100);
 
 		if(!waveforms.empty())
 		{
@@ -84,7 +84,7 @@ void ToneEditorController::_updateOctaveGui()
 	_guiManager->getGuiLabel("tone_editor_oct_val")->setContent(to_string(_tone->octave));
 }
 
-void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes)
+void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes, bool & isEnabled)
 {
 	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
@@ -105,6 +105,8 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 		}
 		else if(_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->isPressed())
 		{
+			isEnabled = !isEnabled;
+
 			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->isPressed())
@@ -123,15 +125,10 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 			_refreshWaveformVisualization();
 		}
 
-		const bool isToggled = _guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->isToggled();
-
-		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(isToggled);
-		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(isToggled);
-		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(isToggled);
-
-		const string amplitude = to_string(amplitudes[index]);
-
-		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setContent(amplitude);
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(isEnabled);
+		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(isEnabled);
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(isEnabled);
+		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setContent(to_string(amplitudes[index]));
 	}
 }
 
@@ -166,14 +163,14 @@ void ToneEditorController::setEnabled(const bool value)
 	_isEnabled = value;
 }
 
-void ToneEditorController::setTone(const shared_ptr<Tone> & tone)
+void ToneEditorController::setTone(const shared_ptr<Tone> & value)
 {
-	_tone = tone;
+	_tone = value;
 }
 
 void ToneEditorController::_refreshWaveformVisualization()
 {
-	vector<shared_ptr<Waveform>> waveforms = _generateWaveforms(10);
+	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_tone, 10);
 
 	if(waveforms.empty())
 	{
@@ -186,62 +183,6 @@ void ToneEditorController::_refreshWaveformVisualization()
 
 		_guiManager->getGuiWaveform("tone_editor_visualization")->setSamples(samples);
 	}
-}
-
-const vector<shared_ptr<Waveform>> ToneEditorController::_generateWaveforms(const int duration) const
-{
-	vector<shared_ptr<Waveform>> waveforms = {};
-
-	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
-	{
-		const double frequency = ToneConstants::NOTE_FREQUENCIES[index] * pow(2.0, static_cast<double>(_tone->octave));
-
-		if(_guiManager->getGuiButton("tone_editor_sin_txt" + to_string(index))->isToggled())
-		{
-			if(_tone->sineAmplitudes[index] != 0)
-			{
-				const double amplitude = static_cast<double>(_tone->sineAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSineWaveform(duration, amplitude, frequency);
-
-				waveforms.push_back(waveform);
-			}
-		}
-
-		if(_guiManager->getGuiButton("tone_editor_sqr_txt" + to_string(index))->isToggled())
-		{
-			if(_tone->squareAmplitudes[index] != 0)
-			{
-				const double amplitude = static_cast<double>(_tone->squareAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSquareWaveform(duration, amplitude, frequency);
-
-				waveforms.push_back(waveform);
-			}
-		}
-
-		if(_guiManager->getGuiButton("tone_editor_tri_txt" + to_string(index))->isToggled())
-		{
-			if(_tone->triangleAmplitudes[index] != 0)
-			{
-				const double amplitude = static_cast<double>(_tone->triangleAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Waveform> waveform = _waveformGenerator->generateTriangleWaveform(duration, amplitude, frequency);
-
-				waveforms.push_back(waveform);
-			}
-		}
-
-		if(_guiManager->getGuiButton("tone_editor_saw_txt" + to_string(index))->isToggled())
-		{
-			if(_tone->sawtoothAmplitudes[index] != 0)
-			{
-				const double amplitude = static_cast<double>(_tone->sawtoothAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
-				const shared_ptr<Waveform> waveform = _waveformGenerator->generateSawtoothWaveform(duration, amplitude, frequency);
-
-				waveforms.push_back(waveform);
-			}
-		}
-	}
-
-	return waveforms;
 }
 
 void ToneEditorController::inject(const shared_ptr<GuiManager> & guiManager)

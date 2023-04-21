@@ -70,6 +70,7 @@ void GuiManager::_initializeBottomMenu()
 	_addGuiRectangle("bottom_menu_background", dvec2(-1.0, -1.0), dvec2(2.0, 0.25), DARK_GRAY, false, false, true);
 	_addGuiButton("bottom_menu_create", dvec2(-0.95, positions[0]), dvec2(WIDTH("Create"), CHAR_Y), GRAY, WHITE, "Create", false, true, true, true, false, true);
 	_addGuiButton("bottom_menu_delete", dvec2(-0.95, positions[1]), dvec2(WIDTH("Delete"), CHAR_Y), GRAY, WHITE, "Delete", false, true, true, true, false, true);
+	_addGuiWaveform("bottom_menu_visualization", dvec2(-0.9f, -1.0f + 0.25 / 2.0), dvec2(1.9, 0.25), WHITE, false, true, true);
 }
 
 void GuiManager::_initializeToneEditor()
