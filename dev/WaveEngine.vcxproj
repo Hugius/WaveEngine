@@ -92,6 +92,12 @@
   <ItemGroup>
     <Image Include="ico\logo.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\app\shaders\line_fragment.glsl" />
+    <None Include="..\app\shaders\line_vertex.glsl" />
+    <None Include="..\app\shaders\quad_fragment.glsl" />
+    <None Include="..\app\shaders\quad_vertex.glsl" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

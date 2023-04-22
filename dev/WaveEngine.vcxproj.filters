@@ -67,6 +67,9 @@
     <Filter Include="GUI\Controllers">
       <UniqueIdentifier>{9c2a9ce5-3463-4f1c-9e7e-92f6ce993eec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Shaders">
+      <UniqueIdentifier>{2bcf76ab-9106-4969-9c80-74ca246148e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -297,5 +300,19 @@
     <Image Include="ico\logo.ico">
       <Filter>Icon</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\app\shaders\quad_fragment.glsl">
+      <Filter>Rendering\Shaders</Filter>
+    </None>
+    <None Include="..\app\shaders\quad_vertex.glsl">
+      <Filter>Rendering\Shaders</Filter>
+    </None>
+    <None Include="..\app\shaders\line_fragment.glsl">
+      <Filter>Rendering\Shaders</Filter>
+    </None>
+    <None Include="..\app\shaders\line_vertex.glsl">
+      <Filter>Rendering\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
