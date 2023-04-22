@@ -145,9 +145,8 @@ void ToneEditorController::_setGuiVisible(const bool value)
 {
 	_guiManager->getGuiRectangle("tone_editor_background")->setVisible(value);
 	_guiManager->getGuiButton("tone_editor_close")->setVisible(value);
-	_guiManager->getGuiWaveform("tone_editor_visualization")->setVisible(value);
+	_guiManager->getGuiWaveform("tone_editor_waveform")->setVisible(value);
 	_guiManager->getGuiButton("tone_editor_play")->setVisible(value);
-	_guiManager->getGuiButton("tone_editor_save")->setVisible(value);
 	_guiManager->getGuiButton("tone_editor_oct_decr")->setVisible(value);
 	_guiManager->getGuiLabel("tone_editor_oct_val")->setVisible(value);
 	_guiManager->getGuiButton("tone_editor_oct_incr")->setVisible(value);
@@ -181,14 +180,14 @@ void ToneEditorController::_refreshWaveformVisualization()
 
 	if(waveforms.empty())
 	{
-		_guiManager->getGuiWaveform("tone_editor_visualization")->setSamples({0.0f, 0.0f});
+		_guiManager->getGuiWaveform("tone_editor_waveform")->setSamples({0.0f, 0.0f});
 	}
 	else
 	{
 		const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
 		const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
 
-		_guiManager->getGuiWaveform("tone_editor_visualization")->setSamples(samples);
+		_guiManager->getGuiWaveform("tone_editor_waveform")->setSamples(samples);
 	}
 }
 

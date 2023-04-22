@@ -26,10 +26,6 @@ void TopMenuController::update()
 	{
 		Tools::chooseWindowsExplorerFile(Tools::getRootDirectoryPath() + "projects\\", "wavproj");
 	}
-	else if(_guiManager->getGuiButton("top_menu_save")->isPressed())
-	{
-
-	}
 	else if(_guiManager->getGuiButton("top_menu_tone")->isPressed())
 	{
 		_toneEditorController->enable();
