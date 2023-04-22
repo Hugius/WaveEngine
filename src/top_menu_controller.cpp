@@ -32,9 +32,7 @@ void TopMenuController::update()
 	}
 	else if(_guiManager->getGuiButton("top_menu_tone")->isPressed())
 	{
-		_toneEditorController->setGuiVisible(true);
-		_toneEditorController->setEnabled(true);
-		_toneEditorController->setTone(_toneManager->getCurrentTone());
+		_toneEditorController->enable();
 	}
 	else if(_guiManager->getGuiButton("top_menu_export")->isPressed())
 	{

@@ -5,27 +5,33 @@ using std::to_string;
 
 void ToneEditorController::update()
 {
+	if(!_isEnabled)
+	{
+		return;
+	}
+
 	if(_guiManager->getGuiButton("tone_editor_close")->isPressed())
 	{
-		setGuiVisible(false);
-		setEnabled(false);
-		setTone(nullptr);
-
 		if(_waveformPlayer->isStarted())
 		{
 			_waveformPlayer->stop();
 		}
+
+		_setGuiVisible(false);
+
+		_isEnabled = false;
+
+		return;
 	}
 
-	if(_isEnabled)
-	{
-		_updatePlaybackGui();
-		_updateOctaveGui();
-		_updateAmplitudeGui("sin", _tone->sineAmplitudes, _tone->sineToggles);
-		_updateAmplitudeGui("sqr", _tone->squareAmplitudes, _tone->squareToggles);
-		_updateAmplitudeGui("tri", _tone->triangleAmplitudes, _tone->triangleToggles);
-		_updateAmplitudeGui("saw", _tone->sawtoothAmplitudes, _tone->sawtoothToggles);
-	}
+	const shared_ptr<Tone> currentTone = _toneManager->getCurrentTone();
+
+	_updatePlaybackGui();
+	_updateOctaveGui();
+	_updateAmplitudeGui("sin", currentTone->sineAmplitudes, currentTone->sineToggles);
+	_updateAmplitudeGui("sqr", currentTone->squareAmplitudes, currentTone->squareToggles);
+	_updateAmplitudeGui("tri", currentTone->triangleAmplitudes, currentTone->triangleToggles);
+	_updateAmplitudeGui("saw", currentTone->sawtoothAmplitudes, currentTone->sawtoothToggles);
 }
 
 void ToneEditorController::_updatePlaybackGui()
@@ -37,7 +43,7 @@ void ToneEditorController::_updatePlaybackGui()
 			_waveformPlayer->stop();
 		}
 
-		vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_tone, 100);
+		vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone(), DURATION);
 
 		if(!waveforms.empty())
 		{
@@ -50,11 +56,13 @@ void ToneEditorController::_updatePlaybackGui()
 
 void ToneEditorController::_updateOctaveGui()
 {
+	const shared_ptr<Tone> currentTone = _toneManager->getCurrentTone();
+
 	if(_guiManager->getGuiButton("tone_editor_oct_decr")->isPressed())
 	{
-		_tone->octave--;
+		currentTone->octave--;
 
-		if(_tone->octave == ToneConstants::MIN_OCTAVE)
+		if(currentTone->octave == ToneConstants::MIN_OCTAVE)
 		{
 			_guiManager->getGuiButton("tone_editor_oct_decr")->setPressable(false);
 			_guiManager->getGuiButton("tone_editor_oct_decr")->setHoverable(false);
@@ -67,9 +75,9 @@ void ToneEditorController::_updateOctaveGui()
 	}
 	else if(_guiManager->getGuiButton("tone_editor_oct_incr")->isPressed())
 	{
-		_tone->octave++;
+		currentTone->octave++;
 
-		if(_tone->octave == ToneConstants::MAX_OCTAVE)
+		if(currentTone->octave == ToneConstants::MAX_OCTAVE)
 		{
 			_guiManager->getGuiButton("tone_editor_oct_incr")->setPressable(false);
 			_guiManager->getGuiButton("tone_editor_oct_incr")->setHoverable(false);
@@ -81,7 +89,7 @@ void ToneEditorController::_updateOctaveGui()
 		_refreshWaveformVisualization();
 	}
 
-	_guiManager->getGuiLabel("tone_editor_oct_val")->setContent(to_string(_tone->octave));
+	_guiManager->getGuiLabel("tone_editor_oct_val")->setContent(to_string(currentTone->octave));
 }
 
 void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles)
@@ -133,7 +141,7 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 	}
 }
 
-void ToneEditorController::setGuiVisible(const bool value)
+void ToneEditorController::_setGuiVisible(const bool value)
 {
 	_guiManager->getGuiRectangle("tone_editor_background")->setVisible(value);
 	_guiManager->getGuiButton("tone_editor_close")->setVisible(value);
@@ -159,19 +167,17 @@ void ToneEditorController::setGuiVisible(const bool value)
 	}
 }
 
-void ToneEditorController::setEnabled(const bool value)
+void ToneEditorController::enable()
 {
-	_isEnabled = value;
-}
+	_setGuiVisible(true);
+	_refreshWaveformVisualization();
 
-void ToneEditorController::setTone(const shared_ptr<Tone> & value)
-{
-	_tone = value;
+	_isEnabled = true;
 }
 
 void ToneEditorController::_refreshWaveformVisualization()
 {
-	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_tone, 10);
+	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone(), DURATION);
 
 	if(waveforms.empty())
 	{
@@ -199,4 +205,9 @@ void ToneEditorController::inject(const shared_ptr<WaveformGenerator> & waveform
 void ToneEditorController::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
 {
 	_waveformPlayer = waveformPlayer;
+}
+
+void ToneEditorController::inject(const shared_ptr<ToneManager> & toneManager)
+{
+	_toneManager = toneManager;
 }

@@ -2,8 +2,6 @@
 
 #include "tone_editor_controller.hpp"
 
-using std::unique_ptr;
-
 class BottomMenuController final
 {
 public:
@@ -16,6 +14,7 @@ private:
 	void _refreshWaveformVisualization();
 
 	static inline const int MAX_TONES = 99;
+	static inline const int DURATION = 100;
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<ToneManager> _toneManager = nullptr;

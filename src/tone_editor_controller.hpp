@@ -11,21 +11,24 @@ public:
 	void inject(const shared_ptr<GuiManager> & guiManager);
 	void inject(const shared_ptr<WaveformGenerator> & waveformGenerator);
 	void inject(const shared_ptr<WaveformPlayer> & waveformPlayer);
+	void inject(const shared_ptr<ToneManager> & toneManager);
 	void update();
-	void setGuiVisible(const bool value);
-	void setEnabled(const bool value);
-	void setTone(const shared_ptr<Tone> & value);
+	void enable();
 
 private:
 	void _updatePlaybackGui();
 	void _updateOctaveGui();
 	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles);
 	void _refreshWaveformVisualization();
+	void _setGuiVisible(const bool value);
+	void _disable();
+
+	static inline const int DURATION = 100;
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
 	shared_ptr<WaveformPlayer> _waveformPlayer = nullptr;
-	shared_ptr<Tone> _tone = nullptr;
+	shared_ptr<ToneManager> _toneManager = nullptr;
 
 	bool _isEnabled = false;
 };

@@ -20,26 +20,45 @@ void BottomMenuController::inject(const shared_ptr<WaveformGenerator> & waveform
 
 void BottomMenuController::update()
 {
+	int toneCount = _toneManager->getToneCount();
+	int toneIndex = _toneManager->getCurrentToneIndex();
+
 	if(_guiManager->getGuiButton("bottom_menu_create")->isPressed())
 	{
 		_toneManager->addNewTone(make_shared<Tone>());
+
+		toneCount++;
+
+		_toneManager->setCurrentToneIndex(toneCount - 1);
+
+		_refreshWaveformVisualization();
 	}
 	else if(_guiManager->getGuiButton("bottom_menu_prev")->isPressed())
 	{
-		_toneManager->selectPreviousTone();
+		toneIndex--;
+
+		_toneManager->setCurrentToneIndex(toneIndex);
+
+		_refreshWaveformVisualization();
 	}
 	else if(_guiManager->getGuiButton("bottom_menu_next")->isPressed())
 	{
-		_toneManager->selectNextTone();
+		toneIndex++;
+
+		_toneManager->setCurrentToneIndex(toneIndex);
+
+		_refreshWaveformVisualization();
 	}
 	else if(_guiManager->getGuiButton("bottom_menu_delete")->isPressed())
 	{
 		_toneManager->removeCurrentTone();
-	}
 
-	const int toneCount = _toneManager->getToneCount();
-	const int toneIndex = _toneManager->getCurrentToneIndex();
-	const string numberContent = (toneIndex < 9 ? "0" : "") + to_string(toneIndex + 1);
+		_refreshWaveformVisualization();
+	}
+	else if(_guiManager->getGuiButton("tone_editor_close")->isPressed())
+	{
+		_refreshWaveformVisualization();
+	}
 
 	_guiManager->getGuiButton("bottom_menu_create")->setHoverable(toneCount < MAX_TONES);
 	_guiManager->getGuiButton("bottom_menu_create")->setPressable(toneCount < MAX_TONES);
@@ -49,17 +68,21 @@ void BottomMenuController::update()
 	_guiManager->getGuiButton("bottom_menu_next")->setPressable(toneCount != 0 && toneIndex < toneCount - 1);
 	_guiManager->getGuiButton("bottom_menu_delete")->setHoverable(toneCount != 0);
 	_guiManager->getGuiButton("bottom_menu_delete")->setPressable(toneCount != 0);
-	_guiManager->getGuiLabel("bottom_menu_number")->setContent(toneCount == 0 ? "" : numberContent);
-
-	if(toneCount > 0)
-	{
-		_refreshWaveformVisualization();
-	}
+	_guiManager->getGuiLabel("bottom_menu_number")->setContent(toneCount == 0 ? "" : string((toneIndex < 9 ? "0" : "") + to_string(toneIndex + 1)));
 }
 
 void BottomMenuController::_refreshWaveformVisualization()
 {
-	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone(), 10);
+	if(_toneManager->getToneCount() == 0)
+	{
+		_guiManager->getGuiWaveform("bottom_menu_visualization")->setVisible(false);
+
+		return;
+	}
+
+	_guiManager->getGuiWaveform("bottom_menu_visualization")->setVisible(true);
+
+	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone(), DURATION);
 
 	if(waveforms.empty())
 	{

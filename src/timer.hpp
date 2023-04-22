@@ -2,8 +2,6 @@
 
 #include <memory>
 
-using std::unique_ptr;
-
 class Timer final
 {
 public:

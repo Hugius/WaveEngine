@@ -3,8 +3,6 @@
 #include "text.hpp"
 #include "base_renderer.hpp"
 
-using std::unique_ptr;
-
 class QuadRenderer final : public BaseRenderer
 {
 public:

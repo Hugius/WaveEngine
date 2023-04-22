@@ -11,8 +11,7 @@ class ToneManager final
 public:
 	void addNewTone(const shared_ptr<Tone> & tone);
 	void removeCurrentTone();
-	void selectPreviousTone();
-	void selectNextTone();
+	void setCurrentToneIndex(const int value);
 
 	const shared_ptr<Tone> & getCurrentTone() const;
 

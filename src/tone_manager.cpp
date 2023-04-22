@@ -20,24 +20,19 @@ void ToneManager::removeCurrentTone()
 	}
 }
 
-void ToneManager::selectPreviousTone()
+void ToneManager::setCurrentToneIndex(const int value)
 {
-	if(_currentToneIndex == 0)
+	if(value < 0)
 	{
 		abort();
 	}
 
-	_currentToneIndex--;
-}
-
-void ToneManager::selectNextTone()
-{
-	if(_currentToneIndex == _tones.size() - 1)
+	if(value > _tones.size() - 1)
 	{
 		abort();
 	}
 
-	_currentToneIndex++;
+	_currentToneIndex = value;
 }
 
 const shared_ptr<Tone> & ToneManager::getCurrentTone() const

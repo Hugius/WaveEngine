@@ -78,7 +78,7 @@ void GuiManager::_initializeBottomMenu()
 	_addGuiLabel("bottom_menu_number", dvec2(x, positions[1]), dvec2(WIDTH("00"), CHAR_Y), WHITE, "", true, true, true);
 	_addGuiButton("bottom_menu_next", dvec2(x + WIDTH("00"), positions[1]), dvec2(WIDTH(">"), CHAR_Y), GRAY, WHITE, ">", true, true, true, true, true);
 	_addGuiButton("bottom_menu_delete", dvec2(x, positions[2]), dvec2(WIDTH("Delete"), CHAR_Y), GRAY, WHITE, "Delete", true, true, true, true, true);
-	_addGuiWaveform("bottom_menu_visualization", dvec2(x + WIDTH("00") + waveformOffset, positions[1]), dvec2(width - waveformOffset * 2.0, height - waveformOffset), WHITE, false, true, true);
+	_addGuiWaveform("bottom_menu_visualization", dvec2(x + WIDTH("00") + waveformOffset, positions[1]), dvec2(width - waveformOffset * 2.0, height - waveformOffset), WHITE, false, true, false);
 }
 
 void GuiManager::_initializeToneEditor()

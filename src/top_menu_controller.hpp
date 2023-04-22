@@ -2,8 +2,6 @@
 
 #include "tone_editor_controller.hpp"
 
-using std::unique_ptr;
-
 class TopMenuController final
 {
 public:

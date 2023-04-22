@@ -14,7 +14,6 @@ public:
 	void setHighlighted(const bool value);
 
 	const bool isPressed() const;
-	const bool isToggled() const;
 
 private:
 	void _updateHovering(const dvec2 & cursorPosition);
