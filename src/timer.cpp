@@ -2,7 +2,6 @@
 
 #include <chrono>
 
-using std::make_unique;
 using std::chrono::duration_cast;
 using std::chrono::high_resolution_clock;
 using std::chrono::nanoseconds;

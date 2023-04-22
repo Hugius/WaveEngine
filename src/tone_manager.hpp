@@ -10,6 +10,8 @@ class ToneManager final
 {
 public:
 	void addTone(const shared_ptr<Tone> & tone);
+	void increaseCurrentIndex();
+	void decreaseCurrentIndex();
 
 	const shared_ptr<Tone> & getCurrentTone() const;
 	const vector<shared_ptr<Tone>> & getTones() const;

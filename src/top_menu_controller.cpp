@@ -1,8 +1,6 @@
 #include "top_menu_controller.hpp"
 #include "tools.hpp"
 
-using std::make_unique;
-
 void TopMenuController::inject(const shared_ptr<GuiManager> & guiManager)
 {
 	_guiManager = guiManager;

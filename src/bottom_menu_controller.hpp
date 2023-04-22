@@ -13,7 +13,7 @@ public:
 	void update();
 
 private:
-	void _refreshWaveformVisualization();
+	void _refreshGui();
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<ToneManager> _toneManager = nullptr;
