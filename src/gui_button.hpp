@@ -11,7 +11,7 @@ public:
 	void setVisible(const bool value);
 	void setHoverable(const bool value);
 	void setPressable(const bool value);
-	void setTogglable(const bool value);
+	void setHighlighted(const bool value);
 
 	const bool isPressed() const;
 	const bool isToggled() const;
@@ -28,8 +28,7 @@ private:
 	bool _isVisible = false;
 	bool _isHoverable = false;
 	bool _isPressable = false;
-	bool _isTogglable = false;
 	bool _isHovered = false;
 	bool _isPressed = false;
-	bool _isToggled = false;
+	bool _isHighlighted = false;
 };

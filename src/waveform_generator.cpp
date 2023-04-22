@@ -169,7 +169,7 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 	{
 		const double frequency = ToneConstants::NOTE_FREQUENCIES[index] * pow(2.0, static_cast<double>(tone->octave));
 
-		if(tone->isSineEnabled && tone->sineAmplitudes[index] != 0)
+		if(tone->sineToggles[index] && tone->sineAmplitudes[index] != 0)
 		{
 			const double amplitude = static_cast<double>(tone->sineAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 			const shared_ptr<Waveform> waveform = _generateSineWaveform(duration, amplitude, frequency);
@@ -177,7 +177,7 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 			waveforms.push_back(waveform);
 		}
 
-		if(tone->isSquareEnabled && tone->squareAmplitudes[index] != 0)
+		if(tone->squareToggles[index] && tone->squareAmplitudes[index] != 0)
 		{
 			const double amplitude = static_cast<double>(tone->squareAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 			const shared_ptr<Waveform> waveform = _generateSquareWaveform(duration, amplitude, frequency);
@@ -185,7 +185,7 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 			waveforms.push_back(waveform);
 		}
 
-		if(tone->isTriangleEnabled && tone->triangleAmplitudes[index] != 0)
+		if(tone->triangleToggles[index] && tone->triangleAmplitudes[index] != 0)
 		{
 			const double amplitude = static_cast<double>(tone->triangleAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 			const shared_ptr<Waveform> waveform = _generateTriangleWaveform(duration, amplitude, frequency);
@@ -193,7 +193,7 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 			waveforms.push_back(waveform);
 		}
 
-		if(tone->isSawtoothEnabled && tone->sawtoothAmplitudes[index] != 0)
+		if(tone->sawtoothToggles[index] && tone->sawtoothAmplitudes[index] != 0)
 		{
 			const double amplitude = static_cast<double>(tone->sawtoothAmplitudes[index]) * ToneConstants::OCTAVE_AMPLITUDE_STEP;
 			const shared_ptr<Waveform> waveform = _generateSawtoothWaveform(duration, amplitude, frequency);

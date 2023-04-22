@@ -21,10 +21,10 @@ void ToneEditorController::update()
 	{
 		_updatePlaybackGui();
 		_updateOctaveGui();
-		_updateAmplitudeGui("sin", _tone->sineAmplitudes, _tone->isSineEnabled);
-		_updateAmplitudeGui("sqr", _tone->squareAmplitudes, _tone->isSquareEnabled);
-		_updateAmplitudeGui("tri", _tone->triangleAmplitudes, _tone->isTriangleEnabled);
-		_updateAmplitudeGui("saw", _tone->sawtoothAmplitudes, _tone->isSawtoothEnabled);
+		_updateAmplitudeGui("sin", _tone->sineAmplitudes, _tone->sineToggles);
+		_updateAmplitudeGui("sqr", _tone->squareAmplitudes, _tone->squareToggles);
+		_updateAmplitudeGui("tri", _tone->triangleAmplitudes, _tone->triangleToggles);
+		_updateAmplitudeGui("saw", _tone->sawtoothAmplitudes, _tone->sawtoothToggles);
 	}
 }
 
@@ -84,7 +84,7 @@ void ToneEditorController::_updateOctaveGui()
 	_guiManager->getGuiLabel("tone_editor_oct_val")->setContent(to_string(_tone->octave));
 }
 
-void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes, bool & isEnabled)
+void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles)
 {
 	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
@@ -105,7 +105,7 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 		}
 		else if(_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->isPressed())
 		{
-			isEnabled = !isEnabled;
+			toggles[index] = !toggles[index];
 
 			_refreshWaveformVisualization();
 		}
@@ -125,10 +125,11 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 			_refreshWaveformVisualization();
 		}
 
-		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(isEnabled);
-		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(isEnabled);
-		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(isEnabled);
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(toggles[index]);
+		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(toggles[index]);
 		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setContent(to_string(amplitudes[index]));
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(toggles[index]);
+		_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->setHighlighted(toggles[index]);
 	}
 }
 

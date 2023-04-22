@@ -12,11 +12,10 @@ struct Tone final
 	vector<int> squareAmplitudes;
 	vector<int> triangleAmplitudes;
 	vector<int> sawtoothAmplitudes;
+	vector<bool> sineToggles;
+	vector<bool> squareToggles;
+	vector<bool> triangleToggles;
+	vector<bool> sawtoothToggles;
 
 	int octave;
-
-	bool isSineEnabled;
-	bool isSquareEnabled;
-	bool isTriangleEnabled;
-	bool isSawtoothEnabled;
 };

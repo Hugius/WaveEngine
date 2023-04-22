@@ -3,11 +3,7 @@
 
 Tone::Tone()
 	:
-	octave(ToneConstants::DEFAULT_OCTAVE),
-	isSineEnabled(false),
-	isSquareEnabled(false),
-	isTriangleEnabled(false),
-	isSawtoothEnabled(false)
+	octave(ToneConstants::DEFAULT_OCTAVE)
 {
 	for(int index = 0; index < static_cast<int>(ToneConstants::NOTE_NAMES.size()); index++)
 	{
@@ -15,5 +11,9 @@ Tone::Tone()
 		squareAmplitudes.push_back(0);
 		triangleAmplitudes.push_back(0);
 		sawtoothAmplitudes.push_back(0);
+		sineToggles.push_back(false);
+		squareToggles.push_back(false);
+		triangleToggles.push_back(false);
+		sawtoothToggles.push_back(false);
 	}
 }

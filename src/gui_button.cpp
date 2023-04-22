@@ -23,16 +23,14 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 {
 	_isPressed = false;
 
-	const bool wasHovered = _isHovered;
-
 	_updateHovering(cursorPosition);
 
-	if(!_isToggled && !wasHovered && _isHovered)
+	if(_isHovered)
 	{
 		_quad->setColor(dvec3(1.0f) - _originalQuadColor);
 		_text->setColor(dvec3(1.0f) - _originalTextColor);
 	}
-	else if(!_isToggled && wasHovered && !_isHovered)
+	else if(!_isHighlighted && !_isHovered)
 	{
 		_quad->setColor(_originalQuadColor);
 		_text->setColor(_originalTextColor);
@@ -47,11 +45,6 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 			if(_isPressable)
 			{
 				_isPressed = true;
-			}
-
-			if(_isTogglable)
-			{
-				_isToggled = !_isToggled;
 			}
 		}
 	}
@@ -81,9 +74,9 @@ void GuiButton::setPressable(const bool value)
 	_text->setOpacity(_isPressable ? 1.0 : 0.5);
 }
 
-void GuiButton::setTogglable(const bool value)
+void GuiButton::setHighlighted(const bool value)
 {
-	_isTogglable = value;
+	_isHighlighted = value;
 }
 
 void GuiButton::_updateHovering(const dvec2 & cursorPosition)
@@ -134,9 +127,4 @@ void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 const bool GuiButton::isPressed() const
 {
 	return _isPressed;
-}
-
-const bool GuiButton::isToggled() const
-{
-	return _isToggled;
 }

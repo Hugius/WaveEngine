@@ -19,7 +19,7 @@ public:
 private:
 	void _updatePlaybackGui();
 	void _updateOctaveGui();
-	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes, bool & isEnabled);
+	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles);
 	void _refreshWaveformVisualization();
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
