@@ -45,6 +45,8 @@ void TopMenuController::update()
 		exit(0);
 	}
 
-	_guiManager->getGuiButton("top_menu_tone")->setHoverable(!_toneManager->getTones().empty());
-	_guiManager->getGuiButton("top_menu_tone")->setPressable(!_toneManager->getTones().empty());
+	const int toneCount = _toneManager->getToneCount();
+
+	_guiManager->getGuiButton("top_menu_tone")->setHoverable(toneCount != 0);
+	_guiManager->getGuiButton("top_menu_tone")->setPressable(toneCount != 0);
 }

@@ -27,9 +27,9 @@ void WaveformPlayer::start(const shared_ptr<Waveform> & waveform)
 		_header->lpData[index] = waveform->getHeader()->lpData[index];
 	}
 
-	const MMRESULT prepareResult = waveOutPrepareHeader(_handle, _header, sizeof(WAVEHDR));
+	const MMRESULT prepareHeaderResult = waveOutPrepareHeader(_handle, _header, sizeof(WAVEHDR));
 
-	if(prepareResult != MMSYSERR_NOERROR)
+	if(prepareHeaderResult != MMSYSERR_NOERROR)
 	{
 		abort();
 	}
@@ -49,12 +49,40 @@ void WaveformPlayer::stop()
 		abort();
 	}
 
-	waveOutReset(_handle);
-	waveOutUnprepareHeader(_handle, _header, sizeof(WAVEHDR));
-	waveOutClose(_handle);
+	const MMRESULT resetResult = waveOutReset(_handle);
+
+	if(resetResult != MMSYSERR_NOERROR)
+	{
+		abort();
+	}
+
+	const MMRESULT unprepareHeaderResult = waveOutUnprepareHeader(_handle, _header, sizeof(WAVEHDR));
+
+	if(unprepareHeaderResult != MMSYSERR_NOERROR)
+	{
+		abort();
+	}
+
+	const MMRESULT closeResult = waveOutClose(_handle);
+
+	if(closeResult != MMSYSERR_NOERROR)
+	{
+		abort();
+	}
 
 	_handle = nullptr;
 	_header = nullptr;
+}
+
+void WaveformPlayer::update()
+{
+	if(isStarted())
+	{
+		if(_header->dwFlags == (WHDR_PREPARED | WHDR_DONE))
+		{
+			stop();
+		}
+	}
 }
 
 const bool WaveformPlayer::isStarted() const

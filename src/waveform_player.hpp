@@ -11,6 +11,7 @@ class WaveformPlayer final
 public:
 	void start(const shared_ptr<Waveform> & waveform);
 	void stop();
+	void update();
 
 	const bool isStarted() const;
 

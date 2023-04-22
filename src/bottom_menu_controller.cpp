@@ -22,48 +22,43 @@ void BottomMenuController::update()
 {
 	if(_guiManager->getGuiButton("bottom_menu_create")->isPressed())
 	{
-		_toneManager->addTone(make_shared<Tone>());
-
-		_refreshGui();
+		_toneManager->addNewTone(make_shared<Tone>());
 	}
-	else if(_guiManager->getGuiButton("bottom_menu_decr")->isPressed())
+	else if(_guiManager->getGuiButton("bottom_menu_prev")->isPressed())
 	{
-		_toneManager->decreaseCurrentIndex();
-
-		_refreshGui();
+		_toneManager->selectPreviousTone();
 	}
-	else if(_guiManager->getGuiButton("bottom_menu_incr")->isPressed())
+	else if(_guiManager->getGuiButton("bottom_menu_next")->isPressed())
 	{
-		_toneManager->increaseCurrentIndex();
-
-		_refreshGui();
+		_toneManager->selectNextTone();
 	}
 	else if(_guiManager->getGuiButton("bottom_menu_delete")->isPressed())
 	{
-
+		_toneManager->removeCurrentTone();
 	}
 
-	_refreshGui();
+	const int toneCount = _toneManager->getToneCount();
+	const int toneIndex = _toneManager->getCurrentToneIndex();
+	const string numberContent = (toneIndex < 9 ? "0" : "") + to_string(toneIndex + 1);
 
-	const int toneCount = static_cast<int>(_toneManager->getTones().size());
-	const int currentIndex = _toneManager->getCurrentIndex();
-
-	_guiManager->getGuiButton("bottom_menu_create")->setHoverable(toneCount < 99);
-	_guiManager->getGuiButton("bottom_menu_create")->setPressable(toneCount < 99);
-	_guiManager->getGuiButton("bottom_menu_decr")->setHoverable(toneCount != 0 && currentIndex > 0);
-	_guiManager->getGuiButton("bottom_menu_decr")->setPressable(toneCount != 0 && currentIndex > 0);
-	_guiManager->getGuiButton("bottom_menu_incr")->setHoverable(toneCount != 0 && currentIndex < toneCount - 1);
-	_guiManager->getGuiButton("bottom_menu_incr")->setPressable(toneCount != 0 && currentIndex < toneCount - 1);
+	_guiManager->getGuiButton("bottom_menu_create")->setHoverable(toneCount < MAX_TONES);
+	_guiManager->getGuiButton("bottom_menu_create")->setPressable(toneCount < MAX_TONES);
+	_guiManager->getGuiButton("bottom_menu_prev")->setHoverable(toneCount != 0 && toneIndex > 0);
+	_guiManager->getGuiButton("bottom_menu_prev")->setPressable(toneCount != 0 && toneIndex > 0);
+	_guiManager->getGuiButton("bottom_menu_next")->setHoverable(toneCount != 0 && toneIndex < toneCount - 1);
+	_guiManager->getGuiButton("bottom_menu_next")->setPressable(toneCount != 0 && toneIndex < toneCount - 1);
 	_guiManager->getGuiButton("bottom_menu_delete")->setHoverable(toneCount != 0);
 	_guiManager->getGuiButton("bottom_menu_delete")->setPressable(toneCount != 0);
+	_guiManager->getGuiLabel("bottom_menu_number")->setContent(toneCount == 0 ? "" : numberContent);
+
+	if(toneCount > 0)
+	{
+		_refreshWaveformVisualization();
+	}
 }
 
-void BottomMenuController::_refreshGui()
+void BottomMenuController::_refreshWaveformVisualization()
 {
-	const string numberContent = to_string(_toneManager->getCurrentIndex() + 1);
-
-	_guiManager->getGuiLabel("bottom_menu_number")->setContent(numberContent.size() == 1 ? "0" + numberContent : numberContent);
-
 	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone(), 10);
 
 	if(waveforms.empty())

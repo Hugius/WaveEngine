@@ -9,17 +9,18 @@ using std::shared_ptr;
 class ToneManager final
 {
 public:
-	void addTone(const shared_ptr<Tone> & tone);
-	void increaseCurrentIndex();
-	void decreaseCurrentIndex();
+	void addNewTone(const shared_ptr<Tone> & tone);
+	void removeCurrentTone();
+	void selectPreviousTone();
+	void selectNextTone();
 
 	const shared_ptr<Tone> & getCurrentTone() const;
-	const vector<shared_ptr<Tone>> & getTones() const;
 
-	const int getCurrentIndex() const;
+	const int getCurrentToneIndex() const;
+	const int getToneCount() const;
 
 private:
 	vector<shared_ptr<Tone>> _tones = {};
 
-	int _currentIndex = 0;
+	int _currentToneIndex = 0;
 };

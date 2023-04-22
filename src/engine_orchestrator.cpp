@@ -104,6 +104,7 @@ void EngineOrchestrator::_update()
 	_bottomMenuController->update();
 	_toneEditorController->update();
 	_guiManager->update(_renderWindow->getCursorPosition(), _inputHandler->isLmbPressed());
+	_waveformPlayer->update();
 }
 
 void EngineOrchestrator::_render()

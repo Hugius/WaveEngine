@@ -16,7 +16,7 @@ public:
 	static const dmat33 createTranslationMatrix(const double x, const double y);
 	static const dmat33 createScalingMatrix(const double x, const double y);
 
-	static const double getSignum(const double value);
+	static const double getSignum(const double number);
 	static const double getPi();
 
 private:

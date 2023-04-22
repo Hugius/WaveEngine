@@ -1,24 +1,43 @@
 #include "tone_manager.hpp"
 
-void ToneManager::addTone(const shared_ptr<Tone> & tone)
+void ToneManager::addNewTone(const shared_ptr<Tone> & tone)
 {
 	_tones.push_back(tone);
 }
 
-void ToneManager::increaseCurrentIndex()
+void ToneManager::removeCurrentTone()
 {
-	if(_currentIndex < _tones.size() - 1)
+	if(_tones.empty())
 	{
-		_currentIndex++;
+		abort();
+	}
+
+	_tones.erase(_tones.begin() + _currentToneIndex);
+
+	if(_currentToneIndex == _tones.size())
+	{
+		_currentToneIndex--;
 	}
 }
 
-void ToneManager::decreaseCurrentIndex()
+void ToneManager::selectPreviousTone()
 {
-	if(_currentIndex > 0)
+	if(_currentToneIndex == 0)
 	{
-		_currentIndex--;
+		abort();
 	}
+
+	_currentToneIndex--;
+}
+
+void ToneManager::selectNextTone()
+{
+	if(_currentToneIndex == _tones.size() - 1)
+	{
+		abort();
+	}
+
+	_currentToneIndex++;
 }
 
 const shared_ptr<Tone> & ToneManager::getCurrentTone() const
@@ -28,15 +47,15 @@ const shared_ptr<Tone> & ToneManager::getCurrentTone() const
 		abort();
 	}
 
-	return _tones.at(_currentIndex);
+	return _tones.at(_currentToneIndex);
 }
 
-const vector<shared_ptr<Tone>> & ToneManager::getTones() const
+const int ToneManager::getCurrentToneIndex() const
 {
-	return _tones;
+	return _currentToneIndex;
 }
 
-const int ToneManager::getCurrentIndex() const
+const int ToneManager::getToneCount() const
 {
-	return _currentIndex;
+	return static_cast<int>(_tones.size());
 }

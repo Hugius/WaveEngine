@@ -36,14 +36,14 @@ const dmat33 Mathematics::createScalingMatrix(const double x, const double y)
 	return result;
 }
 
-const double Mathematics::getSignum(const double value)
+const double Mathematics::getSignum(const double number)
 {
-	if(value < 0.0)
+	if(number < 0.0)
 	{
 		return -1.0;
 	}
 
-	if(value > 0.0)
+	if(number > 0.0)
 	{
 		return 1.0;
 	}
