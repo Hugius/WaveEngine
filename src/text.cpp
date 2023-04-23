@@ -21,6 +21,9 @@ void Text::update()
 			offset.x += (quadSize.x * 0.5);
 		}
 
+		quad->setColor(_color);
+		quad->setOpacity(_opacity);
+		quad->setVisible(_isVisible);
 		quad->setPosition(_position + offset);
 		quad->setSize(quadSize);
 		quad->update();
@@ -41,10 +44,7 @@ void Text::setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer)
 
 void Text::setVisible(const bool value)
 {
-	for(const shared_ptr<Quad> & quad : _quads)
-	{
-		quad->setVisible(value);
-	}
+	_isVisible = value;
 }
 
 void Text::setContent(const string & value)
@@ -82,20 +82,32 @@ void Text::setContent(const string & value)
 
 void Text::setColor(const dvec3 & value)
 {
-	_color = value;
-
-	for(const shared_ptr<Quad> & quad : _quads)
+	if(value.r < 0.0 || value.r > 1.0)
 	{
-		quad->setColor(_color);
+		abort();
 	}
+
+	if(value.g < 0.0 || value.g > 1.0)
+	{
+		abort();
+	}
+
+	if(value.b < 0.0 || value.b > 1.0)
+	{
+		abort();
+	}
+
+	_color = value;
 }
 
 void Text::setOpacity(const double value)
 {
-	for(const shared_ptr<Quad> & quad : _quads)
+	if(value < 0.0 || value > 1.0)
 	{
-		quad->setOpacity(value);
+		abort();
 	}
+
+	_opacity = value;
 }
 
 void Text::setPosition(const dvec2 & value)
