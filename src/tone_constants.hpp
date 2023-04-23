@@ -16,4 +16,6 @@ struct ToneConstants final
 	static inline const int MIN_OCTAVE = 0;
 	static inline const int MAX_OCTAVE = 9;
 	static inline const int DEFAULT_OCTAVE = 4;
+	static inline const int OCTAVE_COUNT = 10;
+	static inline const int NOTE_COUNT = 12;
 };

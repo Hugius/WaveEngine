@@ -89,7 +89,7 @@ void GuiManager::_initializeToneEditor()
 	const double width = 1.5;
 	const double height = 1.5;
 	const double waveformOffset = 0.025;
-	const int noteCount = static_cast<int>(ToneConstants::NOTE_NAMES.size());
+	const int noteCount = ToneConstants::NOTE_COUNT;
 	const vector<double> xPositions = Mathematics::calculateDistributedPositions(-width / 2.0, width, noteCount);
 	const vector<double> yPositions = Mathematics::calculateDistributedPositions(y - 0.25, -0.5, 10);
 

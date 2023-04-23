@@ -21,7 +21,6 @@ private:
 	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles);
 	void _refreshWaveformVisualization();
 	void _setGuiVisible(const bool value);
-	void _disable();
 
 	static inline const int DURATION = 100;
 
@@ -29,6 +28,8 @@ private:
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
 	shared_ptr<WaveformPlayer> _waveformPlayer = nullptr;
 	shared_ptr<ToneManager> _toneManager = nullptr;
+
+	int _currentOctave = 0;
 
 	bool _isEnabled = false;
 };

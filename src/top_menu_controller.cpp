@@ -1,21 +1,6 @@
 #include "top_menu_controller.hpp"
 #include "tools.hpp"
 
-void TopMenuController::inject(const shared_ptr<GuiManager> & guiManager)
-{
-	_guiManager = guiManager;
-}
-
-void TopMenuController::inject(const shared_ptr<ToneManager> & toneManager)
-{
-	_toneManager = toneManager;
-}
-
-void TopMenuController::inject(const shared_ptr<ToneEditorController> & toneEditorController)
-{
-	_toneEditorController = toneEditorController;
-}
-
 void TopMenuController::update()
 {
 	if(_guiManager->getGuiButton("top_menu_new")->isPressed())
@@ -43,4 +28,19 @@ void TopMenuController::update()
 
 	_guiManager->getGuiButton("top_menu_tone")->setHoverable(toneCount != 0);
 	_guiManager->getGuiButton("top_menu_tone")->setPressable(toneCount != 0);
+}
+
+void TopMenuController::inject(const shared_ptr<GuiManager> & guiManager)
+{
+	_guiManager = guiManager;
+}
+
+void TopMenuController::inject(const shared_ptr<ToneManager> & toneManager)
+{
+	_toneManager = toneManager;
+}
+
+void TopMenuController::inject(const shared_ptr<ToneEditorController> & toneEditorController)
+{
+	_toneEditorController = toneEditorController;
 }

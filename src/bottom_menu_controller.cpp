@@ -3,21 +3,6 @@
 using std::make_shared;
 using std::to_string;
 
-void BottomMenuController::inject(const shared_ptr<GuiManager> & guiManager)
-{
-	_guiManager = guiManager;
-}
-
-void BottomMenuController::inject(const shared_ptr<ToneManager> & toneManager)
-{
-	_toneManager = toneManager;
-}
-
-void BottomMenuController::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
-{
-	_waveformGenerator = waveformGenerator;
-}
-
 void BottomMenuController::update()
 {
 	int toneCount = _toneManager->getToneCount();
@@ -95,4 +80,19 @@ void BottomMenuController::_refreshWaveformVisualization()
 
 		_guiManager->getGuiWaveform("bottom_menu_waveform")->setSamples(samples);
 	}
+}
+
+void BottomMenuController::inject(const shared_ptr<GuiManager> & guiManager)
+{
+	_guiManager = guiManager;
+}
+
+void BottomMenuController::inject(const shared_ptr<ToneManager> & toneManager)
+{
+	_toneManager = toneManager;
+}
+
+void BottomMenuController::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
+{
+	_waveformGenerator = waveformGenerator;
 }
