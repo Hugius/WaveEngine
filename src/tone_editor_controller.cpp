@@ -98,9 +98,9 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 	{
 		if(_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->isPressed())
 		{
-			amplitudes[index]--;
+			amplitudes.at(index)--;
 
-			if(amplitudes[index] == 0)
+			if(amplitudes.at(index) == 0)
 			{
 				_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setPressable(false);
 				_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setHoverable(false);
@@ -113,15 +113,15 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 		}
 		else if(_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->isPressed())
 		{
-			toggles[index] = !toggles[index];
+			toggles.at(index) = !toggles.at(index);
 
 			_refreshWaveformVisualization();
 		}
 		else if(_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->isPressed())
 		{
-			amplitudes[index]++;
+			amplitudes.at(index)++;
 
-			if(amplitudes[index] == 9)
+			if(amplitudes.at(index) == 9)
 			{
 				_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setPressable(false);
 				_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setHoverable(false);
@@ -133,11 +133,11 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 			_refreshWaveformVisualization();
 		}
 
-		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(toggles[index]);
-		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(toggles[index]);
-		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setContent(to_string(amplitudes[index]));
-		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(toggles[index]);
-		_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->setHighlighted(toggles[index]);
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(toggles.at(index));
+		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(toggles.at(index));
+		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setContent(to_string(amplitudes.at(index)));
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(toggles.at(index));
+		_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->setHighlighted(toggles.at(index));
 	}
 }
 

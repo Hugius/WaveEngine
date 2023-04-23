@@ -40,7 +40,7 @@ const string Tools::getRootDirectoryPath()
 
 	for(int index = 0; index < rootPath.size(); index++)
 	{
-		if(rootPath[index] == '\\')
+		if(rootPath.at(index) == '\\')
 		{
 			rootPath = rootPath.substr(index);
 
