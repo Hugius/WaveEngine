@@ -62,34 +62,21 @@ void ToneEditorController::_updateOctaveGui()
 	{
 		_currentOctave--;
 
-		if(_currentOctave == ToneConstants::MIN_OCTAVE)
-		{
-			_guiManager->getGuiButton("tone_editor_oct_decr")->setPressable(false);
-			_guiManager->getGuiButton("tone_editor_oct_decr")->setHoverable(false);
-		}
-
-		_guiManager->getGuiButton("tone_editor_oct_incr")->setPressable(true);
-		_guiManager->getGuiButton("tone_editor_oct_incr")->setHoverable(true);
-
 		_refreshWaveformVisualization();
 	}
 	else if(_guiManager->getGuiButton("tone_editor_oct_incr")->isPressed())
 	{
 		_currentOctave++;
 
-		if(_currentOctave == ToneConstants::MAX_OCTAVE)
-		{
-			_guiManager->getGuiButton("tone_editor_oct_incr")->setPressable(false);
-			_guiManager->getGuiButton("tone_editor_oct_incr")->setHoverable(false);
-		}
-
-		_guiManager->getGuiButton("tone_editor_oct_decr")->setPressable(true);
-		_guiManager->getGuiButton("tone_editor_oct_decr")->setHoverable(true);
-
 		_refreshWaveformVisualization();
 	}
 
+
+	_guiManager->getGuiButton("tone_editor_oct_decr")->setPressable(_currentOctave > ToneConstants::MIN_OCTAVE);
+	_guiManager->getGuiButton("tone_editor_oct_decr")->setHoverable(_currentOctave > ToneConstants::MIN_OCTAVE);
 	_guiManager->getGuiLabel("tone_editor_oct_val")->setContent(to_string(_currentOctave));
+	_guiManager->getGuiButton("tone_editor_oct_incr")->setPressable(_currentOctave < ToneConstants::MAX_OCTAVE);
+	_guiManager->getGuiButton("tone_editor_oct_incr")->setHoverable(_currentOctave < ToneConstants::MAX_OCTAVE);
 }
 
 void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles)
@@ -99,15 +86,6 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 		if(_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->isPressed())
 		{
 			amplitudes.at(index)--;
-
-			if(amplitudes.at(index) == 0)
-			{
-				_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setHoverable(true);
 
 			_refreshWaveformVisualization();
 		}
@@ -121,21 +99,16 @@ void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> 
 		{
 			amplitudes.at(index)++;
 
-			if(amplitudes.at(index) == 9)
-			{
-				_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setPressable(false);
-				_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setHoverable(false);
-			}
-
-			_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setPressable(true);
-			_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setHoverable(true);
-
 			_refreshWaveformVisualization();
 		}
 
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setPressable(amplitudes.at(index) > 0);
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setHoverable(amplitudes.at(index) > 0);
 		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(toggles.at(index));
 		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(toggles.at(index));
 		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setContent(to_string(amplitudes.at(index)));
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setPressable(amplitudes.at(index) < 9);
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setHoverable(amplitudes.at(index) < 9);
 		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(toggles.at(index));
 		_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->setHighlighted(toggles.at(index));
 	}
