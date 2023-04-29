@@ -89,14 +89,15 @@ void GuiManager::_initializeToneEditor()
 	const double width = 1.5;
 	const double height = 1.5;
 	const double waveformOffset = 0.025;
+	const double playButtonOffset = 0.1f;
 	const int noteCount = ToneConstants::NOTE_COUNT;
 	const vector<double> xPositions = Mathematics::calculateDistributedPositions(-width / 2.0, width, noteCount);
-	const vector<double> yPositions = Mathematics::calculateDistributedPositions(y - 0.25, -0.5, 10);
+	const vector<double> yPositions = Mathematics::calculateDistributedPositions(y, -0.75, 10);
 
 	_addGuiRectangle("tone_editor_background", dvec2(x, y), dvec2(width, height), GRAY, true, true, false);
 	_addGuiButton("tone_editor_close", dvec2(x + width / 2.0 - WIDTH("X"), y + height / 2.0), dvec2(WIDTH("X"), CHAR_Y), GRAY, RED, "X", true, false, true, true, false);
 	_addGuiWaveform("tone_editor_waveform", dvec2(x, y + height / 3.0), dvec2(width - waveformOffset, height / 3 - waveformOffset), WHITE, true, true, false);
-	_addGuiButton("tone_editor_play", dvec2(x, y), dvec2(WIDTH("Play"), CHAR_Y), DARK_GRAY, WHITE, "Play", true, true, true, true, false);
+	_addGuiButton("tone_editor_play", dvec2(x, y + playButtonOffset), dvec2(WIDTH("Play"), CHAR_Y), DARK_GRAY, WHITE, "Play", true, true, true, true, false);
 	_addGuiButton("tone_editor_oct_decr", dvec2(x - WIDTH("<"), yPositions.at(0) + CHAR_Y), dvec2(WIDTH("<"), CHAR_Y), GRAY, WHITE, "<", true, true, true, true, false);
 	_addGuiLabel("tone_editor_oct_val", dvec2(x, yPositions.at(0) + CHAR_Y), dvec2(WIDTH("0"), CHAR_Y), WHITE, "0", true, true, false);
 	_addGuiButton("tone_editor_oct_incr", dvec2(x + WIDTH(">"), yPositions.at(0) + CHAR_Y), dvec2(WIDTH(">"), CHAR_Y), GRAY, WHITE, ">", true, true, true, true, false);
