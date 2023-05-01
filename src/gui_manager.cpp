@@ -94,7 +94,7 @@ void GuiManager::_initializeToneEditor()
 	const vector<double> yPositions = Mathematics::calculateDistributedPositions(y, -0.75, 10);
 
 	_addGuiRectangle("tone_editor_background", dvec2(x, y), dvec2(width, height), GRAY, true, true, false);
-	_addGuiButton("tone_editor_close", dvec2(x + width / 2.0 - WIDTH("X"), y + height / 2.0), dvec2(WIDTH("X"), CHAR_Y), GRAY, RED, "X", true, false, true, true, false);
+	_addGuiButton("tone_editor_close", dvec2(x + width / 2.0 - WIDTH("X"), y + height / 2.0 - CHAR_Y), dvec2(WIDTH("X"), CHAR_Y), GRAY, RED, "X", false, false, true, true, false);
 	_addGuiWaveform("tone_editor_waveform", dvec2(x, y + height / 3.0), dvec2(width - waveformOffset, height / 3 - waveformOffset), WHITE, true, true, false);
 	_addGuiButton("tone_editor_play", dvec2(x, y), dvec2(WIDTH("Play"), CHAR_Y), DARK_GRAY, WHITE, "Play", true, true, true, true, false);
 
