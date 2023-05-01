@@ -27,11 +27,10 @@ void ToneEditorController::update()
 	const shared_ptr<Tone> currentTone = _toneManager->getCurrentTone();
 
 	_updatePlaybackGui();
-	_updateOctaveGui();
-	_updateAmplitudeGui("sin", currentTone->sineAmplitudes.at(_currentOctave), currentTone->sineToggles.at(_currentOctave));
-	_updateAmplitudeGui("sqr", currentTone->squareAmplitudes.at(_currentOctave), currentTone->squareToggles.at(_currentOctave));
-	_updateAmplitudeGui("tri", currentTone->triangleAmplitudes.at(_currentOctave), currentTone->triangleToggles.at(_currentOctave));
-	_updateAmplitudeGui("saw", currentTone->sawtoothAmplitudes.at(_currentOctave), currentTone->sawtoothToggles.at(_currentOctave));
+	_updateAmplitudeGui("sin", currentTone->sineAmplitudes, currentTone->sineToggles);
+	_updateAmplitudeGui("sqr", currentTone->squareAmplitudes, currentTone->squareToggles);
+	_updateAmplitudeGui("tri", currentTone->triangleAmplitudes, currentTone->triangleToggles);
+	_updateAmplitudeGui("saw", currentTone->sawtoothAmplitudes, currentTone->sawtoothToggles);
 }
 
 void ToneEditorController::_updatePlaybackGui()
@@ -43,7 +42,7 @@ void ToneEditorController::_updatePlaybackGui()
 			_waveformPlayer->stop();
 		}
 
-		vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone(), DURATION);
+		vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone());
 
 		if(!waveforms.empty())
 		{
@@ -54,63 +53,38 @@ void ToneEditorController::_updatePlaybackGui()
 	}
 }
 
-void ToneEditorController::_updateOctaveGui()
-{
-	const shared_ptr<Tone> currentTone = _toneManager->getCurrentTone();
-
-	if(_guiManager->getGuiButton("tone_editor_oct_decr")->isPressed())
-	{
-		_currentOctave--;
-
-		_refreshWaveformVisualization();
-	}
-	else if(_guiManager->getGuiButton("tone_editor_oct_incr")->isPressed())
-	{
-		_currentOctave++;
-
-		_refreshWaveformVisualization();
-	}
-
-
-	_guiManager->getGuiButton("tone_editor_oct_decr")->setPressable(_currentOctave > ToneConstants::MIN_OCTAVE);
-	_guiManager->getGuiButton("tone_editor_oct_decr")->setHoverable(_currentOctave > ToneConstants::MIN_OCTAVE);
-	_guiManager->getGuiLabel("tone_editor_oct_val")->setContent(to_string(_currentOctave));
-	_guiManager->getGuiButton("tone_editor_oct_incr")->setPressable(_currentOctave < ToneConstants::MAX_OCTAVE);
-	_guiManager->getGuiButton("tone_editor_oct_incr")->setHoverable(_currentOctave < ToneConstants::MAX_OCTAVE);
-}
-
 void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles)
 {
-	for(int index = 0; index < ToneConstants::NOTE_COUNT; index++)
+	for(int octave = 0; octave < ToneConstants::OCTAVE_COUNT; octave++)
 	{
-		if(_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->isPressed())
+		if(_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->isPressed())
 		{
-			amplitudes.at(index)--;
+			amplitudes.at(octave)--;
 
 			_refreshWaveformVisualization();
 		}
-		else if(_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->isPressed())
+		else if(_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(octave))->isPressed())
 		{
-			toggles.at(index) = !toggles.at(index);
+			toggles.at(octave) = !toggles.at(octave);
 
 			_refreshWaveformVisualization();
 		}
-		else if(_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->isPressed())
+		else if(_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->isPressed())
 		{
-			amplitudes.at(index)++;
+			amplitudes.at(octave)++;
 
 			_refreshWaveformVisualization();
 		}
 
-		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setPressable(amplitudes.at(index) > 0);
-		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setHoverable(amplitudes.at(index) > 0);
-		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(toggles.at(index));
-		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(toggles.at(index));
-		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setContent(to_string(amplitudes.at(index)));
-		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setPressable(amplitudes.at(index) < 9);
-		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setHoverable(amplitudes.at(index) < 9);
-		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(toggles.at(index));
-		_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->setHighlighted(toggles.at(index));
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->setPressable(amplitudes.at(octave) > 0);
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->setHoverable(amplitudes.at(octave) > 0);
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->setVisible(toggles.at(octave));
+		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(octave))->setVisible(toggles.at(octave));
+		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(octave))->setContent(to_string(amplitudes.at(octave)));
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->setPressable(amplitudes.at(octave) < 9);
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->setHoverable(amplitudes.at(octave) < 9);
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->setVisible(toggles.at(octave));
+		_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(octave))->setHighlighted(toggles.at(octave));
 	}
 }
 
@@ -120,22 +94,18 @@ void ToneEditorController::_setGuiVisible(const bool value)
 	_guiManager->getGuiButton("tone_editor_close")->setVisible(value);
 	_guiManager->getGuiWaveform("tone_editor_waveform")->setVisible(value);
 	_guiManager->getGuiButton("tone_editor_play")->setVisible(value);
-	_guiManager->getGuiButton("tone_editor_oct_decr")->setVisible(value);
-	_guiManager->getGuiLabel("tone_editor_oct_val")->setVisible(value);
-	_guiManager->getGuiButton("tone_editor_oct_incr")->setVisible(value);
-	_guiManager->getGuiLabel("tone_editor_oct_name")->setVisible(value);
 
-	for(int index = 0; index < ToneConstants::NOTE_COUNT; index++)
+	for(int octave = 0; octave < ToneConstants::OCTAVE_COUNT; octave++)
 	{
 		for(const string & type : {"sin", "sqr", "tri", "saw"})
 		{
-			_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(value);
-			_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(value);
-			_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(value);
-			_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->setVisible(value);
+			_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->setVisible(value);
+			_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(octave))->setVisible(value);
+			_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->setVisible(value);
+			_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(octave))->setVisible(value);
 		}
 
-		_guiManager->getGuiLabel("tone_editor_note" + to_string(index))->setVisible(value);
+		_guiManager->getGuiLabel("tone_editor_octave" + to_string(octave))->setVisible(value);
 	}
 }
 
@@ -144,13 +114,12 @@ void ToneEditorController::enable()
 	_setGuiVisible(true);
 	_refreshWaveformVisualization();
 
-	_currentOctave = ToneConstants::DEFAULT_OCTAVE;
 	_isEnabled = true;
 }
 
 void ToneEditorController::_refreshWaveformVisualization()
 {
-	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone(), DURATION);
+	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone());
 
 	if(waveforms.empty())
 	{

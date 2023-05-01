@@ -1,21 +1,25 @@
 #pragma once
 
+#include "note_type.hpp"
+
 #include <vector>
-#include <map>
 
 using std::vector;
-using std::map;
 
 struct Tone final
 {
 	Tone();
 
-	map<int, vector<int>> sineAmplitudes;
-	map<int, vector<int>> squareAmplitudes;
-	map<int, vector<int>> triangleAmplitudes;
-	map<int, vector<int>> sawtoothAmplitudes;
-	map<int, vector<bool>> sineToggles;
-	map<int, vector<bool>> squareToggles;
-	map<int, vector<bool>> triangleToggles;
-	map<int, vector<bool>> sawtoothToggles;
+	vector<int> sineAmplitudes;
+	vector<int> squareAmplitudes;
+	vector<int> triangleAmplitudes;
+	vector<int> sawtoothAmplitudes;
+	vector<bool> sineToggles;
+	vector<bool> squareToggles;
+	vector<bool> triangleToggles;
+	vector<bool> sawtoothToggles;
+
+	int duration;
+
+	NoteType note;
 };

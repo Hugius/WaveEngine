@@ -290,6 +290,9 @@
     <ClInclude Include="..\src\bottom_menu_controller.hpp">
       <Filter>GUI\Controllers</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\note_type.hpp">
+      <Filter>Tones</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ico\WaveEngine.rc">

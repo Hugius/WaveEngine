@@ -17,19 +17,14 @@ public:
 
 private:
 	void _updatePlaybackGui();
-	void _updateOctaveGui();
 	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles);
 	void _refreshWaveformVisualization();
 	void _setGuiVisible(const bool value);
-
-	static inline const int DURATION = 100;
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
 	shared_ptr<WaveformPlayer> _waveformPlayer = nullptr;
 	shared_ptr<ToneManager> _toneManager = nullptr;
-
-	int _currentOctave = 0;
 
 	bool _isEnabled = false;
 };

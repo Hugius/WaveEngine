@@ -67,7 +67,7 @@ void BottomMenuController::_refreshWaveformVisualization()
 
 	_guiManager->getGuiWaveform("bottom_menu_waveform")->setVisible(true);
 
-	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone(), DURATION);
+	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone());
 
 	if(waveforms.empty())
 	{
