@@ -35,20 +35,31 @@ void ToneEditorController::update()
 
 void ToneEditorController::_updatePlaybackGui()
 {
-	if(_guiManager->getGuiButton("tone_editor_play")->isPressed())
+	for(int index = 0; index < ToneConstants::NOTE_COUNT; index++)
 	{
-		if(_waveformPlayer->isStarted())
+		if(_guiManager->getGuiButton("tone_editor_note" + to_string(index))->isPressed())
 		{
-			_waveformPlayer->stop();
-		}
+			if(_waveformPlayer->isStarted())
+			{
+				_waveformPlayer->stop();
+			}
 
-		vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone());
+			const shared_ptr<Tone> currentTone = _toneManager->getCurrentTone();
 
-		if(!waveforms.empty())
-		{
-			const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
+			currentTone->note = static_cast<NoteType>(index);
 
-			_waveformPlayer->start(waveform);
+			vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(currentTone);
+
+			currentTone->note = ToneConstants::DEFAULT_NOTE_TYPE;
+
+			if(!waveforms.empty())
+			{
+				const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
+
+				_waveformPlayer->start(waveform);
+			}
+
+			break;
 		}
 	}
 }
@@ -93,7 +104,11 @@ void ToneEditorController::_setGuiVisible(const bool value)
 	_guiManager->getGuiRectangle("tone_editor_frame")->setVisible(value);
 	_guiManager->getGuiButton("tone_editor_close")->setVisible(value);
 	_guiManager->getGuiWaveform("tone_editor_wave")->setVisible(value);
-	_guiManager->getGuiButton("tone_editor_play")->setVisible(value);
+
+	for(int index = 0; index < ToneConstants::NOTE_COUNT; index++)
+	{
+		_guiManager->getGuiButton("tone_editor_note" + to_string(index))->setVisible(value);
+	}
 
 	for(int octave = 0; octave < ToneConstants::OCTAVE_COUNT; octave++)
 	{

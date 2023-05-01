@@ -18,6 +18,7 @@ struct ToneConstants final
 	static inline const int MIN_OCTAVE = 0;
 	static inline const int MAX_OCTAVE = 9;
 	static inline const int OCTAVE_COUNT = 10;
+	static inline const int NOTE_COUNT = 12;
 	static inline const int DEFAULT_TONE_DURATION = 100;
 
 	static inline const NoteType DEFAULT_NOTE_TYPE = NoteType::C;
