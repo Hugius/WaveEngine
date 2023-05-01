@@ -1,321 +1,267 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Mathematics">
-      <UniqueIdentifier>{923f18f7-829d-41db-b936-4976ea09e806}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Miscellaneous">
-      <UniqueIdentifier>{143abdfa-a6bc-4463-b380-e893eee50c80}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core">
+    <Filter Include="CPP">
       <UniqueIdentifier>{462a8dfe-c45a-4c37-8947-0b0054dbe95b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rendering">
-      <UniqueIdentifier>{4ac54554-392b-4cd2-b513-1616b7bda3b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Buffers">
-      <UniqueIdentifier>{3fd1619d-263d-444b-b41a-dba53a1f0ad9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Miscellaneous">
-      <UniqueIdentifier>{69d889b6-fc9b-4338-be6b-3455a00fa1e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Drawables">
-      <UniqueIdentifier>{9deda8ac-8900-4e40-a01a-dc8fd6f195fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Input Handling">
-      <UniqueIdentifier>{c5890f2d-1d8e-4bc7-8ac3-06aeac7aa5d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Image Loading">
-      <UniqueIdentifier>{d8a8b087-92a6-447b-90c4-b533881ae17b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Icon">
-      <UniqueIdentifier>{c267fea5-b2a7-4d34-8e10-1b9572c05552}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Renderers">
-      <UniqueIdentifier>{1e83d2b2-944d-4ddd-9316-cc1285ddc20a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI">
+    <Filter Include="HPP">
       <UniqueIdentifier>{57b1f732-334c-45ad-ae40-202d814f1dcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Waveforms">
-      <UniqueIdentifier>{b222a278-75c3-45fb-a266-b1c3efce3a00}</UniqueIdentifier>
+    <Filter Include="GLSL">
+      <UniqueIdentifier>{d8a8b087-92a6-447b-90c4-b533881ae17b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI\Domain">
-      <UniqueIdentifier>{711cd747-c3bf-4153-9ae4-a927c5d44c23}</UniqueIdentifier>
+    <Filter Include="ICO">
+      <UniqueIdentifier>{c267fea5-b2a7-4d34-8e10-1b9572c05552}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Waveforms\Domain">
-      <UniqueIdentifier>{95f51c20-db0c-4531-acdc-61081edc9e56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mathematics\Matrix">
-      <UniqueIdentifier>{bfd2056e-c49d-4049-aa67-8450fba26ae8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mathematics\Vector">
-      <UniqueIdentifier>{29dd8a33-c5ca-4107-8166-47ce7c5d0c7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mathematics\Miscellaneous">
-      <UniqueIdentifier>{9ecae375-8763-40ee-b649-e20b1a0ea3cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Waveforms\Miscellaneous">
-      <UniqueIdentifier>{8b5f7c98-92bf-4001-989b-0372a86e33fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI\Miscellaneous">
-      <UniqueIdentifier>{cca38dd0-9ce1-4829-9260-04b74b8cd3d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tones">
-      <UniqueIdentifier>{af4fc721-c4b3-4eb8-baec-3f0608e6b2a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI\Controllers">
-      <UniqueIdentifier>{9c2a9ce5-3463-4f1c-9e7e-92f6ce993eec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Shaders">
-      <UniqueIdentifier>{2bcf76ab-9106-4969-9c80-74ca246148e9}</UniqueIdentifier>
+    <Filter Include="RC">
+      <UniqueIdentifier>{04bf2cf2-a3c7-467d-8554-35df99c5a588}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
-      <Filter>Core</Filter>
+      <Filter>CPP</Filter>
     </ClCompile>
     <ClCompile Include="..\src\engine_orchestrator.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\timer.cpp">
-      <Filter>Miscellaneous</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\tools.cpp">
-      <Filter>Miscellaneous</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\render_window.cpp">
-      <Filter>Rendering\Miscellaneous</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\shader_buffer.cpp">
-      <Filter>Rendering\Buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\vertex_buffer.cpp">
-      <Filter>Rendering\Buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\input_handler.cpp">
-      <Filter>Input Handling</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\text.cpp">
-      <Filter>Rendering\Drawables</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\quad.cpp">
-      <Filter>Rendering\Drawables</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\texture_buffer.cpp">
-      <Filter>Rendering\Buffers</Filter>
+      <Filter>CPP</Filter>
     </ClCompile>
     <ClCompile Include="..\src\image.cpp">
-      <Filter>Image Loading</Filter>
+      <Filter>CPP</Filter>
     </ClCompile>
     <ClCompile Include="..\src\image_loader.cpp">
-      <Filter>Image Loading</Filter>
+      <Filter>CPP</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\base_renderer.cpp">
-      <Filter>Rendering\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\line_renderer.cpp">
-      <Filter>Rendering\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\quad_renderer.cpp">
-      <Filter>Rendering\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\line.cpp">
-      <Filter>Rendering\Drawables</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\waveform_generator.cpp">
-      <Filter>Waveforms\Miscellaneous</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_manager.cpp">
-      <Filter>GUI\Miscellaneous</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\tone_editor_controller.cpp">
-      <Filter>GUI\Controllers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_button.cpp">
-      <Filter>GUI\Domain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_label.cpp">
-      <Filter>GUI\Domain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_rectangle.cpp">
-      <Filter>GUI\Domain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_waveform.cpp">
-      <Filter>GUI\Domain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\waveform.cpp">
-      <Filter>Waveforms\Domain</Filter>
+    <ClCompile Include="..\src\input_handler.cpp">
+      <Filter>CPP</Filter>
     </ClCompile>
     <ClCompile Include="..\src\dmat33.cpp">
-      <Filter>Mathematics\Matrix</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\dvec2.cpp">
-      <Filter>Mathematics\Vector</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\dvec3.cpp">
-      <Filter>Mathematics\Vector</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ivec2.cpp">
-      <Filter>Mathematics\Vector</Filter>
+      <Filter>CPP</Filter>
     </ClCompile>
     <ClCompile Include="..\src\mathematics.cpp">
-      <Filter>Mathematics\Miscellaneous</Filter>
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dvec2.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dvec3.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ivec2.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\timer.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tools.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\waveform_generator.cpp">
+      <Filter>CPP</Filter>
     </ClCompile>
     <ClCompile Include="..\src\waveform_player.cpp">
-      <Filter>Waveforms\Miscellaneous</Filter>
+      <Filter>CPP</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\tone_manager.cpp">
-      <Filter>Tones</Filter>
+    <ClCompile Include="..\src\waveform.cpp">
+      <Filter>CPP</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\tone.cpp">
-      <Filter>Tones</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\top_menu_controller.cpp">
-      <Filter>GUI\Controllers</Filter>
+    <ClCompile Include="..\src\base_renderer.cpp">
+      <Filter>CPP</Filter>
     </ClCompile>
     <ClCompile Include="..\src\bottom_menu_controller.cpp">
-      <Filter>GUI\Controllers</Filter>
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_button.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_label.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_manager.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_rectangle.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_waveform.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\line.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\line_renderer.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\quad.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\quad_renderer.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\render_window.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shader_buffer.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\text.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\texture_buffer.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tone.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tone_editor_controller.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tone_manager.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\top_menu_controller.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\vertex_buffer.cpp">
+      <Filter>CPP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\engine_orchestrator.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\timer.hpp">
-      <Filter>Miscellaneous</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\tools.hpp">
-      <Filter>Miscellaneous</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\cursor_type.hpp">
-      <Filter>Miscellaneous</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\render_window.hpp">
-      <Filter>Rendering\Miscellaneous</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\shader_buffer.hpp">
-      <Filter>Rendering\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\vertex_buffer.hpp">
-      <Filter>Rendering\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\input_handler.hpp">
-      <Filter>Input Handling</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\text.hpp">
-      <Filter>Rendering\Drawables</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\quad.hpp">
-      <Filter>Rendering\Drawables</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\texture_buffer.hpp">
-      <Filter>Rendering\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\image.hpp">
-      <Filter>Image Loading</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\image_loader.hpp">
-      <Filter>Image Loading</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\base_renderer.hpp">
-      <Filter>Rendering\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\line_renderer.hpp">
-      <Filter>Rendering\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\quad_renderer.hpp">
-      <Filter>Rendering\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\line.hpp">
-      <Filter>Rendering\Drawables</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\waveform_generator.hpp">
-      <Filter>Waveforms\Miscellaneous</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_manager.hpp">
-      <Filter>GUI\Miscellaneous</Filter>
+    <ClInclude Include="..\src\bottom_menu_controller.hpp">
+      <Filter>HPP</Filter>
     </ClInclude>
     <ClInclude Include="..\src\tone_editor_controller.hpp">
-      <Filter>GUI\Controllers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_button.hpp">
-      <Filter>GUI\Domain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_label.hpp">
-      <Filter>GUI\Domain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_rectangle.hpp">
-      <Filter>GUI\Domain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_waveform.hpp">
-      <Filter>GUI\Domain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\waveform.hpp">
-      <Filter>Waveforms\Domain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\waveform_type.hpp">
-      <Filter>Waveforms\Domain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\dmat33.hpp">
-      <Filter>Mathematics\Matrix</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\dvec2.hpp">
-      <Filter>Mathematics\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\dvec3.hpp">
-      <Filter>Mathematics\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\ivec2.hpp">
-      <Filter>Mathematics\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\mathematics.hpp">
-      <Filter>Mathematics\Miscellaneous</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\waveform_player.hpp">
-      <Filter>Waveforms\Miscellaneous</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\tone.hpp">
-      <Filter>Tones</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\tone_manager.hpp">
-      <Filter>Tones</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\tone_constants.hpp">
-      <Filter>Tones</Filter>
+      <Filter>HPP</Filter>
     </ClInclude>
     <ClInclude Include="..\src\top_menu_controller.hpp">
-      <Filter>GUI\Controllers</Filter>
+      <Filter>HPP</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\bottom_menu_controller.hpp">
-      <Filter>GUI\Controllers</Filter>
+    <ClInclude Include="..\src\gui_button.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_label.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_rectangle.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_waveform.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gui_manager.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\shader_buffer.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\texture_buffer.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\vertex_buffer.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\line.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\quad.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\text.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\render_window.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\quad_renderer.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\line_renderer.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base_renderer.hpp">
+      <Filter>HPP</Filter>
     </ClInclude>
     <ClInclude Include="..\src\note_type.hpp">
-      <Filter>Tones</Filter>
+      <Filter>HPP</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ico\WaveEngine.rc">
-      <Filter>Icon</Filter>
-    </ResourceCompile>
+    <ClInclude Include="..\src\tone.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tone_constants.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tone_manager.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\cursor_type.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dmat33.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dvec2.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\dvec3.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\engine_orchestrator.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\image.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\image_loader.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\input_handler.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ivec2.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mathematics.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\timer.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tools.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_generator.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_player.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\waveform_type.hpp">
+      <Filter>HPP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="ico\logo.ico">
-      <Filter>Icon</Filter>
+      <Filter>ICO</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\app\shaders\quad_fragment.glsl">
-      <Filter>Rendering\Shaders</Filter>
-    </None>
-    <None Include="..\app\shaders\quad_vertex.glsl">
-      <Filter>Rendering\Shaders</Filter>
-    </None>
     <None Include="..\app\shaders\line_fragment.glsl">
-      <Filter>Rendering\Shaders</Filter>
+      <Filter>GLSL</Filter>
     </None>
     <None Include="..\app\shaders\line_vertex.glsl">
-      <Filter>Rendering\Shaders</Filter>
+      <Filter>GLSL</Filter>
     </None>
+    <None Include="..\app\shaders\quad_fragment.glsl">
+      <Filter>GLSL</Filter>
+    </None>
+    <None Include="..\app\shaders\quad_vertex.glsl">
+      <Filter>GLSL</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ico\WaveEngine.rc">
+      <Filter>RC</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
