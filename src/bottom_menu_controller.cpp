@@ -60,25 +60,25 @@ void BottomMenuController::_refreshWaveformVisualization()
 {
 	if(_toneManager->getToneCount() == 0)
 	{
-		_guiManager->getGuiWaveform("bottom_menu_waveform")->setVisible(false);
+		_guiManager->getGuiWaveform("bottom_menu_wave")->setVisible(false);
 
 		return;
 	}
 
-	_guiManager->getGuiWaveform("bottom_menu_waveform")->setVisible(true);
+	_guiManager->getGuiWaveform("bottom_menu_wave")->setVisible(true);
 
 	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone());
 
 	if(waveforms.empty())
 	{
-		_guiManager->getGuiWaveform("bottom_menu_waveform")->setSamples({0.0f, 0.0f});
+		_guiManager->getGuiWaveform("bottom_menu_wave")->setSamples({0.0f, 0.0f});
 	}
 	else
 	{
 		const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
 		const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
 
-		_guiManager->getGuiWaveform("bottom_menu_waveform")->setSamples(samples);
+		_guiManager->getGuiWaveform("bottom_menu_wave")->setSamples(samples);
 	}
 }
 

@@ -26,7 +26,7 @@ void GuiManager::_initializeTopMenu()
 {
 	const double y = 0.95;
 
-	_addGuiRectangle("top_menu_background", dvec2(-1.0, y), dvec2(2.0, CHAR_Y), GRAY, false, false, true);
+	_addGuiRectangle("top_menu_frame", dvec2(-1.0, y), dvec2(2.0, CHAR_Y), GRAY, false, false, true);
 
 	double x = -1.0;
 
@@ -60,7 +60,7 @@ void GuiManager::_initializeTopMenu()
 
 void GuiManager::_initializeTimeline()
 {
-	_addGuiRectangle("timeline_background", dvec2(-1.0, -0.75), dvec2(2.0, 2.0 - CHAR_Y - 0.25), BLUE, false, false, true);
+	_addGuiRectangle("timeline_frame", dvec2(-1.0, -0.75), dvec2(2.0, 2.0 - CHAR_Y - 0.25), BLUE, false, false, true);
 }
 
 void GuiManager::_initializeBottomMenu()
@@ -73,13 +73,13 @@ void GuiManager::_initializeBottomMenu()
 	const double waveformOffset = 0.025;
 	const vector<double> yPositions = Mathematics::calculateDistributedPositions(-1.0 + height, -height, 3);
 
-	_addGuiRectangle("bottom_menu_background", dvec2(x, y), dvec2(width, height), DARK_GRAY, false, false, true);
+	_addGuiRectangle("bottom_menu_frame", dvec2(x, y), dvec2(width, height), DARK_GRAY, false, false, true);
 	_addGuiButton("bottom_menu_create", dvec2(x + defaultOffset, yPositions.at(0)), dvec2(WIDTH("Create"), CHAR_Y), GRAY, WHITE, "Create", true, true, true, true, true);
 	_addGuiButton("bottom_menu_prev", dvec2(x + defaultOffset - WIDTH("00"), yPositions.at(1)), dvec2(WIDTH("<"), CHAR_Y), GRAY, WHITE, "<", true, true, true, true, true);
 	_addGuiLabel("bottom_menu_number", dvec2(x + defaultOffset, yPositions.at(1)), dvec2(WIDTH("00"), CHAR_Y), WHITE, "", true, true, true);
 	_addGuiButton("bottom_menu_next", dvec2(x + defaultOffset + WIDTH("00"), yPositions.at(1)), dvec2(WIDTH(">"), CHAR_Y), GRAY, WHITE, ">", true, true, true, true, true);
 	_addGuiButton("bottom_menu_delete", dvec2(x + defaultOffset, yPositions.at(2)), dvec2(WIDTH("Delete"), CHAR_Y), GRAY, WHITE, "Delete", true, true, true, true, true);
-	_addGuiWaveform("bottom_menu_waveform", dvec2(x + defaultOffset + WIDTH("Create") / 2.0 + waveformOffset, yPositions.at(1)), dvec2(width - defaultOffset - WIDTH("Create") / 2.0 - waveformOffset * 2.0, height - waveformOffset), WHITE, false, true, false);
+	_addGuiWaveform("bottom_menu_wave", dvec2(x + defaultOffset + WIDTH("Create") / 2.0 + waveformOffset, yPositions.at(1)), dvec2(width - defaultOffset - WIDTH("Create") / 2.0 - waveformOffset * 2.0, height - waveformOffset), WHITE, false, true, false);
 }
 
 void GuiManager::_initializeToneEditor()
@@ -93,9 +93,9 @@ void GuiManager::_initializeToneEditor()
 	const vector<double> xPositions = Mathematics::calculateDistributedPositions(-width / 2.0, width, octaveCount);
 	const vector<double> yPositions = Mathematics::calculateDistributedPositions(y, -0.75, 10);
 
-	_addGuiRectangle("tone_editor_background", dvec2(x, y), dvec2(width, height), GRAY, true, true, false);
+	_addGuiRectangle("tone_editor_frame", dvec2(x, y), dvec2(width, height), GRAY, true, true, false);
 	_addGuiButton("tone_editor_close", dvec2(x + width / 2.0 - WIDTH("X"), y + height / 2.0 - CHAR_Y), dvec2(WIDTH("X"), CHAR_Y), GRAY, RED, "X", false, false, true, true, false);
-	_addGuiWaveform("tone_editor_waveform", dvec2(x, y + height / 3.0), dvec2(width - waveformOffset, height / 3 - waveformOffset), WHITE, true, true, false);
+	_addGuiWaveform("tone_editor_wave", dvec2(x, y + height / 3.0), dvec2(width - waveformOffset, height / 3 - waveformOffset), WHITE, true, true, false);
 	_addGuiButton("tone_editor_play", dvec2(x, y), dvec2(WIDTH("Play"), CHAR_Y), DARK_GRAY, WHITE, "Play", true, true, true, true, false);
 
 	for(int index = 0; index < octaveCount; index++)
@@ -116,7 +116,7 @@ void GuiManager::_initializeToneEditor()
 		const string sawtoothValueId = "tone_editor_saw_val" + to_string(index);
 		const string sawtoothIncreaseId = "tone_editor_saw_incr" + to_string(index);
 		const string sawtoothToggleId = "tone_editor_saw_txt" + to_string(index);
-		const string octaveId = "tone_editor_octave" + to_string(index);
+		const string octaveId = "tone_editor_oct" + to_string(index);
 		const string octaveName = "OCT " + to_string(index);
 
 		_addGuiButton(sineDecreaseId, dvec2(x + xPositions.at(index) - WIDTH("<"), yPositions.at(1)), dvec2(WIDTH("<"), CHAR_Y), GRAY, WHITE, "<", true, false, false, false, false);
