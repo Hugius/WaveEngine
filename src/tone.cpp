@@ -6,7 +6,7 @@ Tone::Tone()
 	duration(ToneConstants::DEFAULT_TONE_DURATION),
 	note(ToneConstants::DEFAULT_NOTE_TYPE)
 {
-	for(int octaveIndex = 0; octaveIndex < ToneConstants::OCTAVE_COUNT; octaveIndex++)
+	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
 	{
 		sineAmplitudes.push_back(0);
 		squareAmplitudes.push_back(0);

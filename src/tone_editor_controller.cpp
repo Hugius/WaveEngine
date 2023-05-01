@@ -66,36 +66,36 @@ void ToneEditorController::_updatePlaybackGui()
 
 void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles)
 {
-	for(int octave = 0; octave < ToneConstants::OCTAVE_COUNT; octave++)
+	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
 	{
-		if(_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->isPressed())
+		if(_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->isPressed())
 		{
-			amplitudes.at(octave)--;
+			amplitudes.at(index)--;
 
 			_refreshWaveformVisualization();
 		}
-		else if(_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(octave))->isPressed())
+		else if(_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->isPressed())
 		{
-			toggles.at(octave) = !toggles.at(octave);
+			toggles.at(index) = !toggles.at(index);
 
 			_refreshWaveformVisualization();
 		}
-		else if(_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->isPressed())
+		else if(_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->isPressed())
 		{
-			amplitudes.at(octave)++;
+			amplitudes.at(index)++;
 
 			_refreshWaveformVisualization();
 		}
 
-		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->setPressable(amplitudes.at(octave) > 0);
-		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->setHoverable(amplitudes.at(octave) > 0);
-		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->setVisible(toggles.at(octave));
-		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(octave))->setVisible(toggles.at(octave));
-		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(octave))->setContent(to_string(amplitudes.at(octave)));
-		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->setPressable(amplitudes.at(octave) < 9);
-		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->setHoverable(amplitudes.at(octave) < 9);
-		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->setVisible(toggles.at(octave));
-		_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(octave))->setHighlighted(toggles.at(octave));
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setPressable(amplitudes.at(index) > 0);
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setHoverable(amplitudes.at(index) > 0);
+		_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(toggles.at(index));
+		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(toggles.at(index));
+		_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setContent(to_string(amplitudes.at(index)));
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setPressable(amplitudes.at(index) < 9);
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setHoverable(amplitudes.at(index) < 9);
+		_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(toggles.at(index));
+		_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->setHighlighted(toggles.at(index));
 	}
 }
 
@@ -110,17 +110,17 @@ void ToneEditorController::_setGuiVisible(const bool value)
 		_guiManager->getGuiButton("tone_editor_note" + to_string(index))->setVisible(value);
 	}
 
-	for(int octave = 0; octave < ToneConstants::OCTAVE_COUNT; octave++)
+	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
 	{
 		for(const string & type : {"sin", "sqr", "tri", "saw"})
 		{
-			_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(octave))->setVisible(value);
-			_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(octave))->setVisible(value);
-			_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(octave))->setVisible(value);
-			_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(octave))->setVisible(value);
+			_guiManager->getGuiButton("tone_editor_" + type + "_decr" + to_string(index))->setVisible(value);
+			_guiManager->getGuiLabel("tone_editor_" + type + "_val" + to_string(index))->setVisible(value);
+			_guiManager->getGuiButton("tone_editor_" + type + "_incr" + to_string(index))->setVisible(value);
+			_guiManager->getGuiButton("tone_editor_" + type + "_txt" + to_string(index))->setVisible(value);
 		}
 
-		_guiManager->getGuiLabel("tone_editor_oct" + to_string(octave))->setVisible(value);
+		_guiManager->getGuiLabel("tone_editor_oct" + to_string(index))->setVisible(value);
 	}
 }
 
