@@ -2,24 +2,11 @@
 
 #include "tone.hpp"
 
-#include <memory>
-
-using std::shared_ptr;
-
 class ToneManager final
 {
 public:
-	void addNewTone(const shared_ptr<Tone> & tone);
-	void removeCurrentTone();
-	void setCurrentToneIndex(const int value);
-
-	const shared_ptr<Tone> & getCurrentTone() const;
-
-	const int getCurrentToneIndex() const;
-	const int getToneCount() const;
+	void addTone(const shared_ptr<Tone> & tone);
 
 private:
 	vector<shared_ptr<Tone>> _tones = {};
-
-	int _currentToneIndex = 0;
 };

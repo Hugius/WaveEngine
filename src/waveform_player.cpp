@@ -2,7 +2,7 @@
 
 using std::make_shared;
 
-void WaveformPlayer::start(const shared_ptr<Waveform> & waveform, bool isInfinite)
+void WaveformPlayer::start(const shared_ptr<Waveform> & waveform, bool isLooped)
 {
 	if(isStarted())
 	{
@@ -22,7 +22,7 @@ void WaveformPlayer::start(const shared_ptr<Waveform> & waveform, bool isInfinit
 	_header->lpData = new char[bufferLength];
 	_header->dwBufferLength = bufferLength;
 
-	if(isInfinite)
+	if(isLooped)
 	{
 		_header->dwFlags = WHDR_BEGINLOOP | WHDR_ENDLOOP;
 		_header->dwLoops = -1;

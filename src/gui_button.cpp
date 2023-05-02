@@ -19,9 +19,10 @@ GuiButton::GuiButton(const shared_ptr<Quad> & quad, const shared_ptr<Text> & tex
 	}
 }
 
-void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
+void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed, const bool isLmbHeld)
 {
 	_isPressed = false;
+	_isHeld = false;
 
 	_updateHovering(cursorPosition);
 
@@ -45,6 +46,14 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 			if(_isPressable)
 			{
 				_isPressed = true;
+			}
+		}
+
+		if(isLmbHeld)
+		{
+			if(_isHoldable)
+			{
+				_isHeld = true;
 			}
 		}
 	}
@@ -72,6 +81,11 @@ void GuiButton::setPressable(const bool value)
 
 	_quad->setOpacity(_isPressable ? 1.0 : 0.5);
 	_text->setOpacity(_isPressable ? 1.0 : 0.5);
+}
+
+void GuiButton::setHoldable(const bool value)
+{
+	_isHoldable = value;
 }
 
 void GuiButton::setHighlighted(const bool value)
@@ -127,4 +141,9 @@ void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 const bool GuiButton::isPressed() const
 {
 	return _isPressed;
+}
+
+const bool GuiButton::isHeld() const
+{
+	return _isHeld;
 }

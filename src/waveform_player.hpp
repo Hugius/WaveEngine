@@ -9,7 +9,7 @@ using std::shared_ptr;
 class WaveformPlayer final
 {
 public:
-	void start(const shared_ptr<Waveform> & waveform, bool isInfinite);
+	void start(const shared_ptr<Waveform> & waveform, bool isLooped);
 	void stop();
 	void update();
 

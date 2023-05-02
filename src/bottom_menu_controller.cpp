@@ -1,20 +1,21 @@
 #include "bottom_menu_controller.hpp"
+#include "tone_constants.hpp"
 
 using std::make_shared;
 using std::to_string;
 
 void BottomMenuController::update()
 {
-	int toneCount = _toneManager->getToneCount();
-	int toneIndex = _toneManager->getCurrentToneIndex();
+	int toneCount = _toneTemplateManager->getToneTemplateCount();
+	int toneIndex = _toneTemplateManager->getToneTemplateIndex();
 
 	if(_guiManager->getGuiButton("bottom_menu_create")->isPressed())
 	{
-		_toneManager->addNewTone(make_shared<Tone>());
+		_toneTemplateManager->addToneTemplate(make_shared<ToneTemplate>());
 
 		toneCount++;
 
-		_toneManager->setCurrentToneIndex(toneCount - 1);
+		_toneTemplateManager->setToneTemplateIndex(toneCount - 1);
 
 		_refreshWaveformVisualization();
 	}
@@ -22,7 +23,7 @@ void BottomMenuController::update()
 	{
 		toneIndex--;
 
-		_toneManager->setCurrentToneIndex(toneIndex);
+		_toneTemplateManager->setToneTemplateIndex(toneIndex);
 
 		_refreshWaveformVisualization();
 	}
@@ -30,13 +31,13 @@ void BottomMenuController::update()
 	{
 		toneIndex++;
 
-		_toneManager->setCurrentToneIndex(toneIndex);
+		_toneTemplateManager->setToneTemplateIndex(toneIndex);
 
 		_refreshWaveformVisualization();
 	}
 	else if(_guiManager->getGuiButton("bottom_menu_delete")->isPressed())
 	{
-		_toneManager->removeCurrentTone();
+		_toneTemplateManager->removeToneTemplate();
 
 		_refreshWaveformVisualization();
 	}
@@ -58,7 +59,7 @@ void BottomMenuController::update()
 
 void BottomMenuController::_refreshWaveformVisualization()
 {
-	if(_toneManager->getToneCount() == 0)
+	if(_toneTemplateManager->getToneTemplateCount() == 0)
 	{
 		_guiManager->getGuiWaveform("bottom_menu_wave")->setVisible(false);
 
@@ -67,7 +68,7 @@ void BottomMenuController::_refreshWaveformVisualization()
 
 	_guiManager->getGuiWaveform("bottom_menu_wave")->setVisible(true);
 
-	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone());
+	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(make_shared<Tone>(_toneTemplateManager->getToneTemplate(), ToneConstants::VISUALIZATION_NOTE_INDEX, ToneConstants::VISUALIZATION_TONE_DURATION));
 
 	if(waveforms.empty())
 	{
@@ -87,9 +88,9 @@ void BottomMenuController::inject(const shared_ptr<GuiManager> & guiManager)
 	_guiManager = guiManager;
 }
 
-void BottomMenuController::inject(const shared_ptr<ToneManager> & toneManager)
+void BottomMenuController::inject(const shared_ptr<ToneTemplateManager> & toneTemplateManager)
 {
-	_toneManager = toneManager;
+	_toneTemplateManager = toneTemplateManager;
 }
 
 void BottomMenuController::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)

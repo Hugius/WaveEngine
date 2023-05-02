@@ -24,33 +24,31 @@ void ToneEditorController::update()
 		return;
 	}
 
-	const shared_ptr<Tone> currentTone = _toneManager->getCurrentTone();
+	const shared_ptr<ToneTemplate> currentToneTemplate = _toneTemplateManager->getToneTemplate();
 
 	_updatePlaybackGui();
-	_updateAmplitudeGui("sin", currentTone->sineAmplitudes, currentTone->sineToggles);
-	_updateAmplitudeGui("sqr", currentTone->squareAmplitudes, currentTone->squareToggles);
-	_updateAmplitudeGui("tri", currentTone->triangleAmplitudes, currentTone->triangleToggles);
-	_updateAmplitudeGui("saw", currentTone->sawtoothAmplitudes, currentTone->sawtoothToggles);
+	_updateAmplitudeGui("sin", currentToneTemplate->sineAmplitudes, currentToneTemplate->sineToggles);
+	_updateAmplitudeGui("sqr", currentToneTemplate->squareAmplitudes, currentToneTemplate->squareToggles);
+	_updateAmplitudeGui("tri", currentToneTemplate->triangleAmplitudes, currentToneTemplate->triangleToggles);
+	_updateAmplitudeGui("saw", currentToneTemplate->sawtoothAmplitudes, currentToneTemplate->sawtoothToggles);
 }
 
 void ToneEditorController::_updatePlaybackGui()
 {
+	bool isHeld = false;
+
 	for(int index = 0; index < ToneConstants::NOTE_COUNT; index++)
 	{
-		if(_guiManager->getGuiButton("tone_editor_note" + to_string(index))->isPressed())
+		if(_guiManager->getGuiButton("tone_editor_note" + to_string(index))->isHeld())
 		{
+			isHeld = true;
+
 			if(_waveformPlayer->isStarted())
 			{
-				_waveformPlayer->stop();
+				break;
 			}
 
-			const shared_ptr<Tone> currentTone = _toneManager->getCurrentTone();
-
-			currentTone->note = static_cast<NoteType>(index);
-
-			vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(currentTone);
-
-			currentTone->note = ToneConstants::DEFAULT_NOTE_TYPE;
+			vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(make_shared<Tone>(_toneTemplateManager->getToneTemplate(), index, TONE_DURATION));
 
 			if(!waveforms.empty())
 			{
@@ -61,6 +59,11 @@ void ToneEditorController::_updatePlaybackGui()
 
 			break;
 		}
+	}
+
+	if(!isHeld && _waveformPlayer->isStarted())
+	{
+		_waveformPlayer->stop();
 	}
 }
 
@@ -134,7 +137,7 @@ void ToneEditorController::enable()
 
 void ToneEditorController::_refreshWaveformVisualization()
 {
-	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(_toneManager->getCurrentTone());
+	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(make_shared<Tone>(_toneTemplateManager->getToneTemplate(), ToneConstants::VISUALIZATION_NOTE_INDEX, ToneConstants::VISUALIZATION_TONE_DURATION));
 
 	if(waveforms.empty())
 	{
@@ -164,7 +167,7 @@ void ToneEditorController::inject(const shared_ptr<WaveformPlayer> & waveformPla
 	_waveformPlayer = waveformPlayer;
 }
 
-void ToneEditorController::inject(const shared_ptr<ToneManager> & toneManager)
+void ToneEditorController::inject(const shared_ptr<ToneTemplateManager> & toneTemplateManager)
 {
-	_toneManager = toneManager;
+	_toneTemplateManager = toneTemplateManager;
 }

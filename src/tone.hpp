@@ -1,25 +1,27 @@
 #pragma once
 
-#include "note_type.hpp"
+#include "tone_template.hpp"
 
-#include <vector>
+#include <memory>
 
-using std::vector;
+using std::shared_ptr;
 
-struct Tone final
+class Tone final
 {
-	Tone();
+public:
+	Tone(const shared_ptr<ToneTemplate> & toneTemplate, const int noteIndex, const int duration);
 
-	vector<int> sineAmplitudes;
-	vector<int> squareAmplitudes;
-	vector<int> triangleAmplitudes;
-	vector<int> sawtoothAmplitudes;
-	vector<bool> sineToggles;
-	vector<bool> squareToggles;
-	vector<bool> triangleToggles;
-	vector<bool> sawtoothToggles;
+	void setNoteIndex(const int value);
+	void setDuration(const int value);
 
-	int duration;
+	const shared_ptr<ToneTemplate> & getToneTemplate() const;
 
-	NoteType note;
+	const int getNoteIndex() const;
+	const int getDuration() const;
+
+private:
+	const shared_ptr<ToneTemplate> _toneTemplate;
+
+	int _noteIndex = 0;
+	int _duration = 0;
 };

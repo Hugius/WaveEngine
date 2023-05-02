@@ -174,7 +174,13 @@ void RenderWindow::_updateEvents()
 		{
 			case WM_LBUTTONDOWN:
 			{
-				_inputHandler->setLmbPressed();
+				_inputHandler->setLmbDown();
+
+				break;
+			}
+			case WM_LBUTTONUP:
+			{
+				_inputHandler->setLmbUp();
 
 				break;
 			}

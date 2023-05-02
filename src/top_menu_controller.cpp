@@ -24,7 +24,7 @@ void TopMenuController::update()
 		exit(0);
 	}
 
-	const int toneCount = _toneManager->getToneCount();
+	const int toneCount = _toneTemplateManager->getToneTemplateCount();
 
 	_guiManager->getGuiButton("top_menu_tone")->setHoverable(toneCount != 0);
 	_guiManager->getGuiButton("top_menu_tone")->setPressable(toneCount != 0);
@@ -35,9 +35,9 @@ void TopMenuController::inject(const shared_ptr<GuiManager> & guiManager)
 	_guiManager = guiManager;
 }
 
-void TopMenuController::inject(const shared_ptr<ToneManager> & toneManager)
+void TopMenuController::inject(const shared_ptr<ToneTemplateManager> & toneTemplateManager)
 {
-	_toneManager = toneManager;
+	_toneTemplateManager = toneTemplateManager;
 }
 
 void TopMenuController::inject(const shared_ptr<ToneEditorController> & toneEditorController)

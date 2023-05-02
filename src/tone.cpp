@@ -1,20 +1,55 @@
 #include "tone.hpp"
 #include "tone_constants.hpp"
 
-Tone::Tone()
+Tone::Tone(const shared_ptr<ToneTemplate> & toneTemplate, const int noteIndex, const int duration)
 	:
-	duration(ToneConstants::DEFAULT_TONE_DURATION),
-	note(ToneConstants::DEFAULT_NOTE_TYPE)
+	_toneTemplate(toneTemplate)
 {
-	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
+	if(toneTemplate == nullptr)
 	{
-		sineAmplitudes.push_back(0);
-		squareAmplitudes.push_back(0);
-		triangleAmplitudes.push_back(0);
-		sawtoothAmplitudes.push_back(0);
-		sineToggles.push_back(false);
-		squareToggles.push_back(false);
-		triangleToggles.push_back(false);
-		sawtoothToggles.push_back(false);
+		abort();
 	}
+
+	setNoteIndex(noteIndex);
+	setDuration(duration);
+}
+
+void Tone::setDuration(const int value)
+{
+	if(value < 0)
+	{
+		abort();
+	}
+
+	_duration = value;
+}
+
+void Tone::setNoteIndex(const int value)
+{
+	if(value < 0)
+	{
+		abort();
+	}
+
+	if(value > ToneConstants::NOTE_COUNT - 1)
+	{
+		abort();
+	}
+
+	_noteIndex = value;
+}
+
+const shared_ptr<ToneTemplate> & Tone::getToneTemplate() const
+{
+	return _toneTemplate;
+}
+
+const int Tone::getDuration() const
+{
+	return _duration;
+}
+
+const int Tone::getNoteIndex() const
+{
+	return _noteIndex;
 }
