@@ -56,7 +56,7 @@ void ToneEditorController::_updatePlaybackGui()
 			{
 				const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
 
-				_waveformPlayer->start(waveform);
+				_waveformPlayer->start(waveform, true);
 			}
 
 			break;
