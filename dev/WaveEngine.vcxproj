@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\bottom_menu_controller.cpp" />
+    <ClCompile Include="..\src\gui_manager_initialization.cpp" />
     <ClCompile Include="..\src\tone.cpp" />
     <ClCompile Include="..\src\tone_manager.cpp" />
     <ClCompile Include="..\src\tone_template_manager.cpp" />
@@ -23,7 +24,7 @@
     <ClCompile Include="..\src\gui_button.cpp" />
     <ClCompile Include="..\src\top_menu_controller.cpp" />
     <ClCompile Include="..\src\gui_label.cpp" />
-    <ClCompile Include="..\src\gui_manager.cpp" />
+    <ClCompile Include="..\src\gui_manager_miscellaneous.cpp" />
     <ClCompile Include="..\src\gui_rectangle.cpp" />
     <ClCompile Include="..\src\gui_waveform.cpp" />
     <ClCompile Include="..\src\image.cpp" />

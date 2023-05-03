@@ -168,7 +168,10 @@
     <ClCompile Include="..\src\tone_template_manager.cpp">
       <Filter>Audio\Tone</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\gui_manager.cpp">
+    <ClCompile Include="..\src\gui_manager_miscellaneous.cpp">
+      <Filter>GUI\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gui_manager_initialization.cpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClCompile>
   </ItemGroup>
