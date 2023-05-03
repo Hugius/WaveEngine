@@ -2,6 +2,10 @@
 
 #include "tone.hpp"
 
+#include <vector>
+
+using std::vector;
+
 class ToneManager final
 {
 public:

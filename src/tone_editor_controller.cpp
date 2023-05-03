@@ -67,7 +67,7 @@ void ToneEditorController::_updatePlaybackGui()
 	}
 }
 
-void ToneEditorController::_updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles)
+void ToneEditorController::_updateAmplitudeGui(const string & type, array<int, ToneConstants::OCTAVE_COUNT> & amplitudes, array<bool, ToneConstants::OCTAVE_COUNT> & toggles)
 {
 	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
 	{

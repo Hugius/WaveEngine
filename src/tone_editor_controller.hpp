@@ -17,7 +17,7 @@ public:
 
 private:
 	void _updatePlaybackGui();
-	void _updateAmplitudeGui(const string & type, vector<int> & amplitudes, vector<bool> & toggles);
+	void _updateAmplitudeGui(const string & type, array<int, ToneConstants::OCTAVE_COUNT> & amplitudes, array<bool, ToneConstants::OCTAVE_COUNT> & toggles);
 	void _refreshWaveformVisualization();
 	void _setGuiVisible(const bool value);
 

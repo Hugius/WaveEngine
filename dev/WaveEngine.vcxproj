@@ -21,7 +21,6 @@
     <ClCompile Include="..\src\dvec2.cpp" />
     <ClCompile Include="..\src\dvec3.cpp" />
     <ClCompile Include="..\src\gui_button.cpp" />
-    <ClCompile Include="..\src\tone_template.cpp" />
     <ClCompile Include="..\src\top_menu_controller.cpp" />
     <ClCompile Include="..\src\gui_label.cpp" />
     <ClCompile Include="..\src\gui_manager.cpp" />

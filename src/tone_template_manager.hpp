@@ -3,8 +3,10 @@
 #include "tone_template.hpp"
 
 #include <memory>
+#include <vector>
 
 using std::shared_ptr;
+using std::vector;
 
 class ToneTemplateManager final
 {
