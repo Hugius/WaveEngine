@@ -11,17 +11,17 @@ Image::Image(const unsigned char * pixels, const int width, const int height, co
 	_height(height),
 	_bitsPerPixel(bitsPerPixel)
 {
-	if(_pixels == nullptr)
+	if(pixels == nullptr)
 	{
 		abort();
 	}
 
-	if(_width == 0)
+	if(width == 0)
 	{
 		abort();
 	}
 
-	if(_height == 0)
+	if(height == 0)
 	{
 		abort();
 	}

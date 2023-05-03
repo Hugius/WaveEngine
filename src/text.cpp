@@ -6,20 +6,19 @@
 using std::make_shared;
 
 Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const string & content)
+	:
+	_vertexBuffer(vertexBuffer),
+	_textureBuffer(textureBuffer)
 {
 	if(vertexBuffer == nullptr)
 	{
 		abort();
 	}
 
-	_vertexBuffer = vertexBuffer;
-
 	if(textureBuffer == nullptr)
 	{
 		abort();
 	}
-
-	_textureBuffer = textureBuffer;
 
 	setContent(content);
 }

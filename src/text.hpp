@@ -128,10 +128,10 @@ private:
 	static inline const int FONT_MAP_ROW_COUNT = 6;
 	static inline const int FONT_MAP_COLUMN_COUNT = 16;
 
-	vector<shared_ptr<Quad>> _quads = {};
+	const shared_ptr<VertexBuffer> _vertexBuffer;
+	const shared_ptr<TextureBuffer> _textureBuffer;
 
-	shared_ptr<VertexBuffer> _vertexBuffer = nullptr;
-	shared_ptr<TextureBuffer> _textureBuffer = nullptr;
+	vector<shared_ptr<Quad>> _quads = {};
 
 	string _content = "";
 
