@@ -1,7 +1,7 @@
 #include "tone.hpp"
 #include "tone_constants.hpp"
 
-Tone::Tone(const shared_ptr<ToneTemplate> & toneTemplate, const int noteIndex, const int duration)
+Tone::Tone(const shared_ptr<ToneTemplate> & toneTemplate)
 	:
 	_toneTemplate(toneTemplate)
 {
@@ -9,9 +9,6 @@ Tone::Tone(const shared_ptr<ToneTemplate> & toneTemplate, const int noteIndex, c
 	{
 		abort();
 	}
-
-	setNoteIndex(noteIndex);
-	setDuration(duration);
 }
 
 void Tone::setDuration(const int value)

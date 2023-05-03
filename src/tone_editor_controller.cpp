@@ -48,7 +48,11 @@ void ToneEditorController::_updatePlaybackGui()
 				break;
 			}
 
-			vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(make_shared<Tone>(_toneTemplateManager->getToneTemplate(), index, TONE_DURATION));
+			shared_ptr<Tone> tone = make_shared<Tone>(_toneTemplateManager->getToneTemplate());
+			tone->setNoteIndex(index);
+			tone->setDuration(TONE_DURATION);
+
+			vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(tone);
 
 			if(!waveforms.empty())
 			{
@@ -137,7 +141,11 @@ void ToneEditorController::enable()
 
 void ToneEditorController::_refreshWaveformVisualization()
 {
-	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(make_shared<Tone>(_toneTemplateManager->getToneTemplate(), ToneConstants::VISUALIZATION_NOTE_INDEX, ToneConstants::VISUALIZATION_TONE_DURATION));
+	shared_ptr<Tone> tone = make_shared<Tone>(_toneTemplateManager->getToneTemplate());
+	tone->setNoteIndex(ToneConstants::VISUALIZATION_NOTE_INDEX);
+	tone->setDuration(ToneConstants::VISUALIZATION_TONE_DURATION);
+
+	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(tone);
 
 	if(waveforms.empty())
 	{

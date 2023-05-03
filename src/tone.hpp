@@ -9,7 +9,7 @@ using std::shared_ptr;
 class Tone final
 {
 public:
-	Tone(const shared_ptr<ToneTemplate> & toneTemplate, const int noteIndex, const int duration);
+	Tone(const shared_ptr<ToneTemplate> & toneTemplate);
 
 	void setNoteIndex(const int value);
 	void setDuration(const int value);
