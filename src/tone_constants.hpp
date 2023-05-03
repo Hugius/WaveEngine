@@ -18,5 +18,5 @@ struct ToneConstants final
 	static inline const int OCTAVE_COUNT = 10;
 	static inline const int NOTE_COUNT = 12;
 	static inline const int VISUALIZATION_NOTE_INDEX = 0;
-	static inline const int VISUALIZATION_TONE_DURATION = 100;
+	static inline const int VISUALIZATION_TONE_DURATION = 25;
 };

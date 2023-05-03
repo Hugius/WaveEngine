@@ -34,4 +34,5 @@ private:
 	bool _isPressed = false;
 	bool _isHeld = false;
 	bool _isHighlighted = false;
+	bool _canBeHeld = false;
 };

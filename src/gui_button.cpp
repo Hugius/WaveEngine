@@ -37,24 +37,28 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed, co
 		_text->setColor(_originalTextColor);
 	}
 
+	if(!isLmbHeld)
+	{
+		_canBeHeld = true;
+	}
+
+	if(!isLmbHeld || !_isHovered)
+	{
+		_canBeHeld = false;
+	}
+
 	if(_isHovered)
 	{
 		Tools::setCursorType(CursorType::HAND);
 
-		if(isLmbPressed)
+		if(isLmbPressed && _isPressable)
 		{
-			if(_isPressable)
-			{
-				_isPressed = true;
-			}
+			_isPressed = true;
 		}
 
-		if(isLmbHeld)
+		if(isLmbHeld && _isHoldable && _canBeHeld)
 		{
-			if(_isHoldable)
-			{
-				_isHeld = true;
-			}
+			_isHeld = true;
 		}
 	}
 
