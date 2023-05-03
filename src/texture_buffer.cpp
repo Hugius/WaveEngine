@@ -2,6 +2,11 @@
 
 TextureBuffer::TextureBuffer(const shared_ptr<Image> & image)
 {
+	if(image == nullptr)
+	{
+		abort();
+	}
+
 	glGenTextures(1, &_tboId);
 	glBindTexture(GL_TEXTURE_2D, _tboId);
 

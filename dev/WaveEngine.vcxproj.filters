@@ -22,9 +22,6 @@
     <Filter Include="Rendering\Icon">
       <UniqueIdentifier>{9ae10d80-629b-4180-a7ed-f276a6a67595}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mathematics\Matrix">
-      <UniqueIdentifier>{09899c5e-7742-4be0-a823-089c9d9754f3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Mathematics\Miscellaneous">
       <UniqueIdentifier>{df8e5182-2920-4b35-bd1c-1198c98e2fb3}</UniqueIdentifier>
     </Filter>
@@ -34,29 +31,35 @@
     <Filter Include="Audio\Tone">
       <UniqueIdentifier>{d46fc2bc-42be-433d-a9c5-9a0a1ec20fbf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rendering\DTO">
-      <UniqueIdentifier>{18d5cd58-7fd0-4eb5-94c9-944f5d4279bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Buffer">
-      <UniqueIdentifier>{b835310c-83e8-43f0-899f-fd8ac58481a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Shader">
-      <UniqueIdentifier>{d8a8b087-92a6-447b-90c4-b533881ae17b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Renderer">
-      <UniqueIdentifier>{7971adc7-d7c0-4136-8853-c00431a00814}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI\Controller">
-      <UniqueIdentifier>{c86e9fdc-52a0-4687-a361-e3aebb08d477}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI\DTO">
-      <UniqueIdentifier>{9d75befd-98ae-432e-aa09-a99c080322ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Audio\Waveform">
       <UniqueIdentifier>{975e3b9a-09e5-4501-8c32-4db160362625}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mathematics\Vector">
+    <Filter Include="GUI\Miscellaneous">
+      <UniqueIdentifier>{420e1a1b-efa8-47ca-99f2-9d30beb4790c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Renderers">
+      <UniqueIdentifier>{7971adc7-d7c0-4136-8853-c00431a00814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Shaders">
+      <UniqueIdentifier>{d8a8b087-92a6-447b-90c4-b533881ae17b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Buffers">
+      <UniqueIdentifier>{b835310c-83e8-43f0-899f-fd8ac58481a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\DTOs">
+      <UniqueIdentifier>{18d5cd58-7fd0-4eb5-94c9-944f5d4279bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Controllers">
+      <UniqueIdentifier>{c86e9fdc-52a0-4687-a361-e3aebb08d477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\DTOs">
+      <UniqueIdentifier>{9d75befd-98ae-432e-aa09-a99c080322ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mathematics\Vectors">
       <UniqueIdentifier>{6542dfb9-8164-41ce-9e48-acd732be5851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mathematics\Matrices">
+      <UniqueIdentifier>{09899c5e-7742-4be0-a823-089c9d9754f3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,34 +70,34 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\src\base_renderer.cpp">
-      <Filter>Rendering\Renderer</Filter>
+      <Filter>Rendering\Renderers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\quad_renderer.cpp">
-      <Filter>Rendering\Renderer</Filter>
+      <Filter>Rendering\Renderers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\line_renderer.cpp">
-      <Filter>Rendering\Renderer</Filter>
+      <Filter>Rendering\Renderers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\render_window.cpp">
       <Filter>Rendering\Miscellaneous</Filter>
     </ClCompile>
     <ClCompile Include="..\src\text.cpp">
-      <Filter>Rendering\DTO</Filter>
+      <Filter>Rendering\DTOs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\line.cpp">
-      <Filter>Rendering\DTO</Filter>
+      <Filter>Rendering\DTOs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\vertex_buffer.cpp">
-      <Filter>Rendering\Buffer</Filter>
+      <Filter>Rendering\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\shader_buffer.cpp">
-      <Filter>Rendering\Buffer</Filter>
+      <Filter>Rendering\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\texture_buffer.cpp">
-      <Filter>Rendering\Buffer</Filter>
+      <Filter>Rendering\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\quad.cpp">
-      <Filter>Rendering\DTO</Filter>
+      <Filter>Rendering\DTOs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\tools.cpp">
       <Filter>Miscellaneous</Filter>
@@ -115,46 +118,43 @@
       <Filter>Audio\Waveform</Filter>
     </ClCompile>
     <ClCompile Include="..\src\top_menu_controller.cpp">
-      <Filter>GUI\Controller</Filter>
+      <Filter>GUI\Controllers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\tone_editor_controller.cpp">
-      <Filter>GUI\Controller</Filter>
+      <Filter>GUI\Controllers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\bottom_menu_controller.cpp">
-      <Filter>GUI\Controller</Filter>
+      <Filter>GUI\Controllers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\gui_button.cpp">
-      <Filter>GUI\DTO</Filter>
+      <Filter>GUI\DTOs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\gui_label.cpp">
-      <Filter>GUI\DTO</Filter>
+      <Filter>GUI\DTOs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\gui_rectangle.cpp">
-      <Filter>GUI\DTO</Filter>
+      <Filter>GUI\DTOs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\gui_waveform.cpp">
-      <Filter>GUI\DTO</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gui_manager.cpp">
-      <Filter>GUI\Controller</Filter>
+      <Filter>GUI\DTOs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\image.cpp">
-      <Filter>Rendering\DTO</Filter>
+      <Filter>Rendering\DTOs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\image_loader.cpp">
       <Filter>Rendering\Miscellaneous</Filter>
     </ClCompile>
     <ClCompile Include="..\src\dmat33.cpp">
-      <Filter>Mathematics\Matrix</Filter>
+      <Filter>Mathematics\Matrices</Filter>
     </ClCompile>
     <ClCompile Include="..\src\dvec2.cpp">
-      <Filter>Mathematics\Vector</Filter>
+      <Filter>Mathematics\Vectors</Filter>
     </ClCompile>
     <ClCompile Include="..\src\dvec3.cpp">
-      <Filter>Mathematics\Vector</Filter>
+      <Filter>Mathematics\Vectors</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ivec2.cpp">
-      <Filter>Mathematics\Vector</Filter>
+      <Filter>Mathematics\Vectors</Filter>
     </ClCompile>
     <ClCompile Include="..\src\mathematics.cpp">
       <Filter>Mathematics\Miscellaneous</Filter>
@@ -168,6 +168,9 @@
     <ClCompile Include="..\src\tone_template_manager.cpp">
       <Filter>Audio\Tone</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\gui_manager.cpp">
+      <Filter>GUI\Miscellaneous</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\engine_orchestrator.hpp">
@@ -177,13 +180,13 @@
       <Filter>Rendering\Miscellaneous</Filter>
     </ClInclude>
     <ClInclude Include="..\src\quad.hpp">
-      <Filter>Rendering\DTO</Filter>
+      <Filter>Rendering\DTOs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\line.hpp">
-      <Filter>Rendering\DTO</Filter>
+      <Filter>Rendering\DTOs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\text.hpp">
-      <Filter>Rendering\DTO</Filter>
+      <Filter>Rendering\DTOs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\waveform_generator.hpp">
       <Filter>Audio\Waveform</Filter>
@@ -198,22 +201,22 @@
       <Filter>Audio\Waveform</Filter>
     </ClInclude>
     <ClInclude Include="..\src\shader_buffer.hpp">
-      <Filter>Rendering\Buffer</Filter>
+      <Filter>Rendering\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\texture_buffer.hpp">
-      <Filter>Rendering\Buffer</Filter>
+      <Filter>Rendering\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\vertex_buffer.hpp">
-      <Filter>Rendering\Buffer</Filter>
+      <Filter>Rendering\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\base_renderer.hpp">
-      <Filter>Rendering\Renderer</Filter>
+      <Filter>Rendering\Renderers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\quad_renderer.hpp">
-      <Filter>Rendering\Renderer</Filter>
+      <Filter>Rendering\Renderers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\line_renderer.hpp">
-      <Filter>Rendering\Renderer</Filter>
+      <Filter>Rendering\Renderers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\cursor_type.hpp">
       <Filter>Miscellaneous</Filter>
@@ -228,46 +231,43 @@
       <Filter>Miscellaneous</Filter>
     </ClInclude>
     <ClInclude Include="..\src\bottom_menu_controller.hpp">
-      <Filter>GUI\Controller</Filter>
+      <Filter>GUI\Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\tone_editor_controller.hpp">
-      <Filter>GUI\Controller</Filter>
+      <Filter>GUI\Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\top_menu_controller.hpp">
-      <Filter>GUI\Controller</Filter>
+      <Filter>GUI\Controllers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_button.hpp">
-      <Filter>GUI\DTO</Filter>
+      <Filter>GUI\DTOs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_label.hpp">
-      <Filter>GUI\DTO</Filter>
+      <Filter>GUI\DTOs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_rectangle.hpp">
-      <Filter>GUI\DTO</Filter>
+      <Filter>GUI\DTOs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\gui_waveform.hpp">
-      <Filter>GUI\DTO</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gui_manager.hpp">
-      <Filter>GUI\Controller</Filter>
+      <Filter>GUI\DTOs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\image.hpp">
-      <Filter>Rendering\DTO</Filter>
+      <Filter>Rendering\DTOs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\image_loader.hpp">
       <Filter>Rendering\Miscellaneous</Filter>
     </ClInclude>
     <ClInclude Include="..\src\dmat33.hpp">
-      <Filter>Mathematics\Matrix</Filter>
+      <Filter>Mathematics\Matrices</Filter>
     </ClInclude>
     <ClInclude Include="..\src\dvec2.hpp">
-      <Filter>Mathematics\Vector</Filter>
+      <Filter>Mathematics\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="..\src\dvec3.hpp">
-      <Filter>Mathematics\Vector</Filter>
+      <Filter>Mathematics\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ivec2.hpp">
-      <Filter>Mathematics\Vector</Filter>
+      <Filter>Mathematics\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="..\src\mathematics.hpp">
       <Filter>Mathematics\Miscellaneous</Filter>
@@ -287,19 +287,22 @@
     <ClInclude Include="..\src\tone_template.hpp">
       <Filter>Audio\Tone</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\gui_manager.hpp">
+      <Filter>GUI\Miscellaneous</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\app\shaders\line_fragment.glsl">
-      <Filter>Rendering\Shader</Filter>
+      <Filter>Rendering\Shaders</Filter>
     </None>
     <None Include="..\app\shaders\line_vertex.glsl">
-      <Filter>Rendering\Shader</Filter>
+      <Filter>Rendering\Shaders</Filter>
     </None>
     <None Include="..\app\shaders\quad_fragment.glsl">
-      <Filter>Rendering\Shader</Filter>
+      <Filter>Rendering\Shaders</Filter>
     </None>
     <None Include="..\app\shaders\quad_vertex.glsl">
-      <Filter>Rendering\Shader</Filter>
+      <Filter>Rendering\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

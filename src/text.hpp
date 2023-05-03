@@ -11,9 +11,9 @@ using std::vector;
 class Text final
 {
 public:
+	Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const string & content);
+
 	void update();
-	void setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer);
-	void setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer);
 	void setOpacity(const double value);
 	void setColor(const dvec3 & value);
 	void setPosition(const dvec2 & value);

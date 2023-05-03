@@ -13,6 +13,8 @@ using std::shared_ptr;
 class Line final
 {
 public:
+	Line(const shared_ptr<VertexBuffer> & vertexBuffer);
+
 	void update();
 	void setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer);
 	void setColor(const dvec3 & value);

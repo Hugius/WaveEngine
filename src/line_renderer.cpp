@@ -29,10 +29,7 @@ void LineRenderer::_renderLine(const shared_ptr<Line> & line)
 	_shaderBuffer->uploadUniform("u_transformation", line->getTransformation());
 	_shaderBuffer->uploadUniform("u_color", line->getColor());
 
-	if(line->getVertexBuffer() != nullptr)
-	{
-		glBindVertexArray(line->getVertexBuffer()->getVaoId());
-		glDrawArrays(GL_LINE_STRIP, 0, line->getVertexBuffer()->getVertexCount());
-		glBindVertexArray(0);
-	}
+	glBindVertexArray(line->getVertexBuffer()->getVaoId());
+	glDrawArrays(GL_LINE_STRIP, 0, line->getVertexBuffer()->getVertexCount());
+	glBindVertexArray(0);
 }

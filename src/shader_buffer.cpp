@@ -10,6 +10,16 @@ using std::ostringstream;
 
 ShaderBuffer::ShaderBuffer(const string & vertexFilePath, const string & fragmentFilePath)
 {
+	if(vertexFilePath.empty())
+	{
+		abort();
+	}
+
+	if(fragmentFilePath.empty())
+	{
+		abort();
+	}
+
 	ifstream vertexFile = ifstream(vertexFilePath);
 	ifstream fragmentFile = ifstream(fragmentFilePath);
 

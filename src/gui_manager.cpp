@@ -76,7 +76,7 @@ void GuiManager::_initializeBottomMenu()
 	_addGuiRectangle("bottom_menu_frame", dvec2(x, y), dvec2(width, height), DARK_GRAY, false, false, true);
 	_addGuiButton("bottom_menu_create", dvec2(x + defaultOffset, yPositions.at(0)), dvec2(WIDTH("Create"), CHAR_Y), GRAY, WHITE, "Create", true, true, true, true, false, true);
 	_addGuiButton("bottom_menu_prev", dvec2(x + defaultOffset - WIDTH("00"), yPositions.at(1)), dvec2(WIDTH("<"), CHAR_Y), GRAY, WHITE, "<", true, true, true, true, false, true);
-	_addGuiLabel("bottom_menu_number", dvec2(x + defaultOffset, yPositions.at(1)), dvec2(WIDTH("00"), CHAR_Y), WHITE, "", true, true, true);
+	_addGuiLabel("bottom_menu_number", dvec2(x + defaultOffset, yPositions.at(1)), dvec2(WIDTH("00"), CHAR_Y), WHITE, "00", true, true, true);
 	_addGuiButton("bottom_menu_next", dvec2(x + defaultOffset + WIDTH("00"), yPositions.at(1)), dvec2(WIDTH(">"), CHAR_Y), GRAY, WHITE, ">", true, true, true, true, false, true);
 	_addGuiButton("bottom_menu_delete", dvec2(x + defaultOffset, yPositions.at(2)), dvec2(WIDTH("Delete"), CHAR_Y), GRAY, WHITE, "Delete", true, true, true, true, false, true);
 	_addGuiWaveform("bottom_menu_wave", dvec2(x + defaultOffset + WIDTH("Create") / 2.0 + waveformOffset, yPositions.at(1)), dvec2(width - defaultOffset - WIDTH("Create") / 2.0 - waveformOffset * 2.0, height - waveformOffset), WHITE, false, true, false);
@@ -92,7 +92,7 @@ void GuiManager::_initializeToneEditor()
 	const double notesOffset = 0.075;
 	const int noteCount = ToneConstants::NOTE_COUNT;
 	const int octaveCount = ToneConstants::OCTAVE_COUNT;
-	const vector<double> notePositions = Mathematics::calculateDistributedPositions(-width / 4.0, width / 2, noteCount);
+	const vector<double> notePositions = Mathematics::calculateDistributedPositions(-width / 2.0, width, noteCount);
 	const vector<double> octavePositionsX = Mathematics::calculateDistributedPositions(-width / 2.0, width, octaveCount);
 	const vector<double> octavePositionsY = Mathematics::calculateDistributedPositions(y, -0.75, 10);
 
@@ -105,7 +105,7 @@ void GuiManager::_initializeToneEditor()
 		const string noteId = "tone_editor_note" + to_string(index);
 		const string noteName = ToneConstants::NOTE_NAMES.at(index);
 
-		_addGuiButton(noteId, dvec2(x + notePositions.at(index), y + notesOffset), dvec2(WIDTH(noteName), CHAR_Y) * 2.0, GRAY, WHITE, noteName, true, true, true, true, true, false);
+		_addGuiButton(noteId, dvec2(x + notePositions.at(index), y + notesOffset), dvec2(WIDTH(noteName), CHAR_Y) * 3.0, GRAY, WHITE, noteName, true, true, true, true, true, false);
 	}
 
 	for(int index = 0; index < octaveCount; index++)
@@ -260,23 +260,27 @@ void GuiManager::_addGuiWaveform(const string & id, const dvec2 & position, cons
 
 const shared_ptr<Quad> GuiManager::_createQuad(const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered) const
 {
-	const shared_ptr<Quad> quad = make_shared<Quad>();
+	shared_ptr<Quad> quad;
 
 	if(!isHorizontallyCentered && !isVerticallyCentered)
 	{
-		quad->setVertexBuffer(_corneredVertexBuffer);
+		quad = make_shared<Quad>(_corneredVertexBuffer);
 	}
 	else if(isHorizontallyCentered && isVerticallyCentered)
 	{
-		quad->setVertexBuffer(_centeredVertexBuffer);
+		quad = make_shared<Quad>(_centeredVertexBuffer);
 	}
 	else if(isHorizontallyCentered && !isVerticallyCentered)
 	{
-		quad->setVertexBuffer(_horizontallyCenteredVertexBuffer);
+		quad = make_shared<Quad>(_horizontallyCenteredVertexBuffer);
 	}
 	else if(!isHorizontallyCentered && isVerticallyCentered)
 	{
-		quad->setVertexBuffer(_verticallyCenteredVertexBuffer);
+		quad = make_shared<Quad>(_verticallyCenteredVertexBuffer);
+	}
+	else
+	{
+		abort();
 	}
 
 	quad->setPosition(position);
@@ -288,27 +292,29 @@ const shared_ptr<Quad> GuiManager::_createQuad(const dvec2 & position, const dve
 
 const shared_ptr<Text> GuiManager::_createText(const dvec2 & position, const dvec2 & size, const dvec3 & color, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered) const
 {
-	const shared_ptr<Text> text = make_shared<Text>();
+	shared_ptr<Text> text;
 
 	if(!isHorizontallyCentered && !isVerticallyCentered)
 	{
-		text->setVertexBuffer(_corneredVertexBuffer);
+		text = make_shared<Text>(_corneredVertexBuffer, _fontTextureBuffer, content);
 	}
 	else if(isHorizontallyCentered && isVerticallyCentered)
 	{
-		text->setVertexBuffer(_centeredVertexBuffer);
+		text = make_shared<Text>(_centeredVertexBuffer, _fontTextureBuffer, content);
 	}
 	else if(isHorizontallyCentered && !isVerticallyCentered)
 	{
-		text->setVertexBuffer(_horizontallyCenteredVertexBuffer);
+		text = make_shared<Text>(_horizontallyCenteredVertexBuffer, _fontTextureBuffer, content);
 	}
 	else if(!isHorizontallyCentered && isVerticallyCentered)
 	{
-		text->setVertexBuffer(_verticallyCenteredVertexBuffer);
+		text = make_shared<Text>(_verticallyCenteredVertexBuffer, _fontTextureBuffer, content);
+	}
+	else
+	{
+		abort();
 	}
 
-	text->setTextureBuffer(_fontTextureBuffer);
-	text->setContent(content);
 	text->setPosition(position);
 	text->setSize(size);
 	text->setColor(color);
@@ -318,11 +324,10 @@ const shared_ptr<Text> GuiManager::_createText(const dvec2 & position, const dve
 
 const shared_ptr<Line> GuiManager::_createLine(const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered) const
 {
-	const shared_ptr<Line> line = make_shared<Line>();
 	const vector<dvec2> vertices = {dvec2(-1.0f, 0.0), dvec2(1.0f, 0.0)};
 	const shared_ptr<VertexBuffer> vertexBuffer = make_shared<VertexBuffer>(vertices, isHorizontallyCentered, isVerticallyCentered);
+	const shared_ptr<Line> line = make_shared<Line>(vertexBuffer);
 
-	line->setVertexBuffer(vertexBuffer);
 	line->setPosition(position);
 	line->setSize(size);
 	line->setColor(color);

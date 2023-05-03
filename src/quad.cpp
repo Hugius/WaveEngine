@@ -3,6 +3,11 @@
 
 #include <algorithm>
 
+Quad::Quad(const shared_ptr<VertexBuffer> & vertexBuffer)
+{
+	setVertexBuffer(vertexBuffer);
+}
+
 void Quad::update()
 {
 	const dmat33 translationMatrix = Mathematics::createTranslationMatrix(_position.x, _position.y);
@@ -13,6 +18,11 @@ void Quad::update()
 
 void Quad::setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer)
 {
+	if(vertexBuffer == nullptr)
+	{
+		abort();
+	}
+
 	_vertexBuffer = vertexBuffer;
 }
 

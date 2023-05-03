@@ -58,12 +58,9 @@ void QuadRenderer::_renderQuad(const shared_ptr<Quad> & quad)
 		glBindTexture(GL_TEXTURE_2D, quad->getTexture()->getTboId());
 	}
 
-	if(quad->getVertexBuffer() != nullptr)
-	{
-		glBindVertexArray(quad->getVertexBuffer()->getVaoId());
-		glDrawArrays(GL_TRIANGLES, 0, quad->getVertexBuffer()->getVertexCount());
-		glBindVertexArray(0);
-	}
+	glBindVertexArray(quad->getVertexBuffer()->getVaoId());
+	glDrawArrays(GL_TRIANGLES, 0, quad->getVertexBuffer()->getVertexCount());
+	glBindVertexArray(0);
 
 	if(quad->getTexture() != nullptr)
 	{

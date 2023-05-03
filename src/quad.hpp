@@ -13,6 +13,8 @@ using std::shared_ptr;
 class Quad final
 {
 public:
+	Quad(const shared_ptr<VertexBuffer> & vertexBuffer);
+
 	void update();
 	void setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer);
 	void setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer);

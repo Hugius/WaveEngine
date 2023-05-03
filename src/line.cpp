@@ -1,6 +1,11 @@
 #include "line.hpp"
 #include "mathematics.hpp"
 
+Line::Line(const shared_ptr<VertexBuffer> & vertexBuffer)
+{
+	setVertexBuffer(vertexBuffer);
+}
+
 void Line::update()
 {
 	const dmat33 translationMatrix = Mathematics::createTranslationMatrix(_position.x, _position.y);
@@ -11,6 +16,11 @@ void Line::update()
 
 void Line::setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer)
 {
+	if(vertexBuffer == nullptr)
+	{
+		abort();
+	}
+
 	_vertexBuffer = vertexBuffer;
 }
 

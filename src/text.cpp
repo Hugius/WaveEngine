@@ -5,6 +5,25 @@
 
 using std::make_shared;
 
+Text::Text(const shared_ptr<VertexBuffer> & vertexBuffer, const shared_ptr<TextureBuffer> & textureBuffer, const string & content)
+{
+	if(vertexBuffer == nullptr)
+	{
+		abort();
+	}
+
+	_vertexBuffer = vertexBuffer;
+
+	if(textureBuffer == nullptr)
+	{
+		abort();
+	}
+
+	_textureBuffer = textureBuffer;
+
+	setContent(content);
+}
+
 void Text::update()
 {
 	const dvec2 quadSize = dvec2(_size.x / static_cast<double>(_content.size()), _size.y);
@@ -32,16 +51,6 @@ void Text::update()
 	}
 }
 
-void Text::setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer)
-{
-	_vertexBuffer = vertexBuffer;
-}
-
-void Text::setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer)
-{
-	_textureBuffer = textureBuffer;
-}
-
 void Text::setVisible(const bool value)
 {
 	_isVisible = value;
@@ -49,6 +58,11 @@ void Text::setVisible(const bool value)
 
 void Text::setContent(const string & value)
 {
+	if(value.empty())
+	{
+		abort();
+	}
+
 	if(value == _content)
 	{
 		return;
@@ -69,7 +83,7 @@ void Text::setContent(const string & value)
 		const int yIndex = _fontIndices.at(character).y;
 		const dvec2 uvMultiplier = dvec2(1.0 / static_cast<double>(FONT_MAP_COLUMN_COUNT), 1.0 / static_cast<double>(FONT_MAP_ROW_COUNT));
 		const dvec2 uvOffset = dvec2(static_cast<double>(xIndex) * uvMultiplier.x, static_cast<double>(yIndex) * uvMultiplier.y);
-		const shared_ptr<Quad> quad = make_shared<Quad>();
+		const shared_ptr<Quad> quad = make_shared<Quad>(_vertexBuffer);
 
 		quad->setVertexBuffer(_vertexBuffer);
 		quad->setTextureBuffer(_textureBuffer);
