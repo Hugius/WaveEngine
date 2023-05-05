@@ -19,7 +19,7 @@ void BottomMenuController::update()
 
 		_refreshWaveformVisualization();
 	}
-	else if(_guiManager->getGuiButton("bottom_menu_prev")->isPressed())
+	else if(_guiManager->getGuiButton("bottom_menu_previous")->isPressed())
 	{
 		toneIndex--;
 
@@ -48,8 +48,8 @@ void BottomMenuController::update()
 
 	_guiManager->getGuiButton("bottom_menu_create")->setHoverable(toneCount < MAX_TONES);
 	_guiManager->getGuiButton("bottom_menu_create")->setPressable(toneCount < MAX_TONES);
-	_guiManager->getGuiButton("bottom_menu_prev")->setHoverable(toneCount != 0 && toneIndex > 0);
-	_guiManager->getGuiButton("bottom_menu_prev")->setPressable(toneCount != 0 && toneIndex > 0);
+	_guiManager->getGuiButton("bottom_menu_previous")->setHoverable(toneCount != 0 && toneIndex > 0);
+	_guiManager->getGuiButton("bottom_menu_previous")->setPressable(toneCount != 0 && toneIndex > 0);
 	_guiManager->getGuiButton("bottom_menu_next")->setHoverable(toneCount != 0 && toneIndex < toneCount - 1);
 	_guiManager->getGuiButton("bottom_menu_next")->setPressable(toneCount != 0 && toneIndex < toneCount - 1);
 	_guiManager->getGuiButton("bottom_menu_delete")->setHoverable(toneCount != 0);
@@ -61,25 +61,25 @@ void BottomMenuController::_refreshWaveformVisualization()
 {
 	if(_toneTemplateManager->getToneTemplateCount() == 0)
 	{
-		_guiManager->getGuiWaveform("bottom_menu_wave")->setVisible(false);
+		_guiManager->getGuiWaveform("bottom_menu_waveform")->setVisible(false);
 
 		return;
 	}
 
-	_guiManager->getGuiWaveform("bottom_menu_wave")->setVisible(true);
+	_guiManager->getGuiWaveform("bottom_menu_waveform")->setVisible(true);
 
 	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(make_shared<Tone>(_toneTemplateManager->getToneTemplate()));
 
 	if(waveforms.empty())
 	{
-		_guiManager->getGuiWaveform("bottom_menu_wave")->setSamples({0.0f, 0.0f});
+		_guiManager->getGuiWaveform("bottom_menu_waveform")->setSamples({0.0f, 0.0f});
 	}
 	else
 	{
 		const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
 		const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
 
-		_guiManager->getGuiWaveform("bottom_menu_wave")->setSamples(samples);
+		_guiManager->getGuiWaveform("bottom_menu_waveform")->setSamples(samples);
 	}
 }
 
