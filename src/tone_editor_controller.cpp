@@ -26,31 +26,28 @@ void ToneEditorController::update()
 
 	const shared_ptr<ToneTemplate> currentToneTemplate = _toneTemplateManager->getToneTemplate();
 
-	_updatePlaybackGui();
+	_updateNoteGui();
+	_updateLengthGui();
 	_updateAmplitudeGui("sin", currentToneTemplate->sineAmplitudes, currentToneTemplate->sineToggles);
 	_updateAmplitudeGui("sqr", currentToneTemplate->squareAmplitudes, currentToneTemplate->squareToggles);
 	_updateAmplitudeGui("tri", currentToneTemplate->triangleAmplitudes, currentToneTemplate->triangleToggles);
 	_updateAmplitudeGui("saw", currentToneTemplate->sawtoothAmplitudes, currentToneTemplate->sawtoothToggles);
 }
 
-void ToneEditorController::_updatePlaybackGui()
+void ToneEditorController::_updateNoteGui()
 {
-	bool isHeld = false;
-
 	for(int index = 0; index < ToneConstants::NOTE_COUNT; index++)
 	{
-		if(_guiManager->getGuiButton("tone_editor_note" + to_string(index))->isHeld())
+		if(_guiManager->getGuiButton("tone_editor_note" + to_string(index))->isPressed())
 		{
-			isHeld = true;
-
 			if(_waveformPlayer->isStarted())
 			{
-				break;
+				_waveformPlayer->stop();
 			}
 
 			shared_ptr<Tone> tone = make_shared<Tone>(_toneTemplateManager->getToneTemplate());
+
 			tone->setNoteIndex(index);
-			tone->setDuration(TONE_DURATION);
 
 			vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(tone);
 
@@ -58,17 +55,36 @@ void ToneEditorController::_updatePlaybackGui()
 			{
 				const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
 
-				_waveformPlayer->start(waveform, true);
+				_waveformPlayer->start(waveform, false);
 			}
 
 			break;
 		}
 	}
+}
 
-	if(!isHeld && _waveformPlayer->isStarted())
+void ToneEditorController::_updateLengthGui()
+{
+	const shared_ptr<ToneTemplate> currentToneTemplate = _toneTemplateManager->getToneTemplate();
+
+	if(_guiManager->getGuiButton("tone_editor_len_decr")->isPressed())
 	{
-		_waveformPlayer->stop();
+		currentToneTemplate->duration -= ToneConstants::DURATION_STEP;
+
+		_refreshWaveformVisualization();
 	}
+	else if(_guiManager->getGuiButton("tone_editor_len_incr")->isPressed())
+	{
+		currentToneTemplate->duration += ToneConstants::DURATION_STEP;
+
+		_refreshWaveformVisualization();
+	}
+
+	const string prefix = currentToneTemplate->duration < 99 ? "0" : "";
+
+	_guiManager->getGuiButton("tone_editor_len_decr")->setPressable(currentToneTemplate->duration > ToneConstants::MIN_DURATION);
+	_guiManager->getGuiLabel("tone_editor_len_val")->setContent(prefix + to_string(currentToneTemplate->duration));
+	_guiManager->getGuiButton("tone_editor_len_incr")->setPressable(currentToneTemplate->duration < ToneConstants::MAX_DURATION);
 }
 
 void ToneEditorController::_updateAmplitudeGui(const string & type, array<int, ToneConstants::OCTAVE_COUNT> & amplitudes, array<bool, ToneConstants::OCTAVE_COUNT> & toggles)
@@ -117,6 +133,11 @@ void ToneEditorController::_setGuiVisible(const bool value)
 		_guiManager->getGuiButton("tone_editor_note" + to_string(index))->setVisible(value);
 	}
 
+	_guiManager->getGuiButton("tone_editor_len_decr")->setVisible(value);
+	_guiManager->getGuiLabel("tone_editor_len_val")->setVisible(value);
+	_guiManager->getGuiButton("tone_editor_len_incr")->setVisible(value);
+	_guiManager->getGuiLabel("tone_editor_len_txt")->setVisible(value);
+
 	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
 	{
 		for(const string & type : {"sin", "sqr", "tri", "saw"})
@@ -141,11 +162,7 @@ void ToneEditorController::enable()
 
 void ToneEditorController::_refreshWaveformVisualization()
 {
-	shared_ptr<Tone> tone = make_shared<Tone>(_toneTemplateManager->getToneTemplate());
-	tone->setNoteIndex(ToneConstants::VISUALIZATION_NOTE_INDEX);
-	tone->setDuration(ToneConstants::VISUALIZATION_TONE_DURATION);
-
-	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(tone);
+	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(make_shared<Tone>(_toneTemplateManager->getToneTemplate()));
 
 	if(waveforms.empty())
 	{

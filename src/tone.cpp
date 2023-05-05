@@ -11,16 +11,6 @@ Tone::Tone(const shared_ptr<ToneTemplate> & toneTemplate)
 	}
 }
 
-void Tone::setDuration(const int value)
-{
-	if(value < 0)
-	{
-		abort();
-	}
-
-	_duration = value;
-}
-
 void Tone::setNoteIndex(const int value)
 {
 	if(value < 0)
@@ -39,11 +29,6 @@ void Tone::setNoteIndex(const int value)
 const shared_ptr<ToneTemplate> & Tone::getToneTemplate() const
 {
 	return _toneTemplate;
-}
-
-const int Tone::getDuration() const
-{
-	return _duration;
 }
 
 const int Tone::getNoteIndex() const

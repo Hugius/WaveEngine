@@ -12,4 +12,6 @@ struct ToneTemplate final
 	array<bool, ToneConstants::OCTAVE_COUNT> squareToggles = {};
 	array<bool, ToneConstants::OCTAVE_COUNT> triangleToggles = {};
 	array<bool, ToneConstants::OCTAVE_COUNT> sawtoothToggles = {};
+
+	int duration = 10;
 };

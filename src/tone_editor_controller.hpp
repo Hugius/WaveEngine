@@ -16,12 +16,11 @@ public:
 	void enable();
 
 private:
-	void _updatePlaybackGui();
+	void _updateNoteGui();
+	void _updateLengthGui();
 	void _updateAmplitudeGui(const string & type, array<int, ToneConstants::OCTAVE_COUNT> & amplitudes, array<bool, ToneConstants::OCTAVE_COUNT> & toggles);
 	void _refreshWaveformVisualization();
 	void _setGuiVisible(const bool value);
-
-	static inline const int TONE_DURATION = 100;
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
