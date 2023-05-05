@@ -83,8 +83,10 @@ void ToneEditorController::_updateDurationGui()
 	const string prefix = currentToneTemplate->duration < 99 ? "0" : "";
 
 	_guiManager->getGuiButton("tone_editor_duration_decrease")->setPressable(currentToneTemplate->duration > ToneConstants::MIN_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_decrease")->setHoverable(currentToneTemplate->duration > ToneConstants::MIN_DURATION);
 	_guiManager->getGuiLabel("tone_editor_duration_value")->setContent(prefix + to_string(currentToneTemplate->duration));
 	_guiManager->getGuiButton("tone_editor_duration_increase")->setPressable(currentToneTemplate->duration < ToneConstants::MAX_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_increase")->setHoverable(currentToneTemplate->duration < ToneConstants::MAX_DURATION);
 }
 
 void ToneEditorController::_updateAmplitudeGui(const string & type, array<int, ToneConstants::OCTAVE_COUNT> & amplitudes, array<bool, ToneConstants::OCTAVE_COUNT> & toggles)
