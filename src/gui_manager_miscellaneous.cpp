@@ -4,7 +4,7 @@
 
 using std::make_shared;
 
-void GuiManager::update(const dvec2 & cursorPosition, const bool isLmbPressed, const bool isLmbHeld)
+void GuiManager::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 {
 	Tools::setCursorType(CursorType::ARROW);
 
@@ -20,7 +20,7 @@ void GuiManager::update(const dvec2 & cursorPosition, const bool isLmbPressed, c
 
 	for(const auto & [guiButtonId, guiButton] : _guiButtons)
 	{
-		guiButton->update(cursorPosition, isLmbPressed, isLmbHeld);
+		guiButton->update(cursorPosition, isLmbPressed);
 	}
 
 	for(const auto & [guiWaveformId, guiWaveform] : _guiWaveforms)
@@ -65,7 +65,7 @@ void GuiManager::_addGuiLabel(const string & id, const dvec2 & position, const d
 	_guiLabels.insert({id, guiLabel});
 }
 
-void GuiManager::_addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const dvec3 & textColor, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isHoldable, const bool isVisible)
+void GuiManager::_addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const dvec3 & textColor, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isVisible)
 {
 	if(_isGuiButtonExisting(id))
 	{
@@ -90,7 +90,6 @@ void GuiManager::_addGuiButton(const string & id, const dvec2 & position, const 
 	guiButton->setVisible(isVisible);
 	guiButton->setHoverable(isHoverable);
 	guiButton->setPressable(isPressable);
-	guiButton->setHoldable(isHoldable);
 
 	_guiButtons.insert({id, guiButton});
 }

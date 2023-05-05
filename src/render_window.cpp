@@ -178,12 +178,6 @@ void RenderWindow::_updateEvents()
 
 				break;
 			}
-			case WM_LBUTTONUP:
-			{
-				_inputHandler->setLmbUp();
-
-				break;
-			}
 			default:
 			{
 				DispatchMessage(&messageEvent);
