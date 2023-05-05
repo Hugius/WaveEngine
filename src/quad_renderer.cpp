@@ -27,10 +27,7 @@ void QuadRenderer::render(const vector<shared_ptr<Text>> & texts)
 
 	for(const shared_ptr<Text> & text : texts)
 	{
-		for(const shared_ptr<Quad> & quad : text->getQuads())
-		{
-			_renderQuad(quad);
-		}
+		_renderText(text);
 	}
 
 	_shaderBuffer->unbind();
@@ -40,6 +37,11 @@ void QuadRenderer::render(const vector<shared_ptr<Text>> & texts)
 
 void QuadRenderer::_renderQuad(const shared_ptr<Quad> & quad)
 {
+	if(quad == nullptr)
+	{
+		abort();
+	}
+
 	if(!quad->isVisible())
 	{
 		return;
@@ -66,5 +68,18 @@ void QuadRenderer::_renderQuad(const shared_ptr<Quad> & quad)
 	{
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+}
+
+void QuadRenderer::_renderText(const shared_ptr<Text> & text)
+{
+	if(text == nullptr)
+	{
+		abort();
+	}
+
+	for(const shared_ptr<Quad> & quad : text->getQuads())
+	{
+		_renderQuad(quad);
 	}
 }

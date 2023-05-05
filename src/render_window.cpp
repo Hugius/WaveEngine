@@ -269,5 +269,10 @@ const dvec2 RenderWindow::_convertToNdc(const ivec2 & position)
 
 void RenderWindow::inject(const shared_ptr<InputHandler> & inputHandler)
 {
+	if(inputHandler == nullptr)
+	{
+		abort();
+	}
+
 	_inputHandler = inputHandler;
 }

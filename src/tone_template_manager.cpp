@@ -1,22 +1,27 @@
 #include "tone_template_manager.hpp"
 
-void ToneTemplateManager::addToneTemplate(const shared_ptr<ToneTemplate> & tone)
+void ToneTemplateManager::addToneTemplate(const shared_ptr<ToneTemplate> & toneTemplate)
 {
-	_tones.push_back(tone);
-}
-
-void ToneTemplateManager::removeToneTemplate()
-{
-	if(_tones.empty())
+	if(toneTemplate == nullptr)
 	{
 		abort();
 	}
 
-	_tones.erase(_tones.begin() + _toneIndex);
+	_toneTemplates.push_back(toneTemplate);
+}
 
-	if(_toneIndex == _tones.size())
+void ToneTemplateManager::removeToneTemplate()
+{
+	if(_toneTemplates.empty())
 	{
-		_toneIndex--;
+		abort();
+	}
+
+	_toneTemplates.erase(_toneTemplates.begin() + _toneTemplateIndex);
+
+	if(_toneTemplateIndex == _toneTemplates.size())
+	{
+		_toneTemplateIndex--;
 	}
 }
 
@@ -27,30 +32,30 @@ void ToneTemplateManager::setToneTemplateIndex(const int value)
 		abort();
 	}
 
-	if(value > _tones.size() - 1)
+	if(value > _toneTemplates.size() - 1)
 	{
 		abort();
 	}
 
-	_toneIndex = value;
+	_toneTemplateIndex = value;
 }
 
 const shared_ptr<ToneTemplate> & ToneTemplateManager::getToneTemplate() const
 {
-	if(_tones.empty())
+	if(_toneTemplates.empty())
 	{
 		abort();
 	}
 
-	return _tones.at(_toneIndex);
+	return _toneTemplates.at(_toneTemplateIndex);
 }
 
 const int ToneTemplateManager::getToneTemplateIndex() const
 {
-	return _toneIndex;
+	return _toneTemplateIndex;
 }
 
 const int ToneTemplateManager::getToneTemplateCount() const
 {
-	return static_cast<int>(_tones.size());
+	return static_cast<int>(_toneTemplates.size());
 }

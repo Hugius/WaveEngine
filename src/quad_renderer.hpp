@@ -13,6 +13,7 @@ public:
 
 private:
 	void _renderQuad(const shared_ptr<Quad> & quad);
+	void _renderText(const shared_ptr<Text> & text);
 
 	static inline const string VERTEX_SHADER_PATH = "shaders\\quad_vertex.glsl";
 	static inline const string FRAGMENT_SHADER_PATH = "shaders\\quad_fragment.glsl";

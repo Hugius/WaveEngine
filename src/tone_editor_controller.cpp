@@ -162,20 +162,40 @@ void ToneEditorController::_refreshWaveformVisualization()
 
 void ToneEditorController::inject(const shared_ptr<GuiManager> & guiManager)
 {
+	if(guiManager == nullptr)
+	{
+		abort();
+	}
+
 	_guiManager = guiManager;
 }
 
 void ToneEditorController::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
 {
+	if(waveformGenerator == nullptr)
+	{
+		abort();
+	}
+
 	_waveformGenerator = waveformGenerator;
 }
 
 void ToneEditorController::inject(const shared_ptr<WaveformPlayer> & waveformPlayer)
 {
+	if(waveformPlayer == nullptr)
+	{
+		abort();
+	}
+
 	_waveformPlayer = waveformPlayer;
 }
 
 void ToneEditorController::inject(const shared_ptr<ToneTemplateManager> & toneTemplateManager)
 {
+	if(toneTemplateManager == nullptr)
+	{
+		abort();
+	}
+
 	_toneTemplateManager = toneTemplateManager;
 }

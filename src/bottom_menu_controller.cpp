@@ -89,15 +89,30 @@ void BottomMenuController::_refreshWaveformVisualization()
 
 void BottomMenuController::inject(const shared_ptr<GuiManager> & guiManager)
 {
+	if(guiManager == nullptr)
+	{
+		abort();
+	}
+
 	_guiManager = guiManager;
 }
 
 void BottomMenuController::inject(const shared_ptr<ToneTemplateManager> & toneTemplateManager)
 {
+	if(toneTemplateManager == nullptr)
+	{
+		abort();
+	}
+
 	_toneTemplateManager = toneTemplateManager;
 }
 
 void BottomMenuController::inject(const shared_ptr<WaveformGenerator> & waveformGenerator)
 {
+	if(waveformGenerator == nullptr)
+	{
+		abort();
+	}
+
 	_waveformGenerator = waveformGenerator;
 }

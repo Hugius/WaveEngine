@@ -106,6 +106,11 @@ const shared_ptr<Waveform> WaveformGenerator::combineWaveforms(const vector<shar
 
 	for(const shared_ptr<Waveform> & waveform : waveforms)
 	{
+		if(waveform == nullptr)
+		{
+			abort();
+		}
+
 		if(waveform->getHeader()->dwBufferLength != waveforms.front()->getHeader()->dwBufferLength)
 		{
 			abort();
@@ -144,6 +149,11 @@ const shared_ptr<Waveform> WaveformGenerator::combineWaveforms(const vector<shar
 
 const vector<double> WaveformGenerator::extractSamplesFromWaveform(const shared_ptr<Waveform> & waveform)
 {
+	if(waveform == nullptr)
+	{
+		abort();
+	}
+
 	const int sampleCount = static_cast<int>(waveform->getHeader()->dwBufferLength / BYTES_PER_BLOCK);
 
 	vector<double> samples = {};
@@ -163,6 +173,11 @@ const vector<double> WaveformGenerator::extractSamplesFromWaveform(const shared_
 
 const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const shared_ptr<Tone> & tone) const
 {
+	if(tone == nullptr)
+	{
+		abort();
+	}
+
 	vector<shared_ptr<Waveform>> waveforms = {};
 
 	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)

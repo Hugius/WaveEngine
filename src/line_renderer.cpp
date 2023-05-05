@@ -21,6 +21,11 @@ void LineRenderer::render(const vector<shared_ptr<Line>> & lines)
 
 void LineRenderer::_renderLine(const shared_ptr<Line> & line)
 {
+	if(line == nullptr)
+	{
+		abort();
+	}
+
 	if(!line->isVisible())
 	{
 		return;

@@ -11,7 +11,7 @@ using std::vector;
 class ToneTemplateManager final
 {
 public:
-	void addToneTemplate(const shared_ptr<ToneTemplate> & tone);
+	void addToneTemplate(const shared_ptr<ToneTemplate> & toneTemplate);
 	void removeToneTemplate();
 	void setToneTemplateIndex(const int value);
 
@@ -21,7 +21,7 @@ public:
 	const int getToneTemplateCount() const;
 
 private:
-	vector<shared_ptr<ToneTemplate>> _tones = {};
+	vector<shared_ptr<ToneTemplate>> _toneTemplates = {};
 
-	int _toneIndex = 0;
+	int _toneTemplateIndex = 0;
 };

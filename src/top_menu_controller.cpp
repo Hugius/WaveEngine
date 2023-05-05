@@ -32,15 +32,30 @@ void TopMenuController::update()
 
 void TopMenuController::inject(const shared_ptr<GuiManager> & guiManager)
 {
+	if(guiManager == nullptr)
+	{
+		abort();
+	}
+
 	_guiManager = guiManager;
 }
 
 void TopMenuController::inject(const shared_ptr<ToneTemplateManager> & toneTemplateManager)
 {
+	if(toneTemplateManager == nullptr)
+	{
+		abort();
+	}
+
 	_toneTemplateManager = toneTemplateManager;
 }
 
 void TopMenuController::inject(const shared_ptr<ToneEditorController> & toneEditorController)
 {
+	if(toneEditorController == nullptr)
+	{
+		abort();
+	}
+
 	_toneEditorController = toneEditorController;
 }

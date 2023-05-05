@@ -28,6 +28,11 @@ void Quad::setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer)
 
 void Quad::setTextureBuffer(const shared_ptr<TextureBuffer> & textureBuffer)
 {
+	if(textureBuffer == nullptr)
+	{
+		abort();
+	}
+
 	_textureBuffer = textureBuffer;
 }
 

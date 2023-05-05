@@ -212,6 +212,11 @@ const bool GuiManager::_isGuiWaveformExisting(const string & id) const
 
 void GuiManager::inject(const shared_ptr<ImageLoader> & imageLoader)
 {
+	if(imageLoader == nullptr)
+	{
+		abort();
+	}
+
 	_imageLoader = imageLoader;
 }
 

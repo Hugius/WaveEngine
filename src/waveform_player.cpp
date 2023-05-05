@@ -4,6 +4,11 @@ using std::make_shared;
 
 void WaveformPlayer::start(const shared_ptr<Waveform> & waveform, bool isLooped)
 {
+	if(waveform == nullptr)
+	{
+		abort();
+	}
+
 	if(isStarted())
 	{
 		abort();
