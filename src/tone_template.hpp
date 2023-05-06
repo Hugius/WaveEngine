@@ -2,6 +2,10 @@
 
 #include "tone_constants.hpp"
 
+#include <array>
+
+using std::array;
+
 struct ToneTemplate final
 {
 	array<int, ToneConstants::OCTAVE_COUNT> sineAmplitudes = {};

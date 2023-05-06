@@ -7,6 +7,10 @@
 #include "line.hpp"
 #include "gui_waveform.hpp"
 
+#include <array>
+
+using std::array;
+
 class GuiManager final
 {
 public:
@@ -41,6 +45,8 @@ private:
 	const bool _isGuiLabelExisting(const string & id) const;
 	const bool _isGuiButtonExisting(const string & id) const;
 	const bool _isGuiWaveformExisting(const string & id) const;
+
+	static inline const array<string, 12> NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
 
 	static inline const string FONT_PATH = "images\\font.tga";
 

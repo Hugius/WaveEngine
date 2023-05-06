@@ -184,11 +184,11 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 
 	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
 	{
-		const double frequency = ToneConstants::NOTE_FREQUENCIES.at(tone->getNoteIndex()) * pow(2.0, static_cast<double>(index));
+		const double frequency = NOTE_FREQUENCIES.at(tone->getNoteIndex()) * pow(2.0, static_cast<double>(index));
 
 		if(toneTemplate->sineToggles.at(index) && toneTemplate->sineAmplitudes.at(index) != 0)
 		{
-			const double amplitude = static_cast<double>(toneTemplate->sineAmplitudes.at(index)) * ToneConstants::AMPLITUDE_STEP;
+			const double amplitude = static_cast<double>(toneTemplate->sineAmplitudes.at(index)) * AMPLITUDE_STEP;
 			const shared_ptr<Waveform> waveform = _generateSineWaveform(toneTemplate->duration, amplitude, frequency);
 
 			waveforms.push_back(waveform);
@@ -196,7 +196,7 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 
 		if(toneTemplate->squareToggles.at(index) && toneTemplate->squareAmplitudes.at(index) != 0)
 		{
-			const double amplitude = static_cast<double>(toneTemplate->squareAmplitudes.at(index)) * ToneConstants::AMPLITUDE_STEP;
+			const double amplitude = static_cast<double>(toneTemplate->squareAmplitudes.at(index)) * AMPLITUDE_STEP;
 			const shared_ptr<Waveform> waveform = _generateSquareWaveform(toneTemplate->duration, amplitude, frequency);
 
 			waveforms.push_back(waveform);
@@ -204,7 +204,7 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 
 		if(toneTemplate->triangleToggles.at(index) && toneTemplate->triangleAmplitudes.at(index) != 0)
 		{
-			const double amplitude = static_cast<double>(toneTemplate->triangleAmplitudes.at(index)) * ToneConstants::AMPLITUDE_STEP;
+			const double amplitude = static_cast<double>(toneTemplate->triangleAmplitudes.at(index)) * AMPLITUDE_STEP;
 			const shared_ptr<Waveform> waveform = _generateTriangleWaveform(toneTemplate->duration, amplitude, frequency);
 
 			waveforms.push_back(waveform);
@@ -212,7 +212,7 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 
 		if(toneTemplate->sawtoothToggles.at(index) && toneTemplate->sawtoothAmplitudes.at(index) != 0)
 		{
-			const double amplitude = static_cast<double>(toneTemplate->sawtoothAmplitudes.at(index)) * ToneConstants::AMPLITUDE_STEP;
+			const double amplitude = static_cast<double>(toneTemplate->sawtoothAmplitudes.at(index)) * AMPLITUDE_STEP;
 			const shared_ptr<Waveform> waveform = _generateSawtoothWaveform(toneTemplate->duration, amplitude, frequency);
 
 			waveforms.push_back(waveform);

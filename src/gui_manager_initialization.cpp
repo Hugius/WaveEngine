@@ -103,7 +103,7 @@ void GuiManager::_initializeToneEditor()
 	for(int index = 0; index < noteCount; index++)
 	{
 		const string noteId = "tone_editor_note" + to_string(index);
-		const string noteName = ToneConstants::NOTE_NAMES.at(index);
+		const string noteName = NOTE_NAMES.at(index);
 
 		_addGuiButton(noteId, dvec2(x + notePositions.at(index), y + notesOffset), dvec2(WIDTH(noteName), CHAR_Y) * 3.0, GRAY, WHITE, noteName, true, true, true, true, false);
 	}

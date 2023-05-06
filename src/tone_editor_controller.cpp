@@ -69,24 +69,24 @@ void ToneEditorController::_updateDurationGui()
 
 	if(_guiManager->getGuiButton("tone_editor_duration_decrease")->isPressed())
 	{
-		currentToneTemplate->duration -= ToneConstants::DURATION_STEP;
+		currentToneTemplate->duration -= DURATION_STEP;
 
 		_refreshWaveformVisualization();
 	}
 	else if(_guiManager->getGuiButton("tone_editor_duration_increase")->isPressed())
 	{
-		currentToneTemplate->duration += ToneConstants::DURATION_STEP;
+		currentToneTemplate->duration += DURATION_STEP;
 
 		_refreshWaveformVisualization();
 	}
 
 	const string prefix = currentToneTemplate->duration < 99 ? "0" : "";
 
-	_guiManager->getGuiButton("tone_editor_duration_decrease")->setPressable(currentToneTemplate->duration > ToneConstants::MIN_DURATION);
-	_guiManager->getGuiButton("tone_editor_duration_decrease")->setHoverable(currentToneTemplate->duration > ToneConstants::MIN_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_decrease")->setPressable(currentToneTemplate->duration > MIN_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_decrease")->setHoverable(currentToneTemplate->duration > MIN_DURATION);
 	_guiManager->getGuiLabel("tone_editor_duration_value")->setContent(prefix + to_string(currentToneTemplate->duration));
-	_guiManager->getGuiButton("tone_editor_duration_increase")->setPressable(currentToneTemplate->duration < ToneConstants::MAX_DURATION);
-	_guiManager->getGuiButton("tone_editor_duration_increase")->setHoverable(currentToneTemplate->duration < ToneConstants::MAX_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_increase")->setPressable(currentToneTemplate->duration < MAX_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_increase")->setHoverable(currentToneTemplate->duration < MAX_DURATION);
 }
 
 void ToneEditorController::_updateAmplitudeGui(const string & type, array<int, ToneConstants::OCTAVE_COUNT> & amplitudes, array<bool, ToneConstants::OCTAVE_COUNT> & toggles)

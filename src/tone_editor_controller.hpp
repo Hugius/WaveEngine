@@ -5,6 +5,10 @@
 #include "waveform_player.hpp"
 #include "tone_template_manager.hpp"
 
+#include <array>
+
+using std::array;
+
 class ToneEditorController final
 {
 public:
@@ -21,6 +25,10 @@ private:
 	void _updateAmplitudeGui(const string & type, array<int, ToneConstants::OCTAVE_COUNT> & amplitudes, array<bool, ToneConstants::OCTAVE_COUNT> & toggles);
 	void _refreshWaveformVisualization();
 	void _setGuiVisible(const bool value);
+
+	static inline const int MIN_DURATION = 10;
+	static inline const int MAX_DURATION = 500;
+	static inline const int DURATION_STEP = 10;
 
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
