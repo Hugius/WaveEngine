@@ -1,5 +1,5 @@
 #include "tone_editor_controller.hpp"
-#include "tone_constants.hpp"
+#include "shared_constants.hpp"
 
 using std::to_string;
 
@@ -26,17 +26,35 @@ void ToneEditorController::update()
 
 	const shared_ptr<ToneTemplate> currentToneTemplate = _toneTemplateManager->getToneTemplate();
 
+	array<int, SharedConstants::OCTAVE_COUNT> sineAmplitudes = currentToneTemplate->getSineAmplitudes();
+	array<int, SharedConstants::OCTAVE_COUNT> squareAmplitudes = currentToneTemplate->getSquareAmplitudes();
+	array<int, SharedConstants::OCTAVE_COUNT> triangleAmplitudes = currentToneTemplate->getTriangleAmplitudes();
+	array<int, SharedConstants::OCTAVE_COUNT> sawtoothAmplitudes = currentToneTemplate->getSawtoothAmplitudes();
+	array<bool, SharedConstants::OCTAVE_COUNT> sineToggles = currentToneTemplate->getSineToggles();
+	array<bool, SharedConstants::OCTAVE_COUNT> squareToggles = currentToneTemplate->getSquareToggles();
+	array<bool, SharedConstants::OCTAVE_COUNT> triangleToggles = currentToneTemplate->getTriangleToggles();
+	array<bool, SharedConstants::OCTAVE_COUNT> sawtoothToggles = currentToneTemplate->getSawtoothToggles();
+
 	_updateNoteGui();
 	_updateDurationGui();
-	_updateAmplitudeGui("sine", currentToneTemplate->sineAmplitudes, currentToneTemplate->sineToggles);
-	_updateAmplitudeGui("square", currentToneTemplate->squareAmplitudes, currentToneTemplate->squareToggles);
-	_updateAmplitudeGui("triangle", currentToneTemplate->triangleAmplitudes, currentToneTemplate->triangleToggles);
-	_updateAmplitudeGui("sawtooth", currentToneTemplate->sawtoothAmplitudes, currentToneTemplate->sawtoothToggles);
+	_updateAmplitudeGui("sine", sineAmplitudes, sineToggles);
+	_updateAmplitudeGui("square", squareAmplitudes, squareToggles);
+	_updateAmplitudeGui("triangle", triangleAmplitudes, triangleToggles);
+	_updateAmplitudeGui("sawtooth", sawtoothAmplitudes, sawtoothToggles);
+
+	currentToneTemplate->setSineAmplitudes(sineAmplitudes);
+	currentToneTemplate->setSquareAmplitudes(squareAmplitudes);
+	currentToneTemplate->setTriangleAmplitudes(triangleAmplitudes);
+	currentToneTemplate->setSawtoothAmplitudes(sawtoothAmplitudes);
+	currentToneTemplate->setSineToggles(sineToggles);
+	currentToneTemplate->setSquareToggles(squareToggles);
+	currentToneTemplate->setTriangleToggles(triangleToggles);
+	currentToneTemplate->setSawtoothToggles(sawtoothToggles);
 }
 
 void ToneEditorController::_updateNoteGui()
 {
-	for(int index = 0; index < ToneConstants::NOTE_COUNT; index++)
+	for(int index = 0; index < SharedConstants::NOTE_COUNT; index++)
 	{
 		if(_guiManager->getGuiButton("tone_editor_note" + to_string(index))->isPressed())
 		{
@@ -69,29 +87,27 @@ void ToneEditorController::_updateDurationGui()
 
 	if(_guiManager->getGuiButton("tone_editor_duration_decrease")->isPressed())
 	{
-		currentToneTemplate->duration -= DURATION_STEP;
+		currentToneTemplate->setDuration(currentToneTemplate->getDuration() - DURATION_STEP);
 
 		_refreshWaveformVisualization();
 	}
 	else if(_guiManager->getGuiButton("tone_editor_duration_increase")->isPressed())
 	{
-		currentToneTemplate->duration += DURATION_STEP;
+		currentToneTemplate->setDuration(currentToneTemplate->getDuration() + DURATION_STEP);
 
 		_refreshWaveformVisualization();
 	}
 
-	const string prefix = currentToneTemplate->duration < 99 ? "0" : "";
-
-	_guiManager->getGuiButton("tone_editor_duration_decrease")->setPressable(currentToneTemplate->duration > MIN_DURATION);
-	_guiManager->getGuiButton("tone_editor_duration_decrease")->setHoverable(currentToneTemplate->duration > MIN_DURATION);
-	_guiManager->getGuiLabel("tone_editor_duration_value")->setContent(prefix + to_string(currentToneTemplate->duration));
-	_guiManager->getGuiButton("tone_editor_duration_increase")->setPressable(currentToneTemplate->duration < MAX_DURATION);
-	_guiManager->getGuiButton("tone_editor_duration_increase")->setHoverable(currentToneTemplate->duration < MAX_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_decrease")->setPressable(currentToneTemplate->getDuration() > SharedConstants::MIN_TONE_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_decrease")->setHoverable(currentToneTemplate->getDuration() > SharedConstants::MIN_TONE_DURATION);
+	_guiManager->getGuiLabel("tone_editor_duration_value")->setContent((currentToneTemplate->getDuration() < 99 ? "0" : "") + to_string(currentToneTemplate->getDuration()));
+	_guiManager->getGuiButton("tone_editor_duration_increase")->setPressable(currentToneTemplate->getDuration() < SharedConstants::MAX_TONE_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_increase")->setHoverable(currentToneTemplate->getDuration() < SharedConstants::MAX_TONE_DURATION);
 }
 
-void ToneEditorController::_updateAmplitudeGui(const string & type, array<int, ToneConstants::OCTAVE_COUNT> & amplitudes, array<bool, ToneConstants::OCTAVE_COUNT> & toggles)
+void ToneEditorController::_updateAmplitudeGui(const string & type, array<int, SharedConstants::OCTAVE_COUNT> & amplitudes, array<bool, SharedConstants::OCTAVE_COUNT> & toggles)
 {
-	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
+	for(int index = 0; index < SharedConstants::OCTAVE_COUNT; index++)
 	{
 		if(_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->isPressed())
 		{
@@ -130,7 +146,7 @@ void ToneEditorController::_setGuiVisible(const bool value)
 	_guiManager->getGuiButton("tone_editor_close")->setVisible(value);
 	_guiManager->getGuiWaveform("tone_editor_waveform")->setVisible(value);
 
-	for(int index = 0; index < ToneConstants::NOTE_COUNT; index++)
+	for(int index = 0; index < SharedConstants::NOTE_COUNT; index++)
 	{
 		_guiManager->getGuiButton("tone_editor_note" + to_string(index))->setVisible(value);
 	}
@@ -140,7 +156,7 @@ void ToneEditorController::_setGuiVisible(const bool value)
 	_guiManager->getGuiButton("tone_editor_duration_increase")->setVisible(value);
 	_guiManager->getGuiLabel("tone_editor_duration_text")->setVisible(value);
 
-	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
+	for(int index = 0; index < SharedConstants::OCTAVE_COUNT; index++)
 	{
 		for(const string & type : {"sine", "square", "triangle", "sawtooth"})
 		{

@@ -1,7 +1,7 @@
 #include "gui_manager.hpp"
 #include "tools.hpp"
 #include "mathematics.hpp"
-#include "tone_constants.hpp"
+#include "shared_constants.hpp"
 
 #define WIDTH(content) (CHAR_X * static_cast<double>(string(content).size()))
 
@@ -90,8 +90,8 @@ void GuiManager::_initializeToneEditor()
 	const double height = 1.5;
 	const double waveformOffset = 0.025;
 	const double notesOffset = 0.2;
-	const int noteCount = ToneConstants::NOTE_COUNT;
-	const int octaveCount = ToneConstants::OCTAVE_COUNT;
+	const int noteCount = SharedConstants::NOTE_COUNT;
+	const int octaveCount = SharedConstants::OCTAVE_COUNT;
 	const vector<double> notePositions = Mathematics::calculateDistributedPositions(-width / 2.0, width, noteCount);
 	const vector<double> octavePositionsX = Mathematics::calculateDistributedPositions(-width / 2.0, width, octaveCount);
 	const vector<double> octavePositionsY = Mathematics::calculateDistributedPositions(y, -0.75, 10);

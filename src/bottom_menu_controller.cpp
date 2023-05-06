@@ -1,5 +1,5 @@
 #include "bottom_menu_controller.hpp"
-#include "tone_constants.hpp"
+#include "shared_constants.hpp"
 
 using std::make_shared;
 using std::to_string;
@@ -54,7 +54,7 @@ void BottomMenuController::update()
 	_guiManager->getGuiButton("bottom_menu_next")->setPressable(toneCount != 0 && toneIndex < toneCount - 1);
 	_guiManager->getGuiButton("bottom_menu_delete")->setHoverable(toneCount != 0);
 	_guiManager->getGuiButton("bottom_menu_delete")->setPressable(toneCount != 0);
-	_guiManager->getGuiLabel("bottom_menu_number")->setContent(toneCount == 0 ? "  " : string((toneIndex < 9 ? "0" : "") + to_string(toneIndex + 1)));
+	_guiManager->getGuiLabel("bottom_menu_number")->setContent(toneCount == 0 ? "  " : ((toneIndex < 9 ? "0" : "") + to_string(toneIndex + 1)));
 }
 
 void BottomMenuController::_refreshWaveformVisualization()

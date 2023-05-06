@@ -1,5 +1,5 @@
 #include "tone.hpp"
-#include "tone_constants.hpp"
+#include "shared_constants.hpp"
 
 Tone::Tone(const shared_ptr<ToneTemplate> & toneTemplate)
 	:
@@ -18,7 +18,7 @@ void Tone::setNoteIndex(const int value)
 		abort();
 	}
 
-	if(value > ToneConstants::NOTE_COUNT - 1)
+	if(value > SharedConstants::NOTE_COUNT - 1)
 	{
 		abort();
 	}

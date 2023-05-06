@@ -3,7 +3,7 @@
 
 #include "waveform_generator.hpp"
 #include "mathematics.hpp"
-#include "tone_constants.hpp"
+#include "shared_constants.hpp"
 
 using std::make_shared;
 
@@ -182,38 +182,38 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 
 	vector<shared_ptr<Waveform>> waveforms = {};
 
-	for(int index = 0; index < ToneConstants::OCTAVE_COUNT; index++)
+	for(int index = 0; index < SharedConstants::OCTAVE_COUNT; index++)
 	{
 		const double frequency = NOTE_FREQUENCIES.at(tone->getNoteIndex()) * pow(2.0, static_cast<double>(index));
 
-		if(toneTemplate->sineToggles.at(index) && toneTemplate->sineAmplitudes.at(index) != 0)
+		if(toneTemplate->getSineToggles().at(index) && toneTemplate->getSineAmplitudes().at(index) != 0)
 		{
-			const double amplitude = static_cast<double>(toneTemplate->sineAmplitudes.at(index)) * AMPLITUDE_STEP;
-			const shared_ptr<Waveform> waveform = _generateSineWaveform(toneTemplate->duration, amplitude, frequency);
+			const double amplitude = static_cast<double>(toneTemplate->getSineAmplitudes().at(index)) * AMPLITUDE_STEP;
+			const shared_ptr<Waveform> waveform = _generateSineWaveform(toneTemplate->getDuration(), amplitude, frequency);
 
 			waveforms.push_back(waveform);
 		}
 
-		if(toneTemplate->squareToggles.at(index) && toneTemplate->squareAmplitudes.at(index) != 0)
+		if(toneTemplate->getSquareAmplitudes().at(index) && toneTemplate->getSquareAmplitudes().at(index) != 0)
 		{
-			const double amplitude = static_cast<double>(toneTemplate->squareAmplitudes.at(index)) * AMPLITUDE_STEP;
-			const shared_ptr<Waveform> waveform = _generateSquareWaveform(toneTemplate->duration, amplitude, frequency);
+			const double amplitude = static_cast<double>(toneTemplate->getSquareAmplitudes().at(index)) * AMPLITUDE_STEP;
+			const shared_ptr<Waveform> waveform = _generateSquareWaveform(toneTemplate->getDuration(), amplitude, frequency);
 
 			waveforms.push_back(waveform);
 		}
 
-		if(toneTemplate->triangleToggles.at(index) && toneTemplate->triangleAmplitudes.at(index) != 0)
+		if(toneTemplate->getTriangleAmplitudes().at(index) && toneTemplate->getTriangleAmplitudes().at(index) != 0)
 		{
-			const double amplitude = static_cast<double>(toneTemplate->triangleAmplitudes.at(index)) * AMPLITUDE_STEP;
-			const shared_ptr<Waveform> waveform = _generateTriangleWaveform(toneTemplate->duration, amplitude, frequency);
+			const double amplitude = static_cast<double>(toneTemplate->getTriangleAmplitudes().at(index)) * AMPLITUDE_STEP;
+			const shared_ptr<Waveform> waveform = _generateTriangleWaveform(toneTemplate->getDuration(), amplitude, frequency);
 
 			waveforms.push_back(waveform);
 		}
 
-		if(toneTemplate->sawtoothToggles.at(index) && toneTemplate->sawtoothAmplitudes.at(index) != 0)
+		if(toneTemplate->getSawtoothToggles().at(index) && toneTemplate->getSawtoothAmplitudes().at(index) != 0)
 		{
-			const double amplitude = static_cast<double>(toneTemplate->sawtoothAmplitudes.at(index)) * AMPLITUDE_STEP;
-			const shared_ptr<Waveform> waveform = _generateSawtoothWaveform(toneTemplate->duration, amplitude, frequency);
+			const double amplitude = static_cast<double>(toneTemplate->getSawtoothAmplitudes().at(index)) * AMPLITUDE_STEP;
+			const shared_ptr<Waveform> waveform = _generateSawtoothWaveform(toneTemplate->getDuration(), amplitude, frequency);
 
 			waveforms.push_back(waveform);
 		}

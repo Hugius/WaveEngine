@@ -15,6 +15,7 @@
     <ClCompile Include="..\src\gui_manager_initialization.cpp" />
     <ClCompile Include="..\src\tone.cpp" />
     <ClCompile Include="..\src\tone_manager.cpp" />
+    <ClCompile Include="..\src\tone_template.cpp" />
     <ClCompile Include="..\src\tone_template_manager.cpp" />
     <ClCompile Include="..\src\base_renderer.cpp" />
     <ClCompile Include="..\src\engine_orchestrator.cpp" />
@@ -52,7 +53,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\bottom_menu_controller.hpp" />
     <ClInclude Include="..\src\tone.hpp" />
-    <ClInclude Include="..\src\tone_constants.hpp" />
+    <ClInclude Include="..\src\shared_constants.hpp" />
     <ClInclude Include="..\src\tone_manager.hpp" />
     <ClInclude Include="..\src\tone_template_manager.hpp" />
     <ClInclude Include="..\src\base_renderer.hpp" />
