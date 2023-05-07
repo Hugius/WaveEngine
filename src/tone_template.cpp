@@ -15,6 +15,11 @@ void ToneTemplate::setDuration(const int value)
 	_duration = value;
 }
 
+void ToneTemplate::setRelease(const int value)
+{
+	_release = value;
+}
+
 void ToneTemplate::setSineAmplitudes(const array<int, SharedConstants::OCTAVE_COUNT> & value)
 {
 	_sineAmplitudes = value;
@@ -98,4 +103,9 @@ const array<bool, SharedConstants::OCTAVE_COUNT> & ToneTemplate::getSawtoothTogg
 const int ToneTemplate::getDuration() const
 {
 	return _duration;
+}
+
+const int ToneTemplate::getRelease() const
+{
+	return _release;
 }

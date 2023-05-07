@@ -22,7 +22,7 @@ public:
 private:
 	void _updateNoteGui();
 	void _updateDurationGui();
-	void _updateAmplitudeGui(const string & type, array<int, SharedConstants::OCTAVE_COUNT> & amplitudes, array<bool, SharedConstants::OCTAVE_COUNT> & toggles);
+	void _updateAmplitudeGui();
 	void _refreshWaveformVisualization();
 	void _setGuiVisible(const bool value);
 

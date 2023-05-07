@@ -9,8 +9,6 @@ using std::array;
 class ToneTemplate final
 {
 public:
-	void setDuration(const int value);
-
 	void setSineAmplitudes(const array<int, SharedConstants::OCTAVE_COUNT> & value);
 	void setSquareAmplitudes(const array<int, SharedConstants::OCTAVE_COUNT> & value);
 	void setTriangleAmplitudes(const array<int, SharedConstants::OCTAVE_COUNT> & value);
@@ -19,6 +17,8 @@ public:
 	void setSquareToggles(const array<bool, SharedConstants::OCTAVE_COUNT> & value);
 	void setTriangleToggles(const array<bool, SharedConstants::OCTAVE_COUNT> & value);
 	void setSawtoothToggles(const array<bool, SharedConstants::OCTAVE_COUNT> & value);
+	void setDuration(const int value);
+	void setRelease(const int value);
 
 	const array<int, SharedConstants::OCTAVE_COUNT> & getSineAmplitudes() const;
 	const array<int, SharedConstants::OCTAVE_COUNT> & getSquareAmplitudes() const;
@@ -30,6 +30,7 @@ public:
 	const array<bool, SharedConstants::OCTAVE_COUNT> & getSawtoothToggles() const;
 
 	const int getDuration() const;
+	const int getRelease() const;
 
 private:
 	array<int, SharedConstants::OCTAVE_COUNT> _sineAmplitudes = {};
@@ -42,4 +43,5 @@ private:
 	array<bool, SharedConstants::OCTAVE_COUNT> _sawtoothToggles = {};
 
 	int _duration = 10;
+	int _release = 0;
 };

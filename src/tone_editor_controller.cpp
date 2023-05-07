@@ -24,32 +24,9 @@ void ToneEditorController::update()
 		return;
 	}
 
-	const shared_ptr<ToneTemplate> currentToneTemplate = _toneTemplateManager->getToneTemplate();
-
-	array<int, SharedConstants::OCTAVE_COUNT> sineAmplitudes = currentToneTemplate->getSineAmplitudes();
-	array<int, SharedConstants::OCTAVE_COUNT> squareAmplitudes = currentToneTemplate->getSquareAmplitudes();
-	array<int, SharedConstants::OCTAVE_COUNT> triangleAmplitudes = currentToneTemplate->getTriangleAmplitudes();
-	array<int, SharedConstants::OCTAVE_COUNT> sawtoothAmplitudes = currentToneTemplate->getSawtoothAmplitudes();
-	array<bool, SharedConstants::OCTAVE_COUNT> sineToggles = currentToneTemplate->getSineToggles();
-	array<bool, SharedConstants::OCTAVE_COUNT> squareToggles = currentToneTemplate->getSquareToggles();
-	array<bool, SharedConstants::OCTAVE_COUNT> triangleToggles = currentToneTemplate->getTriangleToggles();
-	array<bool, SharedConstants::OCTAVE_COUNT> sawtoothToggles = currentToneTemplate->getSawtoothToggles();
-
 	_updateNoteGui();
 	_updateDurationGui();
-	_updateAmplitudeGui("sine", sineAmplitudes, sineToggles);
-	_updateAmplitudeGui("square", squareAmplitudes, squareToggles);
-	_updateAmplitudeGui("triangle", triangleAmplitudes, triangleToggles);
-	_updateAmplitudeGui("sawtooth", sawtoothAmplitudes, sawtoothToggles);
-
-	currentToneTemplate->setSineAmplitudes(sineAmplitudes);
-	currentToneTemplate->setSquareAmplitudes(squareAmplitudes);
-	currentToneTemplate->setTriangleAmplitudes(triangleAmplitudes);
-	currentToneTemplate->setSawtoothAmplitudes(sawtoothAmplitudes);
-	currentToneTemplate->setSineToggles(sineToggles);
-	currentToneTemplate->setSquareToggles(squareToggles);
-	currentToneTemplate->setTriangleToggles(triangleToggles);
-	currentToneTemplate->setSawtoothToggles(sawtoothToggles);
+	_updateAmplitudeGui();
 }
 
 void ToneEditorController::_updateNoteGui()
@@ -103,38 +80,95 @@ void ToneEditorController::_updateDurationGui()
 	_guiManager->getGuiButton("tone_editor_duration_increase")->setHoverable(currentToneTemplate->getDuration() < SharedConstants::MAX_TONE_DURATION);
 }
 
-void ToneEditorController::_updateAmplitudeGui(const string & type, array<int, SharedConstants::OCTAVE_COUNT> & amplitudes, array<bool, SharedConstants::OCTAVE_COUNT> & toggles)
+void ToneEditorController::_updateAmplitudeGui()
 {
-	for(int index = 0; index < SharedConstants::OCTAVE_COUNT; index++)
+	const shared_ptr<ToneTemplate> currentToneTemplate = _toneTemplateManager->getToneTemplate();
+
+	for(const string & type : {"sine", "square", "triangle", "sawtooth"})
 	{
-		if(_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->isPressed())
+		array<int, SharedConstants::OCTAVE_COUNT> amplitudes;
+		array<bool, SharedConstants::OCTAVE_COUNT> toggles;
+
+		if(type == "sine")
 		{
-			amplitudes.at(index)--;
+			amplitudes = currentToneTemplate->getSineAmplitudes();
+			toggles = currentToneTemplate->getSineToggles();
+		}
+		else if(type == "square")
+		{
+			amplitudes = currentToneTemplate->getSquareAmplitudes();
+			toggles = currentToneTemplate->getSquareToggles();
+		}
+		else if(type == "triangle")
+		{
+			amplitudes = currentToneTemplate->getTriangleAmplitudes();
+			toggles = currentToneTemplate->getTriangleToggles();
+		}
+		else
+		{
+			amplitudes = currentToneTemplate->getSawtoothAmplitudes();
+			toggles = currentToneTemplate->getSawtoothToggles();
+		}
+
+		bool isGuiButtonPressed = false;
+
+		for(int index = 0; index < SharedConstants::OCTAVE_COUNT; index++)
+		{
+			if(_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->isPressed())
+			{
+				amplitudes.at(index)--;
+
+				isGuiButtonPressed = true;
+			}
+			else if(_guiManager->getGuiButton("tone_editor_" + type + "_text" + to_string(index))->isPressed())
+			{
+				toggles.at(index) = !toggles.at(index);
+
+				isGuiButtonPressed = true;
+			}
+			else if(_guiManager->getGuiButton("tone_editor_" + type + "_increase" + to_string(index))->isPressed())
+			{
+				amplitudes.at(index)++;
+
+				isGuiButtonPressed = true;
+			}
+
+			_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->setPressable(amplitudes.at(index) > 0);
+			_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->setHoverable(amplitudes.at(index) > 0);
+			_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->setVisible(toggles.at(index));
+			_guiManager->getGuiLabel("tone_editor_" + type + "_value" + to_string(index))->setVisible(toggles.at(index));
+			_guiManager->getGuiLabel("tone_editor_" + type + "_value" + to_string(index))->setContent(to_string(amplitudes.at(index)));
+			_guiManager->getGuiButton("tone_editor_" + type + "_increase" + to_string(index))->setPressable(amplitudes.at(index) < 9);
+			_guiManager->getGuiButton("tone_editor_" + type + "_increase" + to_string(index))->setHoverable(amplitudes.at(index) < 9);
+			_guiManager->getGuiButton("tone_editor_" + type + "_increase" + to_string(index))->setVisible(toggles.at(index));
+			_guiManager->getGuiButton("tone_editor_" + type + "_text" + to_string(index))->setHighlighted(toggles.at(index));
+		}
+
+		if(isGuiButtonPressed)
+		{
+			if(type == "sine")
+			{
+				currentToneTemplate->setSineAmplitudes(amplitudes);
+				currentToneTemplate->setSineToggles(toggles);
+			}
+			else if(type == "square")
+			{
+				currentToneTemplate->setSquareAmplitudes(amplitudes);
+				currentToneTemplate->setSquareToggles(toggles);
+			}
+			else if(type == "triangle")
+			{
+				currentToneTemplate->setTriangleAmplitudes(amplitudes);
+				currentToneTemplate->setTriangleToggles(toggles);
+			}
+			else
+			{
+				currentToneTemplate->setSawtoothAmplitudes(amplitudes);
+				currentToneTemplate->setSawtoothToggles(toggles);
+			}
 
 			_refreshWaveformVisualization();
 		}
-		else if(_guiManager->getGuiButton("tone_editor_" + type + "_text" + to_string(index))->isPressed())
-		{
-			toggles.at(index) = !toggles.at(index);
-
-			_refreshWaveformVisualization();
-		}
-		else if(_guiManager->getGuiButton("tone_editor_" + type + "_increase" + to_string(index))->isPressed())
-		{
-			amplitudes.at(index)++;
-
-			_refreshWaveformVisualization();
-		}
-
-		_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->setPressable(amplitudes.at(index) > 0);
-		_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->setHoverable(amplitudes.at(index) > 0);
-		_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->setVisible(toggles.at(index));
-		_guiManager->getGuiLabel("tone_editor_" + type + "_value" + to_string(index))->setVisible(toggles.at(index));
-		_guiManager->getGuiLabel("tone_editor_" + type + "_value" + to_string(index))->setContent(to_string(amplitudes.at(index)));
-		_guiManager->getGuiButton("tone_editor_" + type + "_increase" + to_string(index))->setPressable(amplitudes.at(index) < 9);
-		_guiManager->getGuiButton("tone_editor_" + type + "_increase" + to_string(index))->setHoverable(amplitudes.at(index) < 9);
-		_guiManager->getGuiButton("tone_editor_" + type + "_increase" + to_string(index))->setVisible(toggles.at(index));
-		_guiManager->getGuiButton("tone_editor_" + type + "_text" + to_string(index))->setHighlighted(toggles.at(index));
 	}
 }
 
