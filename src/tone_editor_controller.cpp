@@ -67,12 +67,10 @@ void ToneEditorController::_updateNoteGui()
 
 			tone->setNoteIndex(index);
 
-			vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(tone);
+			shared_ptr<Waveform> waveform = _waveformGenerator->generateWaveform(tone);
 
-			if(!waveforms.empty())
+			if(waveform != nullptr)
 			{
-				const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
-
 				_waveformPlayer->start(waveform, false);
 			}
 
@@ -180,15 +178,15 @@ void ToneEditorController::enable()
 
 void ToneEditorController::_refreshWaveformVisualization()
 {
-	vector<shared_ptr<Waveform>> waveforms = _waveformGenerator->generateWaveforms(make_shared<Tone>(_toneTemplateManager->getToneTemplate()));
+	shared_ptr<Tone> tone = make_shared<Tone>(_toneTemplateManager->getToneTemplate());
+	shared_ptr<Waveform> waveform = _waveformGenerator->generateWaveform(tone);
 
-	if(waveforms.empty())
+	if(waveform == nullptr)
 	{
 		_guiManager->getGuiWaveform("tone_editor_waveform")->setSamples({0.0f, 0.0f});
 	}
 	else
 	{
-		const shared_ptr<Waveform> waveform = _waveformGenerator->combineWaveforms(waveforms);
 		const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
 
 		_guiManager->getGuiWaveform("tone_editor_waveform")->setSamples(samples);

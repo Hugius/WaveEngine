@@ -97,7 +97,7 @@ const shared_ptr<Waveform> WaveformGenerator::_generateWaveform(const int durati
 	return make_shared<Waveform>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
 }
 
-const shared_ptr<Waveform> WaveformGenerator::combineWaveforms(const vector<shared_ptr<Waveform>> & waveforms) const
+const shared_ptr<Waveform> WaveformGenerator::_combineWaveforms(const vector<shared_ptr<Waveform>> & waveforms) const
 {
 	if(waveforms.empty())
 	{
@@ -171,7 +171,7 @@ const vector<double> WaveformGenerator::extractSamplesFromWaveform(const shared_
 	return samples;
 }
 
-const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const shared_ptr<Tone> & tone) const
+const shared_ptr<Waveform> WaveformGenerator::generateWaveform(const shared_ptr<Tone> & tone) const
 {
 	if(tone == nullptr)
 	{
@@ -219,5 +219,10 @@ const vector<shared_ptr<Waveform>> WaveformGenerator::generateWaveforms(const sh
 		}
 	}
 
-	return waveforms;
+	if(waveforms.empty())
+	{
+		return nullptr;
+	}
+
+	return _combineWaveforms(waveforms);
 }
