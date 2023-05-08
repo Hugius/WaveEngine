@@ -12,6 +12,11 @@ void ToneTemplate::setDuration(const int value)
 		abort();
 	}
 
+	if(value < _attack)
+	{
+		abort();
+	}
+
 	if(value < _release)
 	{
 		abort();
@@ -75,6 +80,21 @@ void ToneTemplate::setSawtoothToggles(const array<bool, Shared::OCTAVE_COUNT> & 
 	_sawtoothToggles = value;
 }
 
+void ToneTemplate::setAttack(const int value)
+{
+	if(value < 0)
+	{
+		abort();
+	}
+
+	if(value > _duration)
+	{
+		abort();
+	}
+
+	_attack = value;
+}
+
 const array<int, Shared::OCTAVE_COUNT> & ToneTemplate::getSineAmplitudes() const
 {
 	return _sineAmplitudes;
@@ -113,6 +133,11 @@ const array<bool, Shared::OCTAVE_COUNT> & ToneTemplate::getTriangleToggles() con
 const array<bool, Shared::OCTAVE_COUNT> & ToneTemplate::getSawtoothToggles() const
 {
 	return _sawtoothToggles;
+}
+
+const int ToneTemplate::getAttack() const
+{
+	return _attack;
 }
 
 const int ToneTemplate::getDuration() const

@@ -25,6 +25,7 @@ void ToneEditorController::update()
 	}
 
 	_updateNoteGui();
+	_updateAttackGui();
 	_updateDurationGui();
 	_updateReleaseGui();
 	_updateAmplitudeGui();
@@ -55,6 +56,30 @@ void ToneEditorController::_updateNoteGui()
 			break;
 		}
 	}
+}
+
+void ToneEditorController::_updateAttackGui()
+{
+	const shared_ptr<ToneTemplate> currentToneTemplate = _toneTemplateManager->getToneTemplate();
+
+	if(_guiManager->getGuiButton("tone_editor_attack_decrease")->isPressed())
+	{
+		currentToneTemplate->setAttack(currentToneTemplate->getAttack() - ATTACK_STEP);
+
+		_refreshWaveformVisualization();
+	}
+	else if(_guiManager->getGuiButton("tone_editor_attack_increase")->isPressed())
+	{
+		currentToneTemplate->setAttack(currentToneTemplate->getAttack() + ATTACK_STEP);
+
+		_refreshWaveformVisualization();
+	}
+
+	_guiManager->getGuiButton("tone_editor_attack_decrease")->setPressable(currentToneTemplate->getAttack() > Shared::MIN_TONE_ATTACK);
+	_guiManager->getGuiButton("tone_editor_attack_decrease")->setHoverable(currentToneTemplate->getAttack() > Shared::MIN_TONE_ATTACK);
+	_guiManager->getGuiLabel("tone_editor_attack_value")->setContent((currentToneTemplate->getAttack() == 0 ? "00" : currentToneTemplate->getAttack() < 100 ? "0" : "") + to_string(currentToneTemplate->getAttack()));
+	_guiManager->getGuiButton("tone_editor_attack_increase")->setPressable(currentToneTemplate->getAttack() < min(Shared::MAX_TONE_ATTACK, currentToneTemplate->getDuration()));
+	_guiManager->getGuiButton("tone_editor_attack_increase")->setHoverable(currentToneTemplate->getAttack() < min(Shared::MAX_TONE_ATTACK, currentToneTemplate->getDuration()));
 }
 
 void ToneEditorController::_updateDurationGui()
@@ -207,6 +232,11 @@ void ToneEditorController::_setGuiVisible(const bool value)
 	{
 		_guiManager->getGuiButton("tone_editor_note" + to_string(index))->setVisible(value);
 	}
+
+	_guiManager->getGuiButton("tone_editor_attack_decrease")->setVisible(value);
+	_guiManager->getGuiLabel("tone_editor_attack_value")->setVisible(value);
+	_guiManager->getGuiButton("tone_editor_attack_increase")->setVisible(value);
+	_guiManager->getGuiLabel("tone_editor_attack_text")->setVisible(value);
 
 	_guiManager->getGuiButton("tone_editor_duration_decrease")->setVisible(value);
 	_guiManager->getGuiLabel("tone_editor_duration_value")->setVisible(value);

@@ -21,12 +21,14 @@ public:
 
 private:
 	void _updateNoteGui();
+	void _updateAttackGui();
 	void _updateDurationGui();
 	void _updateReleaseGui();
 	void _updateAmplitudeGui();
 	void _refreshWaveformVisualization();
 	void _setGuiVisible(const bool value);
 
+	static inline const int ATTACK_STEP = 10;
 	static inline const int DURATION_STEP = 10;
 	static inline const int RELEASE_STEP = 10;
 

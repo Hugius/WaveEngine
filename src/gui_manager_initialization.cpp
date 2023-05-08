@@ -90,6 +90,7 @@ void GuiManager::_initializeToneEditor()
 	const double height = 1.5;
 	const double waveformOffset = 0.025;
 	const double notesOffset = 0.2;
+	const double attackOffset = 0.15;
 	const double releaseOffset = 0.15;
 	const int noteCount = Shared::NOTE_COUNT;
 	const int octaveCount = Shared::OCTAVE_COUNT;
@@ -108,6 +109,11 @@ void GuiManager::_initializeToneEditor()
 
 		_addGuiButton(noteId, dvec2(x + notePositions.at(index), y + notesOffset), dvec2(WIDTH(noteName), CHAR_Y) * 3.0, GRAY, Shared::WHITE, noteName, true, true, true, true, false);
 	}
+
+	_addGuiButton("tone_editor_attack_decrease", dvec2(x - WIDTH("00") - attackOffset, y + CHAR_Y), dvec2(WIDTH("<"), CHAR_Y), GRAY, Shared::WHITE, "<", true, true, true, true, false);
+	_addGuiLabel("tone_editor_attack_value", dvec2(x - attackOffset, y + CHAR_Y), dvec2(WIDTH("000"), CHAR_Y), Shared::WHITE, "000", true, true, false);
+	_addGuiButton("tone_editor_attack_increase", dvec2(x + WIDTH("00") - attackOffset, y + CHAR_Y), dvec2(WIDTH(">"), CHAR_Y), GRAY, Shared::WHITE, ">", true, true, true, true, false);
+	_addGuiLabel("tone_editor_attack_text", dvec2(x - attackOffset, y), dvec2(WIDTH("ATT"), CHAR_Y), Shared::WHITE, "ATT", true, true, false);
 
 	_addGuiButton("tone_editor_duration_decrease", dvec2(x - WIDTH("00"), y + CHAR_Y), dvec2(WIDTH("<"), CHAR_Y), GRAY, Shared::WHITE, "<", true, true, true, true, false);
 	_addGuiLabel("tone_editor_duration_value", dvec2(x, y + CHAR_Y), dvec2(WIDTH("000"), CHAR_Y), Shared::WHITE, "000", true, true, false);
