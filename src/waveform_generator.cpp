@@ -146,7 +146,7 @@ const shared_ptr<Waveform> WaveformGenerator::_combineWaveforms(const vector<sha
 	return make_shared<Waveform>(bytes, byteCount, CHANNEL_COUNT, SAMPLES_PER_SECOND, BYTES_PER_SECOND, BYTES_PER_BLOCK, BITS_PER_SAMPLE);
 }
 
-const vector<double> WaveformGenerator::extractSamplesFromWaveform(const shared_ptr<Waveform> & waveform)
+const vector<double> WaveformGenerator::extractSamplesFromWaveform(const shared_ptr<Waveform> & waveform) const
 {
 	if(waveform == nullptr)
 	{

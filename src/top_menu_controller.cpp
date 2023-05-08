@@ -11,7 +11,7 @@ void TopMenuController::update()
 	{
 		Tools::chooseWindowsExplorerFile(Tools::getRootDirectoryPath() + "projects\\", "wavproj");
 	}
-	else if(_guiManager->getGuiButton("top_menu_tone")->isPressed())
+	else if(_guiManager->getGuiButton("top_menu_tone_editor")->isPressed())
 	{
 		_toneEditorController->enable();
 	}
@@ -26,8 +26,8 @@ void TopMenuController::update()
 
 	const int toneCount = _toneTemplateManager->getToneTemplateCount();
 
-	_guiManager->getGuiButton("top_menu_tone")->setHoverable(toneCount != 0);
-	_guiManager->getGuiButton("top_menu_tone")->setPressable(toneCount != 0);
+	_guiManager->getGuiButton("top_menu_tone_editor")->setHoverable(toneCount != 0);
+	_guiManager->getGuiButton("top_menu_tone_editor")->setPressable(toneCount != 0);
 }
 
 void TopMenuController::inject(const shared_ptr<GuiManager> & guiManager)

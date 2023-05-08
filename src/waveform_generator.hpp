@@ -13,7 +13,7 @@ using std::vector;
 class WaveformGenerator final
 {
 public:
-	const vector<double> extractSamplesFromWaveform(const shared_ptr<Waveform> & waveform);
+	const vector<double> extractSamplesFromWaveform(const shared_ptr<Waveform> & waveform) const;
 
 	const shared_ptr<Waveform> generateWaveform(const shared_ptr<Tone> & tone) const;
 

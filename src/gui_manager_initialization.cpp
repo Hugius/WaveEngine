@@ -45,7 +45,7 @@ void GuiManager::_initializeTopMenu()
 	x += WIDTH("Save");
 	x += CHAR_X;
 
-	_addGuiButton("top_menu_tone", dvec2(x, y), dvec2(WIDTH("ToneEditor"), CHAR_Y), GRAY, Shared::WHITE, "ToneEditor", false, false, true, true, true);
+	_addGuiButton("top_menu_tone_editor", dvec2(x, y), dvec2(WIDTH("ToneEditor"), CHAR_Y), GRAY, Shared::WHITE, "ToneEditor", false, false, true, true, true);
 
 	x += WIDTH("ToneEditor");
 	x += CHAR_X;
@@ -90,6 +90,7 @@ void GuiManager::_initializeToneEditor()
 	const double height = 1.5;
 	const double waveformOffset = 0.025;
 	const double notesOffset = 0.2;
+	const double releaseOffset = 0.15;
 	const int noteCount = Shared::NOTE_COUNT;
 	const int octaveCount = Shared::OCTAVE_COUNT;
 	const vector<double> notePositions = Mathematics::calculateDistributedPositions(-width / 2.0, width, noteCount);
@@ -112,6 +113,11 @@ void GuiManager::_initializeToneEditor()
 	_addGuiLabel("tone_editor_duration_value", dvec2(x, y + CHAR_Y), dvec2(WIDTH("000"), CHAR_Y), Shared::WHITE, "000", true, true, false);
 	_addGuiButton("tone_editor_duration_increase", dvec2(x + WIDTH("00"), y + CHAR_Y), dvec2(WIDTH(">"), CHAR_Y), GRAY, Shared::WHITE, ">", true, true, true, true, false);
 	_addGuiLabel("tone_editor_duration_text", dvec2(x, y), dvec2(WIDTH("DUR"), CHAR_Y), Shared::WHITE, "DUR", true, true, false);
+
+	_addGuiButton("tone_editor_release_decrease", dvec2(x - WIDTH("00") + releaseOffset, y + CHAR_Y), dvec2(WIDTH("<"), CHAR_Y), GRAY, Shared::WHITE, "<", true, true, true, true, false);
+	_addGuiLabel("tone_editor_release_value", dvec2(x + releaseOffset, y + CHAR_Y), dvec2(WIDTH("000"), CHAR_Y), Shared::WHITE, "000", true, true, false);
+	_addGuiButton("tone_editor_release_increase", dvec2(x + WIDTH("00") + releaseOffset, y + CHAR_Y), dvec2(WIDTH(">"), CHAR_Y), GRAY, Shared::WHITE, ">", true, true, true, true, false);
+	_addGuiLabel("tone_editor_release_text", dvec2(x + releaseOffset, y), dvec2(WIDTH("REL"), CHAR_Y), Shared::WHITE, "REL", true, true, false);
 
 	for(int index = 0; index < octaveCount; index++)
 	{

@@ -26,6 +26,7 @@ void ToneEditorController::update()
 
 	_updateNoteGui();
 	_updateDurationGui();
+	_updateReleaseGui();
 	_updateAmplitudeGui();
 }
 
@@ -73,11 +74,35 @@ void ToneEditorController::_updateDurationGui()
 		_refreshWaveformVisualization();
 	}
 
-	_guiManager->getGuiButton("tone_editor_duration_decrease")->setPressable(currentToneTemplate->getDuration() > Shared::MIN_TONE_DURATION);
-	_guiManager->getGuiButton("tone_editor_duration_decrease")->setHoverable(currentToneTemplate->getDuration() > Shared::MIN_TONE_DURATION);
-	_guiManager->getGuiLabel("tone_editor_duration_value")->setContent((currentToneTemplate->getDuration() < 99 ? "0" : "") + to_string(currentToneTemplate->getDuration()));
+	_guiManager->getGuiButton("tone_editor_duration_decrease")->setPressable(currentToneTemplate->getDuration() > max(Shared::MIN_TONE_DURATION, currentToneTemplate->getRelease()));
+	_guiManager->getGuiButton("tone_editor_duration_decrease")->setHoverable(currentToneTemplate->getDuration() > max(Shared::MIN_TONE_DURATION, currentToneTemplate->getRelease()));
+	_guiManager->getGuiLabel("tone_editor_duration_value")->setContent((currentToneTemplate->getDuration() < 100 ? "0" : "") + to_string(currentToneTemplate->getDuration()));
 	_guiManager->getGuiButton("tone_editor_duration_increase")->setPressable(currentToneTemplate->getDuration() < Shared::MAX_TONE_DURATION);
 	_guiManager->getGuiButton("tone_editor_duration_increase")->setHoverable(currentToneTemplate->getDuration() < Shared::MAX_TONE_DURATION);
+}
+
+void ToneEditorController::_updateReleaseGui()
+{
+	const shared_ptr<ToneTemplate> currentToneTemplate = _toneTemplateManager->getToneTemplate();
+
+	if(_guiManager->getGuiButton("tone_editor_release_decrease")->isPressed())
+	{
+		currentToneTemplate->setRelease(currentToneTemplate->getRelease() - RELEASE_STEP);
+
+		_refreshWaveformVisualization();
+	}
+	else if(_guiManager->getGuiButton("tone_editor_release_increase")->isPressed())
+	{
+		currentToneTemplate->setRelease(currentToneTemplate->getRelease() + RELEASE_STEP);
+
+		_refreshWaveformVisualization();
+	}
+
+	_guiManager->getGuiButton("tone_editor_release_decrease")->setPressable(currentToneTemplate->getRelease() > Shared::MIN_TONE_RELEASE);
+	_guiManager->getGuiButton("tone_editor_release_decrease")->setHoverable(currentToneTemplate->getRelease() > Shared::MIN_TONE_RELEASE);
+	_guiManager->getGuiLabel("tone_editor_release_value")->setContent((currentToneTemplate->getRelease() == 0 ? "00" : currentToneTemplate->getRelease() < 100 ? "0" : "") + to_string(currentToneTemplate->getRelease()));
+	_guiManager->getGuiButton("tone_editor_release_increase")->setPressable(currentToneTemplate->getRelease() < min(Shared::MAX_TONE_RELEASE, currentToneTemplate->getDuration()));
+	_guiManager->getGuiButton("tone_editor_release_increase")->setHoverable(currentToneTemplate->getRelease() < min(Shared::MAX_TONE_RELEASE, currentToneTemplate->getDuration()));
 }
 
 void ToneEditorController::_updateAmplitudeGui()
@@ -187,6 +212,11 @@ void ToneEditorController::_setGuiVisible(const bool value)
 	_guiManager->getGuiLabel("tone_editor_duration_value")->setVisible(value);
 	_guiManager->getGuiButton("tone_editor_duration_increase")->setVisible(value);
 	_guiManager->getGuiLabel("tone_editor_duration_text")->setVisible(value);
+
+	_guiManager->getGuiButton("tone_editor_release_decrease")->setVisible(value);
+	_guiManager->getGuiLabel("tone_editor_release_value")->setVisible(value);
+	_guiManager->getGuiButton("tone_editor_release_increase")->setVisible(value);
+	_guiManager->getGuiLabel("tone_editor_release_text")->setVisible(value);
 
 	for(int index = 0; index < Shared::OCTAVE_COUNT; index++)
 	{
