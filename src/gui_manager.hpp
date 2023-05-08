@@ -6,7 +6,7 @@
 #include "gui_label.hpp"
 #include "line.hpp"
 #include "gui_waveform.hpp"
-#include "shared_constants.hpp"
+#include "shared.hpp"
 
 #include <array>
 
@@ -47,12 +47,10 @@ private:
 	const bool _isGuiButtonExisting(const string & id) const;
 	const bool _isGuiWaveformExisting(const string & id) const;
 
-	static inline const array<string, SharedConstants::NOTE_COUNT> NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
+	static inline const array<string, Shared::NOTE_COUNT> NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
 
 	static inline const string FONT_PATH = "images\\font.tga";
 
-	static inline const dvec3 WHITE = dvec3(1.0);
-	static inline const dvec3 BLACK = dvec3(0.0);
 	static inline const dvec3 GRAY = dvec3(0.25);
 	static inline const dvec3 DARK_GRAY = dvec3(0.15);
 	static inline const dvec3 RED = dvec3(1.0, 0.0, 0.0);

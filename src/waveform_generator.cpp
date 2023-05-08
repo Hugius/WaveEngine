@@ -3,33 +3,23 @@
 
 #include "waveform_generator.hpp"
 #include "mathematics.hpp"
-#include "shared_constants.hpp"
+#include "shared.hpp"
 
 using std::make_shared;
 
-const shared_ptr<Waveform> WaveformGenerator::_generateSineWaveform(const int duration, const int release, const double amplitude, const double frequency) const
-{
-	return _generateWaveform(duration, release, amplitude, frequency, WaveformType::SINE);
-}
-
-const shared_ptr<Waveform> WaveformGenerator::_generateSquareWaveform(const int duration, const int release, const double amplitude, const double frequency) const
-{
-	return _generateWaveform(duration, release, amplitude, frequency, WaveformType::SQUARE);
-}
-
-const shared_ptr<Waveform> WaveformGenerator::_generateTriangleWaveform(const int duration, const int release, const double amplitude, const double frequency) const
-{
-	return _generateWaveform(duration, release, amplitude, frequency, WaveformType::TRIANGLE);
-}
-
-const shared_ptr<Waveform> WaveformGenerator::_generateSawtoothWaveform(const int duration, const int release, const double amplitude, const double frequency) const
-{
-	return _generateWaveform(duration, release, amplitude, frequency, WaveformType::SAWTOOTH);
-}
-
 const shared_ptr<Waveform> WaveformGenerator::_generateWaveform(const int duration, const int release, const double amplitude, const double frequency, const WaveformType type) const
 {
-	if(duration < 10)
+	if(duration < 1)
+	{
+		abort();
+	}
+
+	if(release < 0.0)
+	{
+		abort();
+	}
+
+	if(release > duration)
 	{
 		abort();
 	}
@@ -54,15 +44,15 @@ const shared_ptr<Waveform> WaveformGenerator::_generateWaveform(const int durati
 	for(int index = 0; index < sampleCount; index++)
 	{
 		int r = release * SAMPLES_PER_SECOND / 100;
+		double finalAmplitude = amplitude;
 
 		if(index > r)
 		{
-
+			finalAmplitude *= (sampleCount - static_cast<double>(index)) / (sampleCount - r);
 		}
 
-		double finalAmplitude = amplitude;
-
 		short sample;
+
 		switch(type)
 		{
 			case WaveformType::SINE:
@@ -191,14 +181,14 @@ const shared_ptr<Waveform> WaveformGenerator::generateWaveform(const shared_ptr<
 
 	vector<shared_ptr<Waveform>> waveforms = {};
 
-	for(int index = 0; index < SharedConstants::OCTAVE_COUNT; index++)
+	for(int index = 0; index < Shared::OCTAVE_COUNT; index++)
 	{
 		const double frequency = NOTE_FREQUENCIES.at(tone->getNoteIndex()) * pow(2.0, static_cast<double>(index));
 
 		if(toneTemplate->getSineToggles().at(index) && toneTemplate->getSineAmplitudes().at(index) != 0)
 		{
 			const double amplitude = static_cast<double>(toneTemplate->getSineAmplitudes().at(index)) * AMPLITUDE_STEP;
-			const shared_ptr<Waveform> waveform = _generateSineWaveform(toneTemplate->getDuration(), toneTemplate->getRelease(), amplitude, frequency);
+			const shared_ptr<Waveform> waveform = _generateWaveform(toneTemplate->getDuration(), toneTemplate->getRelease(), amplitude, frequency, WaveformType::SINE);
 
 			waveforms.push_back(waveform);
 		}
@@ -206,7 +196,7 @@ const shared_ptr<Waveform> WaveformGenerator::generateWaveform(const shared_ptr<
 		if(toneTemplate->getSquareToggles().at(index) && toneTemplate->getSquareAmplitudes().at(index) != 0)
 		{
 			const double amplitude = static_cast<double>(toneTemplate->getSquareAmplitudes().at(index)) * AMPLITUDE_STEP;
-			const shared_ptr<Waveform> waveform = _generateSquareWaveform(toneTemplate->getDuration(), toneTemplate->getRelease(), amplitude, frequency);
+			const shared_ptr<Waveform> waveform = _generateWaveform(toneTemplate->getDuration(), toneTemplate->getRelease(), amplitude, frequency, WaveformType::SQUARE);
 
 			waveforms.push_back(waveform);
 		}
@@ -214,7 +204,7 @@ const shared_ptr<Waveform> WaveformGenerator::generateWaveform(const shared_ptr<
 		if(toneTemplate->getTriangleToggles().at(index) && toneTemplate->getTriangleAmplitudes().at(index) != 0)
 		{
 			const double amplitude = static_cast<double>(toneTemplate->getTriangleAmplitudes().at(index)) * AMPLITUDE_STEP;
-			const shared_ptr<Waveform> waveform = _generateTriangleWaveform(toneTemplate->getDuration(), toneTemplate->getRelease(), amplitude, frequency);
+			const shared_ptr<Waveform> waveform = _generateWaveform(toneTemplate->getDuration(), toneTemplate->getRelease(), amplitude, frequency, WaveformType::TRIANGLE);
 
 			waveforms.push_back(waveform);
 		}
@@ -222,7 +212,7 @@ const shared_ptr<Waveform> WaveformGenerator::generateWaveform(const shared_ptr<
 		if(toneTemplate->getSawtoothToggles().at(index) && toneTemplate->getSawtoothAmplitudes().at(index) != 0)
 		{
 			const double amplitude = static_cast<double>(toneTemplate->getSawtoothAmplitudes().at(index)) * AMPLITUDE_STEP;
-			const shared_ptr<Waveform> waveform = _generateSawtoothWaveform(toneTemplate->getDuration(), toneTemplate->getRelease(), amplitude, frequency);
+			const shared_ptr<Waveform> waveform = _generateWaveform(toneTemplate->getDuration(), toneTemplate->getRelease(), amplitude, frequency, WaveformType::SAWTOOTH);
 
 			waveforms.push_back(waveform);
 		}

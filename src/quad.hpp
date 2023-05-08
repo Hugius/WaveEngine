@@ -4,6 +4,7 @@
 #include "texture_buffer.hpp"
 #include "dvec3.hpp"
 #include "dmat33.hpp"
+#include "shared.hpp"
 
 #include <string>
 
@@ -48,7 +49,7 @@ private:
 
 	dmat33 _transformation = dmat33(1.0);
 
-	dvec3 _color = dvec3(1.0);
+	dvec3 _color = Shared::WHITE;
 
 	dvec2 _position = dvec2(0.0);
 	dvec2 _size = dvec2(1.0);

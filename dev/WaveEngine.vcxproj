@@ -53,7 +53,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\bottom_menu_controller.hpp" />
     <ClInclude Include="..\src\tone.hpp" />
-    <ClInclude Include="..\src\shared_constants.hpp" />
+    <ClInclude Include="..\src\shared.hpp" />
     <ClInclude Include="..\src\tone_manager.hpp" />
     <ClInclude Include="..\src\tone_template_manager.hpp" />
     <ClInclude Include="..\src\base_renderer.hpp" />

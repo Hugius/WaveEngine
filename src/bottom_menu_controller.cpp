@@ -1,5 +1,5 @@
 #include "bottom_menu_controller.hpp"
-#include "shared_constants.hpp"
+#include "shared.hpp"
 
 using std::make_shared;
 using std::to_string;
@@ -46,8 +46,8 @@ void BottomMenuController::update()
 		_refreshWaveformVisualization();
 	}
 
-	_guiManager->getGuiButton("bottom_menu_create")->setHoverable(toneCount < MAX_TONES);
-	_guiManager->getGuiButton("bottom_menu_create")->setPressable(toneCount < MAX_TONES);
+	_guiManager->getGuiButton("bottom_menu_create")->setHoverable(toneCount < Shared::MAX_TONE_TEMPLATES);
+	_guiManager->getGuiButton("bottom_menu_create")->setPressable(toneCount < Shared::MAX_TONE_TEMPLATES);
 	_guiManager->getGuiButton("bottom_menu_previous")->setHoverable(toneCount != 0 && toneIndex > 0);
 	_guiManager->getGuiButton("bottom_menu_previous")->setPressable(toneCount != 0 && toneIndex > 0);
 	_guiManager->getGuiButton("bottom_menu_next")->setHoverable(toneCount != 0 && toneIndex < toneCount - 1);

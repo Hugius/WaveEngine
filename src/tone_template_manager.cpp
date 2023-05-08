@@ -7,6 +7,11 @@ void ToneTemplateManager::addToneTemplate(const shared_ptr<ToneTemplate> & toneT
 		abort();
 	}
 
+	if(getToneTemplateCount() == Shared::MAX_TONE_TEMPLATES)
+	{
+		abort();
+	}
+
 	_toneTemplates.push_back(toneTemplate);
 }
 

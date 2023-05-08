@@ -293,7 +293,7 @@
     <ClInclude Include="..\src\gui_manager.hpp">
       <Filter>GUI\Miscellaneous</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\shared_constants.hpp">
+    <ClInclude Include="..\src\shared.hpp">
       <Filter>Miscellaneous</Filter>
     </ClInclude>
   </ItemGroup>

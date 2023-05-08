@@ -13,9 +13,6 @@ public:
 private:
 	void _refreshWaveformVisualization();
 
-	static inline const int MAX_TONES = 99;
-	static inline const int DURATION = 100;
-
 	shared_ptr<GuiManager> _guiManager = nullptr;
 	shared_ptr<ToneTemplateManager> _toneTemplateManager = nullptr;
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;

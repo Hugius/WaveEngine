@@ -1,5 +1,5 @@
 #include "tone_editor_controller.hpp"
-#include "shared_constants.hpp"
+#include "shared.hpp"
 
 using std::to_string;
 
@@ -31,7 +31,7 @@ void ToneEditorController::update()
 
 void ToneEditorController::_updateNoteGui()
 {
-	for(int index = 0; index < SharedConstants::NOTE_COUNT; index++)
+	for(int index = 0; index < Shared::NOTE_COUNT; index++)
 	{
 		if(_guiManager->getGuiButton("tone_editor_note" + to_string(index))->isPressed())
 		{
@@ -73,11 +73,11 @@ void ToneEditorController::_updateDurationGui()
 		_refreshWaveformVisualization();
 	}
 
-	_guiManager->getGuiButton("tone_editor_duration_decrease")->setPressable(currentToneTemplate->getDuration() > SharedConstants::MIN_TONE_DURATION);
-	_guiManager->getGuiButton("tone_editor_duration_decrease")->setHoverable(currentToneTemplate->getDuration() > SharedConstants::MIN_TONE_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_decrease")->setPressable(currentToneTemplate->getDuration() > Shared::MIN_TONE_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_decrease")->setHoverable(currentToneTemplate->getDuration() > Shared::MIN_TONE_DURATION);
 	_guiManager->getGuiLabel("tone_editor_duration_value")->setContent((currentToneTemplate->getDuration() < 99 ? "0" : "") + to_string(currentToneTemplate->getDuration()));
-	_guiManager->getGuiButton("tone_editor_duration_increase")->setPressable(currentToneTemplate->getDuration() < SharedConstants::MAX_TONE_DURATION);
-	_guiManager->getGuiButton("tone_editor_duration_increase")->setHoverable(currentToneTemplate->getDuration() < SharedConstants::MAX_TONE_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_increase")->setPressable(currentToneTemplate->getDuration() < Shared::MAX_TONE_DURATION);
+	_guiManager->getGuiButton("tone_editor_duration_increase")->setHoverable(currentToneTemplate->getDuration() < Shared::MAX_TONE_DURATION);
 }
 
 void ToneEditorController::_updateAmplitudeGui()
@@ -86,8 +86,8 @@ void ToneEditorController::_updateAmplitudeGui()
 
 	for(const string & type : {"sine", "square", "triangle", "sawtooth"})
 	{
-		array<int, SharedConstants::OCTAVE_COUNT> amplitudes;
-		array<bool, SharedConstants::OCTAVE_COUNT> toggles;
+		array<int, Shared::OCTAVE_COUNT> amplitudes;
+		array<bool, Shared::OCTAVE_COUNT> toggles;
 
 		if(type == "sine")
 		{
@@ -112,7 +112,7 @@ void ToneEditorController::_updateAmplitudeGui()
 
 		bool isGuiButtonPressed = false;
 
-		for(int index = 0; index < SharedConstants::OCTAVE_COUNT; index++)
+		for(int index = 0; index < Shared::OCTAVE_COUNT; index++)
 		{
 			if(_guiManager->getGuiButton("tone_editor_" + type + "_decrease" + to_string(index))->isPressed())
 			{
@@ -178,7 +178,7 @@ void ToneEditorController::_setGuiVisible(const bool value)
 	_guiManager->getGuiButton("tone_editor_close")->setVisible(value);
 	_guiManager->getGuiWaveform("tone_editor_waveform")->setVisible(value);
 
-	for(int index = 0; index < SharedConstants::NOTE_COUNT; index++)
+	for(int index = 0; index < Shared::NOTE_COUNT; index++)
 	{
 		_guiManager->getGuiButton("tone_editor_note" + to_string(index))->setVisible(value);
 	}
@@ -188,7 +188,7 @@ void ToneEditorController::_setGuiVisible(const bool value)
 	_guiManager->getGuiButton("tone_editor_duration_increase")->setVisible(value);
 	_guiManager->getGuiLabel("tone_editor_duration_text")->setVisible(value);
 
-	for(int index = 0; index < SharedConstants::OCTAVE_COUNT; index++)
+	for(int index = 0; index < Shared::OCTAVE_COUNT; index++)
 	{
 		for(const string & type : {"sine", "square", "triangle", "sawtooth"})
 		{
