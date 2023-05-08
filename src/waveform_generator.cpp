@@ -36,19 +36,19 @@ const shared_ptr<Waveform> WaveformGenerator::_generateWaveform(const int durati
 
 	const double pi = Mathematics::getPi();
 	const double delta = 1.0 / static_cast<double>(SAMPLES_PER_SECOND);
-	const int sampleCount = duration * SAMPLES_PER_SECOND / 100;
+	const int durationSampleCount = duration * SAMPLES_PER_SECOND / 100;
+	const int releaseSampleCount = release * SAMPLES_PER_SECOND / 100;
 	const int byteCount = duration * BYTES_PER_SECOND / 100;
 	unsigned char * bytes = new unsigned char[byteCount];
 	double time = 0.0;
 
-	for(int index = 0; index < sampleCount; index++)
+	for(int index = 0; index < durationSampleCount; index++)
 	{
-		int r = release * SAMPLES_PER_SECOND / 100;
-		double finalAmplitude = amplitude;
+		double envelope = 1.0;
 
-		if(index > r)
+		if(index > releaseSampleCount)
 		{
-			finalAmplitude *= (sampleCount - static_cast<double>(index)) / (sampleCount - r);
+			envelope = static_cast<double>(durationSampleCount - index) / static_cast<double>(durationSampleCount - releaseSampleCount);
 		}
 
 		short sample;
@@ -57,25 +57,25 @@ const shared_ptr<Waveform> WaveformGenerator::_generateWaveform(const int durati
 		{
 			case WaveformType::SINE:
 			{
-				sample = static_cast<short>(finalAmplitude * sin(2.0 * pi * frequency * time));
+				sample = static_cast<short>(envelope * amplitude * sin(2.0 * pi * frequency * time));
 
 				break;
 			}
 			case WaveformType::SQUARE:
 			{
-				sample = static_cast<short>(finalAmplitude * Mathematics::getSignum(sin(2.0 * pi * frequency * time)));
+				sample = static_cast<short>(envelope * amplitude * Mathematics::getSignum(sin(2.0 * pi * frequency * time)));
 
 				break;
 			}
 			case WaveformType::TRIANGLE:
 			{
-				sample = static_cast<short>(finalAmplitude * (1.0 - 4.0 * abs(round(frequency * time - 0.25) - (frequency * time - 0.25))));
+				sample = static_cast<short>(envelope * amplitude * (1.0 - 4.0 * abs(round(frequency * time - 0.25) - (frequency * time - 0.25))));
 
 				break;
 			}
 			case WaveformType::SAWTOOTH:
 			{
-				sample = static_cast<short>(finalAmplitude * (2.0 * (frequency * time - floor(frequency * time + 0.5))));
+				sample = static_cast<short>(envelope * amplitude * (2.0 * (frequency * time - floor(frequency * time + 0.5))));
 
 				break;
 			}
