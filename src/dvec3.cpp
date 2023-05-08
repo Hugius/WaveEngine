@@ -20,3 +20,13 @@ const dvec3 dvec3::operator-(const dvec3 & other) const
 {
 	return dvec3(this->x - other.x, this->y - other.y, this->z - other.z);
 }
+
+const bool dvec3::operator<(const dvec3 & other) const
+{
+	return this->x < other.x && this->y < other.y && this->z < other.z;
+}
+
+const bool dvec3::operator>(const dvec3 & other) const
+{
+	return this->x > other.x && this->y > other.y && this->z > other.z;
+}

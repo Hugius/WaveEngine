@@ -34,3 +34,13 @@ const dvec2 dvec2::operator*(const dvec2 & other)const
 {
 	return dvec2(this->x * other.x, this->y * other.y);
 }
+
+const bool dvec2::operator<(const dvec2 & other) const
+{
+	return this->x < other.x && this->y < other.y;
+}
+
+const bool dvec2::operator>(const dvec2 & other) const
+{
+	return this->x > other.x && this->y > other.y;
+}

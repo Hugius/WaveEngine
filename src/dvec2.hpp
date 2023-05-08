@@ -13,6 +13,9 @@ struct dvec2 final
 	const dvec2 operator+(const dvec2 & other) const;
 	const dvec2 operator*(const dvec2 & other) const;
 
+	const bool operator<(const dvec2 & other) const;
+	const bool operator>(const dvec2 & other) const;
+
 	double x;
 	double y;
 };

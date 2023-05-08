@@ -7,6 +7,9 @@ struct dvec3 final
 
 	const dvec3 operator-(const dvec3 & other) const;
 
+	const bool operator<(const dvec3 & other) const;
+	const bool operator>(const dvec3 & other) const;
+
 	union
 	{
 		struct

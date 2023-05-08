@@ -95,17 +95,7 @@ void Text::setContent(const string & value)
 
 void Text::setColor(const dvec3 & value)
 {
-	if(value.r < 0.0 || value.r > 1.0)
-	{
-		abort();
-	}
-
-	if(value.g < 0.0 || value.g > 1.0)
-	{
-		abort();
-	}
-
-	if(value.b < 0.0 || value.b > 1.0)
+	if(value < Shared::BLACK || value > Shared::WHITE)
 	{
 		abort();
 	}
@@ -130,12 +120,7 @@ void Text::setPosition(const dvec2 & value)
 
 void Text::setSize(const dvec2 & value)
 {
-	if(value.x < 0.0)
-	{
-		abort();
-	}
-
-	if(value.y < 0.0)
+	if(value < dvec2(0.0))
 	{
 		abort();
 	}
