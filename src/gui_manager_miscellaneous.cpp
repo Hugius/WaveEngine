@@ -178,7 +178,7 @@ const shared_ptr<Text> GuiManager::_createText(const dvec2 & position, const dve
 
 const shared_ptr<Line> GuiManager::_createLine(const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered) const
 {
-	const vector<dvec2> vertices = {dvec2(-1.0f, 0.0), dvec2(1.0f, 0.0)};
+	const vector<dvec2> vertices = {dvec2(-1.0, 0.0), dvec2(1.0, 0.0)};
 	const shared_ptr<VertexBuffer> vertexBuffer = make_shared<VertexBuffer>(vertices, isHorizontallyCentered, isVerticallyCentered);
 	const shared_ptr<Line> line = make_shared<Line>(vertexBuffer);
 

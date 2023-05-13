@@ -37,6 +37,11 @@ void ToneTemplate::setRelease(const int value)
 		abort();
 	}
 
+	if(value < _attack)
+	{
+		abort();
+	}
+
 	_release = value;
 }
 
@@ -88,6 +93,11 @@ void ToneTemplate::setAttack(const int value)
 	}
 
 	if(value > _duration)
+	{
+		abort();
+	}
+
+	if(value > _release)
 	{
 		abort();
 	}

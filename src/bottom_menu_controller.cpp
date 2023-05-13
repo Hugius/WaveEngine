@@ -73,7 +73,7 @@ void BottomMenuController::_refreshWaveformVisualization()
 
 	if(waveform == nullptr)
 	{
-		_guiManager->getGuiWaveform("bottom_menu_waveform")->setSamples({0.0f, 0.0f});
+		_guiManager->getGuiWaveform("bottom_menu_waveform")->setSamples({0.0, 0.0});
 	}
 	else
 	{

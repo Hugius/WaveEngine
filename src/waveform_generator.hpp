@@ -18,7 +18,7 @@ public:
 	const shared_ptr<Waveform> generateWaveform(const shared_ptr<Tone> & tone) const;
 
 private:
-	const shared_ptr<Waveform> _generateWaveform(const int duration, const int release, const double amplitude, const double frequency, const WaveformType type) const;
+	const shared_ptr<Waveform> _generateWaveform(const int duration, const int attack, const int release, const double amplitude, const double frequency, const WaveformType type) const;
 	const shared_ptr<Waveform> _combineWaveforms(const vector<shared_ptr<Waveform>> & waveforms) const;
 
 	static inline const array<double, Shared::NOTE_COUNT> NOTE_FREQUENCIES = {16.35, 17.32, 18.35, 19.45, 20.60, 21.83, 23.12, 24.50, 25.96, 27.50, 29.14, 30.87};

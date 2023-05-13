@@ -65,8 +65,8 @@ void GuiManager::_initializeTimeline()
 
 void GuiManager::_initializeBottomMenu()
 {
-	const double x = -1.0f;
-	const double y = -1.0f;
+	const double x = -1.0;
+	const double y = -1.0;
 	const double width = 2.0;
 	const double height = 0.25;
 	const double defaultOffset = 0.05;

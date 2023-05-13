@@ -27,8 +27,8 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 
 	if(_isHovered || _isHighlighted)
 	{
-		_quad->setColor(dvec3(1.0f) - _originalQuadColor);
-		_text->setColor(dvec3(1.0f) - _originalTextColor);
+		_quad->setColor(dvec3(1.0) - _originalQuadColor);
+		_text->setColor(dvec3(1.0) - _originalTextColor);
 	}
 	else
 	{
@@ -98,7 +98,7 @@ void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 	bool isHorizontallyHovered;
 	if(isHorizontallyCentered)
 	{
-		isHorizontallyHovered = cursorPosition.x >= position.x - size.x * 0.5f && cursorPosition.x <= position.x + size.x * 0.5f;
+		isHorizontallyHovered = cursorPosition.x >= position.x - size.x * 0.5 && cursorPosition.x <= position.x + size.x * 0.5;
 	}
 	else
 	{
@@ -108,7 +108,7 @@ void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 	bool isVerticallyHovered;
 	if(isVerticallyCentered)
 	{
-		isVerticallyHovered = cursorPosition.y >= position.y - size.y * 0.5f && cursorPosition.y <= position.y + size.y * 0.5f;
+		isVerticallyHovered = cursorPosition.y >= position.y - size.y * 0.5 && cursorPosition.y <= position.y + size.y * 0.5;
 	}
 	else
 	{

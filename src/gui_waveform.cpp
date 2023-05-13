@@ -41,7 +41,7 @@ void GuiWaveform::setSamples(const vector<double> & samples)
 	for(int index = 0; index < sampleCount; index++)
 	{
 		const double x = -1.0 + static_cast<double>(index) / static_cast<double>(sampleCount - 1) * 2.0; // Convert to NDC
-		const double y = samples.at(index) / (amplitude == 0.0f ? 1.0f : amplitude); // Prevent nan
+		const double y = samples.at(index) / (amplitude == 0.0f ? 1.0 : amplitude); // Prevent nan
 
 		vertices.push_back(dvec2(x, y));
 	}

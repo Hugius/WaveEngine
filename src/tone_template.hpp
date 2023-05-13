@@ -17,8 +17,8 @@ public:
 	void setSquareToggles(const array<bool, Shared::OCTAVE_COUNT> & value);
 	void setTriangleToggles(const array<bool, Shared::OCTAVE_COUNT> & value);
 	void setSawtoothToggles(const array<bool, Shared::OCTAVE_COUNT> & value);
-	void setAttack(const int value);
 	void setDuration(const int value);
+	void setAttack(const int value);
 	void setRelease(const int value);
 
 	const array<int, Shared::OCTAVE_COUNT> & getSineAmplitudes() const;
@@ -30,8 +30,8 @@ public:
 	const array<bool, Shared::OCTAVE_COUNT> & getTriangleToggles() const;
 	const array<bool, Shared::OCTAVE_COUNT> & getSawtoothToggles() const;
 
-	const int getAttack() const;
 	const int getDuration() const;
+	const int getAttack() const;
 	const int getRelease() const;
 
 private:
@@ -44,7 +44,7 @@ private:
 	array<bool, Shared::OCTAVE_COUNT> _triangleToggles = {};
 	array<bool, Shared::OCTAVE_COUNT> _sawtoothToggles = {};
 
-	int _attack = 0;
 	int _duration = Shared::MIN_TONE_DURATION;
+	int _attack = 0;
 	int _release = 0;
 };
