@@ -19,12 +19,12 @@ const shared_ptr<Waveform> WaveformGenerator::_generateWaveform(const int durati
 		abort();
 	}
 
-	if(attack > release)
+	if(attack > duration)
 	{
 		abort();
 	}
 
-	if(attack > duration)
+	if(attack > release)
 	{
 		abort();
 	}
@@ -34,12 +34,12 @@ const shared_ptr<Waveform> WaveformGenerator::_generateWaveform(const int durati
 		abort();
 	}
 
-	if(release < attack)
+	if(release > duration)
 	{
 		abort();
 	}
 
-	if(release > duration)
+	if(release < attack)
 	{
 		abort();
 	}
@@ -67,14 +67,13 @@ const shared_ptr<Waveform> WaveformGenerator::_generateWaveform(const int durati
 	{
 		double envelope = 1.0;
 
-		if(index + 1 < attackSampleCount)
+		if(index < attackSampleCount)
 		{
-			envelope = static_cast<double>(index - 1) / static_cast<double>(attackSampleCount);
+			envelope = static_cast<double>(index) / static_cast<double>(attackSampleCount);
 		}
-
-		if(index + 1 > releaseSampleCount)
+		else if(index > releaseSampleCount)
 		{
-			envelope = static_cast<double>(durationSampleCount - index - 1) / static_cast<double>(durationSampleCount - releaseSampleCount);
+			envelope = static_cast<double>(durationSampleCount - index) / static_cast<double>(durationSampleCount - releaseSampleCount);
 		}
 
 		short sample;
