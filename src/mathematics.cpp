@@ -2,15 +2,16 @@
 
 #include <cmath>
 
-const vector<double> Mathematics::calculateDistributedPositions(const double start, const double range, const int count)
+const vector<double> Mathematics::calculateDistributedPositions(const double start, const double range, const int count, const bool mustCenter)
 {
-	const double step = range / static_cast<double>(count + 1);
+	const int offset = (mustCenter ? 0 : 1);
+	const double step = range / static_cast<double>(count + offset);
 
 	vector<double> positions = {};
 
 	for(int index = 0; index < count; index++)
 	{
-		positions.push_back(start + step * static_cast<double>(index + 1));
+		positions.push_back(start + step * static_cast<double>(index + offset));
 	}
 
 	return positions;

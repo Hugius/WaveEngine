@@ -24,9 +24,10 @@ void GuiManager::initialize()
 
 void GuiManager::_initializeTopMenu()
 {
+	const double width = 2.0;
 	const double y = 0.95;
 
-	_addGuiRectangle("top_menu_background", dvec2(-1.0, y), dvec2(2.0, CHAR_Y), GRAY, false, false, true);
+	_addGuiRectangle("top_menu_background", dvec2(-1.0, y), dvec2(width, CHAR_Y), GRAY, false, false, true);
 
 	double x = -1.0;
 
@@ -60,7 +61,23 @@ void GuiManager::_initializeTopMenu()
 
 void GuiManager::_initializeTimeline()
 {
-	_addGuiRectangle("timeline_background", dvec2(-1.0, -0.75), dvec2(2.0, 2.0 - CHAR_Y - 0.25), BLUE, false, false, true);
+	const double x = -1.0;
+	const double y = -0.75;
+	const double width = 2.0;
+	const double height = 2.0 - 0.25 - CHAR_Y;
+
+	_addGuiRectangle("timeline_background", dvec2(x, y), dvec2(width, height), BLUE, false, false, true);
+
+	const int noteCount = Shared::NOTE_COUNT;
+	const vector<double> notePositions = Mathematics::calculateDistributedPositions(y, height, noteCount, true);
+
+	for(int index = 0; index < noteCount; index++)
+	{
+		const string noteId = "timeline_note" + to_string(index);
+		const string noteName = NOTE_NAMES.at(index);
+
+		_addGuiLabel(noteId, dvec2(x, notePositions.at(index)), dvec2(WIDTH(noteName), CHAR_Y) * 3.0, Shared::WHITE, noteName, false, false, true);
+	}
 }
 
 void GuiManager::_initializeBottomMenu()
@@ -71,7 +88,7 @@ void GuiManager::_initializeBottomMenu()
 	const double height = 0.25;
 	const double defaultOffset = 0.05;
 	const double waveformOffset = 0.025;
-	const vector<double> yPositions = Mathematics::calculateDistributedPositions(-1.0 + height, -height, 3);
+	const vector<double> yPositions = Mathematics::calculateDistributedPositions(-1.0 + height, -height, 3, false);
 
 	_addGuiRectangle("bottom_menu_background", dvec2(x, y), dvec2(width, height), DARK_GRAY, false, false, true);
 	_addGuiButton("bottom_menu_create", dvec2(x + defaultOffset, yPositions.at(0)), dvec2(WIDTH("Create"), CHAR_Y), GRAY, Shared::WHITE, "Create", true, true, true, true, true);
@@ -94,9 +111,9 @@ void GuiManager::_initializeToneEditor()
 	const double releaseOffset = 0.15;
 	const int noteCount = Shared::NOTE_COUNT;
 	const int octaveCount = Shared::OCTAVE_COUNT;
-	const vector<double> notePositions = Mathematics::calculateDistributedPositions(-width / 2.0, width, noteCount);
-	const vector<double> octavePositionsX = Mathematics::calculateDistributedPositions(-width / 2.0, width, octaveCount);
-	const vector<double> octavePositionsY = Mathematics::calculateDistributedPositions(y, -0.75, 10);
+	const vector<double> notePositions = Mathematics::calculateDistributedPositions(-width / 2.0, width, noteCount, false);
+	const vector<double> octavePositionsX = Mathematics::calculateDistributedPositions(-width / 2.0, width, octaveCount, false);
+	const vector<double> octavePositionsY = Mathematics::calculateDistributedPositions(y, -0.75, 10, false);
 
 	_addGuiRectangle("tone_editor_background", dvec2(x, y), dvec2(width, height), GRAY, true, true, false);
 	_addGuiButton("tone_editor_close", dvec2(x + width / 2.0 - WIDTH("X"), y + height / 2.0 - CHAR_Y), dvec2(WIDTH("X"), CHAR_Y), GRAY, RED, "X", false, false, true, true, false);
