@@ -67,7 +67,7 @@ void GuiManager::_initializeTimeline()
 	const double height = 2.0 - 0.25 - CHAR_Y;
 
 	_addGuiRectangle("timeline_background", dvec2(x, y), dvec2(width, height), GRAY, false, false, true);
-	_addGuiRectangle("timeline_separator", dvec2(x + CHAR_X * 6.0, y), dvec2(CHAR_X * 0.1, height), DARK_GRAY, false, false, true);
+	_addGuiRectangle("timeline_separator", dvec2(x + CHAR_X * 6.0, y), dvec2(CHAR_X * 0.75, height), DARK_GRAY, false, false, true);
 
 	const int noteCount = Shared::NOTE_COUNT;
 	const vector<double> notePositions = Mathematics::calculateDistributedPositions(y, height, noteCount, true);
@@ -78,11 +78,11 @@ void GuiManager::_initializeTimeline()
 		const string separatorId = "timeline_separator" + to_string(index);
 		const string noteName = NOTE_NAMES.at(index);
 
-		_addGuiLabel(noteId, dvec2(x, notePositions.at(index)), dvec2(WIDTH(noteName), CHAR_Y) * 3.0, Shared::WHITE, noteName, false, false, true);
+		_addGuiLabel(noteId, dvec2(x + CHAR_X * 3.0, notePositions.at(index)), dvec2(WIDTH(noteName), CHAR_Y) * 3.0, Shared::WHITE, noteName, true, false, true);
 
 		if(index > 0)
 		{
-			_addGuiRectangle(separatorId, dvec2(x, notePositions.at(index)), dvec2(width, CHAR_Y * 0.1), DARK_GRAY, false, false, true);
+			_addGuiRectangle(separatorId, dvec2(x, notePositions.at(index)), dvec2(width, CHAR_Y * 0.35), DARK_GRAY, false, false, true);
 		}
 	}
 }
