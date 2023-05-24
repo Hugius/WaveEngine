@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\bottom_menu_controller.cpp" />
     <ClCompile Include="..\src\gui_manager_initialization.cpp" />
+    <ClCompile Include="..\src\timeline_controller.cpp" />
     <ClCompile Include="..\src\tone.cpp" />
     <ClCompile Include="..\src\tone_manager.cpp" />
     <ClCompile Include="..\src\tone_template.cpp" />
@@ -52,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\bottom_menu_controller.hpp" />
+    <ClInclude Include="..\src\timeline_controller.hpp" />
     <ClInclude Include="..\src\tone.hpp" />
     <ClInclude Include="..\src\shared.hpp" />
     <ClInclude Include="..\src\tone_manager.hpp" />

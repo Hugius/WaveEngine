@@ -17,7 +17,9 @@ EngineOrchestrator::EngineOrchestrator()
 	_waveformPlayer(make_shared<WaveformPlayer>()),
 	_toneTemplateManager(make_shared<ToneTemplateManager>()),
 	_lineRenderer(make_shared<LineRenderer>()),
-	_toneEditorController(make_shared<ToneEditorController>())
+	_toneEditorController(make_shared<ToneEditorController>()),
+	_timelineController(make_shared<TimelineController>()),
+	_toneManager(make_shared<ToneManager>())
 {
 	_renderWindow->inject(_inputHandler);
 	_guiManager->inject(_imageLoader);
@@ -31,6 +33,10 @@ EngineOrchestrator::EngineOrchestrator()
 	_bottomMenuController->inject(_guiManager);
 	_bottomMenuController->inject(_toneTemplateManager);
 	_bottomMenuController->inject(_waveformGenerator);
+	_timelineController->inject(_guiManager);
+	_timelineController->inject(_toneTemplateManager);
+	_timelineController->inject(_waveformGenerator);
+	_timelineController->inject(_toneManager);
 
 	_guiManager->initialize();
 
@@ -102,6 +108,7 @@ void EngineOrchestrator::_update()
 	_inputHandler->update();
 	_renderWindow->update();
 	_topMenuController->update();
+	_timelineController->update();
 	_bottomMenuController->update();
 	_toneEditorController->update();
 	_guiManager->update(_renderWindow->getCursorPosition(), _inputHandler->isLmbPressed());

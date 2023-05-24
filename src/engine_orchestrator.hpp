@@ -10,6 +10,7 @@
 #include "waveform_player.hpp"
 #include "line_renderer.hpp"
 #include "bottom_menu_controller.hpp"
+#include "timeline_controller.hpp"
 
 class EngineOrchestrator final
 {
@@ -38,6 +39,9 @@ private:
 	const shared_ptr<ToneEditorController> _toneEditorController;
 	const shared_ptr<ToneTemplateManager> _toneTemplateManager;
 	const shared_ptr<LineRenderer> _lineRenderer;
+	const shared_ptr<TimelineController> _timelineController;
+	const shared_ptr<ToneManager> _toneManager;
+
 
 	double _totalDeltaTime = 0.0;
 

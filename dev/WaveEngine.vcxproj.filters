@@ -177,6 +177,9 @@
     <ClCompile Include="..\src\tone_template.cpp">
       <Filter>Audio\Tone</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\timeline_controller.cpp">
+      <Filter>GUI\Controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\engine_orchestrator.hpp">
@@ -295,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="..\src\shared.hpp">
       <Filter>Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\timeline_controller.hpp">
+      <Filter>GUI\Controllers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
