@@ -42,7 +42,6 @@ private:
 	const shared_ptr<TimelineController> _timelineController;
 	const shared_ptr<ToneManager> _toneManager;
 
-
 	double _totalDeltaTime = 0.0;
 
 	bool _isRunning = false;
