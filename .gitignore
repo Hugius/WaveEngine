@@ -1,7 +1,10 @@
 app/WaveEngine.pdb
 dev/ico/WaveEngine.aps
 dev/tmp/
-dev/.vs/WaveEngine/FileContentIndex/cd1edcc9-65cb-40b0-9a80-a0026089b42b.vsidx
-dev/.vs/WaveEngine/FileContentIndex/read.lock
+
+dev/.vs/WaveEngine/FileContentIndex/
+dev/.vs/WaveEngine/v17/ipch
 dev/.vs/WaveEngine/v17/Browse.VC.db
-dev/.vs/WaveEngine/v17/ipch/AutoPCH/a9f121f96103d432/MAIN.ipch
+dev/.vs/WaveEngine/v17/Browse.VC.db-shm
+dev/.vs/WaveEngine/v17/Browse.VC.db-wal
+dev/.vs/WaveEngine/v17/Browse.VC.opendb
