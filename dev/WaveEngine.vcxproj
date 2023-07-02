@@ -141,14 +141,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>fe2d</TargetName>
+    <TargetName>WaveEngine</TargetName>
     <IntDir>$(SolutionDir)\tmp\</IntDir>
     <OutDir>$(SolutionDir)..\app\</OutDir>
     <IncludePath>$(SolutionDir)\lib\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>fe2d</TargetName>
+    <TargetName>WaveEngine</TargetName>
     <IntDir>$(SolutionDir)\tmp\</IntDir>
     <OutDir>$(SolutionDir)..\app\</OutDir>
     <IncludePath>$(SolutionDir)\lib\;$(IncludePath)</IncludePath>
