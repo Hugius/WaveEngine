@@ -29,7 +29,7 @@ void GuiManager::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 	}
 }
 
-void GuiManager::_addGuiRectangle(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
+void GuiManager::addGuiRectangle(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
 {
 	if(_isGuiRectangleExisting(id))
 	{
@@ -47,7 +47,7 @@ void GuiManager::_addGuiRectangle(const string & id, const dvec2 & position, con
 	_guiRectangles.insert({id, guiRectangle});
 }
 
-void GuiManager::_addGuiLabel(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
+void GuiManager::addGuiLabel(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
 {
 	if(_isGuiLabelExisting(id))
 	{
@@ -65,7 +65,7 @@ void GuiManager::_addGuiLabel(const string & id, const dvec2 & position, const d
 	_guiLabels.insert({id, guiLabel});
 }
 
-void GuiManager::_addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const dvec3 & textColor, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isVisible)
+void GuiManager::addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const dvec3 & textColor, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isVisible)
 {
 	if(_isGuiButtonExisting(id))
 	{
@@ -94,7 +94,7 @@ void GuiManager::_addGuiButton(const string & id, const dvec2 & position, const 
 	_guiButtons.insert({id, guiButton});
 }
 
-void GuiManager::_addGuiWaveform(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
+void GuiManager::addGuiWaveform(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
 {
 	if(_isGuiWaveformExisting(id))
 	{
