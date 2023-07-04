@@ -105,7 +105,7 @@ void RenderWindow::_initializeHandle()
 	windowClass.hInstance = GetModuleHandle(NULL);
 	windowClass.lpszClassName = TITLE.c_str();
 	windowClass.style = CS_OWNDC;
-	windowClass.hIcon = static_cast<HICON>(LoadImage(nullptr, ICON_PATH.c_str(), IMAGE_ICON, 0, 0, LR_LOADFROMFILE));
+	windowClass.hIcon = static_cast<HICON>(LoadImage(nullptr, ICON_PATH.c_str(), IMAGE_ICON, ICON_SIZE, ICON_SIZE, LR_LOADFROMFILE));
 
 	if(!RegisterClass(&windowClass))
 	{

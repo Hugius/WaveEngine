@@ -35,6 +35,8 @@ private:
 	static inline const string ICON_PATH = "icons\\logo.ico";
 	static inline const string TITLE = "WaveEngine";
 
+	static inline const int ICON_SIZE = 32;
+
 	const dvec2 _convertToNdc(const ivec2 & position);
 
 	const ivec2 _getMonitorResolution();
