@@ -15,9 +15,4 @@ public:
 
 	static const string getRootDirectoryPath();
 	static const string chooseWindowsExplorerFile(const string & startingDirectory, const string & fileType);
-
-	static const CursorType getCursorType();
-
-private:
-	static inline CursorType _cursorType = CursorType::ARROW;
 };

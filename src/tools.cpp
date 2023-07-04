@@ -22,8 +22,6 @@ void Tools::setCursorType(const CursorType type)
 			break;
 		}
 	}
-
-	_cursorType = type;
 }
 
 const string Tools::getRootDirectoryPath()
@@ -85,9 +83,4 @@ const string Tools::chooseWindowsExplorerFile(const string & startingDirectory, 
 	}
 
 	return ofn.lpstrFile;
-}
-
-const CursorType Tools::getCursorType()
-{
-	return _cursorType;
 }
