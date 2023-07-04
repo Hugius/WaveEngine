@@ -41,6 +41,8 @@ EngineOrchestrator::EngineOrchestrator()
 	_guiManager->initialize();
 
 	_update();
+
+	_renderWindow->show();
 }
 
 void EngineOrchestrator::start()

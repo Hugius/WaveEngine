@@ -20,6 +20,7 @@ public:
 	void inject(const shared_ptr<InputHandler> & inputHandler);
 	void update();
 	void swapBuffers();
+	void show();
 
 	const dvec2 getCursorPosition();
 

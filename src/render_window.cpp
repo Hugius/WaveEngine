@@ -113,7 +113,7 @@ void RenderWindow::_initializeHandle()
 	}
 
 	const ivec2 monitorResolution = _getMonitorResolution();
-	const DWORD windowStyle = WS_VISIBLE | WS_BORDER | WS_CAPTION | WS_SYSMENU;
+	const DWORD windowStyle = WS_BORDER | WS_CAPTION | WS_SYSMENU;
 
 	_renderingResolution = static_cast<ivec2>(static_cast<dvec2>(monitorResolution) * 0.9);
 
@@ -269,4 +269,10 @@ void RenderWindow::inject(const shared_ptr<InputHandler> & inputHandler)
 	}
 
 	_inputHandler = inputHandler;
+}
+
+void RenderWindow::show()
+{
+	ShowWindow(_handle, SW_SHOW);
+	SetFocus(_handle);
 }
