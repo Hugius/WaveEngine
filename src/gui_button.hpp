@@ -13,6 +13,8 @@ public:
 	void setHoverable(const bool value);
 	void setPressable(const bool value);
 	void setHighlighted(const bool value);
+	void setHoveredQuadColor(const dvec3 & value);
+	void setHoveredTextColor(const dvec3 & value);
 
 	const bool isPressed() const;
 
@@ -24,6 +26,9 @@ private:
 
 	const dvec3 _originalQuadColor;
 	const dvec3 _originalTextColor;
+
+	dvec3 _hoveredQuadColor = Shared::WHITE;
+	dvec3 _hoveredTextColor = Shared::WHITE;
 
 	bool _isVisible = false;
 	bool _isHoverable = false;

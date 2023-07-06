@@ -40,11 +40,11 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 
 	if(_isHovered || _isHighlighted)
 	{
-		_quad->setColor(dvec3(1.0) - _originalQuadColor);
+		_quad->setColor(_hoveredQuadColor);
 
 		if(_text != nullptr)
 		{
-			_text->setColor(dvec3(1.0) - _originalTextColor);
+			_text->setColor(_hoveredTextColor);
 		}
 	}
 	else
@@ -107,6 +107,16 @@ void GuiButton::setPressable(const bool value)
 void GuiButton::setHighlighted(const bool value)
 {
 	_isHighlighted = value;
+}
+
+void GuiButton::setHoveredQuadColor(const dvec3 & value)
+{
+	_hoveredQuadColor = value;
+}
+
+void GuiButton::setHoveredTextColor(const dvec3 & value)
+{
+	_hoveredTextColor = value;
 }
 
 void GuiButton::_updateHovering(const dvec2 & cursorPosition)

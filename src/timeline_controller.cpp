@@ -23,7 +23,7 @@ void TimelineController::update()
 			const shared_ptr<Waveform> waveform = _waveformGenerator->generateWaveform(tone);
 			const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
 			const dvec2 position = dvec2(x + separatorOffset + CHAR_X * 0.75, notePositions.at(index) + separatorOffset);
-			const dvec2 size = dvec2(CHAR_X * (static_cast<double>(tone->getToneTemplate()->getDuration()) / 2.0), separatorOffset);
+			const dvec2 size = dvec2(CHAR_X * (static_cast<double>(tone->getToneTemplate()->getDuration()) / 1.0), separatorOffset);
 
 			_guiManager->addGuiButton("rterttr", position, size, Shared::GRAY, false, true, true, true, true);
 			_guiManager->addGuiWaveform("rterttr", position, size, Shared::WHITE, false, true, true);
