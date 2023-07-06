@@ -7,6 +7,7 @@ struct Shared final
 	static inline const dvec3 WHITE = dvec3(1.0);
 	static inline const dvec3 BLACK = dvec3(0.0);
 	static inline const dvec3 GRAY = dvec3(0.25);
+	static inline const dvec3 LIGHT_GRAY = dvec3(0.35);
 
 	static inline const int OCTAVE_COUNT = 10;
 	static inline const int NOTE_COUNT = 12;

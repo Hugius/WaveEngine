@@ -24,8 +24,8 @@ private:
 	const shared_ptr<Quad> _quad;
 	const shared_ptr<Text> _text;
 
-	const dvec3 _originalQuadColor;
-	const dvec3 _originalTextColor;
+	const dvec3 _defaultQuadColor;
+	const dvec3 _defaultTextColor;
 
 	dvec3 _hoveredQuadColor = Shared::WHITE;
 	dvec3 _hoveredTextColor = Shared::WHITE;

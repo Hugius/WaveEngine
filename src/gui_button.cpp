@@ -5,8 +5,8 @@ GuiButton::GuiButton(const shared_ptr<Quad> & quad, const shared_ptr<Text> & tex
 	:
 	_quad(quad),
 	_text(text),
-	_originalQuadColor(quad->getColor()),
-	_originalTextColor(text->getColor())
+	_defaultQuadColor(quad->getColor()),
+	_defaultTextColor(text->getColor())
 {
 	if(quad == nullptr)
 	{
@@ -23,8 +23,8 @@ GuiButton::GuiButton(const shared_ptr<Quad> & quad)
 	:
 	_quad(quad),
 	_text(nullptr),
-	_originalQuadColor(quad->getColor()),
-	_originalTextColor(dvec3(0.0))
+	_defaultQuadColor(quad->getColor()),
+	_defaultTextColor(dvec3(0.0))
 {
 	if(quad == nullptr)
 	{
@@ -49,11 +49,11 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 	}
 	else
 	{
-		_quad->setColor(_originalQuadColor);
+		_quad->setColor(_defaultQuadColor);
 
 		if(_text != nullptr)
 		{
-			_text->setColor(_originalTextColor);
+			_text->setColor(_defaultTextColor);
 		}
 	}
 
