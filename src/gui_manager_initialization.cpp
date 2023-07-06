@@ -67,7 +67,7 @@ void GuiManager::_initializeTimeline()
 	const double height = 2.0 - 0.25 - CHAR_Y;
 	const double separatorOffset = CHAR_X * 6.0;
 
-	addGuiRectangle("timeline_background", dvec2(x, y), dvec2(width, height), GRAY, false, false, true);
+	addGuiRectangle("timeline_background", dvec2(x, y), dvec2(width, height), Shared::GRAY, false, false, true);
 	addGuiRectangle("timeline_separator", dvec2(x + separatorOffset, y), dvec2(CHAR_X * 0.75, height), DARK_GRAY, false, false, true);
 
 	const int noteCount = Shared::NOTE_COUNT;
@@ -78,12 +78,12 @@ void GuiManager::_initializeTimeline()
 		const string noteId = "timeline_note" + to_string(index);
 		const string separatorId = "timeline_separator" + to_string(index);
 		const string noteName = NOTE_NAMES.at(index);
-		const dvec2 buttonPosition = dvec2(x + separatorOffset / 2.0, notePositions.at(index) + separatorOffset / 2.0);
+		const dvec2 buttonPosition = dvec2(x + separatorOffset / 2.0, notePositions.at(index) + separatorOffset);
 		const dvec2 buttonSize = dvec2(WIDTH(noteName), CHAR_Y) * 2.0;
 		const dvec2 rectanglePosition = dvec2(x + separatorOffset, notePositions.at(index));
 		const dvec2 rectangleSize = dvec2(width, CHAR_Y * 0.35);
 
-		addGuiButton(noteId, buttonPosition, buttonSize, GRAY, Shared::WHITE, noteName, true, false, true, true, true);
+		addGuiButton(noteId, buttonPosition, buttonSize, Shared::GRAY, Shared::WHITE, noteName, true, true, true, true, true);
 
 		if(index > 0)
 		{
@@ -103,17 +103,17 @@ void GuiManager::_initializeBottomMenu()
 	const vector<double> yPositions = Mathematics::calculateDistributedPositions(-1.0 + height, -height, 3, false);
 
 	addGuiRectangle("bottom_menu_background", dvec2(x, y), dvec2(width, height), DARK_GRAY, false, false, true);
-	addGuiButton("bottom_menu_create", dvec2(x + defaultOffset, yPositions.at(0)), dvec2(WIDTH("Create"), CHAR_Y), GRAY, Shared::WHITE, "Create", true, true, true, true, true);
-	addGuiButton("bottom_menu_previous", dvec2(x + defaultOffset - WIDTH("00"), yPositions.at(1)), dvec2(WIDTH("<"), CHAR_Y), GRAY, Shared::WHITE, "<", true, true, true, true, true);
+	addGuiButton("bottom_menu_create", dvec2(x + defaultOffset, yPositions.at(0)), dvec2(WIDTH("Create"), CHAR_Y), Shared::GRAY, Shared::WHITE, "Create", true, true, true, true, true);
+	addGuiButton("bottom_menu_previous", dvec2(x + defaultOffset - WIDTH("00"), yPositions.at(1)), dvec2(WIDTH("<"), CHAR_Y), Shared::GRAY, Shared::WHITE, "<", true, true, true, true, true);
 	addGuiLabel("bottom_menu_number", dvec2(x + defaultOffset, yPositions.at(1)), dvec2(WIDTH("00"), CHAR_Y), Shared::WHITE, "00", true, true, true);
-	addGuiButton("bottom_menu_next", dvec2(x + defaultOffset + WIDTH("00"), yPositions.at(1)), dvec2(WIDTH(">"), CHAR_Y), GRAY, Shared::WHITE, ">", true, true, true, true, true);
-	addGuiButton("bottom_menu_delete", dvec2(x + defaultOffset, yPositions.at(2)), dvec2(WIDTH("Delete"), CHAR_Y), GRAY, Shared::WHITE, "Delete", true, true, true, true, true);
+	addGuiButton("bottom_menu_next", dvec2(x + defaultOffset + WIDTH("00"), yPositions.at(1)), dvec2(WIDTH(">"), CHAR_Y), Shared::GRAY, Shared::WHITE, ">", true, true, true, true, true);
+	addGuiButton("bottom_menu_delete", dvec2(x + defaultOffset, yPositions.at(2)), dvec2(WIDTH("Delete"), CHAR_Y), Shared::GRAY, Shared::WHITE, "Delete", true, true, true, true, true);
 	addGuiWaveform("bottom_menu_waveform", dvec2(x + defaultOffset + WIDTH("Create") / 2.0 + waveformOffset, yPositions.at(1)), dvec2(width - defaultOffset - WIDTH("Create") / 2.0 - waveformOffset * 2.0, height - waveformOffset), Shared::WHITE, false, true, false);
 }
 
 void GuiManager::_initializeToneEditor()
 {
-	const double x = 0.0f;
+	const double x = 0.0;
 	const double y = 0.125;
 	const double width = 1.5;
 	const double height = 1.5;

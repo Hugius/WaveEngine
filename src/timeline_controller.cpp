@@ -3,11 +3,10 @@
 
 using std::to_string;
 
-static inline const double CHAR_X = 0.0125;
-static inline const double CHAR_Y = 0.05;
-
 void TimelineController::update()
 {
+	const double CHAR_X = 0.0125;
+	const double CHAR_Y = 0.05;
 	const double x = -1.0;
 	const double y = -0.75;
 	const double height = 2.0 - 0.25 - CHAR_Y;
@@ -23,10 +22,11 @@ void TimelineController::update()
 			const shared_ptr<Tone> tone = make_shared<Tone>(toneTemplate);
 			const shared_ptr<Waveform> waveform = _waveformGenerator->generateWaveform(tone);
 			const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
-			const dvec2 waveformX = dvec2(x + separatorOffset + CHAR_X * 0.75, notePositions.at(index) + separatorOffset / 2.0);
-			const dvec2 waveformY = dvec2(CHAR_X * (static_cast<double>(tone->getToneTemplate()->getDuration()) / 10.0), CHAR_Y * 3.0);
+			const dvec2 position = dvec2(x + separatorOffset + CHAR_X * 0.75, notePositions.at(index) + separatorOffset);
+			const dvec2 size = dvec2(CHAR_X * (static_cast<double>(tone->getToneTemplate()->getDuration()) / 2.0), separatorOffset);
 
-			_guiManager->addGuiWaveform("rterttr", waveformX, waveformY, Shared::WHITE, false, false, true);
+			_guiManager->addGuiButton("rterttr", position, size, Shared::GRAY, false, true, true, true, true);
+			_guiManager->addGuiWaveform("rterttr", position, size, Shared::WHITE, false, true, true);
 			_guiManager->getGuiWaveform("rterttr")->setSamples(samples);
 		}
 	}

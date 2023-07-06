@@ -19,6 +19,19 @@ GuiButton::GuiButton(const shared_ptr<Quad> & quad, const shared_ptr<Text> & tex
 	}
 }
 
+GuiButton::GuiButton(const shared_ptr<Quad> & quad)
+	:
+	_quad(quad),
+	_text(nullptr),
+	_originalQuadColor(quad->getColor()),
+	_originalTextColor(dvec3(0.0))
+{
+	if(quad == nullptr)
+	{
+		abort();
+	}
+}
+
 void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 {
 	_isPressed = false;
@@ -28,12 +41,20 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 	if(_isHovered || _isHighlighted)
 	{
 		_quad->setColor(dvec3(1.0) - _originalQuadColor);
-		_text->setColor(dvec3(1.0) - _originalTextColor);
+
+		if(_text != nullptr)
+		{
+			_text->setColor(dvec3(1.0) - _originalTextColor);
+		}
 	}
 	else
 	{
 		_quad->setColor(_originalQuadColor);
-		_text->setColor(_originalTextColor);
+
+		if(_text != nullptr)
+		{
+			_text->setColor(_originalTextColor);
+		}
 	}
 
 	if(_isHovered)
@@ -47,7 +68,11 @@ void GuiButton::update(const dvec2 & cursorPosition, const bool isLmbPressed)
 	}
 
 	_quad->update();
-	_text->update();
+
+	if(_text != nullptr)
+	{
+		_text->update();
+	}
 }
 
 void GuiButton::setVisible(const bool value)
@@ -55,7 +80,11 @@ void GuiButton::setVisible(const bool value)
 	_isVisible = value;
 
 	_quad->setVisible(_isVisible);
-	_text->setVisible(_isVisible);
+
+	if(_text != nullptr)
+	{
+		_text->setVisible(_isVisible);
+	}
 }
 
 void GuiButton::setHoverable(const bool value)
@@ -68,7 +97,11 @@ void GuiButton::setPressable(const bool value)
 	_isPressable = value;
 
 	_quad->setOpacity(_isPressable ? 1.0 : 0.5);
-	_text->setOpacity(_isPressable ? 1.0 : 0.5);
+
+	if(_text != nullptr)
+	{
+		_text->setOpacity(_isPressable ? 1.0 : 0.5);
+	}
 }
 
 void GuiButton::setHighlighted(const bool value)

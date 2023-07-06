@@ -37,13 +37,11 @@ void GuiManager::addGuiRectangle(const string & id, const dvec2 & position, cons
 	}
 
 	shared_ptr<Quad> quad = _createQuad(position, size, color, isHorizontallyCentered, isVerticallyCentered);
-
-	_quads.push_back(quad);
-
 	shared_ptr<GuiRectangle> guiRectangle = make_shared<GuiRectangle>(quad);
 
 	guiRectangle->setVisible(isVisible);
 
+	_quads.push_back(quad);
 	_guiRectangles.insert({id, guiRectangle});
 }
 
@@ -55,14 +53,30 @@ void GuiManager::addGuiLabel(const string & id, const dvec2 & position, const dv
 	}
 
 	shared_ptr<Text> text = _createText(position, size, color, content, isHorizontallyCentered, isVerticallyCentered);
-
-	_texts.push_back(text);
-
 	shared_ptr<GuiLabel> guiLabel = make_shared<GuiLabel>(text);
 
 	guiLabel->setVisible(isVisible);
 
 	_guiLabels.insert({id, guiLabel});
+	_texts.push_back(text);
+}
+
+void GuiManager::addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isVisible)
+{
+	if(_isGuiButtonExisting(id))
+	{
+		abort();
+	}
+
+	shared_ptr<Quad> quad = _createQuad(position, size, quadColor, isHorizontallyCentered, isVerticallyCentered);
+	shared_ptr<GuiButton> guiButton = make_shared<GuiButton>(quad);
+
+	guiButton->setVisible(isVisible);
+	guiButton->setHoverable(isHoverable);
+	guiButton->setPressable(isPressable);
+
+	_guiButtons.insert({id, guiButton});
+	_quads.push_back(quad);
 }
 
 void GuiManager::addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const dvec3 & textColor, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isVisible)
@@ -73,18 +87,7 @@ void GuiManager::addGuiButton(const string & id, const dvec2 & position, const d
 	}
 
 	shared_ptr<Quad> quad = _createQuad(position, size, quadColor, isHorizontallyCentered, isVerticallyCentered);
-
-	_quads.push_back(quad);
-
-	shared_ptr<Text> text = nullptr;
-
-	if(!content.empty())
-	{
-		text = _createText(position, size, textColor, content, isHorizontallyCentered, isVerticallyCentered);
-
-		_texts.push_back(text);
-	}
-
+	shared_ptr<Text> text = _createText(position, size, textColor, content, isHorizontallyCentered, isVerticallyCentered);
 	shared_ptr<GuiButton> guiButton = make_shared<GuiButton>(quad, text);
 
 	guiButton->setVisible(isVisible);
@@ -92,6 +95,8 @@ void GuiManager::addGuiButton(const string & id, const dvec2 & position, const d
 	guiButton->setPressable(isPressable);
 
 	_guiButtons.insert({id, guiButton});
+	_quads.push_back(quad);
+	_texts.push_back(text);
 }
 
 void GuiManager::addGuiWaveform(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible)
@@ -102,14 +107,12 @@ void GuiManager::addGuiWaveform(const string & id, const dvec2 & position, const
 	}
 
 	shared_ptr<Line> line = _createLine(position, size, color, isHorizontallyCentered, isVerticallyCentered);
-
-	_lines.push_back(line);
-
 	shared_ptr<GuiWaveform> guiWaveform = make_shared<GuiWaveform>(line);
 
 	guiWaveform->setVisible(isVisible);
 
 	_guiWaveforms.insert({id, guiWaveform});
+	_lines.push_back(line);
 }
 
 const shared_ptr<Quad> GuiManager::_createQuad(const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered) const

@@ -6,6 +6,7 @@ class GuiButton final
 {
 public:
 	GuiButton(const shared_ptr<Quad> & quad, const shared_ptr<Text> & text);
+	GuiButton(const shared_ptr<Quad> & quad);
 
 	void update(const dvec2 & cursorPosition, const bool isLmbPressed);
 	void setVisible(const bool value);

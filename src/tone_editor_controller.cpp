@@ -289,7 +289,7 @@ void ToneEditorController::_refreshWaveformVisualization()
 
 	if(waveform == nullptr)
 	{
-		_guiManager->getGuiWaveform("tone_editor_waveform")->setSamples({0.0f, 0.0f});
+		_guiManager->getGuiWaveform("tone_editor_waveform")->setSamples({0.0, 0.0});
 	}
 	else
 	{

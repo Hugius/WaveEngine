@@ -20,6 +20,7 @@ public:
 	void update(const dvec2 & cursorPosition, const bool isLmbPressed);
 	void addGuiRectangle(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible);
 	void addGuiLabel(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible);
+	void addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isVisible);
 	void addGuiButton(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & quadColor, const dvec3 & textColor, const string & content, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isHoverable, const bool isPressable, const bool isVisible);
 	void addGuiWaveform(const string & id, const dvec2 & position, const dvec2 & size, const dvec3 & color, const bool isHorizontallyCentered, const bool isVerticallyCentered, const bool isVisible);
 
@@ -52,7 +53,6 @@ private:
 	static inline const string FONT_PATH = "images\\font.tga";
 
 	static inline const dvec3 LIGHT_GRAY = dvec3(0.35);
-	static inline const dvec3 GRAY = dvec3(0.25);
 	static inline const dvec3 DARK_GRAY = dvec3(0.15);
 	static inline const dvec3 RED = dvec3(1.0, 0.0, 0.0);
 	static inline const dvec3 BLUE = dvec3(0.25, 0.25, 0.5);
