@@ -1,5 +1,6 @@
 #include "timeline_controller.hpp"
 #include "mathematics.hpp"
+#include "colors.hpp"
 
 using std::to_string;
 
@@ -25,7 +26,7 @@ void TimelineController::update()
 			const dvec2 position = dvec2(x + separatorOffset + CHAR_X * 0.75, notePositions.at(index) + separatorOffset);
 			const dvec2 size = dvec2(CHAR_X * (static_cast<double>(tone->getToneTemplate()->getDuration()) / 1.0), separatorOffset);
 
-			_guiManager->addGuiButton("rterttr", position, size, Colors::NORMAL_GRAY, Colors::LIGHT_GRAY, false, true, true, true, true);
+			_guiManager->addGuiButton("rterttr", position, size, Colors::GRAY, Colors::LIGHT_GRAY, false, true, true, true, true);
 			_guiManager->addGuiWaveform("rterttr", position, size, Colors::WHITE, false, true, true);
 			_guiManager->getGuiWaveform("rterttr")->setSamples(samples);
 		}

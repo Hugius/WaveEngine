@@ -4,7 +4,7 @@
 #include "texture_buffer.hpp"
 #include "dvec3.hpp"
 #include "dmat33.hpp"
-#include "shared.hpp"
+#include "colors.hpp"
 
 #include <string>
 

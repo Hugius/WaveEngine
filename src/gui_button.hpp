@@ -27,8 +27,8 @@ private:
 	const dvec3 _defaultQuadColor;
 	const dvec3 _defaultTextColor;
 
-	dvec3 _hoveredQuadColor = Shared::WHITE;
-	dvec3 _hoveredTextColor = Shared::WHITE;
+	dvec3 _hoveredQuadColor = Colors::WHITE;
+	dvec3 _hoveredTextColor = Colors::WHITE;
 
 	bool _isVisible = false;
 	bool _isHoverable = false;
