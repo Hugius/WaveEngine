@@ -1,6 +1,5 @@
 #include "timeline_controller.hpp"
 #include "mathematics.hpp"
-#include "colors.hpp"
 
 using std::to_string;
 
