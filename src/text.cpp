@@ -95,7 +95,7 @@ void Text::setContent(const string & value)
 
 void Text::setColor(const dvec3 & value)
 {
-	if(value < Shared::BLACK || value > Shared::WHITE)
+	if(value < Colors::BLACK || value > Colors::WHITE)
 	{
 		abort();
 	}

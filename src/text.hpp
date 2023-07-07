@@ -135,7 +135,7 @@ private:
 
 	string _content = "";
 
-	dvec3 _color = Shared::WHITE;
+	dvec3 _color = Colors::WHITE;
 
 	dvec2 _position = dvec2(0.0);
 	dvec2 _size = dvec2(1.0);

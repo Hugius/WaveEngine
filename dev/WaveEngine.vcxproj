@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\bottom_menu_controller.hpp" />
+    <ClInclude Include="..\src\colors.hpp" />
     <ClInclude Include="..\src\timeline_controller.hpp" />
     <ClInclude Include="..\src\tone.hpp" />
     <ClInclude Include="..\src\shared.hpp" />

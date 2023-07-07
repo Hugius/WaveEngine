@@ -302,6 +302,9 @@
     <ClInclude Include="..\src\timeline_controller.hpp">
       <Filter>GUI\Controllers</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\colors.hpp">
+      <Filter>Miscellaneous</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\app\shaders\line_fragment.glsl">

@@ -52,9 +52,7 @@ private:
 
 	static inline const string FONT_PATH = "images\\font.tga";
 
-	static inline const dvec3 DARK_GRAY = dvec3(0.15);
 	static inline const dvec3 RED = dvec3(1.0, 0.0, 0.0);
-	static inline const dvec3 BLUE = dvec3(0.25, 0.25, 0.5);
 
 	static inline const double CHAR_X = 0.0125;
 	static inline const double CHAR_Y = 0.05;

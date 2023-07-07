@@ -26,7 +26,7 @@ void Line::setVertexBuffer(const shared_ptr<VertexBuffer> & vertexBuffer)
 
 void Line::setColor(const dvec3 & value)
 {
-	if(value < Shared::BLACK || value > Shared::WHITE)
+	if(value < Colors::BLACK || value > Colors::WHITE)
 	{
 		abort();
 	}
