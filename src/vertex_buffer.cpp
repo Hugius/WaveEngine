@@ -110,21 +110,21 @@ VertexBuffer::VertexBuffer(const vector<dvec2> & vertices, const bool isHorizont
 
 		if(_isHorizontallyCentered)
 		{
-			data[dataIndex + 0] = vertices.at(index).x * 0.5;
+			data[dataIndex + 0] = vertices.at(index).x / 2.0;
 		}
 		else
 		{
-			data[dataIndex + 0] = vertices.at(index).x * 0.5 + 0.5;
+			data[dataIndex + 0] = vertices.at(index).x / 2.0 + 0.5;
 		}
 
 		if(_isVerticallyCentered)
 		{
 
-			data[dataIndex + 1] = vertices.at(index).y * 0.5;
+			data[dataIndex + 1] = vertices.at(index).y / 2.0;
 		}
 		else
 		{
-			data[dataIndex + 1] = vertices.at(index).y * 0.5 + 0.5;
+			data[dataIndex + 1] = vertices.at(index).y / 2.0 + 0.5;
 		}
 	}
 

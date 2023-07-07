@@ -141,7 +141,7 @@ void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 	bool isHorizontallyHovered;
 	if(isHorizontallyCentered)
 	{
-		isHorizontallyHovered = cursorPosition.x >= position.x - size.x * 0.5 && cursorPosition.x <= position.x + size.x * 0.5;
+		isHorizontallyHovered = cursorPosition.x >= position.x - size.x / 2.0 && cursorPosition.x <= position.x + size.x / 2.0;
 	}
 	else
 	{
@@ -151,7 +151,7 @@ void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 	bool isVerticallyHovered;
 	if(isVerticallyCentered)
 	{
-		isVerticallyHovered = cursorPosition.y >= position.y - size.y * 0.5 && cursorPosition.y <= position.y + size.y * 0.5;
+		isVerticallyHovered = cursorPosition.y >= position.y - size.y / 2.0 && cursorPosition.y <= position.y + size.y / 2.0;
 	}
 	else
 	{

@@ -35,8 +35,8 @@ void Text::update()
 
 		if(_vertexBuffer->isHorizontallyCentered())
 		{
-			offset.x -= (_size.x * 0.5);
-			offset.x += (quadSize.x * 0.5);
+			offset.x -= (_size.x / 2.0);
+			offset.x += (quadSize.x / 2.0);
 		}
 
 		quad->setColor(_color);

@@ -66,29 +66,29 @@ void GuiManager::_initializeTimeline()
 	const double y = -0.75;
 	const double width = 2.0;
 	const double height = 2.0 - 0.25 - CHAR_Y;
-	const double separatorOffset = CHAR_X * 6.0;
-	const double noteOffset = height / static_cast<double>(noteCount);
+	const double verticalSeparatorOffset = CHAR_X * 6.0;
+	const double horizontalSeparatorOffset = height / static_cast<double>(noteCount);
 
 	addGuiRectangle("timeline_background", dvec2(x, y), dvec2(width, height), Colors::GRAY, false, false, true);
-	addGuiRectangle("timeline_separator", dvec2(x + separatorOffset, y), dvec2(CHAR_X * 0.75, height), Colors::DARK_GRAY, false, false, true);
+	addGuiRectangle("timeline_separator", dvec2(x + verticalSeparatorOffset, y), dvec2(CHAR_X / 2.0, height), Colors::DARK_GRAY, false, false, true);
 
-	const vector<double> notePositions = Mathematics::calculateDistributedPositions(y, height, noteCount, true);
+	const vector<double> horizontalSeparatorPositions = Mathematics::calculateDistributedPositions(y, height, noteCount, true);
 
 	for(int index = 0; index < noteCount; index++)
 	{
-		const string noteId = "timeline_note" + to_string(index);
-		const string separatorId = "timeline_separator" + to_string(index);
 		const string noteName = NOTE_NAMES.at(index);
-		const dvec2 buttonPosition = dvec2(x + separatorOffset / 2.0, notePositions.at(index) + noteOffset / 2.0);
+		const string buttonId = "timeline_note" + to_string(index);
+		const string rectangleId = "timeline_separator" + to_string(index);
+		const dvec2 buttonPosition = dvec2(x + verticalSeparatorOffset / 2.0, horizontalSeparatorPositions.at(index) + horizontalSeparatorOffset / 2.0);
 		const dvec2 buttonSize = dvec2(WIDTH(noteName), CHAR_Y) * 2.0;
-		const dvec2 rectanglePosition = dvec2(x + separatorOffset, notePositions.at(index));
-		const dvec2 rectangleSize = dvec2(width, CHAR_Y * 0.25);
+		const dvec2 rectanglePosition = dvec2(x + verticalSeparatorOffset, horizontalSeparatorPositions.at(index));
+		const dvec2 rectangleSize = dvec2(width, CHAR_Y / 4.0);
 
-		addGuiButton(noteId, buttonPosition, buttonSize, Colors::GRAY, Colors::WHITE, Colors::GRAY, Colors::BLACK, noteName, true, true, true, true, true);
+		addGuiButton(buttonId, buttonPosition, buttonSize, Colors::GRAY, Colors::WHITE, Colors::GRAY, Colors::BLACK, noteName, true, true, true, true, true);
 
 		if(index > 0)
 		{
-			addGuiRectangle(separatorId, rectanglePosition, rectangleSize, Colors::DARK_GRAY, false, true, true);
+			addGuiRectangle(rectangleId, rectanglePosition, rectangleSize, Colors::DARK_GRAY, false, true, true);
 		}
 	}
 }
