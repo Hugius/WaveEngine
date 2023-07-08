@@ -25,5 +25,7 @@ private:
 	shared_ptr<WaveformGenerator> _waveformGenerator = nullptr;
 	shared_ptr<ToneManager> _toneManager = nullptr;
 
+	const double DURATION_MULTIPLIER = 0.01;
+
 	bool _isEnabled = false;
 };
