@@ -6,14 +6,8 @@ using std::to_string;
 void TimelineController::update()
 {
 	const int noteCount = Shared::NOTE_COUNT;
-	const double CHAR_X = 0.0125;
-	const double CHAR_Y = 0.05;
-	const double x = -1.0;
-	const double y = -0.75;
-	const double height = 2.0 - 0.25 - CHAR_Y;
-	const double separatorOffset = CHAR_X * 6.0;
-	const double noteOffset = height / static_cast<double>(noteCount);
-	const vector<double> notePositions = Mathematics::calculateDistributedPositions(y, height, noteCount, true);
+	const double durationMultiplier = 0.01;
+	const double separatorOffset = fabs(_guiManager->getGuiRectangle("timeline_separator0")->getQuad()->getPosition().y - _guiManager->getGuiRectangle("timeline_separator1")->getQuad()->getPosition().y);
 
 	for(int index = 0; index < noteCount; index++)
 	{
@@ -23,11 +17,13 @@ void TimelineController::update()
 			const shared_ptr<Tone> tone = make_shared<Tone>(toneTemplate);
 			const shared_ptr<Waveform> waveform = _waveformGenerator->generateWaveform(tone);
 			const vector<double> samples = _waveformGenerator->extractSamplesFromWaveform(waveform);
-			const dvec2 position = dvec2(x + separatorOffset + CHAR_X * 0.75, notePositions.at(index) + noteOffset / 2.0);
-			const dvec2 size = dvec2(CHAR_X * (static_cast<double>(tone->getToneTemplate()->getDuration()) / 1.0), noteOffset - CHAR_Y * 0.3);
+			const dvec2 separatorPosition = _guiManager->getGuiRectangle("timeline_separator" + to_string(index))->getQuad()->getPosition();
+			const dvec2 separatorSize = _guiManager->getGuiRectangle("timeline_separator" + to_string(index))->getQuad()->getSize();
+			const dvec2 waveformPosition = dvec2(separatorPosition.x, separatorPosition.y + separatorSize.y / 2.0);
+			const dvec2 waveformSize = dvec2(durationMultiplier * static_cast<double>(tone->getToneTemplate()->getDuration()), separatorOffset - separatorSize.y);
 
-			_guiManager->addGuiButton("rterttr", position, size, Colors::GRAY, Colors::LIGHT_GRAY, false, true, true, true, true);
-			_guiManager->addGuiWaveform("rterttr", position, size, Colors::WHITE, false, true, true);
+			_guiManager->addGuiButton("rterttr", waveformPosition, waveformSize, Colors::GRAY, Colors::LIGHT_GRAY, false, false, true, true, true);
+			_guiManager->addGuiWaveform("rterttr", waveformPosition + waveformSize * 0.05, waveformSize * 0.9, Colors::WHITE, false, false, true);
 			_guiManager->getGuiWaveform("rterttr")->setSamples(samples);
 		}
 	}

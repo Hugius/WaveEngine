@@ -19,3 +19,8 @@ void GuiRectangle::setVisible(const bool value)
 {
 	_quad->setVisible(value);
 }
+
+const shared_ptr<Quad> & GuiRectangle::getQuad() const
+{
+	return _quad;
+}

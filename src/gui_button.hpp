@@ -16,6 +16,8 @@ public:
 	void setHoveredQuadColor(const dvec3 & value);
 	void setHoveredTextColor(const dvec3 & value);
 
+	const shared_ptr<Quad> & getQuad() const;
+
 	const bool isPressed() const;
 
 private:

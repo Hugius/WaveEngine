@@ -119,6 +119,11 @@ void GuiButton::setHoveredTextColor(const dvec3 & value)
 	_hoveredTextColor = value;
 }
 
+const shared_ptr<Quad> & GuiButton::getQuad() const
+{
+	return _quad;
+}
+
 void GuiButton::_updateHovering(const dvec2 & cursorPosition)
 {
 	_isHovered = false;
